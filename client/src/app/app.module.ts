@@ -1,15 +1,24 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AppRoutingModule } from './app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 
+import { AppComponent } from './app.component';
+
+import { SpinnerComponent } from './spinner/spinner.component';
+
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, MatButtonModule],
+  declarations: [AppComponent, SpinnerComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+  ],
   providers: [provideAnimationsAsync()],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
