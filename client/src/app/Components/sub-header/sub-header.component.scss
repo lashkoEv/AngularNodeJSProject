@@ -1,0 +1,29 @@
+.sub-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 30px;
+    background-color: rgb(1, 1, 126);
+    color: aliceblue;
+}
+
+.languageBtns-wrapper, .func-part{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+    user-select: none;
+}
+
+.language-ru, .language-ua, .cart{
+    border: none;
+    background-color: inherit;
+    color: aliceblue;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.func-part{
+    width: 200px;
+}
