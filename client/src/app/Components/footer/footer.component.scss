@@ -15,6 +15,9 @@
 .nav-wrapper{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    gap: 40px;
+}
+
+.nav-link{
+    font-size: 25px;
 }
