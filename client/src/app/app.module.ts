@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppRoutingModule } from './app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
+import { DropdownModule } from '@coreui/angular';
 
 import { AppComponent } from './app.component';
 
@@ -16,6 +17,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AppRoutingModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    DropdownModule,
   ],
   providers: [provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

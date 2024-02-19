@@ -8,7 +8,6 @@ import { SpinnerService } from './spinner.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  link: string = '/test';
   constructor(private router: Router, private spinner: SpinnerService) {}
 
   ngOnInit(): void {
