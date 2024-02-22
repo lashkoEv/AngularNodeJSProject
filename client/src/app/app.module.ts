@@ -8,23 +8,28 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { SubHeaderComponent } from './Components/sub-header/sub-header.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 //MODULES
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { AlertModule } from '@coreui/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent, 
     HeaderComponent, 
     FooterComponent, 
-    SubHeaderComponent
+    SubHeaderComponent, CarouselComponent
   ],
   imports: [
     BrowserModule, 
+    BrowserAnimationsModule,
     AppRoutingModule, 
+    AlertModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
