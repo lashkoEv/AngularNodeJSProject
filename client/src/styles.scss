@@ -34,6 +34,7 @@ $client-theme: mat.define-light-theme((
 @include mat.all-component-themes($client-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@import "@coreui/coreui/scss/coreui";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
