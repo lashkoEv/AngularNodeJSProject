@@ -1,41 +1,37 @@
 <section class="top-header">
   <div class="phone-wrapper">
-    <img src="#" alt="#" class="phone-icon" />
+    <!-- <img src="../../assets/phone-solid.svg" alt="#" class="phone-icon" /> -->
     <span class="phone-number">{{ phoneNumber }}</span>
   </div>
   <div class="location-wrapper">
-    <img src="#" alt="#" class="pin-icon" />
+    <!-- <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" /> -->
     <span class="location">{{ location }}</span>
   </div>
-  <div class="hours-wrapper">
-    <span class="days">{{ workingHours.days }}</span>
-    <span class="hours">{{ workingHours.hours }}</span>
+  <div class="hours-wrapper" *ngFor="let data of workingHours">
+    <span class="days">{{ data.days }}</span>
+    <span class="hours">{{ data.hours }}</span>
   </div>
   <div class="socials-wrapper">
-    <img src="../../assets/viber.svg" alt="" class="viber" />
-    <img src="" alt="" class="telegram" />
-    <img src="" alt="" class="facebook" />
-    <img src="" alt="" class="instagram" />
-    <span class="lang-switch">RU | UA</span>
+    <!-- <img src="../../assets/viber.svg" alt="" class="viber" />
+    <img src="../../assets/telegram.svg" alt="" class="telegram" />
+    <img src="../../assets/facebook.svg" alt="" class="facebook" />
+    <img src="../../assets/instagram.svg" alt="" class="instagram" /> -->
+    <span class="lang-switch" *ngFor="let language of languageSwitch">
+      <button class="language">{{ language.ua }}</button>
+      <button class="language">{{ language.ru }}</button>
+    </span>
   </div>
 </section>
 <section class="main-header">
-  <div class="logo">ИНТЕР-ПЛАСТ СЕРВИС</div>
-  <nav class="navigation">
-    <a href="#">РЕГИСТРАЦИЯ</a>
-    <a href="#">ДОСТАВКА</a>
-    <a href="#">КОНТАКТЫ</a>
-    <a href="#">ТОВАРЫ</a>
+  <div class="logo">{{ logo }}</div>
+  <nav class="navigation" *ngFor="let nav of navigation">
+    <a [routerLink]="nav" class="nav">{{ nav }}</a>
   </nav>
-  <img src="#" alt="" class="cart-icon" />
+  <!-- <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" /> -->
 </section>
 <section class="sub-header">
   <div class="search-wrapper">
     <input type="text" class="input" />
-    <img src="#" alt="" class="search-icon" />
-  </div>
-  <div class="consult-wrapper">
-    <img src="#" alt="" class="chat-icon" />
-    <button class="consult">КОНСУЛЬТАТЦИЯ</button>
+    <img src="../../assets/search.svg" alt="#" class="search-icon" />
   </div>
 </section>

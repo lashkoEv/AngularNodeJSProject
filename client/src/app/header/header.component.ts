@@ -6,11 +6,15 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  public phoneNumber: '+380505667571';
-  public location: 'Харьков, Проспект Гагарина 1';
-  public workingHours: {
-    hours: '08:00 - 18:00';
-    days: 'ПН-ПТ';
-  };
-  public title: '';
+  public phoneNumber = '+380505667571';
+  public location = 'Харьков, Проспект Гагарина 1';
+  public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
+  public languageSwitch: {}[] = [{ ru: 'RU', ua: 'UA' }];
+  public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
+  public navigation: string[] = [
+    'КОНСУЛЬТАЦИЯ',
+    'ДОСТАВКА',
+    'КОНТАКТЫ',
+    'ТОВАРЫ',
+  ];
 }
