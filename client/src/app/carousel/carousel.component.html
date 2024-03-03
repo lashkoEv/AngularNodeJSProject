@@ -1,4 +1,5 @@
-<c-carousel>
+<div class="carousel-wrapper">
+  <c-carousel>
     <c-carousel-indicators></c-carousel-indicators>
     <c-carousel-inner>
       <c-carousel-item *ngFor="let slide of slides">
@@ -9,11 +10,13 @@
           src="{{slide.src}}"
         />
         <c-carousel-caption class="d-none d-md-block">
-          <h3>{{slide.title}}</h3>
-          <p>{{slide.subtitle}}</p>
+          <h3 class="carousel-title">{{slide.title}}</h3>
+          <p class="carousel-subtitle">{{slide.subtitle}}</p>
         </c-carousel-caption>
       </c-carousel-item>
     </c-carousel-inner>
     <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
     <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
   </c-carousel>
+</div>
+
