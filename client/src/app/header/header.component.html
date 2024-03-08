@@ -1,10 +1,10 @@
 <section class="top-header">
   <div class="phone-wrapper">
-    <!-- <img src="../../assets/phone-solid.svg" alt="#" class="phone-icon" /> -->
+    <img src="../../assets/phone-solid.svg" alt="#" class="phone-icon" />
     <span class="phone-number">{{ phoneNumber }}</span>
   </div>
   <div class="location-wrapper">
-    <!-- <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" /> -->
+    <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
     <span class="location">{{ location }}</span>
   </div>
   <div class="hours-wrapper" *ngFor="let data of workingHours">
@@ -12,26 +12,30 @@
     <span class="hours">{{ data.hours }}</span>
   </div>
   <div class="socials-wrapper">
-    <!-- <img src="../../assets/viber.svg" alt="" class="viber" />
+    <img src="../../assets/viber.svg" alt="" class="viber" />
     <img src="../../assets/telegram.svg" alt="" class="telegram" />
     <img src="../../assets/facebook.svg" alt="" class="facebook" />
-    <img src="../../assets/instagram.svg" alt="" class="instagram" /> -->
+    <img src="../../assets/instagram.svg" alt="" class="instagram" />
     <span class="lang-switch" *ngFor="let language of languageSwitch">
-      <button class="language">{{ language.ua }}</button>
-      <button class="language">{{ language.ru }}</button>
+      <button mat-button class="language">{{ language.ua }}</button>
+      <button mat-button class="language">{{ language.ru }}</button>
     </span>
   </div>
 </section>
 <section class="main-header">
   <div class="logo">{{ logo }}</div>
-  <nav class="navigation" *ngFor="let nav of navigation">
-    <a [routerLink]="nav" class="nav">{{ nav }}</a>
-  </nav>
-  <!-- <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" /> -->
+  <div class="navigation-wrapper">
+    <nav class="navigation" *ngFor="let nav of navigation">
+      <a [routerLink]="nav" mat-button class="nav">{{ nav }}</a>
+    </nav>
+    <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" />
+  </div>
 </section>
 <section class="sub-header">
   <div class="search-wrapper">
-    <input type="text" class="input" />
+    <!-- <mat-form-field> -->
+    <input matInput type="text" class="input" />
     <img src="../../assets/search.svg" alt="#" class="search-icon" />
+    <!-- </mat-form-field> -->
   </div>
 </section>
