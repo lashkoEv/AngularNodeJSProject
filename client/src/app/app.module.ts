@@ -8,15 +8,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, ConsultationComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MatButtonModule,
     MatInputModule,
-    MatButtonModule,
     MatIconModule,
   ],
   providers: [provideAnimationsAsync()],
