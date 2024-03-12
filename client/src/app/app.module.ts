@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { ConsultationComponent } from './consultation/consultation.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ConsultationComponent],
@@ -21,6 +22,10 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatIconModule,
   ],
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, MatButtonModule, HttpClientModule],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })

@@ -1,12 +1,12 @@
-const { Product } = require("../model/product.model");
+const { Category } = require("../model/category.model");
 
 async function getAll(req, res) {
   try {
-    const products = await Product.find();
+    const categories = await Category.find();
 
-    console.log("Found:", products);
+    console.log("Found:", categories);
 
-    return res.send(products);
+    return res.send(categories);
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -18,11 +18,11 @@ async function getAll(req, res) {
 
 async function getById(req, res) {
   try {
-    const product = await Product.findOne({ _id: req.body.id });
+    const category = await Category.findOne({ _id: req.body.id });
 
-    console.log("Found:", product);
+    console.log("Found:", category);
 
-    return res.send(product);
+    return res.send(category);
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -34,18 +34,13 @@ async function getById(req, res) {
 
 async function add(req, res) {
   try {
-    const product = new Product({
+    const category = new Category({
       title: req.body.title,
       description: req.body.description,
-      country: req.body.country,
-      price: req.body.price,
-      count: req.body.count,
-      fields: req.body.fields,
-      category: req.body.category,
       imgSrc: req.body.imgSrc,
     });
 
-    await product.save();
+    await category.save();
 
     return res.send({ ok: "ok" });
   } catch (error) {
@@ -59,7 +54,7 @@ async function add(req, res) {
 
 async function deleteById(req, res) {
   try {
-    await Product.deleteOne({ _id: req.body.id });
+    await Category.deleteOne({ _id: req.body.id });
 
     return res.send({ ok: "ok" });
   } catch (error) {
@@ -73,16 +68,11 @@ async function deleteById(req, res) {
 
 async function updateById(req, res) {
   try {
-    await Product.updateOne(
+    await Category.updateOne(
       { _id: req.body._id },
       {
         title: req.body.title,
         description: req.body.description,
-        country: req.body.country,
-        price: req.body.price,
-        count: req.body.count,
-        fields: req.body.fields,
-        category: req.body.category,
         imgSrc: req.body.imgSrc,
       }
     );
