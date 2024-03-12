@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { CarouselModule } from '@coreui/angular';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
     MatInputModule,
     MatMenuModule,
     CarouselModule,
-    IconModule
+    IconModule,
+    HttpClientModule
   ],
   providers: [IconSetService, provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
