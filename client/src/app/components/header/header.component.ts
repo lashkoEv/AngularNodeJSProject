@@ -11,10 +11,10 @@ export class HeaderComponent {
   public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
   public languageSwitch: {}[] = [{ ru: 'RU', ua: 'UA' }];
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
-  public navigation: string[] = [
-    'КОНСУЛЬТАЦИЯ',
-    'ДОСТАВКА',
-    'КОНТАКТЫ',
-    'ТОВАРЫ',
+  public navigation: {}[] = [
+    {
+      titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      links: ['consultation', 'delivery', 'contacts', 'products'],
+    },
   ];
 }
