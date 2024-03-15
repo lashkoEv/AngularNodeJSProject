@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
     ConsultationComponent,
     SpinnerComponent,
     NotificationComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
