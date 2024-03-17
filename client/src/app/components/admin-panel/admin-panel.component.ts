@@ -1,3 +1,4 @@
+import { AuthorizationService } from './../../services/authorization.service';
 import { ICategory } from './../../interfaces/ICategory';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
@@ -40,7 +41,8 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private authorizationService: AuthorizationService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +53,10 @@ export class AdminPanelComponent implements OnInit {
     this.categoryService.getAll().subscribe((data) => {
       this.dataSourceCategory = new MatTableDataSource<ICategory>(data);
     });
+  }
+
+  getAuthState() {
+    return this.authorizationService.getAuthState();
   }
 
   addProduct() {
