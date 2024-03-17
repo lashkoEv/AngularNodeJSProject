@@ -22,6 +22,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { AdminFormComponent } from './components/admin-form/admin-form.component';
 import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     AdminFormComponent,
     AuthorizationFormComponent,
     AdminPanelComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
