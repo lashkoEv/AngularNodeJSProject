@@ -26,7 +26,7 @@ export class HeaderComponent {
   }
 
   showForm() {
-    this.authorizationService.setFromState();
+    this.authorizationService.setFormState();
   }
 
   getFormState() {

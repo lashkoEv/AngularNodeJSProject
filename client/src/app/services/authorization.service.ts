@@ -26,7 +26,7 @@ export class AuthorizationService {
     return this.showForm;
   }
 
-  setFromState() {
+  setFormState() {
     this.showForm = !this.showForm;
   }
 

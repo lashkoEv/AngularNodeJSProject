@@ -13,7 +13,7 @@ export class AuthorizationFormComponent {
     await this.authorizationService.authorize(data).subscribe((data) => {
       if (data) {
         this.authorizationService.setAuthState();
-        this.authorizationService.setFromState();
+        this.authorizationService.setFormState();
       }
     });
   }
