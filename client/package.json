@@ -20,10 +20,17 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
+<<<<<<< HEAD
     "@coreui/angular": "^4.7.15",
     "@coreui/coreui": "^4.3.2",
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-angular": "^4.7.14",
+=======
+    "@coreui/angular": "^4.7.16",
+    "@coreui/coreui": "^4.3.2",
+    "@coreui/icons": "^3.0.1",
+    "@coreui/icons-angular": "^4.7.16",
+>>>>>>> master
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

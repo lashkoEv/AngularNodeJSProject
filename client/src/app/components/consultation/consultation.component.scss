@@ -1,0 +1,68 @@
+.consultation-title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #167586;
+  color: #fff;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+
+  .form-group {
+    width: 100%;
+    margin-bottom: 15px;
+
+    .mat-input-element {
+      color: #333;
+      font-size: 16px;
+    }
+
+    mat-label {
+      color: #9b9b9b;
+      font-size: 16px;
+    }
+  }
+
+  textarea.mat-input-element {
+    min-height: 150px;
+  }
+
+  button.mat-raised-button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button.mat-raised-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  button.mat-raised-button:hover {
+    background-color: #0056b3;
+  }
+
+  .image-wrapper {
+    max-width: 600px;
+    margin-left: 20px;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
