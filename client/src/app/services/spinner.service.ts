@@ -15,7 +15,7 @@ export class SpinnerService {
     this.isLoading.next(false);
   }
 
-  public startSpinner() {
+  public start() {
     this.show();
     setTimeout(() => {
       this.hide();
