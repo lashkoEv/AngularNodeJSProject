@@ -101,14 +101,18 @@
 .sub-header {
   background-color: #167586;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search-wrapper {
+  width: 30%;
   display: flex;
   align-items: center;
 
   .input {
-    width: calc(20% - 30px);
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -131,4 +135,19 @@
     margin-left: -30px;
     cursor: pointer;
   }
+}
+
+// ----------------------------
+
+.auth-wrapper {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn {
+  background-color: #fff;
+  padding: 1.25rem 2.5rem;
 }

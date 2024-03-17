@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { AdminFormComponent } from './components/admin-form/admin-form.component';
+import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminFormComponent } from './components/admin-form/admin-form.component
     SpinnerComponent,
     NotificationComponent,
     AdminFormComponent,
+    AuthorizationFormComponent,
   ],
   imports: [
     BrowserModule,

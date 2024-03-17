@@ -38,4 +38,15 @@
     <img src="../../assets/search.svg" alt="#" class="search-icon" />
     <!-- </mat-form-field> -->
   </div>
+
+  <div class="auth-wrapper">
+    <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
+      Авторизация
+    </button>
+    <button mat-button class="btn" *ngIf="getAuthState()">Админ-панель</button>
+    <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
+      Выход
+    </button>
+  </div>
 </section>
+<app-authorization-form *ngIf="getFormState()"></app-authorization-form>
