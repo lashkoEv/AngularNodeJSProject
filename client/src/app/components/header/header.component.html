@@ -23,7 +23,7 @@
   </div>
 </section>
 <section class="main-header">
-  <div class="logo">{{ logo }}</div>
+  <div class="logo" [routerLink]="['/']">{{ logo }}</div>
   <div class="navigation-wrapper" *ngFor="let nav of navigation">
     <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
