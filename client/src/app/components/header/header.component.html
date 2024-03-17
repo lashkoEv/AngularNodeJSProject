@@ -43,7 +43,14 @@
     <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
       Авторизация
     </button>
-    <button mat-button class="btn" *ngIf="getAuthState()">Админ-панель</button>
+    <button
+      mat-button
+      class="btn"
+      *ngIf="getAuthState()"
+      [routerLink]="['/admin']"
+    >
+      Админ-панель
+    </button>
     <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
       Выход
     </button>

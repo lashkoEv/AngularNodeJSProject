@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CalloutModule } from '@coreui/angular';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
@@ -19,6 +21,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { AdminFormComponent } from './components/admin-form/admin-form.component';
 import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { AuthorizationFormComponent } from './components/authorization-form/auth
     NotificationComponent,
     AdminFormComponent,
     AuthorizationFormComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,8 @@ import { AuthorizationFormComponent } from './components/authorization-form/auth
     CalloutModule,
     IconModule,
     ReactiveFormsModule,
+    MatTabsModule,
+    MatTableModule,
   ],
   providers: [provideAnimationsAsync(), IconSetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
