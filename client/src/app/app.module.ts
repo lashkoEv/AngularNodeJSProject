@@ -16,12 +16,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CarouselModule } from '@coreui/angular';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsCarouselComponent } from './products-carousel/products-carousel.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, 
-    CarouselComponent
+    CarouselComponent, ProductsCarouselComponent
   ],
   imports: [
     BrowserModule, 
