@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
-  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+  public slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
 
   constructor() { }
 

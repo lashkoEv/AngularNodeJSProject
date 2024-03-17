@@ -1,18 +1,13 @@
 <div class="carousel-wrapper">
-  <c-carousel>
-    <c-carousel-indicators></c-carousel-indicators>
+  <c-carousel [interval]="0">
     <c-carousel-inner>
       <c-carousel-item *ngFor="let slide of slides">
         <img
+          [src]="slide.src"
           alt="{{slide.title}}"
-          class="d-block w-100"
+          class="carousel-img d-block w-100"
           loading="lazy"
-          src="{{slide.src}}"
         />
-        <c-carousel-caption class="d-none d-md-block">
-          <h3 class="carousel-title">{{slide.title}}</h3>
-          <p class="carousel-subtitle">{{slide.subtitle}}</p>
-        </c-carousel-caption>
       </c-carousel-item>
     </c-carousel-inner>
     <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
