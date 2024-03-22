@@ -1,3 +1,4 @@
+import { AuthorizationService } from '../../services/authorization.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -17,4 +18,22 @@ export class HeaderComponent {
       links: ['consultation', 'delivery', 'contacts', 'products'],
     },
   ];
+
+  constructor(private authorizationService: AuthorizationService) {}
+
+  getAuthState() {
+    return this.authorizationService.getAuthState();
+  }
+
+  showForm() {
+    this.authorizationService.setFormState();
+  }
+
+  getFormState() {
+    return this.authorizationService.getFormState();
+  }
+
+  logout() {
+    this.authorizationService.setAuthState();
+  }
 }

@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 2rem;
+  border-radius: 2rem;
+  //   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.116);
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+
+  background-color: white;
+  z-index: 9;
+}
+
+.field {
+  width: 100%;
+}
+
+.btn {
+  background-color: #167586;
+  padding: 1.25rem 2.5rem;
+  color: white;
+}

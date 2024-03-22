@@ -23,7 +23,7 @@
   </div>
 </section>
 <section class="main-header">
-  <div class="logo">{{ logo }}</div>
+  <div class="logo" [routerLink]="['/']">{{ logo }}</div>
   <div class="navigation-wrapper" *ngFor="let nav of navigation">
     <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
@@ -43,4 +43,22 @@
     <img src="../../assets/search.svg" alt="#" class="search-icon" />
     <!-- </mat-form-field> -->
   </div>
+
+  <div class="auth-wrapper">
+    <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
+      Авторизация
+    </button>
+    <button
+      mat-button
+      class="btn"
+      *ngIf="getAuthState()"
+      [routerLink]="['/admin']"
+    >
+      Админ-панель
+    </button>
+    <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
+      Выход
+    </button>
+  </div>
 </section>
+<app-authorization-form *ngIf="getFormState()"></app-authorization-form>
