@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../interfaces/IProduct';
 import { MatTableDataSource } from '@angular/material/table';
 import { CategoryService } from '../../services/category.service';
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -42,7 +43,8 @@ export class AdminPanelComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private authorizationService: AuthorizationService
+    private authorizationService: AuthorizationService,
+    public formService: FormService
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +62,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   addProduct() {
-    // TODO add form
+    this.formService.invokeAddForm();
   }
 
   async deleteProduct(id: String) {
@@ -73,6 +75,8 @@ export class AdminPanelComponent implements OnInit {
 
   updateProduct(product: IProduct) {
     // TODO add form
+    this.formService.setProductId(product._id as string);
+    this.formService.invokeEditForm();
   }
 
   addCategory() {

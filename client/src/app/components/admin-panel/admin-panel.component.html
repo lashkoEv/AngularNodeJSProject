@@ -2,7 +2,9 @@
   <mat-tab-group>
     <mat-tab label="Продукты">
       <div class="btn-wrapper">
-        <button mat-stroked-button>Добавить продукт</button>
+        <button (click)="addProduct()" mat-stroked-button>
+          Добавить продукт
+        </button>
       </div>
 
       <table
@@ -155,3 +157,7 @@
     </mat-tab>
   </mat-tab-group>
 </section>
+
+<app-admin-form
+  *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
+></app-admin-form>
