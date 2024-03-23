@@ -13,6 +13,8 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
@@ -23,6 +25,7 @@ import { AdminFormComponent } from './components/admin-form/admin-form.component
 import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AuthorizationFormComponent,
     AdminPanelComponent,
     FooterComponent,
+    CatalogueComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatGridListModule,
+    MatCardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CalloutModule,
