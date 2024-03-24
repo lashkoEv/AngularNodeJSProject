@@ -24,6 +24,8 @@ import { AuthorizationFormComponent } from './components/authorization-form/auth
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { ProductTableComponent } from './components/product-table/product-table.component';
+import { CategoryTableComponent } from './components/category-table/category-table.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { MatPaginator } from '@angular/material/paginator';
     AuthorizationFormComponent,
     AdminPanelComponent,
     FooterComponent,
+    ProductTableComponent,
+    CategoryTableComponent,
   ],
   imports: [
     BrowserModule,
