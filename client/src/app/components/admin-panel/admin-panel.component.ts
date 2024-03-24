@@ -17,7 +17,8 @@ export class AdminPanelComponent implements OnInit {
     'imgSrc',
     'title',
     'description',
-    'price',
+    'wholesalePrice',
+    'retailPrice',
     'count',
     'category',
     'country',
@@ -43,7 +44,26 @@ export class AdminPanelComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private authorizationService: AuthorizationService
-  ) {}
+  ) {
+    // for (let i = 0; i < 10; i++) {
+    //   productService
+    //     .add({
+    //       title: 'Title',
+    //       description: 'Description',
+    //       country: 'Country',
+    //       wholesalePrice: '100 грн',
+    //       retailPrice: '200 грн',
+    //       count: '10 шт.',
+    //       fields: '#',
+    //       category: 'Category',
+    //       imgSrc:
+    //         'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=',
+    //     })
+    //     .subscribe((d) => {
+    //       console.log(d);
+    //     });
+    // }
+  }
 
   ngOnInit(): void {
     this.productService.getAll().subscribe((data) => {

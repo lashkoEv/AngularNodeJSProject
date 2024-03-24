@@ -33,11 +33,15 @@
           <td mat-cell *matCellDef="let product">{{ product.description }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef>Цена</th>
-          <td mat-cell *matCellDef="let product">{{ product.price }}</td>
+        <ng-container matColumnDef="wholesalePrice">
+          <th mat-header-cell *matHeaderCellDef>Оптовая цена</th>
+          <td mat-cell *matCellDef="let product">{{ product.wholesalePrice }}</td>
         </ng-container>
 
+        <ng-container matColumnDef="retailPrice">
+          <th mat-header-cell *matHeaderCellDef>Розничная цена</th>
+          <td mat-cell *matCellDef="let product">{{ product.retailPrice }}</td>
+        </ng-container>
         <ng-container matColumnDef="count">
           <th mat-header-cell *matHeaderCellDef>Количество</th>
           <td mat-cell *matCellDef="let product">{{ product.count }}</td>
