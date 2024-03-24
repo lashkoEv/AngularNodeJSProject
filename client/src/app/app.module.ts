@@ -17,7 +17,6 @@ import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
 
-
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { FormsModule } from '@angular/forms';
@@ -37,6 +36,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { CategoryTableComponent } from './components/category-table/category-tab
     FooterComponent,
     ProductTableComponent,
     CategoryTableComponent,
+    CatalogueComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,10 +75,11 @@ import { CategoryTableComponent } from './components/category-table/category-tab
     MatTabsModule,
     MatTableModule,
     MatPaginator,
+    MatGridListModule,
+    MatCardModule,
   ],
   providers: [provideAnimationsAsync(), IconSetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {}

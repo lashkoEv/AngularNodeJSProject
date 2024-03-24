@@ -9,7 +9,11 @@ import { CallUsModalWindowService } from './services/call-us-modal-window.servic
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private router: Router, private spinner: SpinnerService, public callUsModalWindow: CallUsModalWindowService) {}
+  constructor(
+    private router: Router,
+    private spinner: SpinnerService,
+    public callUsModalWindow: CallUsModalWindowService
+  ) {}
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -25,6 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   open() {
-    // * form
+    this.callUsModalWindow.toogleIsOpen();
   }
 }
