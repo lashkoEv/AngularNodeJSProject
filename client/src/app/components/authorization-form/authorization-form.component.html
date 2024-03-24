@@ -1,0 +1,26 @@
+<form #form="ngForm" (submit)="authorize(form.value)" class="form">
+  <mat-form-field class="field">
+    <mat-label>Логин</mat-label>
+    <input
+      name="login"
+      ngModel
+      matInput
+      placeholder="Введите логин..."
+      value=""
+    />
+  </mat-form-field>
+
+  <mat-form-field class="field">
+    <mat-label>Пароль</mat-label>
+    <input
+      name="password"
+      ngModel
+      matInput
+      placeholder="Введите пароль..."
+      value=""
+      type="password"
+    />
+  </mat-form-field>
+
+  <button mat-flat-button class="btn">Авторизация</button>
+</form>

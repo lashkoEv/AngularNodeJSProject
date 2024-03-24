@@ -1,0 +1,73 @@
+<button mat-raised-button color="primary" (click)="invokeEditForm()">
+  edit product
+</button>
+<button mat-raised-button color="primary" (click)="invokeAddForm()">
+  add product
+</button>
+
+<form
+  *ngIf="isAddProduct || isEditProduct"
+  [formGroup]="productForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h1>{{ formTitle }}</h1>
+  <!-- <mat-form-field>
+      <input matInput formControlName="_id" placeholder="id" />
+      <mat-error *ngIf="productForm.get('id').hasError('required')"
+        >Требуется Название</mat-error
+      >
+    </mat-form-field> -->
+
+  <mat-form-field>
+    <input matInput formControlName="title" placeholder="Название" />
+    <mat-error *ngIf="productForm.get('title').hasError('required')"
+      >Требуется Название</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="description" placeholder="Описание" />
+    <mat-error *ngIf="productForm.get('description').hasError('required')"
+      >Требуется Описание</mat-error
+    ></mat-form-field
+  >
+  <mat-form-field>
+    <input matInput formControlName="country" placeholder="Страна" />
+    <mat-error *ngIf="productForm.get('country').hasError('required')"
+      >Требуется Страна</mat-error
+    ></mat-form-field
+  >
+
+  <mat-form-field>
+    <input matInput formControlName="price" placeholder="Цена" />
+    <mat-error *ngIf="productForm.get('price').hasError('required')"
+      >Требуется Цена</mat-error
+    ></mat-form-field
+  >
+
+  <mat-form-field>
+    <input matInput formControlName="count" placeholder="Кол-во" />
+    <mat-error *ngIf="productForm.get('count').hasError('required')"
+      >Требуется кол-во</mat-error
+    ></mat-form-field
+  >
+  <mat-form-field>
+    <input matInput formControlName="fields" placeholder="fields" />
+    <mat-error *ngIf="productForm.get('fields').hasError('required')"
+      >fields required</mat-error
+    ></mat-form-field
+  >
+
+  <mat-form-field>
+    <input matInput formControlName="category" placeholder="Категория" />
+    <mat-error *ngIf="productForm.get('category').hasError('required')"
+      >Требуется категория</mat-error
+    ></mat-form-field
+  >
+  <mat-form-field>
+    <input matInput formControlName="imgSrc" placeholder="Изображение" />
+    <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
+      >Требуется изображение</mat-error
+    ></mat-form-field
+  >
+  <button mat-raised-button color="primary" type="submit">Принять</button>
+</form>

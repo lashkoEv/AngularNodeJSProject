@@ -1,3 +1,4 @@
+import { AuthorizationService } from '../../services/authorization.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,10 +12,28 @@ export class HeaderComponent {
   public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
   public languageSwitch: {}[] = [{ ru: 'RU', ua: 'UA' }];
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
-  public navigation: string[] = [
-    'КОНСУЛЬТАЦИЯ',
-    'ДОСТАВКА',
-    'КОНТАКТЫ',
-    'ТОВАРЫ',
+  public navigation: {}[] = [
+    {
+      titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      links: ['consultation', 'delivery', 'contacts', 'products'],
+    },
   ];
+
+  constructor(private authorizationService: AuthorizationService) {}
+
+  getAuthState() {
+    return this.authorizationService.getAuthState();
+  }
+
+  showForm() {
+    this.authorizationService.setFormState();
+  }
+
+  getFormState() {
+    return this.authorizationService.getFormState();
+  }
+
+  logout() {
+    this.authorizationService.setAuthState();
+  }
 }
