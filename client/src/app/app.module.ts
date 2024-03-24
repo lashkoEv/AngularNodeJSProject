@@ -23,6 +23,7 @@ import { AdminFormComponent } from './components/admin-form/admin-form.component
 import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     MatTabsModule,
     MatTableModule,
+    MatPaginator,
   ],
   providers: [provideAnimationsAsync(), IconSetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

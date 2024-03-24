@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,22 @@ import { Observable, catchError } from 'rxjs';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/products').pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    );
+  private readonly items$: BehaviorSubject<IProduct[]> = new BehaviorSubject<
+    IProduct[]
+  >([]);
+
+  getAll() {
+    this.http
+      .get<IProduct[]>('http://localhost:3000/products')
+      .subscribe((receivedItems) => this.items$.next(receivedItems));
+
+    return this.items$.asObservable();
+    // this.http.get('http://localhost:3000/products').pipe(
+    //   catchError((err) => {
+    //     console.log(err);
+    //     throw err;
+    //   })
+    // );
   }
 
   getById(id: String): Observable<any> {

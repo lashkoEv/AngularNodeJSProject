@@ -1,10 +1,12 @@
 import { AuthorizationService } from './../../services/authorization.service';
 import { ICategory } from './../../interfaces/ICategory';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../interfaces/IProduct';
 import { MatTableDataSource } from '@angular/material/table';
 import { CategoryService } from '../../services/category.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-panel',
@@ -12,6 +14,8 @@ import { CategoryService } from '../../services/category.service';
   styleUrl: './admin-panel.component.scss',
 })
 export class AdminPanelComponent implements OnInit {
+  @ViewChild('paginatorPageSize') paginatorPageSize: MatPaginator;
+
   displayedColumnsProduct = [
     '_id',
     'imgSrc',
@@ -65,9 +69,10 @@ export class AdminPanelComponent implements OnInit {
     // }
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.productService.getAll().subscribe((data) => {
       this.dataSourceProduct = new MatTableDataSource<IProduct>(data);
+      this.dataSourceProduct.paginator = this.paginatorPageSize;
     });
 
     this.categoryService.getAll().subscribe((data) => {
