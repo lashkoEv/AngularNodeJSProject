@@ -54,6 +54,8 @@ export class ProductTableComponent implements OnInit {
     this.productService.getAll().subscribe((data) => {
       this.dataSourceProduct = new MatTableDataSource<IProduct>(data);
       this.dataSourceProduct.paginator = this.paginator;
+      this.dataSourceProduct.paginator._intl.itemsPerPageLabel =
+        'Продуктов на странице: ';
     });
   }
 

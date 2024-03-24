@@ -35,6 +35,8 @@ export class CategoryTableComponent {
     this.categoryService.getAll().subscribe((data) => {
       this.dataSourceCategory = new MatTableDataSource<ICategory>(data);
       this.dataSourceCategory.paginator = this.paginator;
+      this.dataSourceCategory.paginator._intl.itemsPerPageLabel =
+        'Категорий на странице: ';
     });
   }
 
