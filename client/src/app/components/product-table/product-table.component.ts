@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IProduct } from '../../interfaces/IProduct';
 import { ProductService } from '../../services/product.service';
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: 'app-product-table',
@@ -29,7 +30,10 @@ export class ProductTableComponent implements OnInit {
 
   dataSourceProduct: MatTableDataSource<IProduct>;
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    public formService: FormService
+  ) {
     // for (let i = 0; i < 10; i++) {
     //   productService
     //     .add({
@@ -60,7 +64,8 @@ export class ProductTableComponent implements OnInit {
   }
 
   addProduct() {
-    // TODO add form
+    this.formService.invokeAddForm();
+    this.ngOnInit();
   }
 
   async deleteProduct(id: String) {
@@ -72,6 +77,8 @@ export class ProductTableComponent implements OnInit {
   }
 
   updateProduct(product: IProduct) {
-    // TODO add form
+    this.formService.setProductId(product._id as string);
+    this.formService.invokeEditForm();
+    this.ngOnInit();
   }
 }

@@ -1,3 +1,7 @@
+<div class="btn-wrapper">
+  <button mat-stroked-button (click)="addProduct()">Добавить продукт</button>
+</div>
+
 <table mat-table [dataSource]="dataSourceProduct" class="mat-elevation-z8">
   <ng-container matColumnDef="_id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -79,3 +83,7 @@
   [pageSizeOptions]="[10, 25, 100]"
   showFirstLastButtons
 ></mat-paginator>
+
+<app-admin-form
+  *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
+></app-admin-form>

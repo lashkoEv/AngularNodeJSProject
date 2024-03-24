@@ -1,10 +1,6 @@
 <section *ngIf="getAuthState()" class="panel">
   <mat-tab-group>
     <mat-tab label="Продукты">
-      <div class="btn-wrapper">
-        <button mat-stroked-button>Добавить продукт</button>
-      </div>
-
       <app-product-table></app-product-table>
     </mat-tab>
 

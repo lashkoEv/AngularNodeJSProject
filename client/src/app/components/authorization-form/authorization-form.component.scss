@@ -32,15 +32,6 @@
   margin-top: 2rem;
 }
 
-// .wrapper {
-
-//   width: 100%;
-//   // display: flex;
-//   // justify-content: flex-end;
-//   // align-items: center;
-//   // padding: 1rem 0;
-// }
-
 .close {
   position: fixed;
   top: 1.2rem;
@@ -84,4 +75,5 @@
   background-color: rgba(0, 0, 0, 0.3);
   min-height: 100vh;
   min-width: 100vw;
+  z-index: 10;
 }
