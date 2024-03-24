@@ -1,26 +1,36 @@
 <form #form="ngForm" (submit)="authorize(form.value)" class="form">
-  <mat-form-field class="field">
-    <mat-label>Логин</mat-label>
-    <input
-      name="login"
-      ngModel
-      matInput
-      placeholder="Введите логин..."
-      value=""
-    />
-  </mat-form-field>
+  <!-- <div class="wrapper"> -->
+  <button class="close">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <!-- </div> -->
 
-  <mat-form-field class="field">
-    <mat-label>Пароль</mat-label>
-    <input
-      name="password"
-      ngModel
-      matInput
-      placeholder="Введите пароль..."
-      value=""
-      type="password"
-    />
-  </mat-form-field>
+  <div class="content">
+    <h1 class="title">АВТОРИЗАЦИЯ</h1>
 
-  <button mat-flat-button class="btn">Авторизация</button>
+    <mat-form-field class="field">
+      <mat-label>Логин</mat-label>
+      <input
+        name="login"
+        ngModel
+        matInput
+        placeholder="Введите логин..."
+        value=""
+      />
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-label>Пароль</mat-label>
+      <input
+        name="password"
+        ngModel
+        matInput
+        placeholder="Введите пароль..."
+        value=""
+        type="password"
+      />
+    </mat-form-field>
+
+    <button mat-flat-button class="btn">Вход</button>
+  </div>
 </form>
