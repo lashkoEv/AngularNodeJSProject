@@ -26,6 +26,7 @@ import { CalloutModule } from '@coreui/angular';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { CallUsModalWindowComponent } from './components/call-us-modal-window/call-us-modal-window.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NotificationComponent } from './components/notification/notification.co
     SpinnerComponent,
     NotificationComponent,
     CarouselComponent,
-    ProductsCarouselComponent
+    ProductsCarouselComponent,
+    CallUsModalWindowComponent
   ],
   imports: [
     BrowserModule,
