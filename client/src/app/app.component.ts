@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { SpinnerService } from './services/spinner.service';
+import { CallUsModalWindowService } from './services/call-us-modal-window.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { SpinnerService } from './services/spinner.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private router: Router, private spinner: SpinnerService) {}
+  constructor(private router: Router, private spinner: SpinnerService, public callUsModalWindow: CallUsModalWindowService) {}
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
