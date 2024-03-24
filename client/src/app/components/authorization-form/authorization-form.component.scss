@@ -76,3 +76,12 @@
   font-weight: 600;
   letter-spacing: 0.15rem;
 }
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  min-height: 100vh;
+  min-width: 100vw;
+}
