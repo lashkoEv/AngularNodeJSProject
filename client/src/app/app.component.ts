@@ -22,4 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {}
+
+  open() {
+    // * form
+  }
 }
