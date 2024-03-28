@@ -1,88 +1,7 @@
 <section *ngIf="getAuthState()" class="panel">
   <mat-tab-group>
     <mat-tab label="Продукты">
-      <div class="btn-wrapper">
-        <button mat-stroked-button>Добавить продукт</button>
-      </div>
-
-      <table
-        mat-table
-        [dataSource]="dataSourceProduct"
-        class="mat-elevation-z8"
-      >
-        <ng-container matColumnDef="_id">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let product">{{ product._id }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="imgSrc">
-          <th mat-header-cell *matHeaderCellDef>Изображение</th>
-          <td mat-cell *matCellDef="let product">
-            <!-- {{ product.imgSrc }} -->
-            <img src="{{ product.imgSrc }}" class="img" />
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Название</th>
-          <td mat-cell *matCellDef="let product">{{ product.title }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Описание</th>
-          <td mat-cell *matCellDef="let product">{{ product.description }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef>Цена</th>
-          <td mat-cell *matCellDef="let product">{{ product.price }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="count">
-          <th mat-header-cell *matHeaderCellDef>Количество</th>
-          <td mat-cell *matCellDef="let product">{{ product.count }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef>Категория</th>
-          <td mat-cell *matCellDef="let product">{{ product.category }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="country">
-          <th mat-header-cell *matHeaderCellDef>Страна</th>
-          <td mat-cell *matCellDef="let product">{{ product.country }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="fields">
-          <th mat-header-cell *matHeaderCellDef>Поля</th>
-          <td mat-cell *matCellDef="let product">{{ product.fields }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let product">
-            <button
-              mat-button
-              (click)="deleteProduct(product._id)"
-              class="delete"
-            >
-              Удалить
-            </button>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let product">
-            <button mat-button (click)="updateProduct(product)" class="update">
-              Редактировать
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsProduct"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnsProduct"></tr>
-      </table>
+      <app-product-table></app-product-table>
     </mat-tab>
 
     <mat-tab label="Категории">
@@ -90,68 +9,7 @@
         <button mat-stroked-button>Добавить категорию</button>
       </div>
 
-      <table
-        mat-table
-        [dataSource]="dataSourceCategory"
-        class="mat-elevation-z8"
-      >
-        <ng-container matColumnDef="_id">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let category">{{ category._id }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="imgSrc">
-          <th mat-header-cell *matHeaderCellDef>Изображение</th>
-          <td mat-cell *matCellDef="let category">
-            <!-- {{ category.imgSrc }} -->
-            <img src="{{ category.imgSrc }}" class="img" />
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Название</th>
-          <td mat-cell *matCellDef="let category">{{ category.title }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Описание</th>
-          <td mat-cell *matCellDef="let category">
-            {{ category.description }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let category">
-            <button
-              mat-button
-              (click)="deleteCategory(category._id)"
-              class="delete"
-            >
-              Удалить
-            </button>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let category">
-            <button
-              mat-button
-              (click)="updateCategory(category)"
-              class="update"
-            >
-              Редактировать
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsCategory"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: displayedColumnsCategory"
-        ></tr>
-      </table>
+      <app-category-table></app-category-table>
     </mat-tab>
   </mat-tab-group>
 </section>

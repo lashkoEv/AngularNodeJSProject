@@ -1,22 +1,9 @@
-<button mat-raised-button color="primary" (click)="invokeEditForm()">
-  edit product
-</button>
-<button mat-raised-button color="primary" (click)="invokeAddForm()">
-  add product
-</button>
-
 <form
-  *ngIf="isAddProduct || isEditProduct"
+  *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
   [formGroup]="productForm"
   (ngSubmit)="onSubmit()"
 >
-  <h1>{{ formTitle }}</h1>
-  <!-- <mat-form-field>
-      <input matInput formControlName="_id" placeholder="id" />
-      <mat-error *ngIf="productForm.get('id').hasError('required')"
-        >Требуется Название</mat-error
-      >
-    </mat-form-field> -->
+  <h1>{{ formService.getFormTitle() }}</h1>
 
   <mat-form-field>
     <input matInput formControlName="title" placeholder="Название" />
