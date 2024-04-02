@@ -40,7 +40,7 @@ export class FormService {
   public invokeEditForm() {
     this.isEditProduct = true;
     this.isAddProduct = false;
-    this.formTitle = 'Редактировать продукт';
+    this.formTitle = 'Редактировать Продукт';
   }
   public invokeAddForm() {
     this.isEditProduct = false;

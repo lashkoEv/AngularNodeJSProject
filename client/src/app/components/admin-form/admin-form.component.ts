@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormService } from '../../services/form.service';
 
@@ -8,7 +8,7 @@ import { FormService } from '../../services/form.service';
   templateUrl: './admin-form.component.html',
   styleUrl: './admin-form.component.scss',
 })
-export class AdminFormComponent {
+export class AdminFormComponent implements OnInit {
   public productForm: FormGroup;
 
   constructor(private fb: FormBuilder, public formService: FormService) {}
@@ -22,13 +22,27 @@ export class AdminFormComponent {
       title: ['', Validators.required],
       description: ['', Validators.required],
       country: ['', Validators.required],
-      price: ['', Validators.required],
+      wholesalePrice: ['', Validators.required],
       count: ['', Validators.required],
-      fields: [{ key: '' }],
+      fields: this.fb.array([]),
+      retailPrice: [''],
       category: [''],
       imgSrc: [''],
     });
   }
+
+  private createField(): FormGroup {
+    return this.fb.group({
+      key: ['', Validators.required],
+      value: ['', Validators.required],
+    });
+  }
+
+  public addField() {
+    const fields = this.productForm.get('fields') as FormArray;
+    fields.push(this.createField());
+  }
+
   public invokeEditForm() {
     this.formService.invokeEditForm();
   }
@@ -37,6 +51,7 @@ export class AdminFormComponent {
   }
 
   public onSubmit(): void {
-    this.formService.onSubmit(this.productForm);
+    // this.formService.onSubmit(this.productForm);
+    console.log(this.productForm);
   }
 }

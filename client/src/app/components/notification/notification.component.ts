@@ -33,8 +33,8 @@ import { NotificationService } from '../../services/notification.service';
         animate(
           '0.5s ease-in-out',
           keyframes([
-            style({ opacity: 0, transform: 'translateX(100%)', offset: 0 }),
-            style({ opacity: 0.5, transform: 'translateX(50%)', offset: 0.5 }),
+            style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
+            style({ opacity: 0.5, transform: 'translateX(-50%)', offset: 0.5 }),
             style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
           ])
         ),

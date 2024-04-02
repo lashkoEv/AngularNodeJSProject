@@ -1,60 +1,89 @@
-<form
-  *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
-  [formGroup]="productForm"
-  (ngSubmit)="onSubmit()"
->
-  <h1>{{ formService.getFormTitle() }}</h1>
+<div class="container">
+  <form
+    *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
+    [formGroup]="productForm"
+    (ngSubmit)="onSubmit()"
+    class="form"
+  >
+    <div class="close-wrapper">
+      <button (click)="formService.hideForm()" class="close">✖</button>
+    </div>
+    <div class="content">
+      <h1 class="title">{{ formService.getFormTitle() }}</h1>
 
-  <mat-form-field>
-    <input matInput formControlName="title" placeholder="Название" />
-    <mat-error *ngIf="productForm.get('title').hasError('required')"
-      >Требуется Название</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="description" placeholder="Описание" />
-    <mat-error *ngIf="productForm.get('description').hasError('required')"
-      >Требуется Описание</mat-error
-    ></mat-form-field
-  >
-  <mat-form-field>
-    <input matInput formControlName="country" placeholder="Страна" />
-    <mat-error *ngIf="productForm.get('country').hasError('required')"
-      >Требуется Страна</mat-error
-    ></mat-form-field
-  >
+      <mat-form-field class="field">
+        <input matInput formControlName="title" placeholder="Название" />
+        <mat-error *ngIf="productForm.get('title').hasError('required')"
+          >Требуется Название</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="field">
+        <input matInput formControlName="description" placeholder="Описание" />
+        <mat-error *ngIf="productForm.get('description').hasError('required')"
+          >Требуется Описание</mat-error
+        ></mat-form-field
+      >
+      <mat-form-field class="field">
+        <input matInput formControlName="country" placeholder="Страна" />
+        <mat-error *ngIf="productForm.get('country').hasError('required')"
+          >Требуется Страна</mat-error
+        ></mat-form-field
+      >
 
-  <mat-form-field>
-    <input matInput formControlName="price" placeholder="Цена" />
-    <mat-error *ngIf="productForm.get('price').hasError('required')"
-      >Требуется Цена</mat-error
-    ></mat-form-field
-  >
+      <mat-form-field class="field">
+        <input
+          matInput
+          formControlName="wholesalePrice"
+          placeholder="Розничная цена "
+        />
+        <mat-error
+          *ngIf="productForm.get('wholesalePrice').hasError('required')"
+          >Требуется Розничная цена</mat-error
+        ></mat-form-field
+      >
 
-  <mat-form-field>
-    <input matInput formControlName="count" placeholder="Кол-во" />
-    <mat-error *ngIf="productForm.get('count').hasError('required')"
-      >Требуется кол-во</mat-error
-    ></mat-form-field
-  >
-  <mat-form-field>
-    <input matInput formControlName="fields" placeholder="fields" />
-    <mat-error *ngIf="productForm.get('fields').hasError('required')"
-      >fields required</mat-error
-    ></mat-form-field
-  >
+      <mat-form-field class="field">
+        <input matInput formControlName="count" placeholder="Кол-во" />
+        <mat-error *ngIf="productForm.get('count').hasError('required')"
+          >Требуется кол-во</mat-error
+        ></mat-form-field
+      >
 
-  <mat-form-field>
-    <input matInput formControlName="category" placeholder="Категория" />
-    <mat-error *ngIf="productForm.get('category').hasError('required')"
-      >Требуется категория</mat-error
-    ></mat-form-field
-  >
-  <mat-form-field>
-    <input matInput formControlName="imgSrc" placeholder="Изображение" />
-    <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
-      >Требуется изображение</mat-error
-    ></mat-form-field
-  >
-  <button mat-raised-button color="primary" type="submit">Принять</button>
-</form>
+      <mat-form-field class="field">
+        <input matInput formControlName="category" placeholder="Категория" />
+        <mat-error *ngIf="productForm.get('category').hasError('required')"
+          >Требуется категория</mat-error
+        ></mat-form-field
+      >
+      <mat-form-field class="field">
+        <input matInput formControlName="imgSrc" placeholder="Изображение" />
+        <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
+          >Требуется изображение</mat-error
+        ></mat-form-field
+      ><mat-form-field class="field">
+        <input
+          matInput
+          formControlName="retailPrice"
+          placeholder="Оптовая цена"
+        />
+        <mat-error *ngIf="productForm.get('retailPrice').hasError('required')"
+          >Требуется Оптовая Цена</mat-error
+        ></mat-form-field
+      >
+      <div
+        *ngFor="let field of productForm.get('fields').controls"
+        [formGroup]="field"
+      >
+        <mat-form-field>
+          <input matInput formControlName="key" placeholder="Ключ" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="value" placeholder="Значение" />
+        </mat-form-field>
+      </div>
+      <button class="add-field" type="button" (click)="addField()">+</button>
+
+      <button class="btn" mat-raised-button type="submit">Принять</button>
+    </div>
+  </form>
+</div>

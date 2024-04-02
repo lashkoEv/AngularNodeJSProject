@@ -17,4 +17,8 @@ export class AuthorizationFormComponent {
       }
     });
   }
+
+  close() {
+    this.authorizationService.setFormState();
+  }
 }

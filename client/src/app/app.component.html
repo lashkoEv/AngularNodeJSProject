@@ -5,6 +5,22 @@
   <!-- <app-consultation></app-consultation> -->
   <!-- <app-admin-form></app-admin-form> -->
   <!-- <app-notification></app-notification> -->
+
+  <button mat-raised-button (click)="open()" class="call">
+    <i class="fa-solid fa-phone phone-icon"></i>
+  </button>
 </div>
 
+<app-call-us-modal-window
+  *ngIf="callUsModalWindow.getIsOpen()"
+></app-call-us-modal-window>
 <app-spinner></app-spinner>
+<!-- <div>
+    <app-carousel></app-carousel>
+</div>
+
+<div>
+    <app-products-carousel></app-products-carousel>
+</div>
+
+<app-notification></app-notification> -->

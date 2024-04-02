@@ -15,7 +15,7 @@ export class HeaderComponent {
   public navigation: {}[] = [
     {
       titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
-      links: ['consultation', 'delivery', 'contacts', 'products'],
+      links: ['consultation', 'delivery', 'contacts', 'catalogue'],
     },
   ];
 

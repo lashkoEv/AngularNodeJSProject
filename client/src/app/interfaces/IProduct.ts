@@ -3,8 +3,9 @@ export interface IProduct {
   title: String;
   description: String;
   country: String;
-  price: Number;
-  count: Number;
+  wholesalePrice: String;
+  retailPrice: String;
+  count: String;
   fields: String;
   category: String;
   imgSrc: String;
