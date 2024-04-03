@@ -1,0 +1,15 @@
+<section *ngIf="getAuthState()" class="panel">
+  <mat-tab-group>
+    <mat-tab label="Продукты">
+      <app-product-table></app-product-table>
+    </mat-tab>
+
+    <mat-tab label="Категории">
+      <div class="btn-wrapper">
+        <button mat-stroked-button>Добавить категорию</button>
+      </div>
+
+      <app-category-table></app-category-table>
+    </mat-tab>
+  </mat-tab-group>
+</section>

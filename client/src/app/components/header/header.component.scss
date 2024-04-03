@@ -1,0 +1,154 @@
+.top-header {
+  background-color: #167586;
+  color: #fff;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.phone-wrapper {
+  margin-left: 20px;
+}
+
+.location-wrapper,
+.hours-wrapper,
+.socials-wrapper {
+  margin-right: 10px;
+}
+
+.phone-number,
+.location,
+.days,
+.hours {
+  margin-left: 5px;
+}
+
+.viber,
+.telegram,
+.facebook,
+.instagram,
+.pin-icon,
+.phone-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.viber,
+.telegram,
+.facebook,
+.instagram {
+  margin-left: 5px;
+}
+
+.lang-switch {
+  display: flex;
+  margin-left: 5px;
+}
+
+/* Set the color of language switch buttons to #fff */
+.language {
+  width: 15px;
+  color: #fff;
+}
+
+.location-wrapper,
+.phone-wrapper,
+.socials-wrapper,
+.hours-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.socials-wrapper {
+  display: flex;
+}
+
+/* Main Header Section */
+.main-header {
+  background-color: #fff;
+  color: #000000;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navigation-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-right: 15px;
+}
+
+.nav {
+  margin-right: 15px;
+  font-size: 16px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.cart-icon {
+  width: 30px;
+  height: 30px;
+}
+// ---------------------------------------
+.sub-header {
+  background-color: #167586;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-wrapper {
+  width: 30%;
+  display: flex;
+  align-items: center;
+
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.25);
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: -30px;
+    cursor: pointer;
+  }
+}
+
+// ----------------------------
+
+.auth-wrapper {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn {
+  background-color: #fff;
+  padding: 1.25rem 2.5rem;
+}

@@ -4,6 +4,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const productRouter = require("./routes/product.router");
+const categoryRouter = require("./routes/category.router");
+const userRouter = require("./routes/user.router");
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(bodyParser.json());
 connect();
 
 app.use("", productRouter);
+app.use("", categoryRouter);
+app.use("", userRouter);
 
 app.use("/", (req, res) => {
   return res.json({

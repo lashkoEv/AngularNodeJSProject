@@ -1,0 +1,26 @@
+<div class="app">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  <!-- <app-consultation></app-consultation> -->
+  <!-- <app-admin-form></app-admin-form> -->
+  <!-- <app-notification></app-notification> -->
+
+  <button mat-raised-button (click)="open()" class="call">
+    <i class="fa-solid fa-phone phone-icon"></i>
+  </button>
+</div>
+
+<app-call-us-modal-window *ngIf="callUsModalWindow.getIsOpen()"></app-call-us-modal-window>
+
+<!-- <div>
+    <app-carousel></app-carousel>
+</div>
+
+<div>
+    <app-products-carousel></app-products-carousel>
+</div>
+
+<router-outlet></router-outlet>
+<app-notification></app-notification>
+<app-spinner></app-spinner> -->

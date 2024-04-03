@@ -1,0 +1,52 @@
+.logo {
+  font-size: 36px;
+}
+
+.left-footer {
+  font-size: 20px;
+  .pin-icon,
+  .phone-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  .logo {
+    margin-top: 2rem;
+  }
+  .info-contact {
+    margin: 2.5rem;
+    .location {
+      font-size: 25px;
+    }
+  }
+  .location-wrapper {
+    display: flex;
+  }
+}
+.middle-footer {
+  .map {
+    height: 12rem;
+    width: 24rem;
+  }
+}
+.right-footer {
+  .footer-navigation-wrapper {
+    .navigation {
+      .nav {
+        font-size: 1rem;
+      }
+    }
+  }
+  .footer-socials-wrapper {
+    .footer-social {
+      .viber,
+      .telegram,
+      .facebook,
+      .instagram {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

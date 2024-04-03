@@ -1,0 +1,59 @@
+<section class="top-header">
+  <div class="phone-wrapper">
+    <img src="../../assets/phone-solid.svg" alt="#" class="phone-icon" />
+    <span class="phone-number">{{ phoneNumber }}</span>
+  </div>
+  <div class="location-wrapper">
+    <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
+    <span class="location">{{ location }}</span>
+  </div>
+  <div class="hours-wrapper" *ngFor="let data of workingHours">
+    <span class="days">{{ data.days }}</span>
+    <span class="hours">{{ data.hours }}</span>
+  </div>
+  <div class="socials-wrapper">
+    <img src="../../assets/viber.svg" alt="" class="viber" />
+    <img src="../../assets/telegram.svg" alt="" class="telegram" />
+    <img src="../../assets/facebook.svg" alt="" class="facebook" />
+    <img src="../../assets/instagram.svg" alt="" class="instagram" />
+    <span class="lang-switch" *ngFor="let language of languageSwitch">
+      <button mat-button class="language">{{ language.ua }}</button>
+      <button mat-button class="language">{{ language.ru }}</button>
+    </span>
+  </div>
+</section>
+<section class="main-header">
+  <div class="logo" [routerLink]="['/']">{{ logo }}</div>
+  <div class="navigation-wrapper" *ngFor="let nav of navigation">
+    <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
+      <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
+    </nav>
+    <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" />
+  </div>
+</section>
+<section class="sub-header">
+  <div class="search-wrapper">
+    <!-- <mat-form-field> -->
+    <input matInput type="text" class="input" />
+    <img src="../../assets/search.svg" alt="#" class="search-icon" />
+    <!-- </mat-form-field> -->
+  </div>
+
+  <div class="auth-wrapper">
+    <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
+      Авторизация
+    </button>
+    <button
+      mat-button
+      class="btn"
+      *ngIf="getAuthState()"
+      [routerLink]="['/admin']"
+    >
+      Админ-панель
+    </button>
+    <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
+      Выход
+    </button>
+  </div>
+</section>
+<app-authorization-form *ngIf="getFormState()"></app-authorization-form>
