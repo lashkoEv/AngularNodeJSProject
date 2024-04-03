@@ -1,10 +1,11 @@
-<c-callout
-  class="notification"
-  color="primary"
-  [@fade]="(getIsVisible() | async) ? 'visible' : 'hidden'"
->
-  You added new product to your cart
-</c-callout>
+<div class="notify-wrapper">
+  <c-callout
+    class="notification"
+    color="light"
+    [@fade]="(getIsVisible() | async) ? 'visible' : 'hidden'"
+  >
+    {{ text.value }}
+  </c-callout>
+</div>
 
-<!-- example how call notify -->
-<button (click)="callNotify()">ЗАГЛУШКА</button>
+<!-- <button (click)="callNotify()">test</button> -->

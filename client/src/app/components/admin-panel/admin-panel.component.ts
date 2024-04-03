@@ -15,4 +15,8 @@ export class AdminPanelComponent {
   getAuthState() {
     return this.authorizationService.getAuthState();
   }
+
+  addCategory() {
+    this.formService.invokeAddCategory();
+  }
 }

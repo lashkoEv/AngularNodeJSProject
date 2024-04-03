@@ -7,6 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { CallUsModalWindowComponent } from './components/call-us-modal-window/call-us-modal-window.component';
+import { AdminFormComponent } from './components/admin-form/admin-form.component';
+import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { FooterComponent } from './components/footer/footer.component';
+
+import { ProductTableComponent } from './components/product-table/product-table.component';
+import { CategoryTableComponent } from './components/category-table/category-table.component';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
 
 //MODULES
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
-
+import { MatPaginator } from '@angular/material/paginator';
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { FormsModule } from '@angular/forms';
@@ -25,18 +36,6 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
-
-import { SpinnerComponent } from './components/spinner/spinner.component';
-import { NotificationComponent } from './components/notification/notification.component';
-import { CallUsModalWindowComponent } from './components/call-us-modal-window/call-us-modal-window.component';
-import { AdminFormComponent } from './components/admin-form/admin-form.component';
-import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
-import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { MatPaginator } from '@angular/material/paginator';
-import { ProductTableComponent } from './components/product-table/product-table.component';
-import { CategoryTableComponent } from './components/category-table/category-table.component';
-import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 

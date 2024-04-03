@@ -18,17 +18,33 @@ export class AdminFormComponent implements OnInit {
   }
 
   private createForm(): void {
-    this.productForm = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      country: ['', Validators.required],
-      wholesalePrice: ['', Validators.required],
-      count: ['', Validators.required],
-      fields: this.fb.array([]),
-      retailPrice: [''],
-      category: [''],
-      imgSrc: [''],
-    });
+    if (
+      this.formService.getIsAddProduct() ||
+      this.formService.getIsEditProduct()
+    ) {
+      this.productForm = this.fb.group({
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+        country: ['', Validators.required],
+        wholesalePrice: ['', Validators.required],
+        count: ['', Validators.required],
+        fields: this.fb.array([]),
+        retailPrice: [''],
+        category: [''],
+        imgSrc: [
+          'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=',
+        ],
+      });
+    } else if (
+      this.formService.getIsAddCategory() ||
+      this.formService.getIsUpdateCategory()
+    ) {
+      this.productForm = this.fb.group({
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+        imgSrc: ['https://i.postimg.cc/BvBv0Dqt/15.png'],
+      });
+    }
   }
 
   private createField(): FormGroup {
@@ -51,7 +67,6 @@ export class AdminFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    // this.formService.onSubmit(this.productForm);
-    console.log(this.productForm);
+    this.formService.onSubmit(this.productForm);
   }
 }
