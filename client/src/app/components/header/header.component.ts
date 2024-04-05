@@ -1,5 +1,6 @@
 import { AuthorizationService } from '../../services/authorization.service';
 import { Component } from '@angular/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +15,22 @@ export class HeaderComponent {
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public navigation: {}[] = [
     {
-      titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      titles: ['CONSULTATION', 'DELIVERY', 'CONTACTS', 'PRODUCTS'],
       links: ['consultation', 'delivery', 'contacts', 'catalogue'],
     },
   ];
 
-  constructor(private authorizationService: AuthorizationService) {}
+  constructor(
+    private authorizationService: AuthorizationService,
+    private translationService: TranslationService
+  ) {}
+  ngOnInit() {
+    this.translationService.initializeTranslation();
+  }
+
+  switchLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
 
   getAuthState() {
     return this.authorizationService.getAuthState();

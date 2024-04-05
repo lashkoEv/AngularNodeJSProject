@@ -17,16 +17,16 @@
     <img src="../../assets/facebook.svg" alt="" class="facebook" />
     <img src="../../assets/instagram.svg" alt="" class="instagram" />
     <span class="lang-switch" *ngFor="let language of languageSwitch">
-      <button mat-button class="language">{{ language.ua }}</button>
-      <button mat-button class="language">{{ language.ru }}</button>
+      <button mat-button class="language" (click)="switchLanguage('ua')">{{ language.ua }}</button>
+      <button mat-button class="language" (click)="switchLanguage('ru')">{{ language.ru }}</button>
     </span>
   </div>
 </section>
 <section class="main-header">
   <div class="logo" [routerLink]="['/']">{{ logo }}</div>
   <div class="navigation-wrapper" *ngFor="let nav of navigation">
-    <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
-      <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
+    <nav class="navigation" *ngFor="let title  of nav.titles; let i = index">
+      <a [routerLink]="[nav.links[i] ]" mat-button class="nav">{{ title | translate}}</a>
     </nav>
     <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" />
   </div>
@@ -41,18 +41,13 @@
 
   <div class="auth-wrapper">
     <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
-      Авторизация
+      {{ 'Авторизация' | translate }}
     </button>
-    <button
-      mat-button
-      class="btn"
-      *ngIf="getAuthState()"
-      [routerLink]="['/admin']"
-    >
-      Админ-панель
+    <button mat-button class="btn" *ngIf="getAuthState()" [routerLink]="['/admin']">
+      {{ 'Админ-панель' | translate }}
     </button>
     <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
-      Выход
+      {{ 'Выход' | translate }}
     </button>
   </div>
 </section>

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { SpinnerService } from './services/spinner.service';
 import { CallUsModalWindowService } from './services/call-us-modal-window.service';
+import { TranslationService } from './services/translation.service';
 
 @Component({
   selector: 'app-root',

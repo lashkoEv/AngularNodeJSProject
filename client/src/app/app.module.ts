@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { CarouselModule } from '@coreui/angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -39,7 +39,14 @@ import { CategoryTableComponent } from './components/category-table/category-tab
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslationService } from './services/translation.service';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -78,8 +85,15 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
-  providers: [provideAnimationsAsync(), IconSetService],
+  providers: [provideAnimationsAsync(), IconSetService, TranslationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
