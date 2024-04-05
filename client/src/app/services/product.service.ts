@@ -27,6 +27,17 @@ export class ProductService {
     );
   }
 
+  getByCategory(category: String): Observable<any> {
+    return this.http
+      .post('http://localhost:3000/products/category', { category: category })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
+  }
+
   add(data: IProduct): any {
     return this.http.post('http://localhost:3000/products/add', data).pipe(
       catchError((err) => {

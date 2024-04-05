@@ -32,6 +32,22 @@ async function getById(req, res) {
   }
 }
 
+async function getByCategory(req, res) {
+  try {
+    const products = await Product.find({ category: req.body.category });
+
+    console.log("Found:", products);
+
+    return res.send(products);
+  } catch (error) {
+    console.error(`Error: ${error}`);
+
+    return res
+      .status(500)
+      .send({ error: `Failed to complete the request! Error: ${error}` });
+  }
+}
+
 async function add(req, res) {
   try {
     const product = new Product({
@@ -102,6 +118,7 @@ async function updateById(req, res) {
 module.exports = {
   getAll,
   getById,
+  getByCategory,
   add,
   deleteById,
   updateById,

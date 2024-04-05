@@ -21,8 +21,8 @@ export class CategoryPageComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const categoryID = params['id'];
       this.getCategory(categoryID);
+      this.getProducts(categoryID);
     });
-    this.getProducts();
   }
 
   getCategory(categoryID: string) {
@@ -31,8 +31,8 @@ export class CategoryPageComponent implements OnInit {
     });
   }
 
-  async getProducts() {
-    await this.productService.getAll().subscribe((data) => {
+  async getProducts(categoryID: string) {
+    await this.productService.getByCategory(categoryID).subscribe((data) => {
       this.products = data;
     });
   }
