@@ -10,7 +10,7 @@
 
   <ng-container matColumnDef="imgSrc">
     <th mat-header-cell *matHeaderCellDef>Изображение</th>
-    <td mat-cell *matCellDef="let product">
+    <td mat-cell *matCellDef="let product" (click)="showProduct(product)">
       <img src="{{ product.imgSrc }}" class="img" />
     </td>
   </ng-container>
@@ -76,6 +76,15 @@
     <td mat-cell *matCellDef="let product">
       <button mat-button (click)="updateProduct(product)" class="update">
         Редактировать
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="show">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let product">
+      <button mat-button (click)="showProduct(product)" class="show">
+        Открыть
       </button>
     </td>
   </ng-container>

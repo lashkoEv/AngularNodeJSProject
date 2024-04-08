@@ -27,6 +27,7 @@ export class ProductTableComponent implements OnInit {
     'fields',
     'delete',
     'update',
+    'show',
   ];
 
   dataSourceProduct: MatTableDataSource<IProduct>;
@@ -82,5 +83,9 @@ export class ProductTableComponent implements OnInit {
     this.formService.setProductId(product._id as string);
     this.formService.invokeEditForm();
     this.ngOnInit();
+  }
+
+  showProduct(data: any) {
+    console.log(data);
   }
 }
