@@ -16,6 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
+import { AsyncPipe } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
@@ -42,6 +44,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CallRequestTableComponent } from './components/call-request-table/call-request-table.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { ShowProductModalComponent } from './components/show-product-modal/show-product-modal.component';
+import { SearchComponent } from './components/search/search.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -63,6 +67,7 @@ import { ShowProductModalComponent } from './components/show-product-modal/show-
     CallRequestTableComponent,
     CategoryPageComponent,
     ShowProductModalComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +88,9 @@ import { ShowProductModalComponent } from './components/show-product-modal/show-
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    AsyncPipe,
   ],
   providers: [provideAnimationsAsync(), IconSetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
