@@ -1,0 +1,59 @@
+<table mat-table [dataSource]="dataSourceCategory" class="mat-elevation-z8">
+  <ng-container matColumnDef="_id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let category">{{ category._id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="imgSrc">
+    <th mat-header-cell *matHeaderCellDef>Изображение</th>
+    <td mat-cell *matCellDef="let category">
+      <!-- {{ category.imgSrc }} -->
+      <img src="{{ category.imgSrc }}" class="img" />
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Название</th>
+    <td mat-cell *matCellDef="let category">{{ category.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Описание</th>
+    <td mat-cell *matCellDef="let category">
+      {{ category.description }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let category">
+      <button mat-button (click)="deleteCategory(category._id)" class="delete">
+        Удалить
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let category">
+      <button mat-button (click)="updateCategory(category)" class="update">
+        Редактировать
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsCategory"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsCategory"></tr>
+</table>
+
+<mat-paginator
+  #paginator
+  [pageSizeOptions]="[10, 25, 100]"
+  showFirstLastButtons
+></mat-paginator>
+
+<app-admin-form
+  *ngIf="formService.getIsAddCategory() || formService.getIsUpdateCategory()"
+></app-admin-form>
+<app-spinner></app-spinner>
+<app-notification></app-notification>

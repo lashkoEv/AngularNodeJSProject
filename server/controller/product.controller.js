@@ -38,7 +38,8 @@ async function add(req, res) {
       title: req.body.title,
       description: req.body.description,
       country: req.body.country,
-      price: req.body.price,
+      wholesalePrice: req.body.wholesalePrice,
+      retailPrice: req.body.retailPrice,
       count: req.body.count,
       fields: req.body.fields,
       category: req.body.category,
@@ -79,7 +80,8 @@ async function updateById(req, res) {
         title: req.body.title,
         description: req.body.description,
         country: req.body.country,
-        price: req.body.price,
+        wholesalePrice: req.body.wholesalePrice,
+        retailPrice: req.body.retailPrice,
         count: req.body.count,
         fields: req.body.fields,
         category: req.body.category,
@@ -97,10 +99,27 @@ async function updateById(req, res) {
   }
 }
 
+async function getByCategory(req, res) {
+  try {
+    const products = await Product.find({ category: req.body.category });
+
+    console.log("Found:", products);
+
+    return res.send(products);
+  } catch (error) {
+    console.error(`Error: ${error}`);
+
+    return res
+      .status(500)
+      .send({ error: `Failed to complete the request! Error: ${error}` });
+  }
+}
+
 module.exports = {
   getAll,
   getById,
   add,
   deleteById,
   updateById,
+  getByCategory,
 };

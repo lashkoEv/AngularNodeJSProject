@@ -1,34 +1,49 @@
 <section class="footer">
-    <section class="left-footer">
-        <section class="logo">{{logo}}</section>
-        <section class="info-contact">
-            <section class="phone-number">{{phoneNumber}}</section>
-            <section class="email">{{contactEmail}}</section>
-            <section class="working-hours" *ngFor="let data of workingHours">
-                <span class="days">{{ data.hours }}</span>
-                <span class="hours">{{ data.days }}</span>
-            </section>
-        </section>
-        <section class="location-wrapper">
-            <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
-            <section class="location">{{location}}</section>
-        </section>
+  <section class="left-footer">
+    <section class="logo">{{ logo }}</section>
+    <section class="info-contact">
+      <section class="phone-number">{{ phoneNumber }}</section>
+      <section class="email">{{ contactEmail }}</section>
+      <section class="working-hours" *ngFor="let data of workingHours">
+        <span class="days">{{ data.hours }}</span>
+        <span class="hours">{{ data.days }}</span>
+      </section>
     </section>
-    <section class="middle-footer">
-        <section class="map-wrapper">
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226.75575775455337!2d36.244486905473224!3d49.98419949394847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a08c651d29b3%3A0x36d760ce5e05b252!2z0L_RgNC-0YHQvy4g0JPQsNCz0LDRgNC40L3QsCwgMSwg0KXQsNGA0YzQutC-0LIsINCl0LDRgNGM0LrQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsINCj0LrRgNCw0LjQvdCwLCA2MTAwMA!5e0!3m2!1sru!2sbe!4v1710349295888!5m2!1sru!2sbe" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
+    <section class="location-wrapper">
+      <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
+      <section class="location">
+        <a href="{{ location.src }}" class="location">{{ location.title }}</a>
+      </section>
     </section>
-    <section class="right-footer">
-        <section class="footer-navigation-wrapper">
-            <nav class="navigation" *ngFor="let nav of navigation">
-                <a [routerLink]="nav" mat-button class="nav">{{ nav }}</a>
-            </nav>
-        </section>
-        <section class="footer-socials-wrapper">
-            <socials class="footer-social" *ngFor="let social of socials">
-                <a href='{{social.src}}' mat-button class="social"><img class='{{social.name}}' src='{{social.img}}' alt="#"></a>
-            </socials>
-        </section>
+  </section>
+  <section class="middle-footer">
+    <section class="map-wrapper">
+      <iframe
+        class="map" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1282.7239538992287!2d36.24360233917176!3d49.98421141753424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a08c651d29b3%3A0x36d760ce5e05b252!2z0L_RgNC-0YHQvy4g0JPQsNCz0LDRgNC40L3QsCwgMSwg0KXQsNGA0YzQutC-0LIsINCl0LDRgNGM0LrQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsINCj0LrRgNCw0LjQvdCwLCA2MTAwMA!5e0!3m2!1sru!2sbe!4v1711738474022!5m2!1sru!2sbe" 
+        width="400" 
+        height="300" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </section>
+  </section>
+  <section class="right-footer">
+    <section class="footer-navigation-wrapper">
+      <div *ngFor="let nav of navigation">
+        <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
+          <a [routerLink]="nav.links[i]" mat-button class="nav">{{ title }}</a>
+        </nav>
+      </div>
+    </section>
+    <section class="footer-socials-wrapper">
+      <socials class="footer-social" *ngFor="let social of socials">
+        <a href="{{ social.src }}" mat-button class="social">
+          <img class="{{ social.name }}" src="{{ social.img }}" alt="#"/>
+        </a>
+      </socials>
+    </section>
+  </section>
 </section>

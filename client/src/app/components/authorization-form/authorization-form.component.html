@@ -1,0 +1,40 @@
+<section class="container">
+  <form #form="ngForm" (submit)="authorize(form.value)" class="form">
+    <!-- <div class="wrapper"> -->
+    <button class="close" (click)="close()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <!-- </div> -->
+
+    <div class="content">
+      <h1 class="title">АВТОРИЗАЦИЯ</h1>
+
+      <mat-form-field class="field">
+        <mat-label>Логин</mat-label>
+        <input
+          name="login"
+          ngModel
+          matInput
+          placeholder="Введите логин..."
+          value=""
+        />
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>Пароль</mat-label>
+        <input
+          name="password"
+          ngModel
+          matInput
+          placeholder="Введите пароль..."
+          value=""
+          type="password"
+        />
+      </mat-form-field>
+
+      <button mat-flat-button class="btn">Вход</button>
+    </div>
+  </form>
+</section>
+<app-spinner></app-spinner>
+<app-notification></app-notification>

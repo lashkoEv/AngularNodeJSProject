@@ -1,0 +1,106 @@
+<div class="btn-wrapper">
+  <button mat-stroked-button (click)="addProduct()">Добавить продукт</button>
+</div>
+
+<table mat-table [dataSource]="dataSourceProduct" class="mat-elevation-z8">
+  <ng-container matColumnDef="_id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let product">{{ product._id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="imgSrc">
+    <th mat-header-cell *matHeaderCellDef>Изображение</th>
+    <td mat-cell *matCellDef="let product" (click)="showProduct(product)">
+      <img src="{{ product.imgSrc }}" class="img" />
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Название</th>
+    <td mat-cell *matCellDef="let product">{{ product.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Описание</th>
+    <td mat-cell *matCellDef="let product">{{ product.description }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="wholesalePrice">
+    <th mat-header-cell *matHeaderCellDef>Оптовая цена</th>
+    <td mat-cell *matCellDef="let product">
+      {{ product.wholesalePrice }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="retailPrice">
+    <th mat-header-cell *matHeaderCellDef>Розничная цена</th>
+    <td mat-cell *matCellDef="let product">{{ product.retailPrice }}</td>
+  </ng-container>
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef>Количество</th>
+    <td mat-cell *matCellDef="let product">{{ product.count }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>Категория</th>
+    <td mat-cell *matCellDef="let product">{{ product.category }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="country">
+    <th mat-header-cell *matHeaderCellDef>Страна</th>
+    <td mat-cell *matCellDef="let product">{{ product.country }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fields">
+    <th mat-header-cell *matHeaderCellDef>Поля</th>
+    <div mat-cell *matCellDef="let product">
+      <td *ngFor="let keyAndValue of product.fields">
+        <p *ngIf="keyAndValue.key && keyAndValue.value">
+          Название: {{ keyAndValue.key }} | Значение: {{ keyAndValue.value }}
+        </p>
+      </td>
+    </div>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let product">
+      <button mat-button (click)="deleteProduct(product._id)" class="delete">
+        Удалить
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let product">
+      <button mat-button (click)="updateProduct(product)" class="update">
+        Редактировать
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="show">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let product">
+      <button mat-button (click)="showProduct(product)" class="show">
+        Открыть
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsProduct"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsProduct"></tr>
+</table>
+
+<mat-paginator
+  #paginator
+  [pageSizeOptions]="[10, 25, 100]"
+  showFirstLastButtons
+></mat-paginator>
+
+<app-admin-form
+  *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
+></app-admin-form>
+<app-spinner></app-spinner>
+<app-notification></app-notification>

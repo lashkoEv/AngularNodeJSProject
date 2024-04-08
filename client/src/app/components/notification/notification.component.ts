@@ -31,17 +31,17 @@ import { NotificationService } from '../../services/notification.service';
       ),
       transition('hidden => visible', [
         animate(
-          '0.5s ease-in-out',
+          '0.7s ease-in-out',
           keyframes([
-            style({ opacity: 0, transform: 'translateX(100%)', offset: 0 }),
-            style({ opacity: 0.5, transform: 'translateX(50%)', offset: 0.5 }),
+            style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
+            style({ opacity: 0.5, transform: 'translateX(-50%)', offset: 0.5 }),
             style({ opacity: 1, transform: 'translateX(0)', offset: 1 }),
           ])
         ),
       ]),
       transition('visible => hidden', [
         animate(
-          '0.3s ease-in-out',
+          '0.7s ease-in-out',
           keyframes([
             style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
             style({ opacity: 0.5, transform: 'translateX(-50%)', offset: 0.5 }),
@@ -53,6 +53,7 @@ import { NotificationService } from '../../services/notification.service';
   ],
 })
 export class NotificationComponent implements OnInit {
+  text = this.notification.getTextOfNotification();
   constructor(private notification: NotificationService) {}
   public callNotify() {
     this.notification.notify();
