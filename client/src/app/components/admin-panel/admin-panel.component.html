@@ -6,7 +6,9 @@
 
     <mat-tab label="Категории">
       <div class="btn-wrapper">
-        <button mat-stroked-button>Добавить категорию</button>
+        <button (click)="addCategory()" mat-stroked-button>
+          Добавить категорию
+        </button>
       </div>
 
       <app-category-table></app-category-table>

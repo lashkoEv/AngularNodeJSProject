@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IProduct } from '../../interfaces/IProduct';
 import { ProductService } from '../../services/product.service';
 import { FormService } from '../../services/form.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-product-table',
@@ -32,7 +33,8 @@ export class ProductTableComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    public formService: FormService
+    public formService: FormService,
+    public notification: NotificationService
   ) {
     // for (let i = 0; i < 10; i++) {
     //   productService

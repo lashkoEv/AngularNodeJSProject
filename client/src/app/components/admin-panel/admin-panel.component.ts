@@ -1,3 +1,4 @@
+import { FormService } from '../../services/form.service';
 import { AuthorizationService } from './../../services/authorization.service';
 import { Component } from '@angular/core';
 @Component({
@@ -6,9 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './admin-panel.component.scss',
 })
 export class AdminPanelComponent {
-  constructor(private authorizationService: AuthorizationService) {}
+  constructor(
+    private authorizationService: AuthorizationService,
+    private formService: FormService
+  ) {}
 
   getAuthState() {
     return this.authorizationService.getAuthState();
+  }
+
+  addCategory() {
+    this.formService.invokeAddCategory();
   }
 }
