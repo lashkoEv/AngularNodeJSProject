@@ -3,6 +3,8 @@ import { CategoryService } from '../../services/category.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ICategory } from '../../interfaces/ICategory';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormService } from '../../services/form.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-category-table',
@@ -23,7 +25,11 @@ export class CategoryTableComponent {
 
   dataSourceCategory: MatTableDataSource<ICategory>;
 
-  constructor(private categoryService: CategoryService) {
+  constructor(
+    private categoryService: CategoryService,
+    public formService: FormService,
+    public notification: NotificationService
+  ) {
     // categoryService
     //   .add({ title: 'dfdf', description: 'dffddf', imgSrc: 'dfdfdfdf' })
     //   .subscribe((d) => {
@@ -40,10 +46,6 @@ export class CategoryTableComponent {
     });
   }
 
-  addCategory() {
-    // TODO add form
-  }
-
   async deleteCategory(id: String) {
     await this.categoryService.deleteById(id).subscribe((data) => {
       if (data.ok) {
@@ -53,6 +55,7 @@ export class CategoryTableComponent {
   }
 
   updateCategory(category: ICategory) {
-    // TODO add form
+    this.formService.setCategoryId(category._id as string);
+    this.formService.invokeUpdateCategory();
   }
 }
