@@ -25,6 +25,7 @@
 <section class="main-header">
   <div class="logo" [routerLink]="['/']">{{ logo }}</div>
   <div class="navigation-wrapper" *ngFor="let nav of navigation">
+    <a href="#consultation" mat-button class="nav">КОНСУЛЬТАЦИЯ</a>
     <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
     </nav>

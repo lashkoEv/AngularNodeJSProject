@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'contacts', component: AppComponent },
   { path: 'delivery', component: AppComponent },
   { path: 'catalogue', component: CatalogueComponent },
-  { path: 'consultation', component: ConsultationComponent },
+  // { path: 'consultation', component: ConsultationComponent },
   { path: 'category/:id', component: CategoryPageComponent },
   { path: 'cart', component: AppComponent },
   { path: 'admin', component: AdminPanelComponent },

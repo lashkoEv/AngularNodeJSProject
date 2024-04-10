@@ -14,8 +14,10 @@ export class HeaderComponent {
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public navigation: {}[] = [
     {
-      titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
-      links: ['consultation', 'delivery', 'contacts', 'catalogue'],
+      // titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      // links: ['consultation', 'delivery', 'contacts', 'catalogue'],
+      titles: ['ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      links: ['delivery', 'contacts', 'catalogue'],
     },
   ];
 
