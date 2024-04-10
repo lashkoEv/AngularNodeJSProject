@@ -4,10 +4,12 @@
           <c-carousel-item class="productCarousel">
             <div *ngFor="let id of slidesID">
                 <div class="img-wrapper">
-                    <a>
+                    <a 
+                    [routerLink]="['/category', categories[id]._id]"
+                    >
                       <img
-                        [src]="slides[id].src"
-                        alt="{{slides[id].title}}"
+                        [src]="categories[id].imgSrc"
+                        alt="{{categories[id].title}}"
                         class="product d-block"
                         loading="lazy"
                       />
