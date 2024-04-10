@@ -4,13 +4,14 @@
           <c-carousel-item class="productCarousel">
             <div *ngFor="let id of slidesID">
                 <div class="img-wrapper">
-                    <img
-                      [src]="slides[id].src"
-                      alt="{{slides[id].title}}"
-                      class="product d-block"
-                      loading="lazy"
-                    />
-
+                    <a>
+                      <img
+                        [src]="slides[id].src"
+                        alt="{{slides[id].title}}"
+                        class="product d-block"
+                        loading="lazy"
+                      />
+                    </a>
                     <!-- <div class="title">{{slides[id].title}}</div> -->
                 </div>
             </div>

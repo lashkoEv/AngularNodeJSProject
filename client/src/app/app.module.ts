@@ -42,6 +42,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CallRequestTableComponent } from './components/call-request-table/call-request-table.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { ShowProductModalComponent } from './components/show-product-modal/show-product-modal.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ShowProductModalComponent } from './components/show-product-modal/show-
     CallRequestTableComponent,
     CategoryPageComponent,
     ShowProductModalComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

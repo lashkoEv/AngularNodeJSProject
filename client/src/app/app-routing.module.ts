@@ -5,8 +5,10 @@ import { ConsultationComponent } from './components/consultation/consultation.co
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
+  { path: '' , component: MainComponent},
   { path: 'contacts', component: AppComponent },
   { path: 'delivery', component: AppComponent },
   { path: 'catalogue', component: CatalogueComponent },

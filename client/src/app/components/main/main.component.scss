@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #167586;
+    color: #fff;
+    padding: 20px;
+    .title {
+        margin: 0;
+        font-size: 24px;
+    }
+}
+
+.about-us {
+    &-text {
+        margin: 0;
+        font-size: 20px;
+        padding: 1% 20%;
+        background-color: rgb(207, 214, 207);
+    }
+}
+
+.main-category-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-img-wrapper {
+    height: 30rem;
+    overflow: hidden;
+}
+.img {
+    width: 100vw;
+}
