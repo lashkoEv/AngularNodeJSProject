@@ -1,10 +1,11 @@
 <div class="productCarousel-wrapper">
-    <c-carousel class="productCarousel" [interval]="0">
-        <c-carousel-inner>
+    <c-carousel class="productCarousel" [interval]="0" [dark]="true">
+        <c-carousel-inner class="carousel-inner">
           <c-carousel-item class="productCarousel">
             <div *ngFor="let id of slidesID">
                 <div class="img-wrapper">
                     <a 
+                    class="category-link"
                     [routerLink]="['/category', categories[id]._id]"
                     >
                       <img
