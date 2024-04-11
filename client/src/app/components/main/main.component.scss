@@ -3,6 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.main-wrapper {
+    margin: 0 20%;
+    border-left: 3px solid #167586;
+    border-right: 3px solid #167586;
+}
+
 .title-wrapper {
     display: flex;
     justify-content: center;
@@ -18,9 +25,10 @@
 
 .about-us {
     &-text {
+        text-align: center;
         margin: 0;
         font-size: 20px;
-        padding: 1% 20%;
+        padding: 1% 10%;
         background-color: rgb(207, 214, 207);
     }
 }
@@ -31,6 +39,7 @@
     align-items: center;
 }
 .main-img-wrapper {
+    border-top: 3px solid #167586;
     height: 30rem;
     overflow: hidden;
 }

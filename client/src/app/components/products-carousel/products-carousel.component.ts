@@ -99,28 +99,11 @@ export class ProductsCarouselComponent {
 
   constructor(private categoryService: CategoryService) {} ///////////////////////////////////////////
 
-
-  public increaseId(){
-    const newslidesID = this.slidesID.map((id) => {
-      if(id === 9){
-        id = 0
-      } else id ++ ;
-
-      return id;
-    })
-    
-    this.slidesID = newslidesID;    
+  public increaseId() {
+    this.slidesID = this.slidesID.map(id => (id + 1) % this.categories.length);
   }
-
-  public reduceId(){
-    const newslidesID = this.slidesID.map((id) => {
-      if(id === 0){
-        id = 9
-      } else id --;
-
-      return id;
-    })
-    
-    this.slidesID = newslidesID;    
+  
+  public reduceId() {
+    this.slidesID = this.slidesID.map(id => (id - 1 + this.categories.length) % this.categories.length);
   }
 }
