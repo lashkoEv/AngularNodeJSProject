@@ -1,5 +1,6 @@
 import { AuthorizationService } from '../../services/authorization.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,8 @@ export class HeaderComponent {
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public navigation: {}[] = [
     {
-      titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
-      links: ['consultation', 'delivery', 'contacts', 'catalogue'],
+      titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ'],
+      links: ['consultation', 'delivery', 'contacts'],
     },
   ];
 

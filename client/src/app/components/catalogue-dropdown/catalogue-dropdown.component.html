@@ -1,0 +1,12 @@
+<div class="catalogue-wrapper">
+  <button mat-button [matMenuTriggerFor]="menu">КАТАЛОГ</button>
+  <mat-menu #menu="matMenu" [overlapTrigger]="false">
+    <button
+      mat-menu-item
+      *ngFor="let category of categories"
+      [routerLink]="['/category', category._id]"
+    >
+      {{ category.title }}
+    </button>
+  </mat-menu>
+</div>
