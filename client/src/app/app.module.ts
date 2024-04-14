@@ -13,7 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
 import { AsyncPipe } from '@angular/common';
@@ -22,8 +21,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { FormsModule } from '@angular/forms';
-import { CalloutModule } from '@coreui/angular';
-import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
@@ -47,6 +44,9 @@ import { ShowProductModalComponent } from './components/show-product-modal/show-
 import { SearchComponent } from './components/search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductComponent } from './components/product/product.component';
+import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
+import { TestCarouselComponent } from './components/test-carousel/test-carousel.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +70,7 @@ import { ProductComponent } from './components/product/product.component';
     ShowProductModalComponent,
     SearchComponent,
     ProductComponent,
+    TestCarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,10 +81,8 @@ import { ProductComponent } from './components/product/product.component';
     MatIconModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CalloutModule,
-    IconModule,
+    MatIconModule,
     MatMenuModule,
-    CarouselModule,
     ReactiveFormsModule,
     MatTabsModule,
     MatTableModule,
@@ -93,8 +92,10 @@ import { ProductComponent } from './components/product/product.component';
     MatFormFieldModule,
     MatAutocompleteModule,
     AsyncPipe,
+    ButtonModule,
+    CarouselModule,
   ],
-  providers: [provideAnimationsAsync(), IconSetService],
+  providers: [provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
