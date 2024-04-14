@@ -41,6 +41,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CallRequestTableComponent } from './components/call-request-table/call-request-table.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { ShowProductModalComponent } from './components/show-product-modal/show-product-modal.component';
+import { MainComponent } from './components/main/main.component';
 import { SearchComponent } from './components/search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductComponent } from './components/product/product.component';
@@ -68,6 +69,9 @@ import { TestCarouselComponent } from './components/test-carousel/test-carousel.
     CallRequestTableComponent,
     CategoryPageComponent,
     ShowProductModalComponent,
+
+    MainComponent,
+
     SearchComponent,
     ProductComponent,
     TestCarouselComponent,
