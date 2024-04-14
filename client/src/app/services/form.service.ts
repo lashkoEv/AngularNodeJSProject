@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SpinnerService } from './spinner.service';
-import { ProductService } from './product.service';
-import { IProduct } from '../interfaces/IProduct';
+
 import { FormGroup } from '@angular/forms';
 import { ICategory } from '../interfaces/ICategory';
 import { CategoryService } from './category.service';
@@ -19,19 +17,267 @@ export class FormService {
   private productId: string = '';
   private categoryId: string = '';
 
-  constructor(
-    private productService: ProductService,
+  private countries: string[] = [
+    'Афганистан',
+    'Албания',
+    'Антарктика',
+    'Алжир',
+    'Американское Самоа',
+    'Андора',
+    'Ангола',
+    'Антигуа и Барбуда',
+    'Азербайджан',
+    'Аргентина',
+    'Австралия',
+    'Австрия',
+    'Багамские Острова',
+    'Бахрейн',
+    'Бангладеш',
+    'Армения',
+    'Барбадос',
+    'Бельгия',
+    'Бермудские Острова',
+    'Бутан',
+    'Боливия',
+    'Босния и Герцеговина',
+    'Ботсвана',
+    'Остров Буве',
+    'Бразилия',
+    'Белиз',
+    'Британская территория в Индийском океане',
+    'Соломоновы Острова',
+    'Британские Виргинские острова',
+    'Бруней',
+    'Болгария',
+    'Мьянма',
+    'Бурунди',
+    'Белоруссия',
+    'Камбоджа',
+    'Камерун',
+    'Канада',
+    'Кабо-Верде',
+    'Каймановы острова',
+    'Центральноафриканская Республика',
+    'Шри-Ланка',
+    'Чад',
+    'Чили',
+    'Китайская Народная Республика',
+    'Остров Рождества',
+    'Кокосовые острова',
+    'Колумбия',
+    'Коморы',
+    'Майотта',
+    'Республика Конго',
+    'Демократическая Республика Конго',
+    'Острова Кука',
+    'Коста-Рика',
+    'Хорватия',
+    'Куба',
+    'Кипр',
+    'Чехия',
+    'Бенин',
+    'Дания',
+    'Доминика',
+    'Доминиканская Республика',
+    'Эквадор',
+    'Сальвадор',
+    'Экваториальная Гвинея',
+    'Эфиопия',
+    'Эритрея',
+    'Эстония',
+    'Фарерские острова',
+    'Фолклендские острова',
+    'Южная Георгия и Южные Сандвичевы острова',
+    'Фиджи',
+    'Финляндия',
+    'Аландские острова',
+    'Франция',
+    'Французская Гвиана',
+    'Французская Полинезия',
+    'Французские Южные и Антарктические территории',
+    'Джибути',
+    'Габон',
+    'Грузия',
+    'Гамбия',
+    'Палестина',
+    'Германия',
+    'Гана',
+    'Гибралтар',
+    'Кирибати',
+    'Греция',
+    'Гренландия',
+    'Гренада',
+    'Гваделупа',
+    'Гуам',
+    'Гватемала',
+    'Гвинея',
+    'Гайана',
+    'Республика Гаити',
+    'Остров Херд и острова Макдональд',
+    'Ватикан',
+    'Гондурас',
+    'Гонконг',
+    'Венгрия',
+    'Исландия',
+    'Индия',
+    'Индонезия',
+    'Иран',
+    'Ирак',
+    'Ирландия',
+    'Израиль',
+    'Италия',
+    'Кот-д’Ивуар',
+    'Ямайка',
+    'Япония',
+    'Казахстан',
+    'Иордания',
+    'Кения',
+    'КНДР',
+    'Республика Корея',
+    'Кувейт',
+    'Киргизия',
+    'Лаос',
+    'Ливан',
+    'Лесото',
+    'Латвия',
+    'Либерия',
+    'Ливия',
+    'Лихтенштейн',
+    'Литва',
+    'Люксембург',
+    'Макао',
+    'Мадагаскар',
+    'Малави',
+    'Малайзия',
+    'Мальдивы',
+    'Мали',
+    'Мальта',
+    'Мартиника',
+    'Мавритания',
+    'Маврикий',
+    'Мексика',
+    'Монако',
+    'Монголия',
+    'Молдавия',
+    'Черногория',
+    'Монтсеррат',
+    'Марокко',
+    'Мозамбик',
+    'Оман',
+    'Намибия',
+    'Науру',
+    'Непал',
+    'Нидерланды',
+    'Кюрасао',
+    'Аруба',
+    'Синт-Мартен',
+    'Бонэйр, Синт-Эстатиус и Саба',
+    'Новая Каледония',
+    'Вануату',
+    'Новая Зеландия',
+    'Никарагуа',
+    'Нигер',
+    'Нигерия',
+    'Ниуэ',
+    'Норфолк',
+    'Норвегия',
+    'Северные Марианские острова',
+    'Внешние малые острова США',
+    'Микронезия',
+    'Маршалловы Острова',
+    'Палау',
+    'Пакистан',
+    'Панама',
+    'Папуа — Новая Гвинея',
+    'Парагвай',
+    'Перу',
+    'Филиппины',
+    'Острова Питкэрн',
+    'Польша',
+    'Португалия',
+    'Гвинея-Бисау',
+    'Восточный Тимор',
+    'Пуэрто-Рико',
+    'Катар',
+    'Реюньон',
+    'Румыния',
+    'Россия',
+    'Руанда',
+    'Сен-Бартелеми',
+    'Острова Святой Елены, Вознесения и Тристан-да-Кунья',
+    'Сент-Китс и Невис',
+    'Ангилья',
+    'Сент-Люсия',
+    'Сен-Мартен (Франция)',
+    'Сен-Пьер и Микелон',
+    'Сент-Винсент и Гренадины',
+    'Сан-Марино',
+    'Сан-Томе и Принсипи',
+    'Саудовская Аравия',
+    'Сенегал',
+    'Сербия',
+    'Сейшельские Острова',
+    'Сьерра-Леоне',
+    'Сингапур',
+    'Словакия',
+    'Словения',
+    'Сомали',
+    'Южно-Африканская Республика',
+    'Зимбабве',
+    'Испания',
+    'Южный Судан',
+    'Судан',
+    'Западная Сахара',
+    'Суринам',
+    'Шпицберген и Ян-Майен',
+    'Свазиленд',
+    'Швеция',
+    'Швейцария',
+    'Сирия',
+    'Таджикистан',
+    'Таиланд',
+    'Того',
+    'Токелау',
+    'Тонга',
+    'Тринидад и Тобаго',
+    'Объединённые Арабские Эмираты',
+    'Тунис',
+    'Турция',
+    'Туркмения',
+    'Теркс и Кайкос',
+    'Тувалу',
+    'Уганда',
+    'Украина',
+    'Республика Македония',
+    'Египет',
+    'Великобритания',
+    'Гернси',
+    'Джерси',
+    'Остров Мэн',
+    'Танзания',
+    'Соединённые Штаты Америки',
+    'Виргинские Острова',
+    'Буркина-Фасо',
+    'Уругвай',
+    'Узбекистан',
+    'Венесуэла',
+    'Уоллис и Футуна',
+    'Самоа',
+    'Йемен',
+    'Замбия',
+  ];
 
-    private categoryService: CategoryService,
-    private spinner: SpinnerService,
-    private notification: NotificationService
-  ) {}
+  constructor() {}
 
   public getFormTitle() {
     return this.formTitle;
   }
 
-  private hideForm() {
+  public getAllCountries(): string[] {
+    return this.countries;
+  }
+
+  public hideForm() {
     this.isEditProduct = false;
     this.isAddProduct = false;
     this.isAddCategory = false;
@@ -60,6 +306,13 @@ export class FormService {
     this.categoryId = categoryId;
   }
 
+  public getProductId() {
+    return this.productId;
+  }
+  public getCategoryId() {
+    return this.categoryId;
+  }
+
   public invokeEditForm() {
     this.isEditProduct = true;
     this.isAddProduct = false;
@@ -82,101 +335,5 @@ export class FormService {
     this.isAddCategory = false;
     this.formTitle = 'Редактировать Категорию';
     return this.isUpdateCategory;
-  }
-
-  public onSubmit(form: FormGroup): void {
-    if (form.valid) {
-      const productData: IProduct = form.value;
-      const categoryData: ICategory = form.value;
-      if (this.isAddProduct) {
-        this.productService.add(productData).subscribe(
-          (response: Response) => {
-            console.log('Product added successfully:', response);
-            this.notification.setTextOfNotification(
-              `Продукт '${productData.title}' успешно добавлен!`
-            );
-            // Clear form after add product
-            this.hideForm();
-            form.reset();
-          },
-          (error: Error) => {
-            console.error('Error adding product:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в добавлении продукта ${productData.title}, ${error}`
-            );
-          }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
-      } else if (this.isEditProduct) {
-        productData._id = this.productId;
-        this.productService.update(productData).subscribe(
-          (response: Response) => {
-            console.log('Product updated successfully:', response);
-            this.notification.setTextOfNotification(
-              `Продукт '${productData.title}' успешно обновлён!`
-            );
-            // Clear form after add product
-            this.hideForm();
-            form.reset();
-          },
-          (error: Error) => {
-            console.error('Error updating product:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в обновлении продукта ${productData.title}, ${error}`
-            );
-          }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
-      } else if (this.isAddCategory) {
-        this.categoryService.add(categoryData).subscribe(
-          (response: Response) => {
-            console.log('Category added successfully:', response);
-            this.notification.setTextOfNotification(
-              `Категория '${categoryData.title}' успешно добавлена!`
-            );
-
-            this.hideForm();
-            form.reset();
-          },
-          (error: Error) => {
-            console.error('Error additing category:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в добавлении категории ${categoryData.title}, ${error}`
-            );
-          }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
-      } else if (this.isUpdateCategory) {
-        categoryData._id = this.categoryId;
-        this.categoryService.update(categoryData).subscribe(
-          (response: Response) => {
-            console.log('Category update successfully:', response);
-            this.notification.setTextOfNotification(
-              `Категория '${categoryData.title}' обновлена успешно!`
-            );
-
-            this.hideForm();
-            form.reset();
-          },
-          (error: Error) => {
-            console.error('Error updating category:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в обновлении категории ${categoryData.title}, ${error}`
-            );
-          }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
-      }
-    }
-    {
-    }
   }
 }

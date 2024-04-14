@@ -2,6 +2,7 @@
 
 <div class="container">
   <form
+    enctype="multipart/form-data"
     *ngIf="formService.getIsAddProduct() || formService.getIsEditProduct()"
     [formGroup]="productForm"
     (ngSubmit)="onSubmit()"
@@ -14,29 +15,47 @@
       <h1 class="title">{{ formService.getFormTitle() }}</h1>
 
       <mat-form-field class="field">
-        <input matInput formControlName="title" placeholder="Название" />
+        <mat-label>Название</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          placeholder="{{ product ? product.title : 'Название' }}"
+        />
         <mat-error *ngIf="productForm.get('title').hasError('required')"
           >Требуется Название</mat-error
         >
       </mat-form-field>
       <mat-form-field class="field">
-        <input matInput formControlName="description" placeholder="Описание" />
+        <mat-label>Описание</mat-label>
+        <input
+          matInput
+          formControlName="description"
+          placeholder="{{ product ? product.description : 'Описание' }}"
+        />
         <mat-error *ngIf="productForm.get('description').hasError('required')"
           >Требуется Описание</mat-error
         ></mat-form-field
       >
       <mat-form-field class="field">
-        <input matInput formControlName="country" placeholder="Страна" />
+        <mat-label>{{ product ? product.country : "Страна" }}</mat-label>
+        <mat-select formControlName="country" required>
+          @for (country of formService.getAllCountries(); track country) {
+          <mat-option [value]="country">{{ country }}</mat-option
+          >}
+        </mat-select>
         <mat-error *ngIf="productForm.get('country').hasError('required')"
           >Требуется Страна</mat-error
         ></mat-form-field
       >
 
       <mat-form-field class="field">
+        <mat-label>Розничная цена</mat-label>
         <input
           matInput
           formControlName="wholesalePrice"
-          placeholder="Розничная цена "
+          placeholder="{{
+            product ? product.wholesalePrice : 'Розничная цена'
+          }}"
         />
         <mat-error
           *ngIf="productForm.get('wholesalePrice').hasError('required')"
@@ -45,30 +64,42 @@
       >
 
       <mat-form-field class="field">
-        <input matInput formControlName="count" placeholder="Кол-во" />
+        <mat-label>Кол-во</mat-label>
+        <input
+          matInput
+          formControlName="count"
+          placeholder="{{ product ? product.count : 'Кол-во' }}"
+        />
         <mat-error *ngIf="productForm.get('count').hasError('required')"
           >Требуется кол-во</mat-error
         ></mat-form-field
       >
 
       <mat-form-field class="field">
-        <input matInput formControlName="category" placeholder="Категория" />
+        <mat-label>{{ product ? product.category : "Категория" }}</mat-label>
+        <mat-select formControlName="category" required>
+          @for (category of categories; track category) {
+          <mat-option [value]="category.title">{{ category.title }}</mat-option
+          >}
+        </mat-select>
         <mat-error *ngIf="productForm.get('category').hasError('required')"
           >Требуется категория</mat-error
         ></mat-form-field
       >
 
       <mat-form-field class="field">
+        <mat-label>Оптовая цена</mat-label>
         <input
           matInput
           formControlName="retailPrice"
-          placeholder="Оптовая цена"
+          placeholder="{{ product ? product.retailPrice : 'Оптовая цена' }}"
         />
         <mat-error *ngIf="productForm.get('retailPrice').hasError('required')"
           >Требуется Оптовая Цена</mat-error
         ></mat-form-field
       >
       <div class="field">
+        <mat-label>Изображение</mat-label>
         <input type="file" formControlName="imgSrc" placeholder="Изображение" />
         <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
           >Требуется изображение</mat-error
@@ -106,20 +137,46 @@
       <h1 class="title">{{ formService.getFormTitle() }}</h1>
 
       <mat-form-field class="field">
-        <input matInput formControlName="title" placeholder="Название" />
+        <mat-label>{{ category ? category.title : "Категория" }}</mat-label>
+        <input
+          *ngIf="formService.getIsAddCategory()"
+          matInput
+          formControlName="title"
+          placeholder="Название"
+        />
+        <mat-select
+          *ngIf="formService.getIsUpdateCategory()"
+          formControlName="title"
+          required
+        >
+          @for (category of categories; track category) {
+          <mat-option [value]="category.title">{{ category.title }}</mat-option
+          >}
+        </mat-select>
+
         <mat-error *ngIf="productForm.get('title').hasError('required')"
           >Требуется Название</mat-error
         >
       </mat-form-field>
       <mat-form-field class="field">
-        <input matInput formControlName="description" placeholder="Описание" />
+        <mat-label>Описание</mat-label>
+        <input
+          matInput
+          formControlName="description"
+          placeholder="{{ category ? category.description : 'Описание' }}"
+        />
         <mat-error *ngIf="productForm.get('description').hasError('required')"
           >Требуется Описание</mat-error
         ></mat-form-field
       >
 
       <div class="field">
-        <input type="file" formControlName="imgSrc" placeholder="Изображение" />
+        <input
+          accept="image/*"
+          type="file"
+          formControlName="imgSrc"
+          placeholder="Изображение"
+        />
         <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
           >Требуется изображение</mat-error
         >

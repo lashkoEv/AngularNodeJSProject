@@ -45,7 +45,12 @@ export class CategoryTableComponent {
         'Категорий на странице: ';
     });
   }
+  private getCategory(category: ICategory) {
+    const findCategory = this.categoryService.setCategory(category);
 
+    return findCategory;
+  }
+  
   async deleteCategory(id: String) {
     await this.categoryService.deleteById(id).subscribe((data) => {
       if (data.ok) {
@@ -56,6 +61,9 @@ export class CategoryTableComponent {
 
   updateCategory(category: ICategory) {
     this.formService.setCategoryId(category._id as string);
+
+    this.getCategory(category);
+
     this.formService.invokeUpdateCategory();
   }
 }

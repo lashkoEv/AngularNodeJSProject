@@ -53,6 +53,7 @@
 
   <ng-container matColumnDef="fields">
     <th mat-header-cell *matHeaderCellDef>Поля</th>
+
     <td mat-cell *matCellDef="let product">
       <span *ngFor="let data of product.fields">
         <span *ngIf="data.key && data.value">
@@ -104,6 +105,7 @@
 ></app-admin-form>
 <app-spinner></app-spinner>
 <app-notification></app-notification>
+
 <app-show-product-modal
   *ngIf="getFormState()"
   [data]="getProduct()"

@@ -22,6 +22,9 @@ export class AuthorizationFormComponent {
 
         this.authorizationService.setFormState();
 
+        this.spinner.start();
+
+
         this.authorizationService.setRole(data.isAdmin);
 
         console.log(data);

@@ -29,7 +29,12 @@
     <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
     </nav>
-    <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" />
+    <img
+      routerLink="cart"
+      src="../../assets/cart-shopping-solid.svg"
+      alt=""
+      class="cart-icon"
+    />
   </div>
 </section>
 <section class="sub-header">
