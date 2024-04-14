@@ -5,15 +5,19 @@ import { ConsultationComponent } from './components/consultation/consultation.co
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
+import { MainComponent } from './components/main/main.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
+  { path: '', component: MainComponent },
   { path: 'contacts', component: AppComponent },
   { path: 'delivery', component: AppComponent },
   { path: 'catalogue', component: CatalogueComponent },
-  { path: 'consultation', component: ConsultationComponent },
+  // { path: 'consultation', component: ConsultationComponent },
   { path: 'category/:id', component: CategoryPageComponent },
   { path: 'cart', component: AppComponent },
   { path: 'admin', component: AdminPanelComponent },
+  { path: 'products/:id', component: ProductComponent },
 ];
 
 @NgModule({

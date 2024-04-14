@@ -12,8 +12,11 @@ export class AdminPanelComponent {
     private formService: FormService
   ) {}
 
-  getAuthState() {
-    return this.authorizationService.getAuthState();
+  getRole() {
+    return (
+      this.authorizationService.getRole() &&
+      this.authorizationService.getAuthState()
+    );
   }
 
   addCategory() {

@@ -1,5 +1,9 @@
-// @import "bootstrap/dist/css/bootstrap.min.css";
-@import "@coreui/coreui/scss/coreui";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {

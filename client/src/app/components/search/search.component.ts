@@ -1,8 +1,9 @@
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, map, startWith, switchMap } from 'rxjs';
 import { IProduct } from '../../interfaces/IProduct';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
