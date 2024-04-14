@@ -93,7 +93,7 @@ export class FormService {
           (response: Response) => {
             console.log('Product added successfully:', response);
             this.notification.setTextOfNotification(
-              `Продукт успешно добавлен ${productData.title}`
+              `Продукт '${productData.title}' успешно добавлен!`
             );
             // Clear form after add product
             this.hideForm();
@@ -115,7 +115,7 @@ export class FormService {
           (response: Response) => {
             console.log('Product updated successfully:', response);
             this.notification.setTextOfNotification(
-              `Продукт успешно обновлён ${productData.title}`
+              `Продукт '${productData.title}' успешно обновлён!`
             );
             // Clear form after add product
             this.hideForm();
@@ -136,7 +136,7 @@ export class FormService {
           (response: Response) => {
             console.log('Category added successfully:', response);
             this.notification.setTextOfNotification(
-              `Категория успешно добавлена ${categoryData.title}`
+              `Категория '${categoryData.title}' успешно добавлена!`
             );
 
             this.hideForm();
@@ -158,7 +158,7 @@ export class FormService {
           (response: Response) => {
             console.log('Category update successfully:', response);
             this.notification.setTextOfNotification(
-              `Категория обновлена успешно  ${categoryData.title} `
+              `Категория '${categoryData.title}' обновлена успешно!`
             );
 
             this.hideForm();

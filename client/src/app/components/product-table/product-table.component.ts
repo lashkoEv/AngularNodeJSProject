@@ -1,3 +1,4 @@
+import { ProductModalWindowService } from './../../services/product-modal-window.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,6 +14,7 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class ProductTableComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
+  private currentProduct: IProduct | null = null;
 
   displayedColumnsProduct = [
     '_id',
@@ -35,25 +37,26 @@ export class ProductTableComponent implements OnInit {
   constructor(
     private productService: ProductService,
     public formService: FormService,
-    public notification: NotificationService
+    public notification: NotificationService,
+    private productModalWindowService: ProductModalWindowService
   ) {
     // for (let i = 0; i < 10; i++) {
-    //   productService
-    //     .add({
-    //       title: 'Title',
-    //       description: 'Description',
-    //       country: 'Country',
-    //       wholesalePrice: '100 грн',
-    //       retailPrice: '200 грн',
-    //       count: '10 шт.',
-    //       fields: '#',
-    //       category: 'Category',
-    //       imgSrc:
-    //         'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=',
-    //     })
-    //     .subscribe((d) => {
-    //       console.log(d);
-    //     });
+    // productService
+    //   .add({
+    //     title: 'Title',
+    //     description: 'Description',
+    //     country: 'Country',
+    //     wholesalePrice: '100 грн',
+    //     retailPrice: '200 грн',
+    //     count: '10 шт.',
+    //     fields: [{ key: 'field', value: 'value' }].toString(),
+    //     category: 'Category',
+    //     imgSrc:
+    //       'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=',
+    //   })
+    //   .subscribe((d) => {
+    //     console.log(d);
+    //   });
     // }
   }
 
@@ -85,7 +88,16 @@ export class ProductTableComponent implements OnInit {
     this.ngOnInit();
   }
 
-  showProduct(data: any) {
-    console.log(data);
+  showProduct(data: IProduct) {
+    this.currentProduct = data;
+    this.productModalWindowService.changeFormState();
+  }
+
+  getFormState() {
+    return this.productModalWindowService.getFormState();
+  }
+
+  getProduct() {
+    return this.currentProduct;
   }
 }

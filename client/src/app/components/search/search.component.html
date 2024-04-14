@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <mat-form-field appearance="outline" class="field" subscriptSizing="dynamic">
+    <input
+      type="text"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      placeholder="Введите данные для поиска..."
+      class="input"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      @for (option of filteredOptions | async; track option) {
+      <mat-option
+        [value]="option"
+        class="option"
+        [routerLink]="['/products', option._id]"
+      >
+        {{ option.title }}
+        <span class="category"> в {{ option.category }}</span>
+      </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

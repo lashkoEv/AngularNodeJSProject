@@ -16,6 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
+import { AsyncPipe } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
@@ -43,6 +45,10 @@ import { CallRequestTableComponent } from './components/call-request-table/call-
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { ShowProductModalComponent } from './components/show-product-modal/show-product-modal.component';
 import { MainComponent } from './components/main/main.component';
+import { SearchComponent } from './components/search/search.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ProductComponent } from './components/product/product.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +70,12 @@ import { MainComponent } from './components/main/main.component';
     CallRequestTableComponent,
     CategoryPageComponent,
     ShowProductModalComponent,
+
     MainComponent,
+
+    SearchComponent,
+    ProductComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -85,6 +96,9 @@ import { MainComponent } from './components/main/main.component';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    AsyncPipe,
   ],
   providers: [provideAnimationsAsync(), IconSetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

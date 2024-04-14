@@ -1,14 +1,20 @@
-<h2 class="category">{{ categories?.title }}</h2>
+<div class="container">
+  <h2 class="category">{{ categories?.title }}</h2>
 
-<div class="category-page">
-  <main class="products-section">
-    <div class="grid-container">
-      <div class="product" *ngFor="let product of products">
-        <h3>{{ product.title }}</h3>
-        <img [src]="product.imgSrc" alt="Product Image" />
-        <p>{{ product.description }}</p>
-        <p>Price: {{ product.retailPrice }}</p>
+  <div class="category-page">
+    <main class="products-section">
+      <div class="grid-container">
+        <div
+          class="product"
+          *ngFor="let product of products"
+          [routerLink]="['/products', product._id]"
+        >
+          <h3>{{ product.title }}</h3>
+          <img [src]="product.imgSrc" alt="Product Image" />
+          <p>{{ product.description }}</p>
+          <p>Price: {{ product.retailPrice }}</p>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </div>

@@ -1,6 +1,10 @@
 // @import "bootstrap/dist/css/bootstrap.min.css";
 @import "@coreui/coreui/scss/coreui";
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -56,8 +60,8 @@ html {
   --mat-form-field-disabled-input-text-placeholder-color: rgba(0, 0, 0, 0.38);
   --mat-form-field-state-layer-color: rgba(0, 0, 0, 0.87);
   --mat-form-field-error-text-color: #f44336;
-  --mat-form-field-select-option-text-color: inherit;
-  --mat-form-field-select-disabled-option-text-color: GrayText;
+  --mat-form-field-select-option-text-color: black;
+  --mat-form-field-select-disabled-option-text-color: black;
   --mat-form-field-leading-icon-color: unset;
   --mat-form-field-disabled-leading-icon-color: unset;
   --mat-form-field-trailing-icon-color: unset;
@@ -69,4 +73,27 @@ html {
   --mat-form-field-disabled-select-arrow-color: rgba(0, 0, 0, 0.38);
   --mat-form-field-hover-state-layer-opacity: 0.04;
   --mat-form-field-focus-state-layer-opacity: 0.08;
+  --mat-option-selected-state-label-text-color: #167586;
+  --mat-option-selected-state-label-text-color: #167586;
+  --mat-option-label-text-color: rgb(0, 0, 0, 0.87);
+  --mat-option-hover-state-layer-color: rgb(0, 0, 0, 0.04);
+  --mat-option-focus-state-layer-color: rgb(0, 0, 0, 0.04);
+  --mat-option-selected-state-layer-color: rgb(0, 0, 0, 0.04);
+  --mat-stepper-header-icon-foreground-color: white;
+  --mat-stepper-header-selected-state-icon-background-color: #167586;
+  --mat-stepper-header-selected-state-icon-foreground-color: white;
+  --mat-stepper-header-done-state-icon-background-color: #167586;
+  --mat-stepper-header-done-state-icon-foreground-color: white;
+  --mat-stepper-header-edit-state-icon-background-color: #167586;
+  --mat-stepper-header-edit-state-icon-foreground-color: white;
+  --mat-stepper-container-color: white;
+  --mat-stepper-line-color: rgba(0, 0, 0, 0.12);
+  --mat-stepper-header-hover-state-layer-color: rgba(0, 0, 0, 0.04);
+  --mat-stepper-header-focus-state-layer-color: rgba(0, 0, 0, 0.04);
+  --mat-stepper-header-label-text-color: rgba(0, 0, 0, 0.54);
+  --mat-stepper-header-optional-label-text-color: rgba(0, 0, 0, 0.54);
+  --mat-stepper-header-selected-state-label-text-color: rgba(0, 0, 0, 0.87);
+  --mat-stepper-header-error-state-label-text-color: #f44336;
+  --mat-stepper-header-icon-background-color: rgba(0, 0, 0, 0.54);
+  --mat-stepper-header-error-state-icon-foreground-color: #f44336;
 }
