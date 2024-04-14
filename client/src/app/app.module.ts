@@ -44,6 +44,7 @@ import { ShowProductModalComponent } from './components/show-product-modal/show-
 import { MainComponent } from './components/main/main.component';
 import { SearchComponent } from './components/search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ConsultationTableComponent } from './components/consultation-table/consultation-table.component';
 import { ProductComponent } from './components/product/product.component';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
@@ -73,8 +74,12 @@ import { TestCarouselComponent } from './components/test-carousel/test-carousel.
     MainComponent,
 
     SearchComponent,
+
+    ConsultationTableComponent,
+
     ProductComponent,
     TestCarouselComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -83,6 +88,8 @@ import { TestCarouselComponent } from './components/test-carousel/test-carousel.
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatGridListModule,
+    MatCardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
