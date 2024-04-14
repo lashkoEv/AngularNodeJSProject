@@ -44,6 +44,8 @@ export class AdminFormComponent implements OnInit {
 
     this.product = this.productService.getProduct();
     this.category = this.categoryService.getCategory();
+
+    this.updateProductsAndCategory();
   }
   private createForm(): void {
     if (
@@ -119,6 +121,7 @@ export class AdminFormComponent implements OnInit {
               `Продукт успешно добавлен ${productData.title}`
             );
             // Clear form after add product
+            this.updateProductsAndCategory();
             this.formService.hideForm();
             this.productForm.reset();
           },
@@ -143,6 +146,7 @@ export class AdminFormComponent implements OnInit {
               `Продукт успешно обновлён ${productData.title}`
             );
             // Clear form after add product
+            this.updateProductsAndCategory();
             this.formService.hideForm();
             this.productForm.reset();
           },
@@ -163,7 +167,7 @@ export class AdminFormComponent implements OnInit {
             this.notification.setTextOfNotification(
               `Категория успешно добавлена ${categoryData.title}`
             );
-
+            this.updateProductsAndCategory();
             this.formService.hideForm();
             this.productForm.reset();
           },
@@ -185,7 +189,7 @@ export class AdminFormComponent implements OnInit {
             this.notification.setTextOfNotification(
               `Категория обновлена успешно  ${categoryData.title} `
             );
-
+            this.updateProductsAndCategory();
             this.formService.hideForm();
             this.productForm.reset();
           },

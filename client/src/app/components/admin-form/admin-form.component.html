@@ -138,7 +138,17 @@
 
       <mat-form-field class="field">
         <mat-label>{{ category ? category.title : "Категория" }}</mat-label>
-        <mat-select formControlName="title" required>
+        <input
+          *ngIf="formService.getIsAddCategory()"
+          matInput
+          formControlName="title"
+          placeholder="Название"
+        />
+        <mat-select
+          *ngIf="formService.getIsUpdateCategory()"
+          formControlName="title"
+          required
+        >
           @for (category of categories; track category) {
           <mat-option [value]="category.title">{{ category.title }}</mat-option
           >}
