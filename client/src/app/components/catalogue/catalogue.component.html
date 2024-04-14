@@ -1,9 +1,17 @@
-<section *ngIf="categories && categories.length > 0" class="catalogue">
-  <h2 class="catalogue-title">Каталог товаров</h2>
-  <div class="grid-container" [routerLink]="['/']">
-    <div *ngFor="let category of categories" class="card">
-      <h3 class="title">{{ category.title }}</h3>
-      <img [src]="category.imgSrc" alt="Category Image" />
+<div class="container">
+  <section *ngIf="categories && categories.length > 0" class="catalogue">
+    <h2 class="catalogue-title">Каталог товаров</h2>
+    <div class="grid-container">
+      <div
+        *ngFor="let category of categories"
+        class="card"
+        [routerLink]="['/category', category._id]"
+      >
+        <h3 class="title">
+          {{ category.title }}
+        </h3>
+        <img [src]="category.imgSrc" alt="Category Image" />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

@@ -16,11 +16,21 @@ export class AuthorizationFormComponent {
   ) {}
 
   async authorize(data: any) {
-    await this.authorizationService.authorize(data).subscribe((data) => {
+    await this.authorizationService.authorize(data).subscribe((data: any) => {
       if (data) {
         this.authorizationService.setAuthState();
+
         this.authorizationService.setFormState();
+
         this.spinner.start();
+
+
+        this.authorizationService.setRole(data.isAdmin);
+
+        console.log(data);
+
+        this.spinner.start();
+
         this.notification.setTextOfNotification('Авторизация успешна');
       } else {
         this.notification.setTextOfNotification(`Ошибка авторизации `);

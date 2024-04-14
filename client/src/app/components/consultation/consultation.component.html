@@ -1,5 +1,5 @@
 <section class="consultation-title">
-  <h2 class="title">КОНСУЛЬТАЦИЯ</h2>
+  <h2 id="consultation">КОНСУЛЬТАЦИЯ</h2>
 </section>
 
 <section class="form">
@@ -11,7 +11,8 @@
         type="email"
         id="email"
         name="email"
-        [(ngModel)]="formData.email"
+        ngModel
+        [(ngModel)]="inputEmail"
         required
         email
       />
@@ -24,7 +25,8 @@
         type="text"
         id="topic"
         name="topic"
-        [(ngModel)]="formData.topic"
+        ngModel
+        [(ngModel)]="inputTopic"
         required
       />
     </mat-form-field>
@@ -35,12 +37,19 @@
         matInput
         id="message"
         name="message"
-        [(ngModel)]="formData.message"
+        ngModel
+        [(ngModel)]="inputMessage"
         required
       ></textarea>
     </mat-form-field>
 
-    <button mat-raised-button type="submit" [disabled]="form.invalid">
+    <button
+      mat-raised-button
+      type="submit"
+      (click)="add(form.value)"
+      class="sendBtn"
+      role="button"
+    >
       Отправить
     </button>
   </form>

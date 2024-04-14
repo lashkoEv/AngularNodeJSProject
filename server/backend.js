@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const productRouter = require("./routes/product.router");
 const categoryRouter = require("./routes/category.router");
 const userRouter = require("./routes/user.router");
+const callRequestRouter = require("./routes/callRequest.router");
+const consultationRouter = require("./routes/consultation.router");
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(bodyParser.json());
 connect();
 
 app.use("", productRouter);
+app.use("", callRequestRouter);
+app.use("", consultationRouter);
 app.use("", categoryRouter);
 app.use("", userRouter);
 

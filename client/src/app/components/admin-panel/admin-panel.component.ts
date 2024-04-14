@@ -1,4 +1,6 @@
+
 import { CategoryService } from '../../services/category.service';
+
 import { FormService } from '../../services/form.service';
 import { AuthorizationService } from './../../services/authorization.service';
 import { Component } from '@angular/core';
@@ -12,10 +14,18 @@ export class AdminPanelComponent {
     private authorizationService: AuthorizationService,
     public formService: FormService,
     private categoryService: CategoryService
+
   ) {}
 
-  getAuthState() {
-    return this.authorizationService.getAuthState();
+  getRole() {
+    return (
+      this.authorizationService.getRole() &&
+      this.authorizationService.getAuthState()
+    );
+  }
+
+  addCategory() {
+    this.formService.invokeAddCategory();
   }
 
   addCategory() {

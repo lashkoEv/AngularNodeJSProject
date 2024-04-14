@@ -50,6 +50,7 @@ export class CategoryTableComponent {
 
     return findCategory;
   }
+  
   async deleteCategory(id: String) {
     await this.categoryService.deleteById(id).subscribe((data) => {
       if (data.ok) {
@@ -60,7 +61,9 @@ export class CategoryTableComponent {
 
   updateCategory(category: ICategory) {
     this.formService.setCategoryId(category._id as string);
+
     this.getCategory(category);
+
     this.formService.invokeUpdateCategory();
   }
 }
