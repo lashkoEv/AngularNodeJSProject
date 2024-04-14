@@ -3,7 +3,11 @@
 <div class="category-page">
   <main class="products-section">
     <div class="grid-container">
-      <div class="product" *ngFor="let product of products">
+      <div
+        class="product"
+        *ngFor="let product of products"
+        [routerLink]="['/products', product._id]"
+      >
         <h3>{{ product.title }}</h3>
         <img [src]="product.imgSrc" alt="Product Image" />
         <p>{{ product.description }}</p>

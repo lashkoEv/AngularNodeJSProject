@@ -11,7 +11,11 @@
     <mat-icon matSuffix>search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
       @for (option of filteredOptions | async; track option) {
-      <mat-option [value]="option" class="option">
+      <mat-option
+        [value]="option"
+        class="option"
+        [routerLink]="['/products', option._id]"
+      >
         {{ option.title }}
         <span class="category"> в {{ option.category }}</span>
       </mat-option>

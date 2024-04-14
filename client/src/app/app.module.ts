@@ -46,6 +46,7 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { ShowProductModalComponent } from './components/show-product-modal/show-product-modal.component';
 import { SearchComponent } from './components/search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CategoryPageComponent,
     ShowProductModalComponent,
     SearchComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
