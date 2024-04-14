@@ -38,6 +38,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    MatSelectModule,
   ],
   providers: [provideAnimationsAsync(), IconSetService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

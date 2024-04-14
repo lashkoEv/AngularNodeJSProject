@@ -64,8 +64,15 @@ export class ProductTableComponent implements OnInit {
         'Продуктов на странице: ';
     });
   }
+  private getProduct(product: IProduct) {
+    const findProduct = this.productService.setProduct(product);
 
+    return findProduct;
+  }
   addProduct() {
+    const resetProduct = null;
+    this.productService.setProduct(resetProduct);
+
     this.formService.invokeAddForm();
     this.ngOnInit();
   }
@@ -80,6 +87,7 @@ export class ProductTableComponent implements OnInit {
 
   updateProduct(product: IProduct) {
     this.formService.setProductId(product._id as string);
+    this.getProduct(product);
     this.formService.invokeEditForm();
     this.ngOnInit();
   }
