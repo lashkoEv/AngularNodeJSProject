@@ -1,0 +1,83 @@
+.container {
+  padding: 3rem 0;
+  padding-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "image main-info"
+    "description description"
+    "characteristics characteristics";
+  gap: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.image-wrapper {
+  grid-area: image;
+}
+
+.image {
+  width: 100%;
+}
+
+.main-info {
+  grid-area: main-info;
+}
+
+.description {
+  grid-area: description;
+}
+.characteristics {
+  grid-area: characteristics;
+}
+
+.price-wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  //   width: 100%;
+}
+
+.retail,
+.wholesale {
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.retail {
+  padding-left: 1rem;
+}
+
+.wholesale {
+  border-right: 1px solid rgb(202, 202, 202);
+}
+
+.price-title {
+  color: rgb(138, 138, 138);
+}
+
+.price {
+  font-size: 3rem;
+  padding-top: 0.5rem;
+}
+
+.button {
+  margin-top: 1.7rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0.5rem;
+}
+
+.cell:first-child {
+  font-weight: 600;
+}
+
+.cell {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(202, 202, 202);
+}

@@ -1,6 +1,10 @@
 // @import "bootstrap/dist/css/bootstrap.min.css";
 @import "@coreui/coreui/scss/coreui";
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
