@@ -46,7 +46,7 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { ShowProductModalComponent } from './components/show-product-modal/show-product-modal.component';
 import { SearchComponent } from './components/search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CatalogueDropdownComponent } from './components/catalogue-dropdown/catalogue-dropdown.component';
+import { ConsultationTableComponent } from './components/consultation-table/consultation-table.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,7 @@ import { CatalogueDropdownComponent } from './components/catalogue-dropdown/cata
     CategoryPageComponent,
     ShowProductModalComponent,
     SearchComponent,
-    CatalogueDropdownComponent,
+    ConsultationTableComponent,
   ],
   imports: [
     BrowserModule,

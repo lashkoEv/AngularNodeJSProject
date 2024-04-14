@@ -3,7 +3,7 @@
 <div class="category-page">
   <main class="products-section">
     <div class="grid-container">
-      <div class="product" *ngFor="let product of products">
+      <div class="product" *ngFor="let product of toShow">
         <h3>{{ product.title }}</h3>
         <img [src]="product.imgSrc" alt="Product Image" />
         <p>{{ product.description }}</p>
@@ -11,4 +11,11 @@
       </div>
     </div>
   </main>
+  <mat-paginator
+    [length]="[totalItems]"
+    [pageSize]="[pageSize]"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
 </div>
