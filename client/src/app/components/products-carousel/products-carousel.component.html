@@ -1,16 +1,20 @@
 <div class="productCarousel-wrapper">
-    <c-carousel class="productCarousel" [interval]="0">
-        <c-carousel-inner>
+    <c-carousel class="productCarousel" [interval]="0" [dark]="true">
+        <c-carousel-inner class="carousel-inner">
           <c-carousel-item class="productCarousel">
             <div *ngFor="let id of slidesID">
                 <div class="img-wrapper">
-                    <img
-                      [src]="slides[id].src"
-                      alt="{{slides[id].title}}"
-                      class="product d-block"
-                      loading="lazy"
-                    />
-
+                    <a 
+                    class="category-link"
+                    [routerLink]="['/category', categories[id]._id]"
+                    >
+                      <img
+                        [src]="categories[id].imgSrc"
+                        alt="{{categories[id].title}}"
+                        class="product d-block"
+                        loading="lazy"
+                      />
+                    </a>
                     <!-- <div class="title">{{slides[id].title}}</div> -->
                 </div>
             </div>
