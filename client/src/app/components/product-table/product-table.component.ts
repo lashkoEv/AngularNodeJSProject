@@ -69,6 +69,7 @@ export class ProductTableComponent implements OnInit {
         'Продуктов на странице: ';
     });
   }
+
   private getProduct(product: IProduct) {
     const findProduct = this.productService.setProduct(product);
 
@@ -106,7 +107,7 @@ export class ProductTableComponent implements OnInit {
     return this.productModalWindowService.getFormState();
   }
 
-  getProduct() {
+  getShownProduct() {
     return this.currentProduct;
   }
 }

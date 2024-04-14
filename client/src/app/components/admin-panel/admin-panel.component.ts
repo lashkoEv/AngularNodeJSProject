@@ -1,4 +1,3 @@
-
 import { CategoryService } from '../../services/category.service';
 
 import { FormService } from '../../services/form.service';
@@ -14,7 +13,6 @@ export class AdminPanelComponent {
     private authorizationService: AuthorizationService,
     public formService: FormService,
     private categoryService: CategoryService
-
   ) {}
 
   getRole() {
@@ -22,10 +20,6 @@ export class AdminPanelComponent {
       this.authorizationService.getRole() &&
       this.authorizationService.getAuthState()
     );
-  }
-
-  addCategory() {
-    this.formService.invokeAddCategory();
   }
 
   addCategory() {
