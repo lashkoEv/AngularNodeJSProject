@@ -25,6 +25,13 @@ export class HeaderComponent {
     return this.authorizationService.getAuthState();
   }
 
+  getAuth() {
+    return (
+      this.authorizationService.getRole() &&
+      this.authorizationService.getAuthState()
+    );
+  }
+
   showForm() {
     this.authorizationService.setFormState();
   }
@@ -35,5 +42,6 @@ export class HeaderComponent {
 
   logout() {
     this.authorizationService.setAuthState();
+    this.authorizationService.setRole(false);
   }
 }
