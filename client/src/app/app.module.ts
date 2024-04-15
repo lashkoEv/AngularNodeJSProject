@@ -54,6 +54,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TestCarouselComponent } from './components/test-carousel/test-carousel.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { TestCarouselComponent } from './components/test-carousel/test-carousel.
 
     ProductComponent,
     TestCarouselComponent,
+    ErrorComponent,
 
   ],
   imports: [
