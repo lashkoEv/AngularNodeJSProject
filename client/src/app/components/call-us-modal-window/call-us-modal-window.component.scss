@@ -3,6 +3,8 @@ $secondary: #2ecbe7;
 $white: #fff;
 $gray: #9b9b9b;
 
+$dark: #000;
+
 .container{
   position: fixed;
   top: 0px;
@@ -12,14 +14,6 @@ $gray: #9b9b9b;
   background-color: rgba($color: #000000, $alpha: 0.3);
   margin: 0;
 }
-
-// .container:after{
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-// }
 
 .modal-window{
     border: 1px solid rgba(0, 0, 0, 0.414);
@@ -56,65 +50,65 @@ $gray: #9b9b9b;
     margin-bottom: 20px;
 }
 
-.form__group {
+.inp{
   position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
+  margin: auto;
   width: 100%;
-}
+  border-radius: 3px;
+  overflow: hidden;
 
-.form__field {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid $gray;
-  outline: 0;
-  font-size: 1.3rem;
-  color: $gray;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
-  }
-}
-
-.form__label {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: $gray;
-}
-
-.form__field:focus {
-  ~ .form__label {
+  .label{
     position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: $primary;
-    font-weight:700;    
+    top: 20px;
+    left: 12px;
+    font-size: 1.3rem;
+    color: rgba($dark,.5);
+    font-weight: 500;
+    transform-origin: 0 0;
+    transform: translate3d(0,0,0);
+    transition: all .2s ease;
+    pointer-events: none;
   }
-  padding-bottom: 6px;  
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, $primary,$secondary);
-  border-image-slice: 1;
+
+  input{
+    appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 16px 12px 0 12px;
+    height: 56px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    box-shadow: inset 0 -1px 0 rgba($dark,.3);
+    color: $gray;
+    transition: all .15s ease;
+
+    &:hover{
+      box-shadow: inset 0 -1px 0 rgba($dark,.5);
+    }
+    
+    &:not(:placeholder-shown){
+      + .label{
+        color: rgba($dark,.5);
+        transform: translate3d(0,-12px,0) scale(.75);
+      }
+    }
+    
+    &:focus{
+      outline: none;
+      box-shadow: inset 0 -2px 0 $primary;
+      + .label{
+        color: $primary;
+        transform: translate3d(0,-12px,0) scale(.75);
+        + .focus-bg{
+          transform: scaleX(1);
+          transition: all .1s ease;
+        }
+      }
+    }
+  }
 }
 
-.form__field{
-  &:required,&:invalid { box-shadow:none; }
-}
 
 .close-wrapper{
     width: 100%;

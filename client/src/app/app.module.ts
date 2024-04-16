@@ -39,6 +39,7 @@ import { CategoryTableComponent } from './components/category-table/category-tab
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { FixedPhoneNumberFormatInputDirective } from './directives/fixed-phone-number-format-input.directive';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MatCardModule } from '@angular/material/card';
     ProductTableComponent,
     CategoryTableComponent,
     CatalogueComponent,
+    FixedPhoneNumberFormatInputDirective,
   ],
   imports: [
     BrowserModule,
