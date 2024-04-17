@@ -3,13 +3,9 @@ $secondary: #2ecbe7;
 $white: #fff;
 $gray: #9b9b9b;
 
-<<<<<<< HEAD
 $dark: #000;
 
 .container{
-=======
-.container {
->>>>>>> master
   position: fixed;
   top: 0px;
   left: 0px;
@@ -20,7 +16,6 @@ $dark: #000;
   z-index: 30;
 }
 
-<<<<<<< HEAD
 .modal-window{
     border: 1px solid rgba(0, 0, 0, 0.414);
     position: fixed;
@@ -33,29 +28,6 @@ $dark: #000;
     display: flex;
     flex-direction: column;
     gap: 20px;
-=======
-// .container:after{
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-// }
-
-.modal-window {
-  z-index: 31;
-  border: 1px solid rgba(0, 0, 0, 0.414);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
-  background-color: white;
-  padding: 30px 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
->>>>>>> master
 }
 
 .title {
@@ -89,7 +61,6 @@ $dark: #000;
 
   .label{
     position: absolute;
-<<<<<<< HEAD
     top: 20px;
     left: 12px;
     font-size: 1.3rem;
@@ -140,28 +111,6 @@ $dark: #000;
   }
 }
 
-=======
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: $primary;
-    font-weight: 700;
-  }
-  padding-bottom: 6px;
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, $primary, $secondary);
-  border-image-slice: 1;
-}
-
-.form__field {
-  &:required,
-  &:invalid {
-    box-shadow: none;
-  }
-}
->>>>>>> master
 
 .close-wrapper {
   width: 100%;

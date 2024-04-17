@@ -12,7 +12,6 @@ export class CallUsModalWindowComponent {
 
   constructor(
     public callUsModalWindowService: CallUsModalWindowService,
-<<<<<<< HEAD
   ){}
 
   public isValidData(): boolean{
@@ -27,27 +26,6 @@ export class CallUsModalWindowComponent {
     
 
     this.callUsModalWindowService.toogleIsOpen();
-=======
-    private callRequestService: CallRequestService
-  ) {}
-
-  public isValidData(): boolean {
-    if (
-      this.inputName &&
-      this.inputPhoneNumber &&
-      this.inputPhoneNumber.length === 10
-    ) {
-      return true;
-    } else return false;
-  }
-
-  public add(data: any) {
-    this.callRequestService.add(data).subscribe((data) => {
-      if (data.ok) {
-        this.callUsModalWindowService.toogleIsOpen();
-      }
-    });
->>>>>>> master
   }
 
   public closeWindow() {

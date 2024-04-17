@@ -75,9 +75,7 @@ import { ErrorComponent } from './components/error/error.component';
     ProductTableComponent,
     CategoryTableComponent,
     CatalogueComponent,
-<<<<<<< HEAD
     FixedPhoneNumberFormatInputDirective,
-=======
     CallRequestTableComponent,
     CategoryPageComponent,
     ShowProductModalComponent,
@@ -92,7 +90,6 @@ import { ErrorComponent } from './components/error/error.component';
     TestCarouselComponent,
     ErrorComponent,
 
->>>>>>> master
   ],
   imports: [
     BrowserModule,
