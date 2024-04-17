@@ -3,9 +3,13 @@ $secondary: #2ecbe7;
 $white: #fff;
 $gray: #9b9b9b;
 
+<<<<<<< HEAD
 $dark: #000;
 
 .container{
+=======
+.container {
+>>>>>>> master
   position: fixed;
   top: 0px;
   left: 0px;
@@ -13,8 +17,10 @@ $dark: #000;
   min-height: 100vh;
   background-color: rgba($color: #000000, $alpha: 0.3);
   margin: 0;
+  z-index: 30;
 }
 
+<<<<<<< HEAD
 .modal-window{
     border: 1px solid rgba(0, 0, 0, 0.414);
     position: fixed;
@@ -27,27 +33,51 @@ $dark: #000;
     display: flex;
     flex-direction: column;
     gap: 20px;
+=======
+// .container:after{
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+// }
+
+.modal-window {
+  z-index: 31;
+  border: 1px solid rgba(0, 0, 0, 0.414);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background-color: white;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+>>>>>>> master
 }
 
-.title{
-    font-size: 30px;
+.title {
+  font-size: 30px;
 }
 
-.description{
-    margin-top: 30px;
-    width: 450px;
-    font-size: 20px;
+.description {
+  margin-top: 30px;
+  width: 450px;
+  font-size: 20px;
 }
 
-.tel-wrapper, .name-wrapper{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.tel-wrapper,
+.name-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.tel-wrapper{
-    margin-bottom: 20px;
+.tel-wrapper {
+  margin-bottom: 20px;
 }
 
 .inp{
@@ -59,6 +89,7 @@ $dark: #000;
 
   .label{
     position: absolute;
+<<<<<<< HEAD
     top: 20px;
     left: 12px;
     font-size: 1.3rem;
@@ -109,29 +140,51 @@ $dark: #000;
   }
 }
 
-
-.close-wrapper{
-    width: 100%;
-    display: flex;
-    justify-content: end;
+=======
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary, $secondary);
+  border-image-slice: 1;
 }
 
-.close{
-    position: fixed;
-    top: 48px;
-    right: 40px;
-    user-select: none;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background-color: inherit;
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
+}
+>>>>>>> master
+
+.close-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
-.close:hover{
-    background-color: rgba(128, 128, 128, 0.22);
+.close {
+  position: fixed;
+  top: 48px;
+  right: 40px;
+  user-select: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: inherit;
+}
+
+.close:hover {
+  background-color: rgba(128, 128, 128, 0.22);
 }
 
 .sendBtn {
@@ -139,15 +192,16 @@ $dark: #000;
   margin-bottom: 20px;
   align-items: center;
   appearance: none;
-  background-color: #FCFCFD;
+  background-color: #fcfcfd;
   border-radius: 4px;
   border-width: 0;
-  box-shadow: rgba(96, 96, 96, 0.4) 0 2px 4px,rgba(60, 60, 60, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-shadow: rgba(96, 96, 96, 0.4) 0 2px 4px,
+    rgba(60, 60, 60, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
   box-sizing: border-box;
-  color: #36395A;
+  color: #36395a;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  font-family: "JetBrains Mono", monospace;
   height: 48px;
   justify-content: center;
   line-height: 1;
@@ -158,12 +212,12 @@ $dark: #000;
   position: relative;
   text-align: left;
   text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
+  transition: box-shadow 0.15s, transform 0.15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
-  will-change: box-shadow,transform;
+  will-change: box-shadow, transform;
   font-size: 18px;
   color: black;
   font-weight: 600;
@@ -179,12 +233,12 @@ $dark: #000;
 // }
 
 .sendBtn:active {
-  box-shadow: #D6D6E7 0 3px 7px inset;
+  box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }
 
 .disabled {
-    pointer-events: none;
-    opacity: 0.5; 
-    cursor: not-allowed; 
-  }
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,94 @@
+.form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 5rem 2rem;
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+  border-radius: 2rem;
+
+  border: 1px solid rgba(0, 0, 0, 0.116);
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 9;
+}
+
+.field {
+  width: 50%;
+}
+
+.btn {
+  background-color: #167586;
+  padding: 1.25rem 2.5rem;
+  color: white;
+  margin-top: 2rem;
+}
+
+.close {
+  position: fixed;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  color: rgb(148, 148, 148);
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0.2rem;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  color: #167586;
+  margin: 1rem 0 3rem 0;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  min-height: 100vh;
+  min-width: 100vw;
+  z-index: 10;
+}
+.add-field {
+  font-size: 1.5rem;
+  color: rgb(148, 148, 148);
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0.2rem;
+}
+
+.add-field:hover {
+  color: #167586;
+  background-color: transparent;
+}
+
+.fields-input-wrapper {
+  display: flex;
+  gap: 10px;
+}

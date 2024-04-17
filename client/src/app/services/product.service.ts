@@ -7,7 +7,13 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
+  private product: IProduct;
   constructor(private http: HttpClient) {}
+
+  getProduct(): IProduct {
+    console.log(this.product);
+    return this.product;
+  }
 
   getAll(): Observable<any> {
     return this.http.get('http://localhost:3000/products').pipe(
@@ -25,6 +31,17 @@ export class ProductService {
         throw err;
       })
     );
+  }
+
+  getByCategory(category: String): Observable<any> {
+    return this.http
+      .post('http://localhost:3000/products/category', { category: category })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
   }
 
   add(data: IProduct): any {
@@ -54,5 +71,9 @@ export class ProductService {
         throw err;
       })
     );
+  }
+
+  setProduct(product: IProduct) {
+    return (this.product = product);
   }
 }

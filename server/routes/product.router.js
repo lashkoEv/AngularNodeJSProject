@@ -5,6 +5,7 @@ const productRouter = express.Router();
 const {
   getAll,
   getById,
+  getByCategory,
   add,
   deleteById,
   updateById,
@@ -12,6 +13,7 @@ const {
 
 productRouter.get("/products", getAll);
 productRouter.post("/products", getById);
+productRouter.post("/products/category", getByCategory);
 productRouter.post("/products/add", add);
 productRouter.post("/products/delete", deleteById);
 productRouter.post("/products/update", updateById);

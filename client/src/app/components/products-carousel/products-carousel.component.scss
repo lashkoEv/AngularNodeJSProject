@@ -5,6 +5,16 @@
     align-items: center;
 }
 
+.carousel-inner {
+    padding: 0 10%;
+}
+
+.category-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .product{
     width: 80%;
     height: 80%;

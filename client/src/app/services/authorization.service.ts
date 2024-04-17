@@ -7,10 +7,12 @@ import { catchError } from 'rxjs';
 })
 export class AuthorizationService {
   private isAuthorized: boolean;
+  private isAdmin: boolean;
   private showForm: boolean;
 
   constructor(private http: HttpClient) {
     this.isAuthorized = false;
+    this.isAdmin = false;
     this.showForm = false;
   }
 
@@ -28,6 +30,14 @@ export class AuthorizationService {
 
   setFormState() {
     this.showForm = !this.showForm;
+  }
+
+  setRole(role: boolean) {
+    this.isAdmin = role;
+  }
+
+  getRole() {
+    return this.isAdmin;
   }
 
   authorize(data) {

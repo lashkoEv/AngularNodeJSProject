@@ -7,8 +7,13 @@ import { ICategory } from '../interfaces/ICategory';
   providedIn: 'root',
 })
 export class CategoryService {
+  private category: ICategory;
   constructor(private http: HttpClient) {}
 
+  getCategory(): ICategory {
+    console.log(this.category);
+    return this.category;
+  }
   getAll(): Observable<any> {
     return this.http.get('http://localhost:3000/categories').pipe(
       catchError((err) => {
@@ -54,5 +59,9 @@ export class CategoryService {
         throw err;
       })
     );
+  }
+
+  setCategory(category: ICategory) {
+    return (this.category = category);
   }
 }

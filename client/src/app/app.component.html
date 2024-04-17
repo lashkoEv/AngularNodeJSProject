@@ -1,7 +1,17 @@
 <div class="app">
   <app-header></app-header>
+  <!-- <div>
+    <app-carousel></app-carousel>
+  </div> -->
+
+  <!-- <div>
+    <app-products-carousel></app-products-carousel>
+  </div> -->
+  <!-- <app-main></app-main> -->
   <router-outlet></router-outlet>
+  <!-- <app-notification></app-notification> -->
   <app-footer></app-footer>
+
   <!-- <app-consultation></app-consultation> -->
   <!-- <app-admin-form></app-admin-form> -->
   <!-- <app-notification></app-notification> -->
@@ -11,16 +21,8 @@
   </button>
 </div>
 
-<app-call-us-modal-window *ngIf="callUsModalWindow.getIsOpen()"></app-call-us-modal-window>
 
-<!-- <div>
-    <app-carousel></app-carousel>
-</div>
-
-<div>
-    <app-products-carousel></app-products-carousel>
-</div>
-
-<router-outlet></router-outlet>
-<app-notification></app-notification>
-<app-spinner></app-spinner> -->
+<!-- <app-spinner></app-spinner> -->
+<app-call-us-modal-window
+  *ngIf="callUsModalWindow.getIsOpen()"
+></app-call-us-modal-window>
