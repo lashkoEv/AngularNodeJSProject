@@ -5,6 +5,7 @@ async function authorize(req, res) {
     const user = await User.findOne({
       login: req.body.login,
       password: req.body.password,
+      // isAdmin: req.body.isAdmin
     });
 
     console.log("Found:", user);
