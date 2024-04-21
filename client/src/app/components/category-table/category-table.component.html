@@ -51,3 +51,9 @@
   [pageSizeOptions]="[10, 25, 100]"
   showFirstLastButtons
 ></mat-paginator>
+
+<app-admin-form
+  *ngIf="formService.getIsAddCategory() || formService.getIsUpdateCategory()"
+></app-admin-form>
+<app-spinner></app-spinner>
+<app-notification></app-notification>

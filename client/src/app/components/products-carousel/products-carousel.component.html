@@ -1,25 +1,10 @@
-<div class="productCarousel-wrapper">
-    <c-carousel class="productCarousel" [interval]="0">
-        <c-carousel-inner>
-          <c-carousel-item class="productCarousel">
-            <div *ngFor="let id of slidesID">
-                <div class="img-wrapper">
-                    <img
-                      [src]="slides[id].src"
-                      alt="{{slides[id].title}}"
-                      class="product d-block"
-                      loading="lazy"
-                    />
-
-                    <!-- <div class="title">{{slides[id].title}}</div> -->
-                </div>
+<p-carousel [value]="categories" [numVisible]="3" [circular]="true" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+    <ng-template let-categorie pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+            <div class="mb-3 category-wrapper">
+                <img src="{{ categorie.imgSrc }}" [alt]="categorie.title" class="w-6 shadow-2 category" />
+                <!-- <h4 class="mb-1">{{ categorie.title }}</h4> -->
             </div>
-          </c-carousel-item>
-        </c-carousel-inner>
-                        
-        <c-carousel-control (click)="reduceId()" [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-        <c-carousel-control (click)="increaseId()" [routerLink] caption="Next" direction="next"></c-carousel-control>
-      </c-carousel>
-  </div>
-  
-  
+        </div>
+    </ng-template>
+</p-carousel>

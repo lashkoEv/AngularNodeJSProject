@@ -1,15 +1,25 @@
-<section *ngIf="getAuthState()" class="panel">
-  <mat-tab-group>
-    <mat-tab label="Продукты">
+<section *ngIf="getRole()" class="panel">
+  <p-tabView [scrollable]="true">
+    <p-tabPanel header="Продукты">
       <app-product-table></app-product-table>
-    </mat-tab>
+    </p-tabPanel>
 
-    <mat-tab label="Категории">
+    <p-tabPanel header="Категории">
       <div class="btn-wrapper">
-        <button mat-stroked-button>Добавить категорию</button>
+        <button (click)="addCategory()" mat-stroked-button>
+          Добавить категорию
+        </button>
       </div>
 
       <app-category-table></app-category-table>
-    </mat-tab>
-  </mat-tab-group>
+    </p-tabPanel>
+
+    <p-tabPanel header="Запросы на звонок">
+      <app-call-request-table></app-call-request-table>
+    </p-tabPanel>
+
+    <p-tabPanel header="Консультация">
+      <app-consultation-table></app-consultation-table>
+    </p-tabPanel>
+  </p-tabView>
 </section>

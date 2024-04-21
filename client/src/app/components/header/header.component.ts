@@ -15,8 +15,15 @@ export class HeaderComponent {
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public navigation: {}[] = [
     {
+<<<<<<< HEAD
       titles: ['CONSULTATION', 'DELIVERY', 'CONTACTS', 'PRODUCTS'],
       links: ['consultation', 'delivery', 'contacts', 'catalogue'],
+=======
+      // titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      // links: ['consultation', 'delivery', 'contacts', 'catalogue'],
+      titles: ['ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      links: ['delivery', 'contacts', 'catalogue'],
+>>>>>>> e029f52b7fb4ff669756972fa96497a4e815ca56
     },
   ];
 
@@ -36,6 +43,17 @@ export class HeaderComponent {
     return this.authorizationService.getAuthState();
   }
 
+  getIsAdmin(){
+    return this.authorizationService.getRole()
+  }
+
+  getAuth() {
+    return (
+      this.authorizationService.getRole() &&
+      this.authorizationService.getAuthState()
+    );
+  }
+
   showForm() {
     this.authorizationService.setFormState();
   }
@@ -46,5 +64,6 @@ export class HeaderComponent {
 
   logout() {
     this.authorizationService.setAuthState();
+    this.authorizationService.setRole(false);
   }
 }

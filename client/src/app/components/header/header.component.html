@@ -25,26 +25,49 @@
 <section class="main-header">
   <div class="logo" [routerLink]="['/']">{{ logo }}</div>
   <div class="navigation-wrapper" *ngFor="let nav of navigation">
+<<<<<<< HEAD
     <nav class="navigation" *ngFor="let title  of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i] ]" mat-button class="nav">{{ title | translate}}</a>
+=======
+    <a href="#consultation" mat-button class="nav">КОНСУЛЬТАЦИЯ</a>
+    <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
+      <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
+>>>>>>> e029f52b7fb4ff669756972fa96497a4e815ca56
     </nav>
-    <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" />
+    <img
+      routerLink="cart"
+      src="../../assets/cart-shopping-solid.svg"
+      alt=""
+      class="cart-icon"
+    />
   </div>
 </section>
 <section class="sub-header">
-  <div class="search-wrapper">
-    <!-- <mat-form-field> -->
-    <input matInput type="text" class="input" />
-    <img src="../../assets/search.svg" alt="#" class="search-icon" />
-    <!-- </mat-form-field> -->
+  <!-- <div class="search-wrapper"> -->
+  <!-- <mat-form-field> -->
+  <!-- <input matInput type="text" class="input" /> -->
+  <!-- <img src="../../assets/search.svg" alt="#" class="search-icon" /> -->
+  <!-- </mat-form-field> -->
+  <div class="search">
+    <app-search></app-search>
   </div>
 
   <div class="auth-wrapper">
     <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
       {{ 'Авторизация' | translate }}
     </button>
+<<<<<<< HEAD
     <button mat-button class="btn" *ngIf="getAuthState()" [routerLink]="['/admin']">
       {{ 'Админ-панель' | translate }}
+=======
+    <button
+      mat-button
+      class="btn"
+      *ngIf="getIsAdmin()"
+      [routerLink]="['/admin']"
+    >
+      Админ-панель
+>>>>>>> e029f52b7fb4ff669756972fa96497a4e815ca56
     </button>
     <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
       {{ 'Выход' | translate }}

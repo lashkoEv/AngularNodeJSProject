@@ -1,0 +1,30 @@
+.img {
+  height: 60px;
+}
+
+.delete {
+  background-color: var(--red-700);
+  color: white;
+}
+
+.update {
+  background-color: var(--green-700);
+  color: white;
+}
+
+.show {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.panel {
+  min-height: 70vh;
+}
+
+.btn-wrapper {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
