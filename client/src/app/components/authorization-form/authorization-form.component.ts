@@ -28,10 +28,7 @@ export class AuthorizationFormComponent {
 
         this.spinner.start();
 
-
         this.authorizationService.setRole(data.isAdmin);
-
-        console.log(data);
 
         this.spinner.start();
 
@@ -59,11 +56,11 @@ export class AuthorizationFormComponent {
     }
   }
 
-  regOrAuth(data: IUser){
+  regOrAuth(data: IUser) {
     this.hasAccount ? this.authorize(data) : this.registration(data);
   }
 
-  toogleHasAcc(){    
+  toogleHasAcc() {
     this.hasAccount = !this.hasAccount;
   }
 

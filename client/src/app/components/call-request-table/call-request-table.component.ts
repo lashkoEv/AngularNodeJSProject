@@ -51,6 +51,7 @@ export class CallRequestTableComponent implements OnInit {
 
   confirm(event: Event, id: String) {
     this.confirmationService.confirm({
+      key: 'popup1',
       target: event.target as EventTarget,
       message: 'Вы точно хотите удалить запись?',
       icon: 'pi pi-info-circle',
@@ -63,6 +64,7 @@ export class CallRequestTableComponent implements OnInit {
         setTimeout(() => {
           this.deleteCallRequest(id);
         }, 2000);
+        this.messageService.clear();
 
         this.messageService.add({
           severity: 'info',
@@ -72,6 +74,7 @@ export class CallRequestTableComponent implements OnInit {
         });
       },
       reject: () => {
+        this.messageService.clear();
         this.messageService.add({
           severity: 'warn',
           summary: 'Удаление отменено!',

@@ -25,7 +25,11 @@
       <td>{{ callRequest.phone }}</td>
       <td>
         <p-toast></p-toast>
-        <p-confirmPopup class="popup"></p-confirmPopup>
+        <p-confirmPopup
+          key="popup1"
+          [preventDuplicates]="true"
+          [preventOpenDuplicates]="true"
+        ></p-confirmPopup>
         <p-button
           icon="pi pi-trash"
           severity="danger"
