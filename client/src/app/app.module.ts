@@ -52,6 +52,8 @@ import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   declarations: [
@@ -108,6 +110,8 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     CarouselModule,
     TableModule,
+    DialogModule,
+    FieldsetModule,
   ],
   providers: [provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -9,6 +9,8 @@ import { IColumn } from '../../interfaces/IColumn';
   styleUrl: './call-request-table.component.scss',
 })
 export class CallRequestTableComponent implements OnInit {
+  visible: boolean = false;
+  current: ICallRequest;
   callRequests!: ICallRequest[];
   cols!: IColumn[];
 
@@ -24,6 +26,7 @@ export class CallRequestTableComponent implements OnInit {
       { field: 'name', header: 'Имя' },
       { field: 'phone', header: 'Телефон' },
       { field: '', header: '' },
+      { field: '', header: '' },
     ];
   }
 
@@ -33,5 +36,10 @@ export class CallRequestTableComponent implements OnInit {
         this.ngOnInit();
       }
     });
+  }
+
+  show(callRequest: ICallRequest) {
+    this.current = callRequest;
+    this.visible = true;
   }
 }
