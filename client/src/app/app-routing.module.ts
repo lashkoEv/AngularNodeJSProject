@@ -9,6 +9,7 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { MainComponent } from './components/main/main.component';
 import { ProductComponent } from './components/product/product.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'cart', component: AppComponent },
 
   { path: 'admin', component: AdminPanelComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'products/:id', component: ProductComponent },
   { path: '**', pathMatch: 'full', component: ErrorComponent },
 ];

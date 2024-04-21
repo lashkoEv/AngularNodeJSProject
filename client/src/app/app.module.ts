@@ -58,6 +58,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { MessagesModule } from 'primeng/messages';
     ProductComponent,
     TestCarouselComponent,
     ErrorComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
