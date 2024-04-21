@@ -54,7 +54,7 @@
     <button
       mat-button
       class="btn"
-      *ngIf="getAuthState()"
+      *ngIf="getIsAdmin()"
       [routerLink]="['/admin']"
     >
       Админ-панель

@@ -40,6 +40,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { FixedPhoneNumberFormatInputDirective } from './directives/fixed-phone-number-format-input.directive';
 
 import { MatSelectModule } from '@angular/material/select';
 
@@ -74,6 +75,7 @@ import { ErrorComponent } from './components/error/error.component';
     ProductTableComponent,
     CategoryTableComponent,
     CatalogueComponent,
+    FixedPhoneNumberFormatInputDirective,
     CallRequestTableComponent,
     CategoryPageComponent,
     ShowProductModalComponent,
