@@ -1,40 +1,34 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="_id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let CallRequest">{{ CallRequest._id }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Имя</th>
-    <td mat-cell *matCellDef="let CallRequest">{{ CallRequest.name }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="phone">
-    <th mat-header-cell *matHeaderCellDef>Телефон</th>
-    <td mat-cell *matCellDef="let CallRequest">
-      {{ CallRequest.phone }}
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let CallRequest">
-      <button
-        mat-button
-        (click)="deleteCallRequest(CallRequest._id)"
-        class="delete"
-      >
-        Удалить
-      </button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-
-<mat-paginator
-  #paginator
-  [pageSizeOptions]="[10, 25, 100]"
-  showFirstLastButtons
-></mat-paginator>
+<div class="card">
+  <p-table
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} до {last} из {totalRecords}"
+    [rowsPerPageOptions]="[10, 20, 50, 100]"
+    [value]="callRequests"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>Код</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-callRequest let-columns="columns">
+      <tr>
+        <td>{{ callRequest._id }}</td>
+        <td>{{ callRequest.name }}</td>
+        <td>{{ callRequest.phone }}</td>
+        <td>
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            (click)="deleteCallRequest(callRequest._id)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

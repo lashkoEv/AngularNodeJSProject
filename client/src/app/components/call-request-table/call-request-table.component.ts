@@ -1,8 +1,7 @@
 import { CallRequestService } from './../../services/call-request.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { ICallRequest } from '../../interfaces/ICallRequest';
+import { IColumn } from '../../interfaces/IColumn';
 
 @Component({
   selector: 'app-call-request-table',
@@ -10,21 +9,22 @@ import { ICallRequest } from '../../interfaces/ICallRequest';
   styleUrl: './call-request-table.component.scss',
 })
 export class CallRequestTableComponent implements OnInit {
-  @ViewChild('paginator') paginator: MatPaginator;
-
-  displayedColumns = ['_id', 'name', 'phone', 'delete'];
-
-  dataSource: MatTableDataSource<ICallRequest>;
+  callRequests!: ICallRequest[];
+  cols!: IColumn[];
 
   constructor(private callRequestService: CallRequestService) {}
 
   ngOnInit() {
     this.callRequestService.getAll().subscribe((data) => {
-      this.dataSource = new MatTableDataSource<ICallRequest>(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.paginator._intl.itemsPerPageLabel =
-        'Продуктов на странице: ';
+      this.callRequests = data;
     });
+
+    this.cols = [
+      { field: '_id', header: 'Код' },
+      { field: 'name', header: 'Имя' },
+      { field: 'phone', header: 'Телефон' },
+      { field: '', header: '' },
+    ];
   }
 
   async deleteCallRequest(id: String) {

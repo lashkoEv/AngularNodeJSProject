@@ -3,12 +3,17 @@
 }
 
 .delete {
-  background-color: rgb(105, 54, 54);
+  background-color: var(--red-700);
   color: white;
 }
 
 .update {
-  background-color: rgb(54, 105, 71);
+  background-color: var(--green-700);
+  color: white;
+}
+
+.show {
+  background-color: var(--primary-color);
   color: white;
 }
 
