@@ -44,17 +44,18 @@ export class AuthorizationFormComponent {
     });
   }
 
-  registration(user: IUser){
-    if(this.authorizationService.isValidData(user)){
-      this.spinner.start();
-      
-      this.authorizationService.setAuthState();
-      this.authorizationService.setRole(user.isAdmin);
-      
-      this.close();
+  registration(user: IUser) {
+    if (this.authorizationService.isValidData(user)) {
+      this.authorizationService.register(user).subscribe((data) => {
+        if (data) {
+          this.spinner.start();
 
-      console.log('done');
-      
+          this.authorizationService.setAuthState();
+          this.authorizationService.setRole(user.isAdmin);
+
+          this.close();
+        }
+      });
     }
   }
 

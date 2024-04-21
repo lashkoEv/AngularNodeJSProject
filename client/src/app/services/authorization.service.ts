@@ -50,8 +50,13 @@ export class AuthorizationService {
     );
   }
 
-  register(user: IUser){
-    
+  register(user: IUser) {
+    return this.http.post('http://localhost:3000/register', user).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 
   isValidData(user: IUser){
