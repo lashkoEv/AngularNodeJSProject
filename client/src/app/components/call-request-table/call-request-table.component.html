@@ -24,10 +24,12 @@
       <td>{{ callRequest.name }}</td>
       <td>{{ callRequest.phone }}</td>
       <td>
+        <p-toast></p-toast>
+        <p-confirmPopup class="popup"></p-confirmPopup>
         <p-button
           icon="pi pi-trash"
           severity="danger"
-          (click)="deleteCallRequest(callRequest._id)"
+          (click)="confirm($event, callRequest._id)"
         ></p-button>
       </td>
       <td>

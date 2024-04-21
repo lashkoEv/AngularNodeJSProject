@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -54,6 +55,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { FieldsetModule } from 'primeng/fieldset';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -112,8 +115,10 @@ import { FieldsetModule } from 'primeng/fieldset';
     TableModule,
     DialogModule,
     FieldsetModule,
+    ConfirmPopupModule,
+    ToastModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
