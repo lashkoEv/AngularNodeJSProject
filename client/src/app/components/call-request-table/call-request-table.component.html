@@ -10,9 +10,13 @@
   >
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th>Код</th>
-        <th>Имя</th>
-        <th>Телефон</th>
+        <th pSortableColumn="_id">Код <p-sortIcon field="_id"></p-sortIcon></th>
+        <th pSortableColumn="name">
+          Имя <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="phone">
+          Телефон <p-sortIcon field="phone"></p-sortIcon>
+        </th>
         <th></th>
       </tr>
     </ng-template>
