@@ -1,0 +1,118 @@
+<!-- <div *ngFor="let item of getProducts()">
+  {{ item.product.title }} {{ item.count }}
+</div> -->
+
+<!-- <div class="cart-container">
+  <ng-container *ngIf="getProducts().length > 0; else emptyCart">
+    <div *ngFor="let item of getProducts()" class="product-card">
+      <div class="img-wrapper">
+        <img
+          class="product-img"
+          [src]="item.product.imgSrc"
+          alt="{{ item.product.title }}"
+        />
+      </div>
+      <div class="product-details">
+        <div class="upper-side">
+          <h3 class="title">{{ item.product.title }}</h3>
+          <p class="price">{{ item.product.wholesalePrice }}</p>
+        </div>
+        <div class="middle-side">
+          <p>{{ item.product.description }}</p>
+        </div>
+        <div class="bottom-side">
+          <div class="counter">
+            <p-inputNumber
+              [(ngModel)]="item.count"
+              [showButtons]="true"
+              buttonLayout="horizontal"
+              spinnerMode="horizontal"
+              inputId="horizontal"
+              decrementButtonClass="p-button-secondary"
+              incrementButtonClass="p-button-secondary"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              size="1"
+            ></p-inputNumber>
+          </div>
+          <button
+            (click)="remove(item)"
+            pButton
+            type="button"
+            label="Delete"
+            class="delete-btn p-button-danger"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <button pButton label="Buy Now" class="buy-btn" size="small"></button>
+  </ng-container>
+  <ng-template #emptyCart>
+    <p-messages
+      severity="info"
+      [value]="[
+        { severity: 'info', summary: 'Info', detail: 'Your cart is empty' }
+      ]"
+      >Корзина пустая</p-messages
+    >
+  </ng-template>
+</div> -->
+
+<div class="cart">
+  <p-dataView #dv [value]="products">
+    <ng-template pTemplate="list" let-products>
+      <div class="product-list">
+        <div
+          *ngFor="let item of getProducts(); let first = first"
+          class="product-item"
+        >
+          <div class="product-details">
+            <img
+              class="product-image"
+              [src]="item.product.imgSrc"
+              [alt]="item.product.title"
+            />
+            <div class="product-info">
+              <div class="product-title">{{ item.product.title }}</div>
+              <div class="product-category">{{ item.product.category }}</div>
+              <div class="product-price">{{ item.product.wholesalePrice }}</div>
+              <div class="product-count">
+                <p-button
+                  icon="pi pi-minus"
+                  (click)="decrease(item)"
+                  class="count-button"
+                  size="small"
+                  [rounded]="true"
+                  [text]="true"
+                ></p-button>
+                <span class="count">{{ item.count }}</span>
+                <p-button
+                  icon="pi pi-plus"
+                  (click)="increase(item)"
+                  class="count-button"
+                  size="small"
+                  [rounded]="true"
+                  [text]="true"
+                ></p-button>
+              </div>
+              <div class="product-delete">
+                <button
+                  (click)="remove(item)"
+                  pButton
+                  type="button"
+                  label="Delete"
+                  class="delete-btn p-button-danger"
+                ></button>
+              </div>
+              <button
+                pButton
+                icon="pi pi-shopping-cart"
+                class="add-to-cart-button"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>

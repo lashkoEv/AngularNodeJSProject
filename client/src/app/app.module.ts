@@ -51,11 +51,20 @@ import { SearchComponent } from './components/search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConsultationTableComponent } from './components/consultation-table/consultation-table.component';
 import { ProductComponent } from './components/product/product.component';
-import { ButtonModule } from 'primeng/button';
-import { CarouselModule } from 'primeng/carousel';
+
 import { TestCarouselComponent } from './components/test-carousel/test-carousel.component';
 import { ErrorComponent } from './components/error/error.component';
+import { CartComponent } from './components/cart/cart.component';
 
+// primeNG
+import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
+import { SidebarModule } from 'primeng/sidebar';
+import { BadgeModule } from 'primeng/badge';
+import { CardModule } from 'primeng/card';
+import { MessageModule } from 'primeng/message';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [
@@ -87,7 +96,7 @@ import { ErrorComponent } from './components/error/error.component';
     ProductComponent,
     TestCarouselComponent,
     ErrorComponent,
-
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,8 +124,13 @@ import { ErrorComponent } from './components/error/error.component';
     MatAutocompleteModule,
     AsyncPipe,
     ButtonModule,
+    SidebarModule,
     CarouselModule,
-
+    BadgeModule,
+    CardModule,
+    MessageModule,
+    InputNumberModule,
+    DataViewModule,
   ],
   providers: [provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
