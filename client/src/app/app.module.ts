@@ -31,6 +31,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
@@ -42,6 +43,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 
 import { MatSelectModule } from '@angular/material/select';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { CallRequestTableComponent } from './components/call-request-table/call-request-table.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
@@ -55,7 +59,6 @@ import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TestCarouselComponent } from './components/test-carousel/test-carousel.component';
 import { ErrorComponent } from './components/error/error.component';
-
 
 @NgModule({
   declarations: [
@@ -87,9 +90,9 @@ import { ErrorComponent } from './components/error/error.component';
     ProductComponent,
     TestCarouselComponent,
     ErrorComponent,
-
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -108,7 +111,8 @@ import { ErrorComponent } from './components/error/error.component';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
-
+    InputGroupAddonModule,
+    InputGroupModule,
     MatSelectModule,
 
     MatFormFieldModule,
@@ -116,7 +120,7 @@ import { ErrorComponent } from './components/error/error.component';
     AsyncPipe,
     ButtonModule,
     CarouselModule,
-
+    DropdownModule,
   ],
   providers: [provideAnimationsAsync()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

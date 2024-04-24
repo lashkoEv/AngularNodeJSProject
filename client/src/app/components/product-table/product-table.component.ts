@@ -100,6 +100,7 @@ export class ProductTableComponent implements OnInit {
 
   showProduct(data: IProduct) {
     this.currentProduct = data;
+    console.log(this.currentProduct);
     this.productModalWindowService.changeFormState();
   }
 

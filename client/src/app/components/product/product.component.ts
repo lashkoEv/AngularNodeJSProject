@@ -22,7 +22,7 @@ export class ProductComponent {
 
       this.productService.getById(this.id).subscribe((data) => {
         this.product = data;
-
+        console.log(this.product);
         productService
           .getByCategory(this.product.category)
           .subscribe((data) => {

@@ -11,7 +11,7 @@
   <ng-container matColumnDef="imgSrc">
     <th mat-header-cell *matHeaderCellDef>Изображение</th>
     <td mat-cell *matCellDef="let product" (click)="showProduct(product)">
-      <img src="{{ product.imgSrc }}" class="img" />
+      <img [src]="product.imgSrc" class="img" />
     </td>
   </ng-container>
 

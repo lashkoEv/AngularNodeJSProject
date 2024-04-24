@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,7 @@ export class ProductService {
 
   getProduct(): IProduct {
     console.log(this.product);
+
     return this.product;
   }
 
