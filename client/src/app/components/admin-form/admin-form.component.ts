@@ -120,7 +120,7 @@ export class AdminFormComponent implements OnInit {
         this.productService.add(productData).subscribe(
           (response: Response) => {
             console.log('Product added successfully:', response);
-            this.messageService.clear();
+
             this.messageService.add({
               severity: 'success',
               summary: 'Продукт добавлен!',
@@ -138,7 +138,7 @@ export class AdminFormComponent implements OnInit {
           (error: Error) => {
             console.error('Error adding product:', error);
             console.log(productData);
-            this.messageService.clear();
+
             this.messageService.add({
               severity: 'danger',
               summary: 'Ошибка добавления!',
@@ -158,7 +158,6 @@ export class AdminFormComponent implements OnInit {
         this.productService.update(productData).subscribe(
           (response: Response) => {
             console.log('Product updated successfully:', response);
-            this.messageService.clear();
             this.messageService.add({
               severity: 'success',
               summary: 'Продукт обновлён!',
@@ -174,7 +173,6 @@ export class AdminFormComponent implements OnInit {
           },
           (error: Error) => {
             console.error('Error updating product:', error);
-            this.messageService.clear();
             this.messageService.add({
               severity: 'danger',
               summary: 'Ошибка обновления!',
@@ -192,18 +190,30 @@ export class AdminFormComponent implements OnInit {
         this.categoryService.add(categoryData).subscribe(
           (response: Response) => {
             console.log('Category added successfully:', response);
-            this.notification.setTextOfNotification(
-              `Категория успешно добавлена ${categoryData.title}`
-            );
+
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Категория добавлена!',
+              detail: `Категория ${categoryData.title} успешно добавлена!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Категория успешно добавлена ${categoryData.title}`
+            // );
             this.updateProductsAndCategory();
             this.formService.hideForm();
             this.productForm.reset();
           },
           (error: Error) => {
             console.error('Error additing category:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в добавлении категории ${categoryData.title}, ${error}`
-            );
+
+            this.messageService.add({
+              severity: 'danger',
+              summary: 'Ошибка добавления!',
+              detail: `Ошибка в добавлении категории ${productData.title}, ${error}!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Ошибка в добавлении категории ${categoryData.title}, ${error}`
+            // );
           }
         );
         this.spinner.start();
@@ -214,18 +224,30 @@ export class AdminFormComponent implements OnInit {
         this.categoryService.update(categoryData).subscribe(
           (response: Response) => {
             console.log('Category update successfully:', response);
-            this.notification.setTextOfNotification(
-              `Категория обновлена успешно  ${categoryData.title} `
-            );
+
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Категория обновдена!',
+              detail: `Категория ${categoryData.title} успешно обновлена!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Категория обновлена успешно  ${categoryData.title} `
+            // );
             this.updateProductsAndCategory();
             this.formService.hideForm();
             this.productForm.reset();
           },
           (error: Error) => {
             console.error('Error updating category:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в обновлении категории ${categoryData.title}, ${error}`
-            );
+
+            this.messageService.add({
+              severity: 'danger',
+              summary: 'Ошибка обновления!',
+              detail: `Ошибка в обновлении категории ${productData.title}, ${error}!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Ошибка в обновлении категории ${categoryData.title}, ${error}`
+            // );
           }
         );
         this.spinner.start();
