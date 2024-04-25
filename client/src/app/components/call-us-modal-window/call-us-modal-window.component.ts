@@ -21,7 +21,7 @@ export class CallUsModalWindowComponent {
     } else return false
   }
 
-  public addUser(user: any){    
+  public addUser(user: any){
     this.callUsModalWindowService.addUserToCall(user);
     
 

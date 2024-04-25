@@ -50,7 +50,7 @@ export class CategoryPageComponent implements OnInit {
     this.pageSize = 5;
   }
 
-  asd(){
+  lsd(){
     return this.filtersService.getShown();
   }
 

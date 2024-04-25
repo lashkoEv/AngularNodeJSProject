@@ -67,6 +67,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MatSliderModule } from '@angular/material/slider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -138,6 +139,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSliderModule,
     CheckboxModule,
     MatCheckboxModule,
+    InputMaskModule,
     
   ],
   providers: [provideAnimationsAsync()],
