@@ -6,7 +6,7 @@
       <div class="grid-container">
         <div
           class="product"
-          *ngFor="let product of toShow"
+          *ngFor="let product of asd()"
           [routerLink]="['/products', product._id]"
         >
           <h3>{{ product.title }}</h3>
@@ -25,3 +25,5 @@
     </mat-paginator>
   </div>
 </div>
+
+<app-filters></app-filters>

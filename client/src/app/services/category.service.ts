@@ -14,6 +14,7 @@ export class CategoryService {
     console.log(this.category);
     return this.category;
   }
+  
   getAll(): Observable<any> {
     return this.http.get('http://localhost:3000/categories').pipe(
       catchError((err) => {

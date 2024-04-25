@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { IProduct } from '../../interfaces/IProduct';
+import { FiltersService } from '../../services/filters.service';
 
 @Component({
   selector: 'app-category-page',
@@ -19,7 +20,8 @@ export class CategoryPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private productService: ProductService
+    private productService: ProductService,
+    private filtersService: FiltersService
   ) {}
 
   ngOnInit(): void {
@@ -38,11 +40,18 @@ export class CategoryPageComponent implements OnInit {
 
   async getProducts(categoryID: string) {
     await this.productService.getByCategory(categoryID).subscribe((data) => {
+      this.filtersService.setProducts(data);
+      // this.products = this.filtersService.getShown();
       this.products = data;
       this.totalItems = this.products.length;
-      this.toShow = this.products.slice(0, 5);
+      this.toShow = this.products.slice(0, 5);      
     });
+    
     this.pageSize = 5;
+  }
+
+  asd(){
+    return this.filtersService.getShown();
   }
 
   onPageChange(event: PageEvent) {
