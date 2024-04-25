@@ -58,12 +58,30 @@ export class CartService {
   }
 
   remove(removedProduct: IOrderedProduct) {
-    console.log('Before remove:', this.products);
     this.products = this.products.filter(
       (p) => p.product._id !== removedProduct.product._id
     );
-    console.log('After remove:', this.products);
     this.productSubject.next(this.products);
+  }
+
+  resetCart() {
+    this.products = [];
+    this.productSubject.next(this.products);
+  }
+
+  getTotalPrice(orderedProduct: IOrderedProduct): number {
+    return (
+      parseInt(orderedProduct.product.wholesalePrice.toString()) *
+      orderedProduct.count
+    );
+  }
+
+  getCartTotalPrice(): number {
+    let totalPrice = 0;
+    this.products.forEach((orderedProduct) => {
+      totalPrice += this.getTotalPrice(orderedProduct);
+    });
+    return totalPrice;
   }
 
   save(): Observable<any> {
