@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { IOrderedProduct } from '../../interfaces/IOrderedProduct';
-import { IUser } from '../../interfaces/IUser';
 import { IOrder } from '../../interfaces/IOrder';
+import { IUser } from '../../interfaces/iUser';
 
 @Component({
   selector: 'app-cart',

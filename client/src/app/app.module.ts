@@ -49,12 +49,6 @@ import { MatCardModule } from '@angular/material/card';
 import { FixedPhoneNumberFormatInputDirective } from './directives/fixed-phone-number-format-input.directive';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { ConsultationTableComponent } from './components/consultation-table/consultation-table.component';
-import { ProductComponent } from './components/product/product.component';
-
-import { TestCarouselComponent } from './components/test-carousel/test-carousel.component';
-import { ErrorComponent } from './components/error/error.component';
 import { CartComponent } from './components/cart/cart.component';
 
 // primeNG
@@ -73,7 +67,6 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-
 
 @NgModule({
   declarations: [
@@ -142,7 +135,6 @@ import { MessagesModule } from 'primeng/messages';
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
-
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
