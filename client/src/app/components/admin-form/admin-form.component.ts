@@ -10,6 +10,7 @@ import { IProduct } from '../../interfaces/IProduct';
 import { ICategory } from '../../interfaces/ICategory';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-admin-form',
@@ -33,7 +34,9 @@ export class AdminFormComponent implements OnInit {
 
     private categoryService: CategoryService,
     private spinner: SpinnerService,
-    private notification: NotificationService
+    private notification: NotificationService,
+
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -117,9 +120,16 @@ export class AdminFormComponent implements OnInit {
         this.productService.add(productData).subscribe(
           (response: Response) => {
             console.log('Product added successfully:', response);
-            this.notification.setTextOfNotification(
-              `Продукт успешно добавлен ${productData.title}`
-            );
+            this.messageService.clear();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Продукт добавлен!',
+              detail: `Продукт ${productData.title} успешно добавлен!`,
+            });
+
+            // this.notification.setTextOfNotification(
+            //   `Продукт успешно добавлен ${productData.title}`
+            // );
             // Clear form after add product
             this.updateProductsAndCategory();
             this.formService.hideForm();
@@ -128,9 +138,15 @@ export class AdminFormComponent implements OnInit {
           (error: Error) => {
             console.error('Error adding product:', error);
             console.log(productData);
-            this.notification.setTextOfNotification(
-              `Ошибка в добавлении продукта ${productData.title}, ${error}`
-            );
+            this.messageService.clear();
+            this.messageService.add({
+              severity: 'danger',
+              summary: 'Ошибка добавления!',
+              detail: `Ошибка в добавлении продукта ${productData.title}, ${error}!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Ошибка в добавлении продукта ${productData.title}, ${error}`
+            // );
           }
         );
         this.spinner.start();
@@ -142,9 +158,15 @@ export class AdminFormComponent implements OnInit {
         this.productService.update(productData).subscribe(
           (response: Response) => {
             console.log('Product updated successfully:', response);
-            this.notification.setTextOfNotification(
-              `Продукт успешно обновлён ${productData.title}`
-            );
+            this.messageService.clear();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Продукт обновлён!',
+              detail: `Продукт ${productData.title} успешно обновлён!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Продукт успешно обновлён ${productData.title}`
+            // );
             // Clear form after add product
             this.updateProductsAndCategory();
             this.formService.hideForm();
@@ -152,9 +174,15 @@ export class AdminFormComponent implements OnInit {
           },
           (error: Error) => {
             console.error('Error updating product:', error);
-            this.notification.setTextOfNotification(
-              `Ошибка в обновлении продукта ${productData.title}, ${error}`
-            );
+            this.messageService.clear();
+            this.messageService.add({
+              severity: 'danger',
+              summary: 'Ошибка обновления!',
+              detail: `Ошибка в обновлении продукта ${productData.title}, ${error}!`,
+            });
+            // this.notification.setTextOfNotification(
+            //   `Ошибка в обновлении продукта ${productData.title}, ${error}`
+            // );
           }
         );
         this.spinner.start();

@@ -88,25 +88,20 @@ export class ProductTableComponent implements OnInit {
       accept: () => {
         setTimeout(() => {
           this.deleteProduct(id);
-        }, 2000);
+        }, 2100);
         this.messageService.clear();
         this.messageService.add({
           severity: 'info',
           summary: 'Запись удалена!',
           detail: 'Запись удалена успешно!',
-          life: 3000,
         });
       },
       reject: () => {
-        setTimeout(() => {
-          this.ngOnInit();
-        }, 2000);
         this.messageService.clear();
         this.messageService.add({
           severity: 'warn',
           summary: 'Удаление отменено!',
           detail: 'Запись не удалена!',
-          life: 3000,
         });
       },
     });

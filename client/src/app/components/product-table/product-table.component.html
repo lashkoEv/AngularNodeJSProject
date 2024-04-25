@@ -1,3 +1,11 @@
+<p-toast [life]="2000"></p-toast>
+
+<p-confirmPopup
+  key="popup2"
+  [preventDuplicates]="true"
+  [preventOpenDuplicates]="true"
+></p-confirmPopup>
+
 <div class="btn-wrapper">
   <p-button
     [outlined]="true"
@@ -78,12 +86,6 @@
         </span>
       </td>
       <td>
-        <p-toast></p-toast>
-        <p-confirmPopup
-          key="popup2"
-          [preventDuplicates]="true"
-          [preventOpenDuplicates]="true"
-        ></p-confirmPopup>
         <p-button
           icon="pi pi-trash"
           severity="danger"
