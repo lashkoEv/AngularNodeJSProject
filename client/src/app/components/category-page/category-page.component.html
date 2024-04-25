@@ -1,5 +1,17 @@
 <div class="container">
-  <h2 class="category">{{ categories?.title }}</h2>
+  <div class="top-section">
+    <h2 class="category">{{ categories?.title }}</h2>
+
+    <mat-form-field class="sort-select">
+      <mat-label>Sort products</mat-label>
+      <mat-select (selectionChange)="sortProducts($event.value)">
+        <mat-option value="A-Z">A-Z</mat-option>
+          <mat-option value="Z-A">Z-A</mat-option>
+          <mat-option value="price-up">Price ⇧</mat-option>
+          <mat-option value="price-down">Price ⇩</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <div class="category-page">
     <main class="products-section">

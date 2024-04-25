@@ -58,6 +58,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { MessagesModule } from 'primeng/messages';
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
+    MatCheckboxModule
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

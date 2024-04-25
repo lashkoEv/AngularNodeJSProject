@@ -19,4 +19,31 @@ export class CatalogueComponent implements OnInit {
       this.categories = data;
     });
   }
+
+  sortCategories(option: string) {
+    if (option === 'A-Z') {
+      this.categories.sort((a, b) => (a.title > b.title ? 1 : -1));
+    } else if (option === 'Z-A') {
+      this.categories.sort((a, b) => (a.title < b.title ? 1 : -1));
+    }
+  }
+
+  // sortCategories(option: string) {
+  //   switch (option) {
+  //     case 'A-Z':
+  //       this.categories.sort((a, b) => (a.title > b.title ? 1 : -1));
+  //       break;
+  //     case 'Z-A':
+  //       this.categories.sort((a, b) => (a.title < b.title ? 1 : -1));
+  //       break;
+  //     case 'price increase':
+  //       this.categories.sort((a, b) => (a.price > b.price ? 1 : -1));
+  //       break;
+  //     case 'price descending':
+  //       this.categories.sort((a, b) => (a.price < b.price ? 1 : -1));
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 }

@@ -1,3 +1,7 @@
+.container {
+  margin: 20px;
+}
+
 .category {
   margin: 20px;
 }
@@ -22,4 +26,15 @@
 .product img {
   max-width: 100%;
   height: auto;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-select {
+  margin: 0;
+  padding: 0;
 }

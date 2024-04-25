@@ -50,4 +50,36 @@ export class CategoryPageComponent implements OnInit {
     const endIndex = startIndex + event.pageSize;
     this.toShow = this.products.slice(startIndex, endIndex);
   }
+
+  // sortProducts(option: string) {
+  //   if (option === 'A-Z') {
+  //     this.products.sort((a, b) => (a.name > b.name ? 1 : -1));
+  //   } else if (option === 'Z-A') {
+  //     this.products.sort((a, b) => (a.name < b.name ? 1 : -1));
+  //   }
+  //   this.toShow = this.products.slice(0, this.pageSize);
+  // }
+
+  sortProducts(option: string) {
+    console.log(this.products);
+    
+    switch (option) {
+      case 'A-Z':
+        this.products.sort((a, b) => (a.title > b.title ? 1 : -1));
+        break;
+      case 'Z-A':
+        this.products.sort((a, b) => (a.title < b.title ? 1 : -1));
+        break;
+      case 'price-up':
+        this.products.sort((a, b) => (a.retailPrice > b.retailPrice ? 1 : -1));
+        break;
+      case 'price-down':
+        this.products.sort((a, b) => (a.retailPrice < b.retailPrice ? 1 : -1));
+        break;
+      default:
+        break;
+    }
+    
+    this.toShow = this.products.slice(0, this.pageSize);
+  }
 }

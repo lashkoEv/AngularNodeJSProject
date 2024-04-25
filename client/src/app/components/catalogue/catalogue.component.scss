@@ -2,6 +2,12 @@
   margin: 20px;
 }
 
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
