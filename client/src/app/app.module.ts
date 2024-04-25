@@ -59,6 +59,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -121,6 +123,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
+    PasswordModule,
+    InputTextModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

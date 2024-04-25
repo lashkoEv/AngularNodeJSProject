@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<span class="p-float-label">
+  <input pInputText id="email" type="email" />
+  <label for="email">Mail</label>
+</span>
+<p-button (click)="showDialog()" label="Change Password"></p-button>
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw', height: '50vw' }"
+  [draggable]="false" [resizable]="false">
+  <p class="m-0">
+    <input pInputText pKeyFilter="int" placeholder="Old password" />
+
+    <p-password>
+      <ng-template pTemplate="header">
+        <h6>Pick a new password</h6>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <p-divider></p-divider>
+        <p class="mt-2">Suggestions</p>
+        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+          <li>At least one lowercase</li>
+          <li>At least one uppercase</li>
+          <li>At least one numeric</li>
+          <li>Minimum 8 characters</li>
+        </ul>
+      </ng-template>
+    </p-password>
+  </p>
+</p-dialog>
+
+<p-password [toggleMask]="true"></p-password>
