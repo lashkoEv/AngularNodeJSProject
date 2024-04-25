@@ -17,6 +17,7 @@
       <mat-form-field class="field">
         <mat-label>Название</mat-label>
         <input
+          required
           matInput
           formControlName="title"
           placeholder="{{ product ? product.title : 'Название' }}"
@@ -28,6 +29,7 @@
       <mat-form-field class="field">
         <mat-label>Описание</mat-label>
         <input
+          required
           matInput
           formControlName="description"
           placeholder="{{ product ? product.description : 'Описание' }}"
@@ -51,6 +53,7 @@
       <mat-form-field class="field">
         <mat-label>Розничная цена</mat-label>
         <input
+          required
           matInput
           formControlName="wholesalePrice"
           placeholder="{{
@@ -66,6 +69,7 @@
       <mat-form-field class="field">
         <mat-label>Кол-во</mat-label>
         <input
+          required
           matInput
           formControlName="count"
           placeholder="{{ product ? product.count : 'Кол-во' }}"
@@ -99,8 +103,12 @@
         ></mat-form-field
       >
       <div class="field">
-        <mat-label>Изображение</mat-label>
-        <input type="file" formControlName="imgSrc" placeholder="Изображение" />
+        <input
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          type="file"
+          formControlName="imgSrc"
+        />
         <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
           >Требуется изображение</mat-error
         >
@@ -172,10 +180,10 @@
 
       <div class="field">
         <input
+          (change)="onFileSelected($event)"
           accept="image/*"
           type="file"
           formControlName="imgSrc"
-          placeholder="Изображение"
         />
         <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
           >Требуется изображение</mat-error
