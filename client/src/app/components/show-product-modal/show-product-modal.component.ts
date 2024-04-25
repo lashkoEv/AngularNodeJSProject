@@ -1,6 +1,7 @@
 import { ProductModalWindowService } from './../../services/product-modal-window.service';
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../interfaces/IProduct';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-show-product-modal',

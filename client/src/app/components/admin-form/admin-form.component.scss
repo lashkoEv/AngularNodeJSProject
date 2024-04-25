@@ -4,9 +4,6 @@
   align-items: center;
   flex-direction: column;
 
-  padding: 5rem 2rem;
-  padding-top: 7rem;
-  padding-bottom: 6rem;
   border-radius: 2rem;
 
   border: 1px solid rgba(0, 0, 0, 0.116);
@@ -58,6 +55,7 @@
 .title {
   color: #167586;
   margin: 1rem 0 3rem 0;
+
   font-size: 2.5rem;
   text-align: center;
   font-weight: 600;
@@ -77,6 +75,7 @@
   font-size: 1.5rem;
   color: rgb(148, 148, 148);
   padding: 0;
+
   border: none;
   outline: none;
   background-color: transparent;
@@ -90,5 +89,6 @@
 
 .fields-input-wrapper {
   display: flex;
+  margin-top: 1rem;
   gap: 10px;
 }

@@ -47,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -56,6 +57,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { FixedPhoneNumberFormatInputDirective } from './directives/fixed-phone-number-format-input.directive';
 import { MatSelectModule } from '@angular/material/select';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 import { ButtonModule } from 'primeng/button';
@@ -90,7 +94,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,14 +121,12 @@ import { MessagesModule } from 'primeng/messages';
     ProductComponent,
     TestCarouselComponent,
     ErrorComponent,
-
     FiltersComponent,
     ScrollUpComponent,
-
     CartComponent,
-
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -144,6 +145,8 @@ import { MessagesModule } from 'primeng/messages';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    InputGroupAddonModule,
+    InputGroupModule,
     TabViewModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -152,7 +155,7 @@ import { MessagesModule } from 'primeng/messages';
     ButtonModule,
     SidebarModule,
     CarouselModule,
-
+    DropdownModule,
     SidebarModule,
     ScrollTopModule,
     TreeModule,
@@ -162,18 +165,17 @@ import { MessagesModule } from 'primeng/messages';
     CheckboxModule,
     MatCheckboxModule,
     InputMaskModule,
-
     BadgeModule,
     CardModule,
     InputNumberModule,
     DataViewModule,
-
     TableModule,
     DialogModule,
     FieldsetModule,
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
+
 
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
