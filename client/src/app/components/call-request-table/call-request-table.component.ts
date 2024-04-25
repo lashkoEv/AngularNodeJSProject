@@ -1,9 +1,8 @@
 import { CallRequestService } from './../../services/call-request.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ICallRequest } from '../../interfaces/ICallRequest';
 import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ConfirmPopup } from 'primeng/confirmpopup';
 
 @Component({
   selector: 'app-call-request-table',
@@ -74,6 +73,9 @@ export class CallRequestTableComponent implements OnInit {
         });
       },
       reject: () => {
+        setTimeout(() => {
+          this.ngOnInit();
+        }, 2000);
         this.messageService.clear();
         this.messageService.add({
           severity: 'warn',
