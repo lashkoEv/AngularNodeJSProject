@@ -147,8 +147,8 @@ export class AdminFormComponent implements OnInit {
                 );
               }
             );
-            // this.spinner.start();
-            // this.notification.notify();
+            this.spinner.start();
+            this.notification.notify();
           }
         } catch (error) {
           console.error('Error uploading image:', error);

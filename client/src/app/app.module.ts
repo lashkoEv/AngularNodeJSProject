@@ -42,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FileUploadModule } from 'primeng/fileupload';
+
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -50,6 +52,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { FixedPhoneNumberFormatInputDirective } from './directives/fixed-phone-number-format-input.directive';
 import { MatSelectModule } from '@angular/material/select';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DropdownModule } from 'primeng/dropdown';
+
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { TreeModule } from 'primeng/tree';
 import { SliderModule } from 'primeng/slider';
@@ -110,6 +116,7 @@ import { MessagesModule } from 'primeng/messages';
     CartComponent,
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -128,6 +135,8 @@ import { MessagesModule } from 'primeng/messages';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    InputGroupAddonModule,
+    InputGroupModule,
     TabViewModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -136,6 +145,7 @@ import { MessagesModule } from 'primeng/messages';
     ButtonModule,
     SidebarModule,
     CarouselModule,
+    DropdownModule,
     SidebarModule,
     ScrollTopModule,
     TreeModule,

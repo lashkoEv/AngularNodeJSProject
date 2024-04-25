@@ -63,6 +63,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {}
+  selectedFile: File | null = null; // Initialize with null
 
   open() {
     this.callUsModalWindow.toogleIsOpen();
