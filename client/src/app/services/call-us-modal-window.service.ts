@@ -10,7 +10,6 @@ export class CallUsModalWindowService {
 
   private phoneNum: string = '';
 
-
   constructor() {}
 
   public getIsOpen() {
@@ -21,12 +20,12 @@ export class CallUsModalWindowService {
     this.isOpen = !this.isOpen;
   }
 
-  public setPhoneNum(phoneNumber: string){
+  public setPhoneNum(phoneNumber: string) {
     this.phoneNum = phoneNumber;
   }
 
   public addUserToCall(user: any) {
-    user.phoneNumber = this.phoneNum;
+    user.phone = this.phoneNum;
     this.usersToCall.push(user);
 
     console.log(this.usersToCall);
