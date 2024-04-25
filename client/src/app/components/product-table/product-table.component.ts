@@ -47,12 +47,6 @@ export class ProductTableComponent implements OnInit {
     this.ngOnInit();
   }
 
-  showProduct(data: IProduct) {
-    this.currentProduct = data;
-    console.log(this.currentProduct);
-    this.productModalWindowService.changeFormState();
-  }
-
   ngOnInit() {
     this.productService.getAll().subscribe((data) => {
       this.products = data;
@@ -73,7 +67,6 @@ export class ProductTableComponent implements OnInit {
       { field: '', header: '' },
       { field: '', header: '' },
     ];
-
   }
 
   show(product: IProduct) {

@@ -1,6 +1,7 @@
 <div class="container">
   <div class="image-wrapper">
-    <img src="product.imgSrc" alt="Product image" class="image" />
+    <!-- <img src="product.imgSrc" alt="Product image" class="image" /> -->
+    <img [src]="product?.imgSrc" alt="Product Image" />
   </div>
 
   <div class="main-info">
@@ -67,11 +68,7 @@
         *ngFor="let p of products"
         [routerLink]="['/products', p._id]"
       >
-        <img
-          [src]="productService.getImageUrl(p.imgSrc)"
-          alt="Product Image"
-          class="p-img"
-        />
+        <img [src]="p.imgSrc" alt="Product Image" class="p-img" />
         <h1 class="p-title">{{ p.title }}</h1>
         <p class="p-price">{{ p.retailPrice }}</p>
       </div>
