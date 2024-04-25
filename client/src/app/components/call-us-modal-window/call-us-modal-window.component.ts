@@ -9,7 +9,6 @@ import { CallUsModalWindowService } from '../../services/call-us-modal-window.se
 })
 export class CallUsModalWindowComponent {
   public inputName: string = '';
-  public inputPhoneNumber: string = '';
 
   constructor(
     public callUsModalWindowService: CallUsModalWindowService,
@@ -17,17 +16,16 @@ export class CallUsModalWindowComponent {
   ) {}
 
   public isValidData(): boolean {
-    if (
-      this.inputName &&
-      this.inputPhoneNumber &&
-      this.inputPhoneNumber.length === 10
-    ) {
+    if (this.inputName && this.callUsModalWindowService.isCorrectPhoneNum) {
       return true;
     } else return false;
   }
 
-  public add(data: any) {
-    this.callRequestService.add(data).subscribe((data) => {
+  public addUser(user: any){
+
+    this.callUsModalWindowService.addUserToCall(user);
+
+    this.callRequestService.add(user).subscribe((data) => {
       if (data.ok) {
         this.callUsModalWindowService.toogleIsOpen();
       }

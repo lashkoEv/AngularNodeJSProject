@@ -29,12 +29,22 @@
     <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
     </nav>
-    <img
-      routerLink="cart"
-      src="../../assets/cart-shopping-solid.svg"
-      alt=""
-      class="cart-icon"
-    />
+    <div class="wrapper">
+      <p-sidebar
+        [(visible)]="sidebarVisible"
+        position="right"
+        [style]="{ width: '50rem' }"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+      >
+        <app-cart></app-cart>
+      </p-sidebar>
+      <img
+        src="/../../../assets/cart-shopping-solid.svg"
+        alt=""
+        class="cart-icon"
+        (click)="sidebarVisible = true"
+      />
+    </div>
   </div>
 </section>
 <section class="sub-header">
@@ -54,7 +64,7 @@
     <button
       mat-button
       class="btn"
-      *ngIf="getAuthState()"
+      *ngIf="getIsAdmin()"
       [routerLink]="['/admin']"
     >
       Админ-панель
@@ -64,4 +74,5 @@
     </button>
   </div>
 </section>
+
 <app-authorization-form *ngIf="getFormState()"></app-authorization-form>

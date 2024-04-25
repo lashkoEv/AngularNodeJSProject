@@ -11,6 +11,7 @@ import { ICategory } from '../../interfaces/ICategory';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-admin-form',
@@ -36,7 +37,9 @@ export class AdminFormComponent implements OnInit {
 
     private categoryService: CategoryService,
     private spinner: SpinnerService,
-    private notification: NotificationService
+    private notification: NotificationService,
+
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -127,6 +130,7 @@ export class AdminFormComponent implements OnInit {
       const productUpdateData: IProduct = productData;
       const categoryUpdateData: ICategory = categoryData;
       if (this.formService.getIsAddProduct()) {
+
         try {
           productData.imgSrc = await this.uploadImage();
 
@@ -181,6 +185,7 @@ export class AdminFormComponent implements OnInit {
           console.error('Error uploading image:', error);
         }
       } else if (this.formService.getIsAddCategory()) {
+
         try {
           categoryData.imgSrc = await this.uploadImage();
           if (this.formService.getIsAddCategory() && categoryData.imgSrc) {
@@ -207,6 +212,7 @@ export class AdminFormComponent implements OnInit {
           console.error('Error uploading image:', error);
         }
       } else if (this.formService.getIsUpdateCategory()) {
+
         try {
           categoryUpdateData.imgSrc = await this.uploadImage();
           if (
@@ -232,6 +238,7 @@ export class AdminFormComponent implements OnInit {
             );
             this.spinner.start();
             this.notification.notify();
+
           }
         } catch (error) {
           console.error('Error uploading image:', error);

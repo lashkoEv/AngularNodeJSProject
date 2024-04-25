@@ -1,11 +1,9 @@
-import { ProductModalWindowService } from './../../services/product-modal-window.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../interfaces/IProduct';
 import { ProductService } from '../../services/product.service';
 import { FormService } from '../../services/form.service';
-import { NotificationService } from '../../services/notification.service';
+import { IColumn } from '../../interfaces/IColumn';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-table',
@@ -13,76 +11,28 @@ import { NotificationService } from '../../services/notification.service';
   styleUrl: './product-table.component.scss',
 })
 export class ProductTableComponent implements OnInit {
-  @ViewChild('paginator') paginator: MatPaginator;
-  private currentProduct: IProduct | null = null;
-
-  displayedColumnsProduct = [
-    '_id',
-    'imgSrc',
-    'title',
-    'description',
-    'wholesalePrice',
-    'retailPrice',
-    'count',
-    'category',
-    'country',
-    'fields',
-    'delete',
-    'update',
-    'show',
-  ];
-
-  dataSourceProduct: MatTableDataSource<IProduct>;
+  visible: boolean = false;
+  current: IProduct;
+  products!: IProduct[];
+  cols!: IColumn[];
 
   constructor(
     private productService: ProductService,
-    public formService: FormService,
-
-    public notification: NotificationService,
-    private productModalWindowService: ProductModalWindowService
-  ) {
-    // for (let i = 0; i < 10; i++) {
-    // productService
-    //   .add({
-    //     title: 'Title',
-    //     description: 'Description',
-    //     country: 'Country',
-    //     wholesalePrice: '100 грн',
-    //     retailPrice: '200 грн',
-    //     count: '10 шт.',
-    //     fields: [{ key: 'field', value: 'value' }].toString(),
-    //     category: 'Category',
-    //     imgSrc:
-    //       'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=',
-    //   })
-    //   .subscribe((d) => {
-    //     console.log(d);
-    //   });
-    // }
-  }
-
-  ngOnInit() {
-    this.productService.getAll().subscribe((data) => {
-      this.dataSourceProduct = new MatTableDataSource<IProduct>(data);
-      this.dataSourceProduct.paginator = this.paginator;
-      this.dataSourceProduct.paginator._intl.itemsPerPageLabel =
-        'Продуктов на странице: ';
-    });
-  }
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    public formService: FormService
+  ) {}
 
   private getProduct(product: IProduct) {
     const findProduct = this.productService.setProduct(product);
-
     return findProduct;
   }
   addProduct() {
     const resetProduct = null;
     this.productService.setProduct(resetProduct);
-
     this.formService.invokeAddForm();
     this.ngOnInit();
   }
-
   async deleteProduct(id: String) {
     await this.productService.deleteById(id).subscribe((data) => {
       if (data.ok) {
@@ -90,7 +40,6 @@ export class ProductTableComponent implements OnInit {
       }
     });
   }
-
   updateProduct(product: IProduct) {
     this.formService.setProductId(product._id as string);
     this.getProduct(product);
@@ -104,11 +53,64 @@ export class ProductTableComponent implements OnInit {
     this.productModalWindowService.changeFormState();
   }
 
-  getFormState() {
-    return this.productModalWindowService.getFormState();
+  ngOnInit() {
+    this.productService.getAll().subscribe((data) => {
+      this.products = data;
+    });
+
+    this.cols = [
+      { field: '_id', header: 'Код' },
+      { field: 'imgSrc', header: 'Фото' },
+      { field: 'title', header: 'Название' },
+      { field: 'description', header: 'Описание' },
+      { field: 'category', header: 'Категория' },
+      { field: 'wholesalePrice', header: 'Оптовая цена' },
+      { field: 'retailPrice', header: 'Розничная цена' },
+      { field: 'count', header: 'Количество' },
+      { field: 'country', header: 'Страна' },
+      { field: 'fields', header: 'Характеристики' },
+      { field: '', header: '' },
+      { field: '', header: '' },
+      { field: '', header: '' },
+    ];
+
   }
 
-  getShownProduct() {
-    return this.currentProduct;
+  show(product: IProduct) {
+    this.current = product;
+    this.visible = true;
+  }
+
+  confirm(event: Event, id: String) {
+    this.confirmationService.confirm({
+      key: 'popup2',
+      target: event.target as EventTarget,
+      message: 'Вы точно хотите удалить запись?',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-sm',
+      acceptIcon: 'pi pi-check',
+      rejectIcon: 'pi pi-times',
+      acceptLabel: ' ',
+      rejectLabel: ' ',
+      accept: () => {
+        setTimeout(() => {
+          this.deleteProduct(id);
+        }, 2100);
+        this.messageService.clear();
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Запись удалена!',
+          detail: 'Запись удалена успешно!',
+        });
+      },
+      reject: () => {
+        this.messageService.clear();
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Удаление отменено!',
+          detail: 'Запись не удалена!',
+        });
+      },
+    });
   }
 }

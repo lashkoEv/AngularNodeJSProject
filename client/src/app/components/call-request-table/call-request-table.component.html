@@ -1,40 +1,86 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="_id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let CallRequest">{{ CallRequest._id }}</td>
-  </ng-container>
+<p-toast [life]="2000"></p-toast>
+<p-confirmPopup
+  key="popup1"
+  [preventDuplicates]="true"
+  [preventOpenDuplicates]="true"
+></p-confirmPopup>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Имя</th>
-    <td mat-cell *matCellDef="let CallRequest">{{ CallRequest.name }}</td>
-  </ng-container>
+<div class="btn-wrapper">
+  <p-button
+    severity="secondary"
+    [outlined]="true"
+    icon="pi pi-sync"
+    (click)="ngOnInit()"
+    label="Перезагрузить таблицу"
+  ></p-button>
+</div>
 
-  <ng-container matColumnDef="phone">
-    <th mat-header-cell *matHeaderCellDef>Телефон</th>
-    <td mat-cell *matCellDef="let CallRequest">
-      {{ CallRequest.phone }}
-    </td>
-  </ng-container>
+<p-table
+  [paginator]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="{first} до {last} из {totalRecords}"
+  [rowsPerPageOptions]="[10, 20, 50, 100]"
+  [value]="callRequests"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th pSortableColumn="_id">Код <p-sortIcon field="_id"></p-sortIcon></th>
+      <th pSortableColumn="name">Имя <p-sortIcon field="name"></p-sortIcon></th>
+      <th pSortableColumn="phone">
+        Телефон <p-sortIcon field="phone"></p-sortIcon>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-callRequest let-columns="columns">
+    <tr>
+      <td>{{ callRequest._id }}</td>
+      <td>{{ callRequest.name }}</td>
+      <td>{{ callRequest.phone }}</td>
+      <td>
+        <p-button
+          icon="pi pi-trash"
+          severity="danger"
+          (click)="confirm($event, callRequest._id)"
+        ></p-button>
+      </td>
+      <td>
+        <p-button icon="pi pi-eye" (click)="show(callRequest)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
 
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let CallRequest">
-      <button
-        mat-button
-        (click)="deleteCallRequest(CallRequest._id)"
-        class="delete"
-      >
-        Удалить
-      </button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-
-<mat-paginator
-  #paginator
-  [pageSizeOptions]="[10, 25, 100]"
-  showFirstLastButtons
-></mat-paginator>
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <ng-template pTemplate="header">
+    <h1 style="margin: 0; padding: 0" class="font-bold white-space-nowrap">
+      Запрос на звонок
+    </h1>
+  </ng-template>
+  <div class="wrapper">
+    <!-- <p-fieldset legend="Код" [toggleable]="true">
+      <p class="m-0">
+        {{ current?._id }}
+      </p>
+    </p-fieldset> -->
+    <p-fieldset legend="Имя" [toggleable]="true">
+      <p class="m-0">
+        {{ current?.name }}
+      </p>
+    </p-fieldset>
+    <p-fieldset legend="Телефон" [toggleable]="true">
+      <p class="m-0">
+        {{ current?.phone }}
+      </p>
+    </p-fieldset>
+  </div>
+</p-dialog>

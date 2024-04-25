@@ -5,8 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class CallUsModalWindowService {
   private isOpen: boolean = false;
-
+  public isCorrectPhoneNum: boolean = false;
   public usersToCall: any[] = [];
+
+  private phoneNum: string = '';
 
   constructor() {}
 
@@ -18,7 +20,12 @@ export class CallUsModalWindowService {
     this.isOpen = !this.isOpen;
   }
 
-  public addUserToCall(user: object) {
+  public setPhoneNum(phoneNumber: string) {
+    this.phoneNum = phoneNumber;
+  }
+
+  public addUserToCall(user: any) {
+    user.phone = this.phoneNum;
     this.usersToCall.push(user);
 
     console.log(this.usersToCall);

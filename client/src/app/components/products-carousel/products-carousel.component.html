@@ -1,0 +1,10 @@
+<p-carousel [value]="categories" [numVisible]="3" [circular]="true" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+    <ng-template let-categorie pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+            <div class="mb-3 category-wrapper">
+                <img src="{{ categorie.imgSrc }}" [alt]="categorie.title" class="w-6 shadow-2 category" />
+                <!-- <h4 class="mb-1">{{ categorie.title }}</h4> -->
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>

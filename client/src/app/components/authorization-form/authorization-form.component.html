@@ -1,5 +1,5 @@
 <section class="container">
-  <form #form="ngForm" (submit)="authorize(form.value)" class="form">
+  <form #form="ngForm" (submit)="regOrAuth(form.value)" class="form">
     <!-- <div class="wrapper"> -->
     <button class="close" (click)="close()">
       <i class="fa-solid fa-xmark"></i>
@@ -7,7 +7,8 @@
     <!-- </div> -->
 
     <div class="content">
-      <h1 class="title">АВТОРИЗАЦИЯ</h1>
+      <h1 *ngIf="hasAccount" class="title">АВТОРИЗАЦИЯ</h1>
+      <h1 *ngIf="!hasAccount" class="title">РЕГИСТРАЦИЯ</h1>
 
       <mat-form-field class="field">
         <mat-label>Логин</mat-label>
@@ -33,6 +34,9 @@
       </mat-form-field>
 
       <button mat-flat-button class="btn">Вход</button>
+
+      <span (click)="toogleHasAcc()" *ngIf="hasAccount" class="registration">Нет аккаунта? Зарегистрируйтесь</span>
+      <span (click)="toogleHasAcc()" *ngIf="!hasAccount" class="registration">Есть аккаунт? Авторизуйтесь</span>
     </div>
   </form>
 </section>
