@@ -61,6 +61,7 @@ import { MessagesModule } from 'primeng/messages';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -125,6 +126,7 @@ import { InputTextModule } from 'primeng/inputtext';
     MessagesModule,
     PasswordModule,
     InputTextModule,
+    AvatarModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

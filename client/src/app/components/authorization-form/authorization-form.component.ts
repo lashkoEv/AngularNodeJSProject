@@ -22,6 +22,7 @@ export class AuthorizationFormComponent {
   async authorize(data: any) {
     await this.authorizationService.authorize(data).subscribe((data: any) => {
       if (data) {
+        localStorage.setItem('user', JSON.stringify(data));
         this.authorizationService.setAuthState();
 
         this.authorizationService.setFormState();

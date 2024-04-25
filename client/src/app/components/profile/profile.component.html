@@ -1,29 +1,63 @@
-<span class="p-float-label">
-  <input pInputText id="email" type="email" />
-  <label for="email">Mail</label>
-</span>
-<p-button (click)="showDialog()" label="Change Password"></p-button>
-<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw', height: '50vw' }"
-  [draggable]="false" [resizable]="false">
-  <p class="m-0">
-    <input pInputText pKeyFilter="int" placeholder="Old password" />
+<section class="profile">
 
-    <p-password>
-      <ng-template pTemplate="header">
-        <h6>Pick a new password</h6>
-      </ng-template>
-      <ng-template pTemplate="footer">
-        <p-divider></p-divider>
-        <p class="mt-2">Suggestions</p>
-        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-          <li>At least one lowercase</li>
-          <li>At least one uppercase</li>
-          <li>At least one numeric</li>
-          <li>Minimum 8 characters</li>
-        </ul>
-      </ng-template>
-    </p-password>
-  </p>
-</p-dialog>
+  <div class="profile-container">
 
-<p-password [toggleMask]="true"></p-password>
+    <div class="profile-img">
+      <!-- <img src="./../../../assets/Avatar Profile.png" alt=""> -->
+
+
+    </div>
+
+
+    <div class="profile-data">
+      <div class=" profile-data flex flex-column gap-2">
+        <label for="username">Логин</label>
+        <input pInputText id="username" aria-describedby="username-help" [disabled]="true" [(ngModel)]="user.login" />
+      </div>
+      <div class=" profile-data flex flex-column gap-2">
+        <label for="username">Пароль</label>
+        <p-password feedback="false" [disabled]="true" [toggleMask]="true" [(ngModel)]="user.password"></p-password>
+
+      </div>
+
+
+      <p-button class="profile-change_button" (click)="showDialog()" label="Изменить пароль"></p-button>
+      <p-dialog header="Пароль" [(visible)]="visible" [modal]="true" [style]="{ width: 'auto', height: '35vw' }"
+        [draggable]="false" [resizable]="false">
+        <p class="m-0">
+
+          <p-password class="profile-change_old" feedback="false" [toggleMask]="true"
+            placeholder="Старый пароль"></p-password>
+          <p-password class="profile-change_new" placeholder="Новый пароль" [toggleMask]="true"
+            [(ngModel)]="newPassword">
+            <ng-template pTemplate="header">
+              <h6>Введите в поле новый пароль</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p-divider></p-divider>
+              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                <li>Хотя бы одна строчная буква</li>
+                <li>Хотя бы одна заглавная буква</li>
+                <li>Хотя бы одна цифра</li>
+                <li>Минимум 8 символов</li>
+              </ul>
+            </ng-template>
+          </p-password>
+
+          <p-password class="profile-change_new" feedback="false" [toggleMask]="true"
+            placeholder="Повторите новый пароль" [(ngModel)]="confirmPassword"
+            (ngModelChange)="checkPasswords()"></p-password>
+
+          <p-button label="Изменить" (onClick)="changePassword()"></p-button>
+
+
+        </p>
+      </p-dialog>
+
+
+    </div>
+
+  </div>
+
+
+</section>

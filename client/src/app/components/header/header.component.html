@@ -49,7 +49,7 @@
     <button mat-button class="btn" *ngIf="getIsAdmin()" [routerLink]="['/admin']">
       Админ-панель
     </button>
-    <button mat-button class="btn" *ngIf="getIsAdmin()" [routerLink]="['/profile']">
+    <button mat-button class="btn" *ngIf="getAuthState()" [routerLink]="['/profile']">
       Профиль
     </button>
     <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
