@@ -227,7 +227,7 @@ export class AdminFormComponent implements OnInit {
 
             this.messageService.add({
               severity: 'success',
-              summary: 'Категория обновдена!',
+              summary: 'Категория обновлена!',
               detail: `Категория ${categoryData.title} успешно обновлена!`,
             });
             // this.notification.setTextOfNotification(
