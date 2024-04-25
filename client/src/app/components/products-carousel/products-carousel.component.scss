@@ -5,17 +5,14 @@
     align-items: center;
 }
 
-.carousel-inner {
-    padding: 0 10%;
-}
-
-.category-link {
+.category-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.product{
+.category{
     width: 80%;
     height: 80%;
 }

@@ -31,6 +31,10 @@ export class HeaderComponent {
     return this.authorizationService.getAuthState();
   }
 
+  getIsAdmin(){
+    return this.authorizationService.getRole()
+  }
+
   getAuth() {
     return (
       this.authorizationService.getRole() &&
