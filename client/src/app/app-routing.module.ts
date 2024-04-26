@@ -9,6 +9,7 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { MainComponent } from './components/main/main.component';
 import { ProductComponent } from './components/product/product.component';
 import { ErrorComponent } from './components/error/error.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'catalogue', component: CatalogueComponent },
   // { path: 'consultation', component: ConsultationComponent },
   { path: 'category/:id', component: CategoryPageComponent },
-  { path: 'cart', component: AppComponent },
+  { path: 'cart', component: CartComponent },
 
   { path: 'admin', component: AdminPanelComponent },
   { path: 'products/:id', component: ProductComponent },

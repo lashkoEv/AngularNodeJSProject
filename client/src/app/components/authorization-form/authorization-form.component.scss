@@ -29,7 +29,7 @@
   background-color: #167586;
   padding: 1.25rem 2.5rem;
   color: white;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .close {
@@ -76,4 +76,15 @@
   min-height: 100vh;
   min-width: 100vw;
   z-index: 10;
+}
+
+.registration{
+  color: #2897ab;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+  user-select: none;
+  cursor: pointer;
+  text-shadow: 3px 4px 7px #a4b0b3;
 }

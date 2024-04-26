@@ -1,5 +1,6 @@
 import { AuthorizationService } from '../../services/authorization.service';
 import { Component } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -21,10 +22,17 @@ export class HeaderComponent {
     },
   ];
 
-  constructor(private authorizationService: AuthorizationService) {}
+  constructor(
+    private authorizationService: AuthorizationService,
+    private cartService: CartService
+  ) {}
 
   getAuthState() {
     return this.authorizationService.getAuthState();
+  }
+
+  getIsAdmin(){
+    return this.authorizationService.getRole()
   }
 
   getAuth() {

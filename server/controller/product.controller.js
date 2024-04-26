@@ -1,11 +1,11 @@
-const { Product } = require('../model/product.model');
-const fs = require('fs').promises;
+const { Product } = require("../model/product.model");
+const fs = require("fs").promises;
 
 async function getAll(req, res) {
   try {
     const products = await Product.find();
 
-    console.log('Found:', products);
+    console.log("Found:", products);
 
     return res.send(products);
   } catch (error) {
@@ -21,7 +21,7 @@ async function getById(req, res) {
   try {
     const product = await Product.findOne({ _id: req.body.id });
 
-    console.log('Found:', product);
+    console.log("Found:", product);
 
     return res.send(product);
   } catch (error) {
@@ -49,7 +49,7 @@ async function add(req, res) {
 
     await product.save();
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -62,7 +62,7 @@ async function deleteById(req, res) {
   try {
     const product = await Product.findOne({ _id: req.body.id });
     if (!product) {
-      return res.status(404).send({ error: 'Product not found' });
+      return res.status(404).send({ error: "Product not found" });
     }
 
     const imagePath = product.imgSrc;
@@ -70,9 +70,9 @@ async function deleteById(req, res) {
     await Product.deleteOne({ _id: req.body.id });
     if (imagePath) {
       try {
-        await fs.unlink(imagePath.replace('http://localhost:3000/', ''));
+        await fs.unlink(imagePath.replace("http://localhost:3000/", ""));
       } catch (error) {
-        if (error.code === 'ENOENT') {
+        if (error.code === "ENOENT") {
           console.log(`File ${imagePath} not found. Continuing...`);
         } else {
           throw error;
@@ -80,7 +80,7 @@ async function deleteById(req, res) {
       }
     }
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
     return res
@@ -109,11 +109,11 @@ async function updateById(req, res) {
     );
 
     if (oldImagePath) {
-      const imageURL = oldImagePath.replace('http://localhost:3000/', '');
+      const imageURL = oldImagePath.replace("http://localhost:3000/", "");
       try {
         await fs.unlink(imageURL);
       } catch (error) {
-        if (error.code === 'ENOENT') {
+        if (error.code === "ENOENT") {
           console.log(`File ${imageURL} not found. Continuing...`);
         } else {
           throw error;
@@ -121,7 +121,7 @@ async function updateById(req, res) {
       }
     }
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -135,7 +135,7 @@ async function getByCategory(req, res) {
   try {
     const products = await Product.find({ category: req.body.category });
 
-    console.log('Found:', products);
+    console.log("Found:", products);
 
     return res.send(products);
   } catch (error) {
