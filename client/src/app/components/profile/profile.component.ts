@@ -22,6 +22,12 @@ export class ProfileComponent {
   user = JSON.parse(localStorage.getItem('user'));
   showDialog() {
     this.visible = true;
+    this.newPassword = '';
+    this.confirmPassword = '';
+    this.confirmPasswordold = '';
+
+    this.showerroenew = true;
+    this.showerroeold = true;
   }
 
   checkPasswords() {
@@ -33,11 +39,10 @@ export class ProfileComponent {
   changePassword() {
     if (!this.passwordsMatch) {
       this.showerroenew = false;
-
-      alert('Новые пароли не совпадают');
+      // alert('Новые пароли не совпадают');
     } else if (!this.passwordsMatchold) {
       this.showerroeold = false;
-      alert('Старые пароли не совпадают');
+      // alert('Старые пароли не совпадают');
     } else {
       this.visible = false;
     }
