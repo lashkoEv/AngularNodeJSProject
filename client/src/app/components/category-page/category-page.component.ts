@@ -35,22 +35,31 @@ export class CategoryPageComponent implements OnInit {
   getCategory(categoryID: string) {
     this.categoryService.getById(categoryID).subscribe((data) => {
       this.categories = data;
+      this.productService.getByCategory(this.categories).subscribe((data) => {
+        this.filtersService.setProducts(data);
+        this.products = data;
+        this.totalItems = this.products.length;
+        this.toShow = this.products.slice(0, 5);
+      });
+
+      this.pageSize = 5;
     });
   }
 
   async getProducts(categoryID: string) {
-    await this.productService.getByCategory(categoryID).subscribe((data) => {
-      this.filtersService.setProducts(data);
-      // this.products = this.filtersService.getShown();
-      this.products = data;
-      this.totalItems = this.products.length;
-      this.toShow = this.products.slice(0, 5);      
-    });
-    
+    await this.productService
+      .getByCategory(this.categories)
+      .subscribe((data) => {
+        this.filtersService.setProducts(data);
+        this.products = data;
+        this.totalItems = this.products.length;
+        this.toShow = this.products.slice(0, 5);
+      });
+
     this.pageSize = 5;
   }
 
-  lsd(){
+  lsd() {
     return this.filtersService.getShown();
   }
 
