@@ -89,7 +89,7 @@
 
 .products {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
 }
 
@@ -119,12 +119,22 @@
   font-size: 1.5rem;
 }
 
+.button {
+  margin-top: 1rem;
+}
+
 @media screen and (max-width: 5000px) {
 }
 
 @media screen and (max-width: 1400px) {
   .price {
     font-size: 2rem;
+  }
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }
 

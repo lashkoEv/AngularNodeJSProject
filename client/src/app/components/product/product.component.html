@@ -1,3 +1,5 @@
+<p-toast [life]="2000"></p-toast>
+
 <div class="card">
   <div class="container">
     <p-splitter class="splitter">
@@ -34,13 +36,13 @@
             </div>
           </div>
 
-          <button
-            mat-stroked-button
-            class="button"
+          <p-button
+            label="В корзину "
+            icon="pi pi-shopping-cart"
+            iconPos="right"
             (click)="addToCart(product)"
-          >
-            Купить
-          </button>
+            class="button"
+          ></p-button>
         </div>
       </ng-template>
     </p-splitter>

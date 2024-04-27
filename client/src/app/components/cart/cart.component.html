@@ -18,7 +18,7 @@
               <div class="title">
                 <div class="product-title">{{ item.product.title }}</div>
                 <div class="product-category">
-                  {{ item.product.description }}
+                  {{ item.product.category.title }}
                 </div>
                 <div class="product-price">
                   {{ item.product.wholesalePrice }}
@@ -50,8 +50,8 @@
                   (click)="remove(item)"
                   pButton
                   type="button"
-                  label="Delete"
-                  class="delete-btn p-button-danger"
+                  icon="pi pi-trash"
+                  class="p-button-danger"
                 ></button>
               </div>
             </div>
@@ -68,7 +68,9 @@
   <button
     pButton
     type="button"
-    label="Оформить"
+    label="Оформить заказ"
+    icon="pi pi-arrow-right"
+    iconPos="right"
     class="buy-button"
     (click)="checkout(currentUser)"
   ></button>
