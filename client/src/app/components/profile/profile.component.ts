@@ -44,7 +44,15 @@ export class ProfileComponent {
       this.showerroeold = false;
       // alert('Старые пароли не совпадают');
     } else {
-      this.visible = false;
+      if (this.passwordsMatch) {
+        this.showerroenew = true;
+      }
+      if (this.passwordsMatchold) {
+        this.showerroeold = true;
+      }
+      if (this.passwordsMatch && this.passwordsMatchold) {
+        this.visible = false;
+      }
     }
   }
 }
