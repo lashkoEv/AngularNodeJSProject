@@ -3,7 +3,7 @@
 @import "primeicons/primeicons.css";
 
 * {
-  box-sizing: border-box;
+  // box-sizing: border-box;
 }
 
 html,
@@ -97,4 +97,28 @@ html {
   --mat-stepper-header-error-state-label-text-color: #f44336;
   --mat-stepper-header-icon-background-color: rgba(0, 0, 0, 0.54);
   --mat-stepper-header-error-state-icon-foreground-color: #f44336;
+}
+
+@media screen and (max-width: 5000px) {
+  .card {
+    padding: 1rem 20%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .card {
+    padding: 1rem 10%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    padding: 0.5rem;
+  }
 }

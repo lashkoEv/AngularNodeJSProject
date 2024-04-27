@@ -83,6 +83,9 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { ImageModule } from 'primeng/image';
+import { SplitterModule } from 'primeng/splitter';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -165,6 +168,9 @@ import { MessagesModule } from 'primeng/messages';
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
+    ImageModule,
+    SplitterModule,
+    PanelModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
