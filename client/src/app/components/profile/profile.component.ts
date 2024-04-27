@@ -10,10 +10,11 @@ export class ProfileComponent {
   value!: string;
   newPassword: string = '';
   confirmPassword: string = '';
+  confirmPasswordold: string = '';
   passwordsMatch: boolean = true;
+  passwordsMatchold: boolean = true;
 
   user = JSON.parse(localStorage.getItem('user'));
-
   showDialog() {
     this.visible = true;
   }
@@ -21,9 +22,14 @@ export class ProfileComponent {
   checkPasswords() {
     this.passwordsMatch = this.newPassword === this.confirmPassword;
   }
+  checkPasswordsold() {
+    this.passwordsMatchold = this.user.password === this.confirmPasswordold;
+  }
   changePassword() {
     if (!this.passwordsMatch) {
-      alert('Новый пароли не совпадают');
+      alert('Новые пароли не совпадают');
+    } else if (!this.passwordsMatchold) {
+      alert('Старые пароли не совпадают');
     } else {
       this.visible = false;
     }

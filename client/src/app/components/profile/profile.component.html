@@ -26,8 +26,8 @@
         [draggable]="false" [resizable]="false">
         <p class="m-0">
 
-          <p-password class="profile-change_old" feedback="false" [toggleMask]="true"
-            placeholder="Старый пароль"></p-password>
+          <p-password class="profile-change_old" feedback="false" [toggleMask]="true" placeholder="Старый пароль"
+            [(ngModel)]="confirmPasswordold" (ngModelChange)="checkPasswordsold()"></p-password>
           <p-password class="profile-change_new" placeholder="Новый пароль" [toggleMask]="true"
             [(ngModel)]="newPassword">
             <ng-template pTemplate="header">
