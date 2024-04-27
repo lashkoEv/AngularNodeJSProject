@@ -3,7 +3,7 @@
   <div class="profile-container">
 
     <div class="profile-img">
-      <!-- <img src="./../../../assets/Avatar Profile.png" alt=""> -->
+      <img class="profile-wrapper" src="./../../../assets/Avatar Profile.png" alt="">
 
 
     </div>
@@ -28,6 +28,8 @@
 
           <p-password class="profile-change_old" feedback="false" [toggleMask]="true" placeholder="Старый пароль"
             [(ngModel)]="confirmPasswordold" (ngModelChange)="checkPasswordsold()"></p-password>
+          <small *ngIf="!showerroeold" id="username-help">Не верный старый пароль</small>
+
           <p-password class="profile-change_new" placeholder="Новый пароль" [toggleMask]="true"
             [(ngModel)]="newPassword">
             <ng-template pTemplate="header">
@@ -47,10 +49,12 @@
           <p-password class="profile-change_new" feedback="false" [toggleMask]="true"
             placeholder="Повторите новый пароль" [(ngModel)]="confirmPassword"
             (ngModelChange)="checkPasswords()"></p-password>
+          <small *ngIf="!showerroenew" id="username-help">Новые пароли не совпадают</small>
+
+
+
 
           <p-button label="Изменить" (onClick)="changePassword()"></p-button>
-
-
         </p>
       </p-dialog>
 

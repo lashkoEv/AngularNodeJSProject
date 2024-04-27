@@ -8,11 +8,16 @@ import { Component, ElementRef } from '@angular/core';
 export class ProfileComponent {
   visible: boolean = false;
   value!: string;
+
   newPassword: string = '';
   confirmPassword: string = '';
   confirmPasswordold: string = '';
+
   passwordsMatch: boolean = true;
   passwordsMatchold: boolean = true;
+
+  showerroenew: boolean = true;
+  showerroeold: boolean = true;
 
   user = JSON.parse(localStorage.getItem('user'));
   showDialog() {
@@ -27,8 +32,11 @@ export class ProfileComponent {
   }
   changePassword() {
     if (!this.passwordsMatch) {
+      this.showerroenew = false;
+
       alert('Новые пароли не совпадают');
     } else if (!this.passwordsMatchold) {
+      this.showerroeold = false;
       alert('Старые пароли не совпадают');
     } else {
       this.visible = false;
