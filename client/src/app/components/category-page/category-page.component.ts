@@ -1,4 +1,4 @@
-import { MessageService, SelectItem } from 'primeng/api';
+import { MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
@@ -14,6 +14,9 @@ import { ICategory } from '../../interfaces/ICategory';
   styleUrl: './category-page.component.scss',
 })
 export class CategoryPageComponent implements OnInit {
+  items: MenuItem[] | undefined;
+  home: MenuItem | undefined;
+
   sidebarVisible: boolean = false;
   layout: string = 'grid';
   sortOptions!: SelectItem[];
@@ -67,6 +70,8 @@ export class CategoryPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.home = { icon: 'pi pi-home', routerLink: '/' };
+
     this.route.params.subscribe((params) => {
       const categoryID = params['id'];
       this.getCategory(categoryID);
@@ -81,6 +86,14 @@ export class CategoryPageComponent implements OnInit {
   getCategory(categoryID: string) {
     this.categoryService.getById(categoryID).subscribe((data) => {
       this.category = data;
+
+      this.items = [
+        { label: 'Каталог', routerLink: '/catalogue' },
+        {
+          label: `${this.category.title}`,
+          routerLink: ['/category', this.category._id],
+        },
+      ];
 
       this.productService.getByCategory(this.category).subscribe((data) => {
         this.filtersService.setProducts(data);

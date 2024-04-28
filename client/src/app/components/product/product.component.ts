@@ -3,7 +3,7 @@ import { IProduct } from '../../interfaces/IProduct';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product',
@@ -11,6 +11,9 @@ import { MessageService } from 'primeng/api';
   styleUrl: './product.component.scss',
 })
 export class ProductComponent implements OnInit {
+  items: MenuItem[] | undefined;
+  home: MenuItem | undefined;
+
   public product: IProduct;
   public products: IProduct[];
   private id: string;
@@ -23,11 +26,25 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.home = { icon: 'pi pi-home', routerLink: '/' };
+
     this.route.params.subscribe((data) => {
       this.id = data.id;
 
       this.productService.getById(this.id).subscribe((data) => {
         this.product = data;
+
+        this.items = [
+          { label: 'Каталог', routerLink: '/catalogue' },
+          {
+            label: `${this.product.category.title}`,
+            routerLink: ['/category', this.product.category._id],
+          },
+          {
+            label: `${this.product.title}`,
+            routerLink: ['/products', this.product._id],
+          },
+        ];
 
         this.productService
           .getByCategory(this.product.category)
