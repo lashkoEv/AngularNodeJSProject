@@ -97,6 +97,27 @@ html {
   --mat-stepper-header-error-state-label-text-color: #f44336;
   --mat-stepper-header-icon-background-color: rgba(0, 0, 0, 0.54);
   --mat-stepper-header-error-state-icon-foreground-color: #f44336;
+
+  --mdc-slider-handle-color: var(--primary-color);
+  --mdc-slider-focus-handle-color: var(--primary-color);
+  --mdc-slider-hover-handle-color: var(--primary-color);
+  --mdc-slider-active-track-color: var(--primary-color);
+  --mdc-slider-inactive-track-color: var(--primary-color);
+  --mdc-slider-with-tick-marks-inactive-container-color: var(--primary-color);
+  --mdc-slider-with-tick-marks-active-container-color: white;
+  --mdc-slider-disabled-active-track-color: #000;
+  --mdc-slider-disabled-handle-color: #000;
+  --mdc-slider-disabled-inactive-track-color: #000;
+  --mdc-slider-label-container-color: #000;
+  --mdc-slider-label-label-text-color: #fff;
+  --mdc-slider-with-overlap-handle-outline-color: #fff;
+  --mdc-slider-with-tick-marks-disabled-container-color: #000;
+  --mdc-slider-handle-elevation: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  --mat-slider-ripple-color: var(--primary-color);
+  --mat-slider-hover-state-layer-color: rgba(58, 116, 183, 0.2);
+  --mat-slider-focus-state-layer-color: rgba(58, 116, 183, 0.2);
+  --mat-slider-value-indicator-opacity: 0.6;
 }
 
 @media screen and (max-width: 5000px) {
