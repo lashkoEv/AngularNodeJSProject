@@ -87,6 +87,7 @@ import { ImageModule } from 'primeng/image';
 import { SplitterModule } from 'primeng/splitter';
 import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
 
 @NgModule({
   declarations: [
@@ -173,6 +174,7 @@ import { RippleModule } from 'primeng/ripple';
     SplitterModule,
     PanelModule,
     RippleModule,
+    CascadeSelectModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

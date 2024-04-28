@@ -8,6 +8,7 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  sidebarVisible: boolean = false;
   public phoneNumber = '+380505667571';
   public location = 'Харьков, Проспект Гагарина 1';
   public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
@@ -15,10 +16,8 @@ export class HeaderComponent {
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public navigation: {}[] = [
     {
-      // titles: ['КОНСУЛЬТАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
-      // links: ['consultation', 'delivery', 'contacts', 'catalogue'],
-      titles: ['ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
-      links: ['delivery', 'contacts', 'catalogue'],
+      titles: ['ТОВАРЫ', 'КОНСУЛЬТАЦИЯ'],
+      links: ['catalogue', 'consultation'],
     },
   ];
 
@@ -31,8 +30,8 @@ export class HeaderComponent {
     return this.authorizationService.getAuthState();
   }
 
-  getIsAdmin(){
-    return this.authorizationService.getRole()
+  getIsAdmin() {
+    return this.authorizationService.getRole();
   }
 
   getAuth() {
