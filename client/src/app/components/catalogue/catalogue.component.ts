@@ -19,4 +19,8 @@ export class CatalogueComponent implements OnInit {
       this.categories = data;
     });
   }
+
+  getUrl(url: string) {
+    return `url('${url}')`;
+  }
 }

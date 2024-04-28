@@ -84,6 +84,7 @@
     [sortField]="sortField"
     [sortOrder]="sortOrder"
     class="data-view"
+    [emptyMessage]="'Мы поработаем над поставкой таких товаров...'"
   >
     <ng-template pTemplate="header">
       <div class="head">
@@ -187,3 +188,5 @@
     </ng-template>
   </p-dataView>
 </div>
+
+<app-spinner></app-spinner>

@@ -1,7 +1,11 @@
 <h2 class="sidebar-title">Ваш заказ</h2>
 
 <div class="cart">
-  <p-dataView #dv [value]="products">
+  <p-dataView
+    #dv
+    [value]="products"
+    [emptyMessage]="'Добавьте товары в корзину...'"
+  >
     <ng-template pTemplate="list" let-products>
       <div class="product-list">
         <div

@@ -1,26 +1,53 @@
-.catalogue {
-  margin: 20px;
-}
-
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
-.card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
+:host ::ng-deep .grid-container {
+  .category {
+    border: 1px solid #e0e0e0;
+    border-radius: 1rem;
+    margin: 0;
+    padding: 0;
+
+    &.styled-box {
+      .p-ink {
+        background: rgba(#1279ee, 0.3);
+      }
+    }
+  }
+}
+
+.img {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.text {
+  // color: var(--primary-color);
+  // letter-spacing: 0.08rem;
+  // font-weight: 600;
   text-align: center;
-  transition: transform 0.3s ease;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 1rem;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+@media screen and (max-width: 1000px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.card img {
-  max-width: 100%;
-  height: auto;
+@media screen and (max-width: 850px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
