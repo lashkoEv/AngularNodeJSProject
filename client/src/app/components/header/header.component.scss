@@ -1,5 +1,5 @@
 .top-header {
-  background-color: #167586;
+  background-color: var(--primary-color);
   color: #fff;
   padding: 5px;
   display: flex;
@@ -8,6 +8,11 @@
 
 .phone-wrapper {
   margin-left: 20px;
+}
+
+.admin-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
 .location-wrapper,
@@ -72,6 +77,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgb(234, 234, 234);
 }
 
 .logo {
