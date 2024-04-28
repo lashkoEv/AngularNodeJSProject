@@ -76,6 +76,8 @@
 </p-sidebar>
 
 <div class="card">
+  <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+
   <p-dataView
     [value]="toShow"
     [layout]="layout"
