@@ -104,6 +104,7 @@
           <p-button
             icon="pi 
         pi-filter"
+            label="Фильтры"
             [outlined]="true"
             (click)="sidebarVisible = true"
             class="filter-btn"
@@ -189,6 +190,12 @@
       </div>
     </ng-template>
   </p-dataView>
+
+  <p-panel header="Описание" [toggleable]="true">
+    <p>
+      {{ category?.description }}
+    </p>
+  </p-panel>
 </div>
 
 <app-spinner></app-spinner>
