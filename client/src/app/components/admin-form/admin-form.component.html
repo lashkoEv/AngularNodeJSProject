@@ -28,12 +28,13 @@
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <input
+        <textarea
           required
-          pInputText
+          pInputTextarea
           formControlName="description"
           placeholder="{{ product ? product.description : 'Описание' }}"
-        />
+          (input)="updateParagraphs($event)"
+        ></textarea>
         <mat-error *ngIf="productForm.get('description').hasError('required')"
           >Требуется Описание</mat-error
         >
