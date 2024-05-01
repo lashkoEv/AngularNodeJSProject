@@ -12,20 +12,24 @@ export class CallUsModalWindowComponent {
 
   constructor(
     public callUsModalWindowService: CallUsModalWindowService,
-  ){}
+    private callRequestService: CallRequestService
+  ) {}
 
-  public isValidData(): boolean{
-    if(this.inputName && this.callUsModalWindowService.isCorrectPhoneNum){      
+  public isValidData(): boolean {
+    if (this.inputName && this.callUsModalWindowService.isCorrectPhoneNum) {
       return true;
-
-    } else return false
+    } else return false;
   }
 
   public addUser(user: any){
-    this.callUsModalWindowService.addUserToCall(user);
-    
 
-    this.callUsModalWindowService.toogleIsOpen();
+    this.callUsModalWindowService.addUserToCall(user);
+
+    this.callRequestService.add(user).subscribe((data) => {
+      if (data.ok) {
+        this.callUsModalWindowService.toogleIsOpen();
+      }
+    });
   }
 
   public closeWindow() {
