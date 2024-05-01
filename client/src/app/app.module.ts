@@ -127,6 +127,9 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     AppRoutingModule,
     MatButtonModule,
     MatInputModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
@@ -145,8 +148,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     MatAutocompleteModule,
     AsyncPipe,
     ButtonModule,
+    SidebarModule,
     CarouselModule,
-
     DropdownModule,
     SidebarModule,
     ScrollTopModule,
@@ -157,10 +160,6 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     CheckboxModule,
     MatCheckboxModule,
     InputMaskModule,
-    AnimateOnScrollModule,
-    TimelineModule,
-    
-
     BadgeModule,
     CardModule,
     InputNumberModule,
