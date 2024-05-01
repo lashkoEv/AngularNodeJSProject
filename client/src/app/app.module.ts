@@ -76,14 +76,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CartComponent } from './components/cart/cart.component';
 
 // primeNG
-import { SidebarModule } from 'primeng/sidebar';
 import { BadgeModule } from 'primeng/badge';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DataViewModule } from 'primeng/dataview';
 
-import { ButtonModule } from 'primeng/button';
-import { CarouselModule } from 'primeng/carousel';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -155,7 +152,6 @@ import { MessagesModule } from 'primeng/messages';
     SidebarModule,
     CarouselModule,
 
-    SidebarModule,
     ScrollTopModule,
     TreeModule,
     SliderModule,
@@ -164,11 +160,9 @@ import { MessagesModule } from 'primeng/messages';
     CheckboxModule,
     MatCheckboxModule,
     InputMaskModule,
-<<<<<<< HEAD
     AnimateOnScrollModule,
     TimelineModule,
     
-=======
 
     BadgeModule,
     CardModule,
@@ -182,7 +176,6 @@ import { MessagesModule } from 'primeng/messages';
     ToastModule,
     MessagesModule,
 
->>>>>>> cf995bac2216f60b31715efe6e05bffb934c796e
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
