@@ -117,14 +117,6 @@ export class CategoryPageComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  async getProducts(categoryID: string) {
-    await this.productService.getByCategory(categoryID).subscribe((data) => {
-      this.filtersService.setProducts(data);
-      this.products = data;
-      this.totalItems = this.products.length;
-      this.toShow = this.products.slice(0, 5);      
-=======
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
       const hasCountry = this.dataForFilters.countries.includes(
@@ -143,7 +135,6 @@ export class CategoryPageComponent implements OnInit {
       if (hasCountry && hasCount && hasWholePrice && hasRetailPrice) {
         return true;
       }
->>>>>>> master
     });
 
     this.toShow = filteredProducts;

@@ -64,18 +64,18 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InputMaskModule } from 'primeng/inputmask';
-import { AnimateOnScrollModule } from 'primeng/animateonscroll';
-import { TimelineModule } from 'primeng/timeline';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CartComponent } from './components/cart/cart.component';
 
 // primeNG
+import { SidebarModule } from 'primeng/sidebar';
 import { BadgeModule } from 'primeng/badge';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DataViewModule } from 'primeng/dataview';
 
+import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -88,6 +88,8 @@ import { SplitterModule } from 'primeng/splitter';
 import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { TimelineModule } from 'primeng/timeline';
 
 @NgModule({
   declarations: [
@@ -175,6 +177,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     PanelModule,
     RippleModule,
     BreadcrumbModule,
+    AnimateOnScrollModule,
+    TimelineModule
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
