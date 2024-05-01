@@ -1,3 +1,5 @@
+import { ICategory } from './ICategory';
+
 export interface IProduct {
   _id?: String;
   title: String;
@@ -7,6 +9,6 @@ export interface IProduct {
   retailPrice: String;
   count: String;
   fields: String;
-  category: String;
+  category: ICategory;
   imgSrc: String;
 }

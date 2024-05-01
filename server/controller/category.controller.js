@@ -1,5 +1,5 @@
 const { Category } = require("../model/category.model");
-
+const fs = require("fs").promises;
 async function getAll(req, res) {
   try {
     const categories = await Category.find();
@@ -48,13 +48,30 @@ async function add(req, res) {
 
     return res
       .status(500)
-      .send({ error: `Failed to complete the request! Error: ${error}` });
+      .send({ error: `Failed to complete the request! Error: ${error} ` });
   }
 }
 
 async function deleteById(req, res) {
   try {
+    const category = await Category.findOne({ _id: req.body.id });
     await Category.deleteOne({ _id: req.body.id });
+    if (!category) {
+      return res.status(404).send({ error: "Category not found" });
+    }
+    const imagePath = category.imgSrc;
+
+    if (imagePath) {
+      try {
+        await fs.unlink(imagePath.replace("http://localhost:3000/", ""));
+      } catch (error) {
+        if (error.code === "ENOENT") {
+          console.log(`File ${imagePath} not found. Continuing...`);
+        } else {
+          throw error;
+        }
+      }
+    }
 
     return res.send({ ok: "ok" });
   } catch (error) {
@@ -62,12 +79,14 @@ async function deleteById(req, res) {
 
     return res
       .status(500)
-      .send({ error: `Failed to complete the request! Error: ${error}` });
+      .send({ error: `Failed to complete the request! Error: ${error} ` });
   }
 }
 
 async function updateById(req, res) {
   try {
+    const category = await Category.findOne({ _id: req.body._id });
+    const oldImagePath = category.imgSrc;
     await Category.updateOne(
       { _id: req.body._id },
       {
@@ -76,6 +95,19 @@ async function updateById(req, res) {
         imgSrc: req.body.imgSrc,
       }
     );
+
+    if (oldImagePath) {
+      const imageURL = oldImagePath.replace("http://localhost:3000/", "");
+      try {
+        await fs.unlink(imageURL);
+      } catch (error) {
+        if (error.code === "ENOENT") {
+          console.log(`File ${imageURL} not found. Continuing...`);
+        } else {
+          throw error;
+        }
+      }
+    }
 
     return res.send({ ok: "ok" });
   } catch (error) {

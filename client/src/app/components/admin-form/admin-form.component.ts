@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormService } from '../../services/form.service';
@@ -10,7 +10,7 @@ import { IProduct } from '../../interfaces/IProduct';
 import { ICategory } from '../../interfaces/ICategory';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MessageService } from 'primeng/api';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-form',
@@ -26,29 +26,29 @@ export class AdminFormComponent implements OnInit {
   public categories: {}[] = [];
   public category: ICategory;
   public product: IProduct;
+  private selectedFile: File | null = null;
+  public countries: string[];
 
   constructor(
     private fb: FormBuilder,
     public formService: FormService,
     private productService: ProductService,
+    private http: HttpClient,
 
     private categoryService: CategoryService,
     private spinner: SpinnerService,
-    private notification: NotificationService,
-
-    private messageService: MessageService
+    private notification: NotificationService
   ) {}
 
   ngOnInit(): void {
     this.categoriesObs.subscribe((category) => {
       this.categories = category;
+      console.log(this.categories);
     });
     this.createForm();
-
+    this.countries = this.formService.getAllCountries();
     this.product = this.productService.getProduct();
     this.category = this.categoryService.getCategory();
-
-    this.updateProductsAndCategory();
   }
   private createForm(): void {
     if (
@@ -63,8 +63,8 @@ export class AdminFormComponent implements OnInit {
         count: ['', Validators.required],
         fields: this.fb.array([]),
         retailPrice: [''],
-        category: [''],
-        imgSrc: [''],
+        category: [{}, Validators.required],
+        imgSrc: ['', Validators.required],
       });
     } else if (
       this.formService.getIsAddCategory() ||
@@ -77,20 +77,9 @@ export class AdminFormComponent implements OnInit {
       });
     }
   }
-  private updateProductsAndCategory() {
-    this.productService.getAll().subscribe((data) => {
-      this.dataSourceProduct = new MatTableDataSource<IProduct>(data);
-      this.dataSourceProduct.paginator = this.paginator;
-      this.dataSourceProduct.paginator._intl.itemsPerPageLabel =
-        'Продуктов на странице: ';
-    });
 
-    this.categoryService.getAll().subscribe((data) => {
-      this.dataSourceCategory = new MatTableDataSource<ICategory>(data);
-      this.dataSourceCategory.paginator = this.paginator;
-      this.dataSourceCategory.paginator._intl.itemsPerPageLabel =
-        'Категорий на странице: ';
-    });
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 
   private createField(): FormGroup {
@@ -111,148 +100,145 @@ export class AdminFormComponent implements OnInit {
   public invokeAddForm() {
     this.formService.invokeAddForm();
   }
+  private async uploadImage(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('imgSrc', this.selectedFile);
+      this.http.post('http://localhost:3000/upload', formData).subscribe(
+        (response: any) => {
+          console.log('Image uploaded successfully:', response);
+          this.selectedFile = null;
+          if (response && typeof response.imageUrl === 'string') {
+            resolve(`http://localhost:3000/${response.imageUrl}`);
+          } else {
+            reject('Invalid image URL');
+          }
+        },
+        (error) => {
+          console.error('Error uploading image:', error);
+          reject(error);
+        }
+      );
+    });
+  }
 
-  public onSubmit(): void {
+  public async onSubmit() {
     if (this.productForm.valid) {
       const productData: IProduct = this.productForm.value;
       const categoryData: ICategory = this.productForm.value;
+      const productUpdateData: IProduct = productData;
+      const categoryUpdateData: ICategory = categoryData;
       if (this.formService.getIsAddProduct()) {
-        this.productService.add(productData).subscribe(
-          (response: Response) => {
-            console.log('Product added successfully:', response);
+        try {
+          productData.imgSrc = await this.uploadImage();
 
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Продукт добавлен!',
-              detail: `Продукт ${productData.title} успешно добавлен!`,
-            });
-
-            // this.notification.setTextOfNotification(
-            //   `Продукт успешно добавлен ${productData.title}`
-            // );
-            // Clear form after add product
-            this.updateProductsAndCategory();
-            this.formService.hideForm();
-            this.productForm.reset();
-          },
-          (error: Error) => {
-            console.error('Error adding product:', error);
+          if (this.formService.getIsAddProduct() && productData.imgSrc) {
+            this.productService.add(productData).subscribe(
+              (response: Response) => {
+                console.log('Product added successfully:', response);
+                this.notification.setTextOfNotification(
+                  `Продукт успешно добавлен ${productData.title}`
+                );
+                this.formService.hideForm();
+                this.productForm.reset();
+              },
+              (error: Error) => {
+                console.error('Error adding product:', error);
+                this.notification.setTextOfNotification(
+                  `Ошибка в добавлении продукта ${productData.title}, ${error}`
+                );
+              }
+            );
             console.log(productData);
-
-            this.messageService.add({
-              severity: 'danger',
-              summary: 'Ошибка добавления!',
-              detail: `Ошибка в добавлении продукта ${productData.title}, ${error}!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Ошибка в добавлении продукта ${productData.title}, ${error}`
-            // );
+            this.spinner.start();
+            this.notification.notify();
           }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
       } else if (this.formService.getIsEditProduct()) {
-        productData._id = this.formService.getProductId();
-
-        this.productService.update(productData).subscribe(
-          (response: Response) => {
-            console.log('Product updated successfully:', response);
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Продукт обновлён!',
-              detail: `Продукт ${productData.title} успешно обновлён!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Продукт успешно обновлён ${productData.title}`
-            // );
-            // Clear form after add product
-            this.updateProductsAndCategory();
-            this.formService.hideForm();
-            this.productForm.reset();
-          },
-          (error: Error) => {
-            console.error('Error updating product:', error);
-            this.messageService.add({
-              severity: 'danger',
-              summary: 'Ошибка обновления!',
-              detail: `Ошибка в обновлении продукта ${productData.title}, ${error}!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Ошибка в обновлении продукта ${productData.title}, ${error}`
-            // );
+        try {
+          productUpdateData.imgSrc = await this.uploadImage();
+          if (this.formService.getIsEditProduct() && productUpdateData.imgSrc) {
+            productUpdateData._id = this.formService.getProductId();
+            this.productService.update(productUpdateData).subscribe(
+              (response: Response) => {
+                console.log('Product updated successfully:', response);
+                this.notification.setTextOfNotification(
+                  `Продукт успешно обновлён ${productUpdateData.title}`
+                );
+                this.formService.hideForm();
+                this.productForm.reset();
+              },
+              (error: Error) => {
+                console.error('Error updating product:', error);
+                this.notification.setTextOfNotification(
+                  `Ошибка в обновлении продукта ${productUpdateData.title}, ${error}`
+                );
+              }
+            );
+            this.spinner.start();
+            this.notification.notify();
           }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
       } else if (this.formService.getIsAddCategory()) {
-        this.categoryService.add(categoryData).subscribe(
-          (response: Response) => {
-            console.log('Category added successfully:', response);
-
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Категория добавлена!',
-              detail: `Категория ${categoryData.title} успешно добавлена!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Категория успешно добавлена ${categoryData.title}`
-            // );
-            this.updateProductsAndCategory();
-            this.formService.hideForm();
-            this.productForm.reset();
-          },
-          (error: Error) => {
-            console.error('Error additing category:', error);
-
-            this.messageService.add({
-              severity: 'danger',
-              summary: 'Ошибка добавления!',
-              detail: `Ошибка в добавлении категории ${productData.title}, ${error}!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Ошибка в добавлении категории ${categoryData.title}, ${error}`
-            // );
+        try {
+          categoryData.imgSrc = await this.uploadImage();
+          if (this.formService.getIsAddCategory() && categoryData.imgSrc) {
+            this.categoryService.add(categoryData).subscribe(
+              (response: Response) => {
+                console.log('Category added successfully:', response);
+                this.notification.setTextOfNotification(
+                  `Категория успешно добавлена ${categoryData.title}`
+                );
+                this.formService.hideForm();
+                this.productForm.reset();
+              },
+              (error: Error) => {
+                console.error('Error adding category:', error);
+                this.notification.setTextOfNotification(
+                  `Ошибка в добавлении категории ${categoryData.title}, ${error}`
+                );
+              }
+            );
+            this.spinner.start();
+            this.notification.notify();
           }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
       } else if (this.formService.getIsUpdateCategory()) {
-        categoryData._id = this.formService.getCategoryId();
-        this.categoryService.update(categoryData).subscribe(
-          (response: Response) => {
-            console.log('Category update successfully:', response);
-
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Категория обновлена!',
-              detail: `Категория ${categoryData.title} успешно обновлена!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Категория обновлена успешно  ${categoryData.title} `
-            // );
-            this.updateProductsAndCategory();
-            this.formService.hideForm();
-            this.productForm.reset();
-          },
-          (error: Error) => {
-            console.error('Error updating category:', error);
-
-            this.messageService.add({
-              severity: 'danger',
-              summary: 'Ошибка обновления!',
-              detail: `Ошибка в обновлении категории ${productData.title}, ${error}!`,
-            });
-            // this.notification.setTextOfNotification(
-            //   `Ошибка в обновлении категории ${categoryData.title}, ${error}`
-            // );
+        try {
+          categoryUpdateData.imgSrc = await this.uploadImage();
+          if (
+            this.formService.getIsUpdateCategory() &&
+            categoryUpdateData.imgSrc
+          ) {
+            categoryData._id = this.formService.getCategoryId();
+            this.categoryService.update(categoryData).subscribe(
+              (response: Response) => {
+                console.log('Category updated successfully:', response);
+                this.notification.setTextOfNotification(
+                  `Категория обновлена успешно  ${categoryData.title} `
+                );
+                this.formService.hideForm();
+                this.productForm.reset();
+              },
+              (error: Error) => {
+                console.error('Error updating category:', error);
+                this.notification.setTextOfNotification(
+                  `Ошибка в обновлении категории ${categoryData.title}, ${error}`
+                );
+              }
+            );
+            this.spinner.start();
+            this.notification.notify();
           }
-        );
-        this.spinner.start();
-
-        this.notification.notify();
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
       }
     }
   }

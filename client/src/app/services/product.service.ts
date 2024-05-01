@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
+import { ICategory } from '../interfaces/ICategory';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ export class ProductService {
 
   getProduct(): IProduct {
     console.log(this.product);
+
     return this.product;
   }
 
@@ -33,7 +35,7 @@ export class ProductService {
     );
   }
 
-  getByCategory(category: String): Observable<any> {
+  getByCategory(category: ICategory): Observable<any> {
     return this.http
       .post('http://localhost:3000/products/category', { category: category })
       .pipe(

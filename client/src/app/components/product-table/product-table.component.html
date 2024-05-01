@@ -75,15 +75,16 @@
       <td>{{ product.wholesalePrice }}</td>
       <td>{{ product.retailPrice }}</td>
       <td>{{ product.count }}</td>
-      <td>{{ product.category }}</td>
-      <td>{{ product.description }}</td>
+      <td>{{ product.category.title || product.category }}</td>
+      <td>{{ product.description.slice(0, 70) }}...</td>
       <td>{{ product.country }}</td>
       <td>
-        <span *ngFor="let data of product.fields">
+        <span *ngFor="let data of product.fields.slice(0, 2)">
           <span *ngIf="data.key && data.value">
             {{ data.key }}: {{ data.value }};
           </span>
         </span>
+        ...
       </td>
       <td>
         <p-button
@@ -150,7 +151,7 @@
     </p-fieldset>
     <p-fieldset legend="Категория" [toggleable]="true">
       <p class="m-0">
-        {{ current?.category }}
+        {{ current?.category.title || current?.category }}
       </p>
     </p-fieldset>
     <div *ngFor="let item of current?.fields">

@@ -15,13 +15,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
-
 import { TestCarouselComponent } from './components/test-carousel/test-carousel.component';
 import { ErrorComponent } from './components/error/error.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
-
-
 import { HeaderComponent } from './components/header/header.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { CallRequestTableComponent } from './components/call-request-table/call-request-table.component';
@@ -31,7 +28,6 @@ import { MainComponent } from './components/main/main.component';
 import { SearchComponent } from './components/search/search.component';
 import { ConsultationTableComponent } from './components/consultation-table/consultation-table.component';
 import { ProductComponent } from './components/product/product.component';
-
 import { ScrollUpComponent } from './components/scroll-up/scroll-up.component';
 
 //MODULES
@@ -43,10 +39,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -56,11 +52,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { FixedPhoneNumberFormatInputDirective } from './directives/fixed-phone-number-format-input.directive';
 import { MatSelectModule } from '@angular/material/select';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DropdownModule } from 'primeng/dropdown';
 
-
-import { ButtonModule } from 'primeng/button';
-import { CarouselModule } from 'primeng/carousel';
-import { SidebarModule } from 'primeng/sidebar';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { TreeModule } from 'primeng/tree';
 import { SliderModule } from 'primeng/slider';
@@ -88,7 +83,11 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-
+import { ImageModule } from 'primeng/image';
+import { SplitterModule } from 'primeng/splitter';
+import { PanelModule } from 'primeng/panel';
+import { RippleModule } from 'primeng/ripple';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @NgModule({
   declarations: [
@@ -117,14 +116,12 @@ import { MessagesModule } from 'primeng/messages';
     ProductComponent,
     TestCarouselComponent,
     ErrorComponent,
-
     FiltersComponent,
     ScrollUpComponent,
-
     CartComponent,
-
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -143,15 +140,18 @@ import { MessagesModule } from 'primeng/messages';
     MatPaginator,
     MatGridListModule,
     MatCardModule,
+    InputGroupAddonModule,
+    InputGroupModule,
     TabViewModule,
     MatSelectModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     AsyncPipe,
     ButtonModule,
-    SidebarModule,
     CarouselModule,
 
+    DropdownModule,
+    SidebarModule,
     ScrollTopModule,
     TreeModule,
     SliderModule,
@@ -168,14 +168,17 @@ import { MessagesModule } from 'primeng/messages';
     CardModule,
     InputNumberModule,
     DataViewModule,
-
     TableModule,
     DialogModule,
     FieldsetModule,
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
-
+    ImageModule,
+    SplitterModule,
+    PanelModule,
+    RippleModule,
+    BreadcrumbModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
