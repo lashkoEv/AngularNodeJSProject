@@ -7,6 +7,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
 }
+
 .product {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -22,8 +23,4 @@
 .product img {
   max-width: 100%;
   height: auto;
-}
-
-.contentWrapper{
-  // display: flex;
 }

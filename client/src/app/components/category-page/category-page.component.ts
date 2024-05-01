@@ -41,7 +41,6 @@ export class CategoryPageComponent implements OnInit {
   async getProducts(categoryID: string) {
     await this.productService.getByCategory(categoryID).subscribe((data) => {
       this.filtersService.setProducts(data);
-      // this.products = this.filtersService.getShown();
       this.products = data;
       this.totalItems = this.products.length;
       this.toShow = this.products.slice(0, 5);      

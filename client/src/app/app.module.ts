@@ -68,6 +68,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InputMaskModule } from 'primeng/inputmask';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { TimelineModule } from 'primeng/timeline';
 
 @NgModule({
   declarations: [
@@ -140,6 +142,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     CheckboxModule,
     MatCheckboxModule,
     InputMaskModule,
+    AnimateOnScrollModule,
+    TimelineModule,
     
   ],
   providers: [provideAnimationsAsync()],

@@ -1,15 +1,26 @@
-.consultation-title {
+.title-wrapper{
   display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 20px 0;
-  background-color: #167586;
-  color: #fff;
+  justify-content: start;
+  font-weight: bold;
+  padding-bottom: 30px;
 }
 
-#consultation {
-  font-size: 24px;
+#title{
+  padding: 0;
   margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  color: #080808;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+.form-wrapper{
+  background-color: #cad8db;
+  border-radius: 50px;
+  padding: 30px;
 }
 
 .form {

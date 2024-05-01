@@ -1,59 +1,61 @@
-<section class="consultation-title">
-  <h2 id="consultation">КОНСУЛЬТАЦИЯ</h2>
+<section class="title-wrapper">
+  <h2 id="title">КОНСУЛЬТАЦИЯ</h2>
 </section>
 
-<section class="form">
-  <form #form="ngForm">
-    <mat-form-field class="form-group">
-      <mat-label>Почта:</mat-label>
-      <input
-        matInput
-        type="email"
-        id="email"
-        name="email"
-        ngModel
-        [(ngModel)]="inputEmail"
-        required
-        email
-      />
-    </mat-form-field>
-
-    <mat-form-field class="form-group">
-      <mat-label>Тема:</mat-label>
-      <input
-        matInput
-        type="text"
-        id="topic"
-        name="topic"
-        ngModel
-        [(ngModel)]="inputTopic"
-        required
-      />
-    </mat-form-field>
-
-    <mat-form-field class="form-group">
-      <mat-label>Сообщение:</mat-label>
-      <textarea
-        matInput
-        id="message"
-        name="message"
-        ngModel
-        [(ngModel)]="inputMessage"
-        required
-      ></textarea>
-    </mat-form-field>
-
-    <button
-      mat-raised-button
-      type="submit"
-      (click)="add(form.value)"
-      class="sendBtn"
-      role="button"
-    >
-      Отправить
-    </button>
-  </form>
-  <div class="image-wrapper">
-    <img src="../../assets/images/asbestos.png" alt="+" class="image" />
-  </div>
-</section>
+<div class="form-wrapper">
+  <section class="form">
+    <form #form="ngForm">
+      <mat-form-field class="form-group">
+        <mat-label>Почта:</mat-label>
+        <input
+          matInput
+          type="email"
+          id="email"
+          name="email"
+          ngModel
+          [(ngModel)]="inputEmail"
+          required
+          email
+        />
+      </mat-form-field>
+  
+      <mat-form-field class="form-group">
+        <mat-label>Тема:</mat-label>
+        <input
+          matInput
+          type="text"
+          id="topic"
+          name="topic"
+          ngModel
+          [(ngModel)]="inputTopic"
+          required
+        />
+      </mat-form-field>
+  
+      <mat-form-field class="form-group">
+        <mat-label>Сообщение:</mat-label>
+        <textarea
+          matInput
+          id="message"
+          name="message"
+          ngModel
+          [(ngModel)]="inputMessage"
+          required
+        ></textarea>
+      </mat-form-field>
+  
+      <button
+        mat-raised-button
+        type="submit"
+        (click)="add(form.value)"
+        class="sendBtn"
+        role="button"
+      >
+        Отправить
+      </button>
+    </form>
+    <div class="image-wrapper">
+      <img src="../../assets/images/asbestos.png" alt="+" class="image" />
+    </div>
+  </section>
+</div>

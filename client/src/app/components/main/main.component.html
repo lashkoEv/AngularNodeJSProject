@@ -1,28 +1,63 @@
+
 <div class="main-wrapper">
     <app-carousel></app-carousel>
+
+    <div class="main">
+        <!-- <section class="main-img-wrapper"><img class="img" src="{{mainImgSrc}}" alt=""></section> -->
         
-    <section class="title-wrapper">
-        <h2 class="title">ТОВАРЫ</h2>
-    </section>
+        <!-- <section class="title-wrapper">
+            <h2 class="title">ИНТЕР-ПЛАСТ СЕРВИС</h2>
+        </section> -->
     
-    <app-products-carousel></app-products-carousel>
-    
-    <section class="main-img-wrapper"><img class="img" src="{{mainImgSrc}}" alt=""></section>
-    
-    <section class="title-wrapper">
-        <h2 class="title">ИНТЕР-ПЛАСТ СЕРВИС</h2>
-    </section>
-    
-    <section class="about-us">
-        <p class="about-us-text">{{aboutUsText}}</p>
-    </section>
-    
-    <section class="title-wrapper">
-        <h2 class="title">ХИТ ПРОДАЖ</h2>
-    </section>
-    
-    <section class="main-category-carousel">//пока ничего//</section>
-    
-    <app-consultation></app-consultation>
-    <!-- <app-scroll-up></app-scroll-up> -->
+        <!-- <div class="title-wrapper">
+            <h1 class="title">ИНТЕР-ПЛАСТ СЕРВИС</h1>
+        </div> -->
+        <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+            <div class="title-wrapper">
+                <h1 class="title">О НАС</h1>
+            </div>
+            
+            <section class="about-us section">
+                <p class="about-us-text">{{aboutUsText}}</p>
+        
+                <div class="text-wrapper">
+                    <p-timeline [value]="aboutUsTextGroups" class="w-full md:w-20rem" align="alternate">
+                        <ng-template class="aboutUsTxtGroups" pTemplate="content" let-event>
+                            <div class="aboutUsTxtGroup">
+                                {{ event.txt }}
+                            </div>
+                        </ng-template>
+                    </p-timeline>
+                </div>
+            </section>
+        </div>
+
+        <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+            <div class="title-wrapper">
+                <h1 class="title">КАТЕГОРИИ</h1>
+            </div>
+            
+            <section class="category section">
+                <app-products-carousel></app-products-carousel>
+            </section>
+        </div>
+
+        <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+            <div class="title-wrapper">
+                <h1 class="title">ХИТ ПРОДАЖ</h1>
+            </div>
+            
+            <section class="topSales section">//пока ничего//</section>
+        </div>
+        
+        <app-consultation></app-consultation>
+
+        <!-- <div class="card flex flex-column align-items-center overflow-hidden">
+            <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+                <span class="text-3xl font-bold">fade-right</span>
+            </div>
+        </div> -->
+
+        <!-- <app-scroll-up></app-scroll-up> -->
+    </div>
 </div>

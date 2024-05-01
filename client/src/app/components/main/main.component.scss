@@ -5,31 +5,54 @@
 }
 
 .main-wrapper {
-    margin: 0 25%;
-    border-left: 3px solid #167586;
-    border-right: 3px solid #167586;
+    padding: 20px 5%;
+    // border-left: 3px solid #167586;
+    // border-right: 3px solid #167586;
 }
 
-.title-wrapper {
+.main{
+    margin: 20px 5%;
+}
+
+.section{
+    margin-bottom: 50px;
+}
+
+// .title-wrapper {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #167586;
+//     color: #fff;
+//     padding: 20px;
+//     .title {
+//         margin: 0;
+//         font-size: 24px;
+//     }
+// }
+
+.aboutUs-wrapper{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #167586;
-    color: #fff;
-    padding: 20px;
-    .title {
-        margin: 0;
-        font-size: 24px;
-    }
+    justify-content: space-around;
 }
 
 .about-us {
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #cad8db;
+    border-radius: 50px;
+    padding: 30px;
+
     &-text {
-        text-align: center;
+        text-align: start;
         margin: 0;
         font-size: 20px;
-        padding: 1% 10%;
-        background-color: rgb(207, 214, 207);
+        color: #474747;
+        margin-bottom: 30px;
+        // padding: 1% 10%;
+        // background-color: rgb(207, 214, 207);
     }
 }
 
@@ -38,11 +61,37 @@
     justify-content: center;
     align-items: center;
 }
+
 .main-img-wrapper {
-    border-top: 3px solid #167586;
+    // border-top: 3px solid #167586;
     height: 20rem;
     overflow: hidden;
 }
+
 .img {
     width: 100vw;
+}
+
+.title-wrapper{
+    display: flex;
+    justify-content: start;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.title{
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 50px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+.aboutUsTxtGroup{
+    color: #474747;
+    margin-bottom: 50px;
 }
