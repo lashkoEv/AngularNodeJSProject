@@ -12,6 +12,7 @@ export class FiltersComponent{
   public wholeSaleValues: number = 0;
   public retailSaleValues: number = 0;
   public selectedFilters: any[] = [];
+  public count: number = 0;
 
   // private maxWholePrice: number = this.filtersService.getMinMaxWholesalePrice('max');
   // private maxRetailPrice: number = this.filtersService.getMinMaxRetailPrice('max');

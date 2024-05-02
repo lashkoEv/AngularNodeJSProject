@@ -3,32 +3,58 @@
 <p-sidebar [(visible)]="sidebarVisible" [style]="{ width: '30rem' }">
   <p-tree [value]="data" class="tree">
     <ng-template let-node pTemplate="default">
-      <b *ngIf="node.label !== 'Оптовая цена'"
-        ><ng-container *ngIf="node.label !== 'Розничная цена'">
-          <ng-container
-            *ngIf="node.label === 'Страна' || node.label === 'Количество'"
-          >
-            {{ node.label }}
-          </ng-container>
-
-          <ng-container *ngIf="node.label !== 'Страна'">
-            <ng-container *ngIf="node.label !== 'Количество'">
-              <p-checkbox
-                (click)="sendFilterData()"
-                name="groupname"
-                value="{{ node.label }}"
-                label="{{ node.label }}"
-                [(ngModel)]="selectedFilters"
-              ></p-checkbox>
+      <b *ngIf="node.label !== 'Оптовая цена'">
+        <ng-container *ngIf="node.label !== 'Розничная цена'">
+          <ng-container *ngIf="node.label !== 'Количество'">
+            <ng-container *ngIf="node.label === 'Страна'">
+              {{ node.label }}
             </ng-container>
-          </ng-container> </ng-container
-      ></b>
+
+            <ng-container *ngIf="node.label !== 'Страна'">
+              <ng-container *ngIf="node.label !== 'Количество'">
+                <p-checkbox
+                  (click)="sendFilterData()"
+                  name="groupname"
+                  value="{{ node.label }}"
+                  label="{{ node.label }}"
+                  [(ngModel)]="selectedFilters"
+                ></p-checkbox>
+              </ng-container>
+            </ng-container> 
+          </ng-container> 
+        </ng-container>
+      </b>
 
       <b
         class="priceWrapper"
-        *ngIf="node.label === 'Оптовая цена' || node.label === 'Розничная цена'"
+        *ngIf="node.label === 'Оптовая цена' || node.label === 'Розничная цена' || node.label === 'Количество'"
       >
         {{ node.label }}
+
+        <div class="price" *ngIf="node.label === 'Количество'">
+          <div class="inputs-warpper">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="count"
+              class="w-full md:w-30rem to"
+            />
+
+            <p-button
+              (click)="sendFilterData()"
+              label="OK"
+              [outlined]="true">
+            </p-button>
+          </div>
+
+          <mat-slider [max]="getMinMaxCount('max')">
+            <input
+              matSliderThumb
+              [(ngModel)]="count"
+              class="slider"
+            />
+          </mat-slider>
+        </div>
 
         <div class="price" *ngIf="node.label === 'Оптовая цена'">
           <div class="inputs-warpper">
@@ -52,6 +78,7 @@
             />
           </mat-slider>
         </div>
+
         <div class="price" *ngIf="node.label === 'Розничная цена'">
           <div class="inputs-warpper">
             <input
@@ -70,6 +97,7 @@
             <input matSliderThumb [(ngModel)]="retailSaleValues" />
           </mat-slider>
         </div>
+
       </b>
     </ng-template>
   </p-tree>

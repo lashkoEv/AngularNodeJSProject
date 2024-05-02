@@ -13,6 +13,7 @@ import { ICategory } from '../../interfaces/ICategory';
   templateUrl: './category-page.component.html',
   styleUrl: './category-page.component.scss',
 })
+
 export class CategoryPageComponent implements OnInit {
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
@@ -51,7 +52,7 @@ export class CategoryPageComponent implements OnInit {
 
   public dataForFilters: {
     countries: string[];
-    counts: string[];
+    count: number;
     maxWholePrice: number;
     maxRetailPrice: number;
   };
@@ -59,6 +60,7 @@ export class CategoryPageComponent implements OnInit {
   public wholeSaleValues: number = 0;
   public retailSaleValues: number = 0;
   public selectedFilters: any[] = [];
+  public count: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,7 +114,8 @@ export class CategoryPageComponent implements OnInit {
         this.pushToData(this.countries, 'Страна');
 
         this.counts = [...new Set(this.counts)];
-        this.pushToData(this.counts, 'Количество');
+        
+        // this.pushToData(this.counts, 'Количество');
       });
     });
   }
@@ -122,12 +125,11 @@ export class CategoryPageComponent implements OnInit {
       const hasCountry = this.dataForFilters.countries.includes(
         String(product.country)
       );
-      const hasCount = this.dataForFilters.counts.includes(
-        String(product.count)
-      );
-      const hasWholePrice =
-        this.dataForFilters.maxWholePrice >=
-        parseInt(String(product.wholesalePrice));
+
+      const hasCount = this.dataForFilters.count >= parseInt(String(product.count));      
+
+      const hasWholePrice = this.dataForFilters.maxWholePrice >= parseInt(String(product.wholesalePrice));
+
       const hasRetailPrice =
         this.dataForFilters.maxRetailPrice >=
         parseInt(String(product.retailPrice));
@@ -180,6 +182,18 @@ export class CategoryPageComponent implements OnInit {
     }
   }
 
+  public getMinMaxCount(minOrMax: string) {
+    if (this.products) {
+      const counts = this.products.map((product) =>
+        parseInt(String(product.count))
+      );
+
+      if (minOrMax === 'min') {
+        return Math.min(...counts);
+      } else return Math.max(...counts);
+    }
+  }
+
   public getCountries() {
     //find idx
     return this.data[0].children;
@@ -192,7 +206,7 @@ export class CategoryPageComponent implements OnInit {
 
   public setDataForFilters(dataForFilters: {
     countries: string[];
-    counts: string[];
+    count: number;
     maxWholePrice: number;
     maxRetailPrice: number;
   }) {
@@ -201,14 +215,10 @@ export class CategoryPageComponent implements OnInit {
     this.setToShow();
   }
 
-  // getShown() {
-  //   return this.filtersService.getShown();
-  // }
-
   public sendFilterData() {
     const filterData = {
       countries: [],
-      counts: [],
+      count: this.count === 0 ? this.getMinMaxCount('max') : this.count,
       maxWholePrice:
         this.wholeSaleValues === 0
           ? this.getMinMaxWholesalePrice('max')
@@ -220,21 +230,27 @@ export class CategoryPageComponent implements OnInit {
     };
 
     const countriesData = this.getCountries();
-    const countsData = this.getCounts();
+    // const countsData = this.getCounts();
 
     let countries = countriesData.filter((country) =>
       this.selectedFilters.includes(country.label)
     );
+
     countries.length === 0
       ? (filterData.countries = countriesData.map((country) => country.label))
       : (filterData.countries = countries.map((country) => country.label));
 
-    let counts = countsData.filter((count) =>
-      this.selectedFilters.includes(count.label)
-    );
-    counts.length === 0
-      ? (filterData.counts = countsData.map((count) => count.label))
-      : (filterData.counts = counts.map((count) => count.label));
+    // let counts = countsData.filter((count) =>
+    //   this.selectedFilters.includes(count.label)
+    // );
+
+    
+
+    // counts.length === 0
+    //   ? (filterData.counts = countsData.map((count) => count.label))
+    //   : (filterData.counts = counts.map((count) => count.label));
+
+    
 
     this.setDataForFilters(filterData);
   }
