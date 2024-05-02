@@ -8,7 +8,7 @@ export interface IProduct {
   wholesalePrice: String;
   retailPrice: String;
   count: String;
-  fields: String;
+  fields: any[];
   category: ICategory;
   imgSrc: String;
 }
