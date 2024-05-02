@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-catalogue',
@@ -7,10 +8,17 @@ import { CategoryService } from '../../services/category.service';
   styleUrl: './catalogue.component.scss',
 })
 export class CatalogueComponent implements OnInit {
+  items: MenuItem[] | undefined;
+  home: MenuItem | undefined;
+
   public categories: any;
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
+    this.home = { icon: 'pi pi-home', routerLink: '/' };
+
+    this.items = [{ label: 'Каталог', routerLink: '/catalogue' }];
+
     this.getCategories();
   }
 
@@ -20,30 +28,7 @@ export class CatalogueComponent implements OnInit {
     });
   }
 
-  sortCategories(option: string) {
-    if (option === 'A-Z') {
-      this.categories.sort((a, b) => (a.title > b.title ? 1 : -1));
-    } else if (option === 'Z-A') {
-      this.categories.sort((a, b) => (a.title < b.title ? 1 : -1));
-    }
+  getUrl(url: string) {
+    return `url('${url}')`;
   }
-
-  // sortCategories(option: string) {
-  //   switch (option) {
-  //     case 'A-Z':
-  //       this.categories.sort((a, b) => (a.title > b.title ? 1 : -1));
-  //       break;
-  //     case 'Z-A':
-  //       this.categories.sort((a, b) => (a.title < b.title ? 1 : -1));
-  //       break;
-  //     case 'price increase':
-  //       this.categories.sort((a, b) => (a.price > b.price ? 1 : -1));
-  //       break;
-  //     case 'price descending':
-  //       this.categories.sort((a, b) => (a.price < b.price ? 1 : -1));
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
 }

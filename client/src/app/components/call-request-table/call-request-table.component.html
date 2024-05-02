@@ -1,3 +1,20 @@
+<p-toast [life]="2000"></p-toast>
+<p-confirmPopup
+  key="popup1"
+  [preventDuplicates]="true"
+  [preventOpenDuplicates]="true"
+></p-confirmPopup>
+
+<div class="btn-wrapper">
+  <p-button
+    severity="secondary"
+    [outlined]="true"
+    icon="pi pi-sync"
+    (click)="ngOnInit()"
+    label="Перезагрузить таблицу"
+  ></p-button>
+</div>
+
 <p-table
   [paginator]="true"
   [rows]="10"
@@ -24,12 +41,6 @@
       <td>{{ callRequest.name }}</td>
       <td>{{ callRequest.phone }}</td>
       <td>
-        <p-toast></p-toast>
-        <p-confirmPopup
-          key="popup1"
-          [preventDuplicates]="true"
-          [preventOpenDuplicates]="true"
-        ></p-confirmPopup>
         <p-button
           icon="pi pi-trash"
           severity="danger"
@@ -56,11 +67,11 @@
     </h1>
   </ng-template>
   <div class="wrapper">
-    <p-fieldset legend="Код" [toggleable]="true">
+    <!-- <p-fieldset legend="Код" [toggleable]="true">
       <p class="m-0">
         {{ current?._id }}
       </p>
-    </p-fieldset>
+    </p-fieldset> -->
     <p-fieldset legend="Имя" [toggleable]="true">
       <p class="m-0">
         {{ current?.name }}

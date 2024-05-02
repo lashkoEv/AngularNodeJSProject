@@ -1,0 +1,81 @@
+<h2 class="sidebar-title">Ваш заказ</h2>
+
+<div class="cart">
+  <p-dataView
+    #dv
+    [value]="products"
+    [emptyMessage]="'Добавьте товары в корзину...'"
+  >
+    <ng-template pTemplate="list" let-products>
+      <div class="product-list">
+        <div
+          *ngFor="let item of getProducts(); let first = first"
+          class="product-item"
+        >
+          <div class="product-details">
+            <div class="left-side">
+              <img
+                class="product-image"
+                [src]="item.product.imgSrc"
+                [alt]="item.product.title"
+              />
+              <div class="title">
+                <div class="product-title">{{ item.product.title }}</div>
+                <div class="product-category">
+                  {{ item.product.category.title }}
+                </div>
+                <div class="product-price">
+                  {{ item.product.wholesalePrice }}
+                </div>
+              </div>
+            </div>
+            <div class="right-side">
+              <div class="product-count">
+                <p-button
+                  icon="pi pi-minus"
+                  (click)="decrease(item)"
+                  class="count-button"
+                  size="small"
+                  [rounded]="true"
+                  [text]="true"
+                ></p-button>
+                <span class="count">{{ item.count }}</span>
+                <p-button
+                  icon="pi pi-plus"
+                  (click)="increase(item)"
+                  class="count-button"
+                  size="small"
+                  [rounded]="true"
+                  [text]="true"
+                ></p-button>
+              </div>
+              <div class="product-delete">
+                <button
+                  (click)="remove(item)"
+                  pButton
+                  type="button"
+                  icon="pi pi-trash"
+                  class="p-button-danger"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>
+
+<div class="checkout">
+  <span class="total-price-text">Сумма</span>
+  <span class="total-price">{{ cartTotalPrice }} грн</span>
+  <button
+    pButton
+    type="button"
+    label="Оформить заказ"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    class="buy-button"
+    (click)="checkout(currentUser)"
+  ></button>
+</div>

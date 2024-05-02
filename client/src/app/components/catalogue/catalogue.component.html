@@ -1,29 +1,21 @@
-<div class="container">
+<div class="card">
+  <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+
   <section *ngIf="categories && categories.length > 0" class="catalogue">
-    <div class="top-section">
-      <h2 class="catalogue-title">Каталог товаров</h2>
-
-      <mat-form-field class="sort-select">
-        <mat-label>Sort products</mat-label>
-        <mat-select (selectionChange)="sortCategories($event.value)">
-          <mat-option value="A-Z">A-Z</mat-option>
-          <mat-option value="Z-A">Z-A</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-    </div>
     <div class="grid-container">
       <div
+        pRipple
         *ngFor="let category of categories"
-        class="card"
+        class="category styled-box"
         [routerLink]="['/category', category._id]"
       >
-        <h3 class="title">
+        <img [src]="category.imgSrc" alt="Category Image" class="img" />
+        <div class="text">
           {{ category.title }}
-        </h3>
-        <img [src]="category.imgSrc" alt="Category Image" />
+        </div>
       </div>
     </div>
   </section>
 </div>
 
+<app-spinner></app-spinner>

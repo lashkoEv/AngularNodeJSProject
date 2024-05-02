@@ -4,9 +4,6 @@
   align-items: center;
   flex-direction: column;
 
-  padding: 5rem 2rem;
-  padding-top: 7rem;
-  padding-bottom: 6rem;
   border-radius: 2rem;
 
   border: 1px solid rgba(0, 0, 0, 0.116);
@@ -17,18 +14,22 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height: 100%;
+  height: 90%;
   overflow-y: auto;
   background-color: white;
   z-index: 9;
 }
 
 .field {
-  width: 50%;
+  width: 70%;
+  // height: 7vw;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .btn {
-  background-color: #167586;
+  background-color: var(--primary-color);
   padding: 1.25rem 2.5rem;
   color: white;
   margin-top: 2rem;
@@ -48,7 +49,8 @@
 }
 
 .content {
-  width: 100%;
+  width: 50%;
+  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,8 +58,9 @@
 }
 
 .title {
-  color: #167586;
+  color: var(--primary-color);
   margin: 1rem 0 3rem 0;
+
   font-size: 2.5rem;
   text-align: center;
   font-weight: 600;
@@ -77,6 +80,7 @@
   font-size: 1.5rem;
   color: rgb(148, 148, 148);
   padding: 0;
+
   border: none;
   outline: none;
   background-color: transparent;
@@ -84,11 +88,35 @@
 }
 
 .add-field:hover {
-  color: #167586;
+  color: var(--primary-color);
   background-color: transparent;
 }
 
 .fields-input-wrapper {
   display: flex;
+  margin-top: 1rem;
   gap: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+label:hover {
+  background-color: #f0f0f0;
+}
+label::after {
+  content: "Выбрать Изображение";
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 14px;
+  color: #666;
 }

@@ -1,0 +1,34 @@
+.sidebar {
+  width: 20%;
+}
+
+.priceWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.price,
+.inputs-warpper {
+  width: 175px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputs-warpper {
+  flex-direction: row;
+  align-items: center;
+}
+
+.from,
+.to {
+  width: 70px;
+  height: 30px;
+  font-size: 18px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
