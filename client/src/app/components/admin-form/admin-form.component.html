@@ -17,24 +17,27 @@
       <div class="field">
         <p-inputGroupAddon>Название</p-inputGroupAddon>
         <input
+          required
           pInputText
           formControlName="title"
           placeholder="{{ product ? product.title : 'Название' }}"
         />
-
-        <mat-error *ngIf="productForm.get('title').hasError('required')"
-          >Требуется Название</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('title').invalid && productForm.get('title').touched
+          "
         >
+          Требуется Название
+        </mat-error>
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <textarea
+        <input
           required
           pInputTextarea
           formControlName="description"
           placeholder="{{ product ? product.description : 'Описание' }}"
-          (input)="updateParagraphs($event)"
-        ></textarea>
+        />
         <mat-error *ngIf="productForm.get('description').hasError('required')"
           >Требуется Описание</mat-error
         >
@@ -51,9 +54,13 @@
           }}"
         />
         <mat-error
-          *ngIf="productForm.get('wholesalePrice').hasError('required')"
-          >Требуется Розничная цена</mat-error
+          *ngIf="
+            productForm.get('wholesalePrice').invalid &&
+            productForm.get('wholesalePrice').touched
+          "
         >
+          Требуется Розничная Цена
+        </mat-error>
       </div>
 
       <div class="field">
@@ -64,9 +71,13 @@
           formControlName="count"
           placeholder="{{ product ? product.count : 'Кол-во' }}"
         />
-        <mat-error *ngIf="productForm.get('count').hasError('required')"
-          >Требуется кол-во</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('count').invalid && productForm.get('count').touched
+          "
         >
+          Требуется Кол-во
+        </mat-error>
       </div>
 
       <div class="field">
@@ -76,63 +87,66 @@
           formControlName="retailPrice"
           placeholder="{{ product ? product.retailPrice : 'Оптовая цена' }}"
         />
-        <mat-error *ngIf="productForm.get('retailPrice').hasError('required')"
-          >Требуется Оптовая Цена</mat-error
-        >
       </div>
 
       <div class="field">
-        <p-inputGroupAddon>{{
-          product ? product.country : "Страна"
-        }}</p-inputGroupAddon>
+        <p-inputGroupAddon>Страна</p-inputGroupAddon>
 
         <p-dropdown
           formControlName="country"
           [filter]="true"
-          [filterBy]="product?.country"
+          filterBy="country"
           [options]="countries"
-          [optionLabel]="product?.country"
+          optionLabel="country"
           placeholder="Выберите Страну"
         ></p-dropdown>
-
-        <mat-error *ngIf="productForm.get('country').hasError('required')"
-          >Требуется Страна</mat-error
-        >
       </div>
 
       <div class="field">
-        <p-inputGroupAddon>{{
-          product ? product.category : "Категория"
-        }}</p-inputGroupAddon>
+        <p-inputGroupAddon> Категория </p-inputGroupAddon>
         <p-dropdown
           formControlName="category"
           [filter]="true"
           filterBy="title"
           [options]="categories"
           optionLabel="title"
-          placeholder="Выберите категорию"
+          placeholder="Выберите Категорию"
         ></p-dropdown>
 
-        <!-- <mat-select formControlName="category" required>
-          @for (category of categories; track category) {
-          <mat-option [value]="category.title">{{ category.title }}</mat-option
-          >}
-        </mat-select> -->
-        <mat-error *ngIf="productForm.get('category').hasError('required')"
-          >Требуется категория</mat-error
+        <!-- <input
+          *ngIf="formService.getIsEditProduct()"
+          formControlName="category"
+          pInputText
+          placeholder="Категория"
+        /> -->
+
+        <mat-error
+          *ngIf="
+            productForm.get('category').invalid &&
+            productForm.get('category').touched
+          "
         >
+          Требуется Категория
+        </mat-error>
       </div>
 
       <div class="field">
+        <label for="inputFile"></label>
         <input
+          id="inputFile"
           (change)="onFileSelected($event)"
           accept="image/*"
           type="file"
           formControlName="imgSrc"
         />
-        <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
-          >Требуется изображение</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
         >
+          Требуется Изображение
+        </mat-error>
       </div>
       <div
         class="fields-input-wrapper"
@@ -173,34 +187,61 @@
           placeholder="{{ category ? category.title : 'Название' }}"
         />
 
-        <mat-error *ngIf="productForm.get('title').hasError('required')"
-          >Требуется Название</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('title').invalid && productForm.get('title').touched
+          "
         >
+          Требуется Название
+        </mat-error>
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <textarea
-          pInputTextarea
+        <input
+          pInputText
           formControlName="description"
           placeholder="{{ category ? category.description : 'Описание' }}"
-          (input)="updateParagraphs($event)"
-        ></textarea>
+        />
         <mat-error *ngIf="productForm.get('description').hasError('required')"
           >Требуется Описание</mat-error
         >
       </div>
 
       <div class="field">
+        <label for="inputFileCategory"></label>
+        <input
+          id="inputFileCategory"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          type="file"
+          formControlName="imgSrc"
+        />
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
+        >
+          Требуется Изображение
+        </mat-error>
+      </div>
+
+      <!-- <div class="field">
         <input
           (change)="onFileSelected($event)"
           accept="image/*"
           type="file"
           formControlName="imgSrc"
         />
-        <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
-          >Требуется изображение</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
         >
-      </div>
+          Требуется Изображение
+        </mat-error>
+      </div> -->
 
       <button class="btn" mat-raised-button type="submit">Принять</button>
     </div>
