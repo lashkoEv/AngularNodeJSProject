@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit {
         ];
 
         this.productService
-          .getByCategory(this.product.category)
+          .getByCategory(this.product.category._id)
           .subscribe((data) => {
             this.products = data;
 
