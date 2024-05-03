@@ -83,6 +83,12 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { ImageModule } from 'primeng/image';
+import { SplitterModule } from 'primeng/splitter';
+import { PanelModule } from 'primeng/panel';
+import { RippleModule } from 'primeng/ripple';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -165,6 +171,12 @@ import { MessagesModule } from 'primeng/messages';
     ConfirmPopupModule,
     ToastModule,
     MessagesModule,
+    ImageModule,
+    SplitterModule,
+    PanelModule,
+    RippleModule,
+    BreadcrumbModule,
+    InputTextareaModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

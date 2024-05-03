@@ -22,14 +22,14 @@
 
 .field {
   width: 70%;
-  height: 7vw;
+  // height: 7vw;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
 
 .btn {
-  background-color: #167586;
+  background-color: var(--primary-color);
   padding: 1.25rem 2.5rem;
   color: white;
   margin-top: 2rem;
@@ -58,7 +58,7 @@
 }
 
 .title {
-  color: #167586;
+  color: var(--primary-color);
   margin: 1rem 0 3rem 0;
 
   font-size: 2.5rem;
@@ -88,7 +88,7 @@
 }
 
 .add-field:hover {
-  color: #167586;
+  color: var(--primary-color);
   background-color: transparent;
 }
 

@@ -32,12 +32,13 @@
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <input
+        <textarea
+          [autoResize]="true"
           required
-          pInputText
+          pInputTextarea
           formControlName="description"
           placeholder="{{ product ? product.description : 'Описание' }}"
-        />
+        ></textarea>
         <mat-error
           *ngIf="
             productForm.get('description').invalid &&
@@ -110,7 +111,6 @@
       <div class="field">
         <p-inputGroupAddon> Категория </p-inputGroupAddon>
         <p-dropdown
-          *ngIf="formService.getIsAddProduct()"
           formControlName="category"
           [filter]="true"
           filterBy="title"
@@ -119,12 +119,12 @@
           placeholder="Выберите Категорию"
         ></p-dropdown>
 
-        <input
+        <!-- <input
           *ngIf="formService.getIsEditProduct()"
           formControlName="category"
           pInputText
           placeholder="Категория"
-        />
+        /> -->
 
         <mat-error
           *ngIf="
@@ -203,11 +203,12 @@
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <input
-          pInputText
+        <textarea
+          pInputTextarea
+          [autoResize]="true"
           formControlName="description"
           placeholder="{{ category ? category.description : 'Описание' }}"
-        />
+        ></textarea>
         <mat-error
           *ngIf="
             productForm.get('description').invalid &&
@@ -219,7 +220,9 @@
       </div>
 
       <div class="field">
+        <label for="inputFileCategory"></label>
         <input
+          id="inputFileCategory"
           (change)="onFileSelected($event)"
           accept="image/*"
           type="file"
@@ -234,6 +237,23 @@
           Требуется Изображение
         </mat-error>
       </div>
+
+      <!-- <div class="field">
+        <input
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          type="file"
+          formControlName="imgSrc"
+        />
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
+        >
+          Требуется Изображение
+        </mat-error>
+      </div> -->
 
       <button class="btn" mat-raised-button type="submit">Принять</button>
     </div>
