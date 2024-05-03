@@ -27,6 +27,7 @@ export class AdminFormComponent implements OnInit {
   public category: ICategory;
   public product: IProduct;
   private selectedFile: File | null = null;
+  public countries: { country: string }[];
 
   constructor(
     private fb: FormBuilder,
@@ -42,27 +43,29 @@ export class AdminFormComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesObs.subscribe((category) => {
       this.categories = category;
+      console.log(this.categories);
     });
     this.createForm();
-
+    this.countries = this.formService.getAllCountries();
     this.product = this.productService.getProduct();
     this.category = this.categoryService.getCategory();
   }
+
   private createForm(): void {
     if (
       this.formService.getIsAddProduct() ||
       this.formService.getIsEditProduct()
     ) {
       this.productForm = this.fb.group({
-        title: [''],
-        description: [''],
-        country: [''],
-        wholesalePrice: [''],
-        count: [''],
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+        country: [{}, Validators.required],
+        wholesalePrice: ['', Validators.required],
+        count: ['', Validators.required],
         fields: this.fb.array([]),
         retailPrice: [''],
-        category: [''],
-        imgSrc: [''],
+        category: [{}, Validators.required],
+        imgSrc: ['', Validators.required],
       });
     } else if (
       this.formService.getIsAddCategory() ||
@@ -71,7 +74,7 @@ export class AdminFormComponent implements OnInit {
       this.productForm = this.fb.group({
         title: ['', Validators.required],
         description: ['', Validators.required],
-        imgSrc: [''],
+        imgSrc: ['', Validators.required],
       });
     }
   }
@@ -147,6 +150,7 @@ export class AdminFormComponent implements OnInit {
                 );
               }
             );
+            console.log(productData);
             this.spinner.start();
             this.notification.notify();
           }

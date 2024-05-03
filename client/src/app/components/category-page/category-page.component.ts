@@ -44,13 +44,13 @@ export class CategoryPageComponent implements OnInit {
       // this.products = this.filtersService.getShown();
       this.products = data;
       this.totalItems = this.products.length;
-      this.toShow = this.products.slice(0, 5);      
+      this.toShow = this.products.slice(0, 5);
     });
-    
+
     this.pageSize = 5;
   }
 
-  lsd(){
+  lsd() {
     return this.filtersService.getShown();
   }
 

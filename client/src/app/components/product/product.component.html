@@ -50,7 +50,7 @@
       </div>
       <div class="row">
         <div class="cell">Страна</div>
-        <div class="cell">{{ product?.country }}</div>
+        <div class="cell">{{ product?.country.country }}</div>
       </div>
       <div class="row" *ngFor="let item of product?.fields">
         <div class="cell" *ngIf="item.key">{{ item.key }}</div>
