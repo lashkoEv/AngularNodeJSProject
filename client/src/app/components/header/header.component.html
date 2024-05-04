@@ -65,10 +65,9 @@
 </section>
 <section class="main-header">
   <div class="logo" [routerLink]="['/']">{{ logo }}</div>
-  <p-inputGroup>
-    <button type="button" pButton label="Search"></button>
-    <input type="text" pInputText placeholder="Keyword" />
-  </p-inputGroup>
+  <div class="search">
+    <app-search></app-search>
+  </div>
   <div class="profile">
     <button
       pButton
