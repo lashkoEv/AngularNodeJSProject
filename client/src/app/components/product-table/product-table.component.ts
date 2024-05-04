@@ -50,6 +50,7 @@ export class ProductTableComponent implements OnInit {
   ngOnInit() {
     this.productService.getAll().subscribe((data) => {
       this.products = data;
+      console.log(this.products);
     });
 
     this.cols = [

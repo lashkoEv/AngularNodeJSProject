@@ -78,8 +78,10 @@ export class CategoryPageComponent implements OnInit {
     });
 
     this.sortOptions = [
-      { label: 'Цена (по убыванию)', value: '!price' },
-      { label: 'Цена (по возрастанию)', value: 'price' },
+      { label: 'Цена (по убыванию)', value: '-retailPrice' },
+      { label: 'Цена (по возрастанию)', value: '+retailPrice' },
+      { label: 'Название (по убыванию)', value: '-title' },
+      { label: 'Название (по возрастанию)', value: '+title' },
     ];
   }
 
@@ -101,7 +103,7 @@ export class CategoryPageComponent implements OnInit {
         this.toShow = data;
 
         this.countries = this.products.map((product) => {
-          return product.country;
+          return product.country.country;
         });
 
         this.counts = this.products.map((product) => {
@@ -120,7 +122,7 @@ export class CategoryPageComponent implements OnInit {
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
       const hasCountry = this.dataForFilters.countries.includes(
-        String(product.country)
+        String(product.country.country)
       );
       const hasCount = this.dataForFilters.counts.includes(
         String(product.count)
@@ -252,13 +254,27 @@ export class CategoryPageComponent implements OnInit {
   onSortChange(event: any) {
     let value = event.value;
 
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-      // this.toShow = this.toShow.sort()
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
+    switch (value) {
+      case '-retailPrice': {
+        this.sortOrder = -1;
+        this.sortField = 'retailPrice';
+        break;
+      }
+      case '+retailPrice': {
+        this.sortOrder = 1;
+        this.sortField = 'retailPrice';
+        break;
+      }
+      case '-title': {
+        this.sortOrder = -1;
+        this.sortField = 'title';
+        break;
+      }
+      case '+title': {
+        this.sortOrder = 1;
+        this.sortField = 'title';
+        break;
+      }
     }
   }
 }
