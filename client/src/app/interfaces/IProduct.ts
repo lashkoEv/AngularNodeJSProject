@@ -1,14 +1,14 @@
 import { ICategory } from './ICategory';
 
 export interface IProduct {
-  _id?: string;
-  title: string;
-  description: string;
-  country: string;
-  wholesalePrice: string;
-  retailPrice: string;
-  count: string;
-  fields: string;
+  _id?: String;
+  title: String;
+  description: String;
+  country: String;
+  wholesalePrice: String;
+  retailPrice: String;
+  count: String;
+  fields: any[];
   category: ICategory;
   imgSrc: string;
 }

@@ -5,7 +5,7 @@ $gray: #9b9b9b;
 
 $dark: #000;
 
-.container{
+.container {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -16,18 +16,18 @@ $dark: #000;
   z-index: 30;
 }
 
-.modal-window{
-    border: 1px solid rgba(0, 0, 0, 0.414);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 20px;
-    background-color: white;
-    padding: 30px 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.modal-window {
+  border: 1px solid rgba(0, 0, 0, 0.414);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background-color: white;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .title {
@@ -52,27 +52,27 @@ $dark: #000;
   margin-bottom: 20px;
 }
 
-.inp{
+.inp {
   position: relative;
   margin: auto;
   width: 100%;
   border-radius: 3px;
   overflow: hidden;
 
-  .label{
+  .label {
     position: absolute;
     top: 20px;
     left: 12px;
     font-size: 1.3rem;
-    color: rgba($dark,.5);
+    color: rgba($dark, 0.5);
     font-weight: 500;
     transform-origin: 0 0;
-    transform: translate3d(0,0,0);
-    transition: all .2s ease;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
     pointer-events: none;
   }
 
-  input{
+  input {
     appearance: none;
     width: 100%;
     border: 0;
@@ -81,36 +81,35 @@ $dark: #000;
     height: 56px;
     font-size: 1.3rem;
     font-weight: 400;
-    box-shadow: inset 0 -1px 0 rgba($dark,.3);
+    box-shadow: inset 0 -1px 0 rgba($dark, 0.3);
     color: $gray;
-    transition: all .15s ease;
+    transition: all 0.15s ease;
 
-    &:hover{
-      box-shadow: inset 0 -1px 0 rgba($dark,.5);
+    &:hover {
+      box-shadow: inset 0 -1px 0 rgba($dark, 0.5);
     }
-    
-    &:not(:placeholder-shown){
-      + .label{
-        color: rgba($dark,.5);
-        transform: translate3d(0,-12px,0) scale(.75);
+
+    &:not(:placeholder-shown) {
+      + .label {
+        color: rgba($dark, 0.5);
+        transform: translate3d(0, -12px, 0) scale(0.75);
       }
     }
-    
-    &:focus{
+
+    &:focus {
       outline: none;
       box-shadow: inset 0 -2px 0 $primary;
-      + .label{
+      + .label {
         color: $primary;
-        transform: translate3d(0,-12px,0) scale(.75);
-        + .focus-bg{
+        transform: translate3d(0, -12px, 0) scale(0.75);
+        + .focus-bg {
           transform: scaleX(1);
-          transition: all .1s ease;
+          transition: all 0.1s ease;
         }
       }
     }
   }
 }
-
 
 .close-wrapper {
   width: 100%;

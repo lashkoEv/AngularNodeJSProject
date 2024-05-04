@@ -28,8 +28,7 @@ export class AdminFormComponent implements OnInit {
   public category: ICategory;
   public product: IProduct;
   private selectedFile: File | null = null;
-  public countries: string[];
-  public paragraphs: string[] = [];
+  public countries: { country: string }[];
 
   constructor(
     private fb: FormBuilder,
@@ -47,36 +46,63 @@ export class AdminFormComponent implements OnInit {
       this.categories = category;
       console.log(this.categories);
     });
-    this.createForm();
-    this.countries = this.formService.getAllCountries();
     this.product = this.productService.getProduct();
+    this.countries = this.formService.getAllCountries();
     this.category = this.categoryService.getCategory();
+    this.createForm();
   }
+
   private createForm(): void {
     if (
       this.formService.getIsAddProduct() ||
       this.formService.getIsEditProduct()
     ) {
-      this.productForm = this.fb.group({
-        title: ['', Validators.required],
-        description: ['', Validators.required],
-        country: ['', Validators.required],
-        wholesalePrice: ['', Validators.required],
-        count: ['', Validators.required],
-        fields: this.fb.array([]),
-        retailPrice: [''],
-        category: [{}, Validators.required],
-        imgSrc: ['', Validators.required],
-      });
+      if (this.formService.getIsEditProduct()) {
+        this.productForm = this.fb.group({
+          title: [this.product.title, Validators.required],
+          description: [this.product.description, Validators.required],
+          country: [this.product.country, Validators.required],
+          wholesalePrice: [this.product.wholesalePrice, Validators.required],
+          count: [this.product.count, Validators.required],
+          fields: this.fb.array([]),
+          retailPrice: [this.product.retailPrice],
+          category: [this.product.category, Validators.required],
+          imgSrc: ['', Validators.required],
+        });
+
+        for (const item of this.product.fields) {
+          this.addField(item.key, item.value);
+        }
+      } else {
+        this.productForm = this.fb.group({
+          title: ['', Validators.required],
+          description: ['', Validators.required],
+          country: [{}, Validators.required],
+          wholesalePrice: ['', Validators.required],
+          count: ['', Validators.required],
+          fields: this.fb.array([]),
+          retailPrice: [''],
+          category: [{}, Validators.required],
+          imgSrc: ['', Validators.required],
+        });
+      }
     } else if (
       this.formService.getIsAddCategory() ||
       this.formService.getIsUpdateCategory()
     ) {
-      this.productForm = this.fb.group({
-        title: ['', Validators.required],
-        description: ['', Validators.required],
-        imgSrc: [''],
-      });
+      if (this.formService.getIsUpdateCategory()) {
+        this.productForm = this.fb.group({
+          title: [this.category.title, Validators.required],
+          description: [this.category.description, Validators.required],
+          imgSrc: ['', Validators.required],
+        });
+      } else {
+        this.productForm = this.fb.group({
+          title: ['', Validators.required],
+          description: ['', Validators.required],
+          imgSrc: ['', Validators.required],
+        });
+      }
     }
   }
 
@@ -84,16 +110,16 @@ export class AdminFormComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
-  private createField(): FormGroup {
+  private createField(key = '', value = ''): FormGroup {
     return this.fb.group({
-      key: ['', Validators.required],
-      value: ['', Validators.required],
+      key: [key, Validators.required],
+      value: [value, Validators.required],
     });
   }
 
-  public addField() {
+  public addField(key = '', value = '') {
     const fields = this.productForm.get('fields') as FormArray;
-    fields.push(this.createField());
+    fields.push(this.createField(key, value));
   }
 
   public invokeEditForm() {
