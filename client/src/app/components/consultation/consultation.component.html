@@ -4,54 +4,51 @@
 
 <section class="form">
   <form #form="ngForm">
-    <mat-form-field class="form-group">
-      <mat-label>Почта:</mat-label>
+    <div class="form-group">
+      <label for="email" class="email-label">Почта:</label>
       <input
-        matInput
         type="email"
         id="email"
         name="email"
-        ngModel
         [(ngModel)]="inputEmail"
         required
         email
+        pInputText
       />
-    </mat-form-field>
+    </div>
 
-    <mat-form-field class="form-group">
-      <mat-label>Тема:</mat-label>
+    <div class="form-group">
+      <label for="topic" class="topic-label">Тема:</label>
       <input
-        matInput
         type="text"
         id="topic"
         name="topic"
-        ngModel
         [(ngModel)]="inputTopic"
         required
+        pInputText
       />
-    </mat-form-field>
+    </div>
 
-    <mat-form-field class="form-group">
-      <mat-label>Сообщение:</mat-label>
+    <div class="form-group">
+      <label for="message" class="message-label">Сообщение:</label>
       <textarea
-        matInput
         id="message"
         name="message"
-        ngModel
         [(ngModel)]="inputMessage"
         required
+        pInputTextarea
       ></textarea>
-    </mat-form-field>
+    </div>
 
     <button
-      mat-raised-button
       type="submit"
       (click)="add(form.value)"
       class="sendBtn"
       role="button"
-    >
-      Отправить
-    </button>
+      pButton
+      type="button"
+      label="Отправить"
+    ></button>
   </form>
   <div class="image-wrapper">
     <img src="../../assets/images/asbestos.png" alt="+" class="image" />
