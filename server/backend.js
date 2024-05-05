@@ -8,9 +8,10 @@ const categoryRouter = require('./routes/category.router');
 const userRouter = require('./routes/user.router');
 const callRequestRouter = require('./routes/callRequest.router');
 const consultationRouter = require('./routes/consultation.router');
+const orderRouter = require('./routes/order.router');
 const multer = require('multer');
 let imageUrl;
-const cartRouter = require("./routes/cart.router");
+const cartRouter = require('./routes/cart.router');
 
 const app = express();
 
@@ -33,7 +34,8 @@ app.use('', callRequestRouter);
 app.use('', consultationRouter);
 app.use('', categoryRouter);
 app.use('', userRouter);
-app.use("", cartRouter);
+app.use('', cartRouter);
+app.use('', orderRouter);
 app.use(upload.single('imgSrc'));
 
 app.post('/upload', (req, res) => {

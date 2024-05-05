@@ -79,3 +79,32 @@
     (click)="checkout(currentUser)"
   ></button>
 </div>
+
+<app-ordering-form
+  *ngIf="this.orderFormService.getIsOrder()"
+></app-ordering-form>
+
+<!-- <p-button
+    pButton
+    type="button"
+    label="Оформить заказ"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    class="buy-button"
+    (click)="sidebarVisible = true"
+    aria-expanded="{{ sidebarVisible ? true : false }}"
+    aria-controls="{{ sidebarVisible ? 'sidebar' : null }}"
+  ></p-button>
+</div>
+
+<p-sidebar
+  class="side-bar"
+  [(visible)]="sidebarVisible"
+  position="left"
+  [style]="{ width: '50rem' }"
+  (onHide)="sidebarVisible = false"
+  id="sidebar"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <app-ordering-form></app-ordering-form>
+</p-sidebar> -->

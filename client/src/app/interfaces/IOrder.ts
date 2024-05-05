@@ -1,8 +1,8 @@
 import { IOrderedProduct } from './IOrderedProduct';
-import { IUser } from './IUser';
+import { IUser } from './iUser';
 
 export interface IOrder {
-  user: IUser;
+  user?: IUser;
   products: IOrderedProduct[];
   totalPrice: number;
 }

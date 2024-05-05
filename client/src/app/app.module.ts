@@ -89,6 +89,7 @@ import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { OrderingFormComponent } from './components/ordering-form/ordering-form.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FiltersComponent,
     ScrollUpComponent,
     CartComponent,
+    OrderingFormComponent,
   ],
   imports: [
     FileUploadModule,
