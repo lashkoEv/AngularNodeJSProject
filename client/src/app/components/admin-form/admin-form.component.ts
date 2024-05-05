@@ -28,6 +28,7 @@ export class AdminFormComponent implements OnInit {
   public category: ICategory;
   public product: IProduct;
   private selectedFile: File | null = null;
+  public paragraphs: any;
   public countries: { country: string }[];
 
   constructor(
