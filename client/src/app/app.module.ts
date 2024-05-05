@@ -66,6 +66,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CartComponent } from './components/cart/cart.component';
+import { MegamenuComponent } from './components/megamenu/megamenu.component';
 
 // primeNG
 import { SidebarModule } from 'primeng/sidebar';
@@ -90,6 +91,8 @@ import { RippleModule } from 'primeng/ripple';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DividerModule } from 'primeng/divider';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 @NgModule({
   declarations: [
@@ -121,6 +124,7 @@ import { DividerModule } from 'primeng/divider';
     FiltersComponent,
     ScrollUpComponent,
     CartComponent,
+    MegamenuComponent,
   ],
   imports: [
     FileUploadModule,
@@ -178,7 +182,9 @@ import { DividerModule } from 'primeng/divider';
     RippleModule,
     BreadcrumbModule,
     InputTextareaModule,
-    DividerModule
+    DividerModule,
+    AutoCompleteModule,
+    MegaMenuModule
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

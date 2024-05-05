@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminFormComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
+
   public productForm: FormGroup;
   public dataSourceProduct: MatTableDataSource<IProduct>;
   public dataSourceCategory: MatTableDataSource<ICategory>;
@@ -27,6 +28,7 @@ export class AdminFormComponent implements OnInit {
   public category: ICategory;
   public product: IProduct;
   private selectedFile: File | null = null;
+  public paragraphs: any;
   public countries: { country: string }[];
 
   constructor(
@@ -149,12 +151,23 @@ export class AdminFormComponent implements OnInit {
     });
   }
 
+  updateParagraphs(event: Event) {
+    const textarea = event.target as HTMLTextAreaElement;
+    const value = textarea.value;
+    console.log('Textarea value:', value);
+
+    this.paragraphs = value.split('\n');
+    console.log('Paragraphs:', this.paragraphs);
+  }
+
   public async onSubmit() {
     if (this.productForm.valid) {
       const productData: IProduct = this.productForm.value;
       const categoryData: ICategory = this.productForm.value;
       const productUpdateData: IProduct = productData;
       const categoryUpdateData: ICategory = categoryData;
+      const formattedDescription = this.paragraphs.join('\n');
+      this.productForm.patchValue({ description: formattedDescription });
       if (this.formService.getIsAddProduct()) {
         try {
           productData.imgSrc = await this.uploadImage();

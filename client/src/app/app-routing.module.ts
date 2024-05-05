@@ -9,13 +9,14 @@ import { MainComponent } from './components/main/main.component';
 import { ProductComponent } from './components/product/product.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ConsultationComponent } from './components/consultation/consultation.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'contacts', component: AppComponent },
   { path: 'delivery', component: AppComponent },
   { path: 'catalogue', component: CatalogueComponent },
-  // { path: 'consultation', component: ConsultationComponent },
+  { path: 'consultation', component: ConsultationComponent },
   { path: 'category/:id', component: CategoryPageComponent },
   { path: 'cart', component: CartComponent },
 

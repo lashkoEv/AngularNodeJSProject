@@ -103,7 +103,7 @@ export class CategoryPageComponent implements OnInit {
         this.toShow = data;
 
         this.countries = this.products.map((product) => {
-          return product.country;
+          return product.country.country;
         });
 
         this.counts = this.products.map((product) => {
@@ -122,7 +122,7 @@ export class CategoryPageComponent implements OnInit {
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
       const hasCountry = this.dataForFilters.countries.includes(
-        String(product.country)
+        String(product.country.country)
       );
       const hasCount = this.dataForFilters.counts.includes(
         String(product.count)
