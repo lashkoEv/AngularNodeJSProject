@@ -38,7 +38,6 @@ export class CategoryPageComponent implements OnInit {
 
     {
       label: 'Количество',
-      children: [],
     },
 
     {
@@ -140,6 +139,7 @@ export class CategoryPageComponent implements OnInit {
     });
 
     this.toShow = filteredProducts;
+    console.log(this.toShow);
   }
 
   private pushToData(data: any, endPoint: string) {
@@ -230,7 +230,6 @@ export class CategoryPageComponent implements OnInit {
     };
 
     const countriesData = this.getCountries();
-    // const countsData = this.getCounts();
 
     let countries = countriesData.filter((country) =>
       this.selectedFilters.includes(country.label)
@@ -244,15 +243,31 @@ export class CategoryPageComponent implements OnInit {
     //   this.selectedFilters.includes(count.label)
     // );
 
-    
-
     // counts.length === 0
     //   ? (filterData.counts = countsData.map((count) => count.label))
     //   : (filterData.counts = counts.map((count) => count.label));
 
-    
-
     this.setDataForFilters(filterData);
+  }
+
+  public resetFilters(){
+    this.wholeSaleValues = 0;
+    this.retailSaleValues = 0;
+    this.count = 0;
+    this.selectedFilters = [];
+
+    // this.sendFilterData();
+    const countriesData = this.getCountries().map((country) => country.label);
+
+    
+    this.setDataForFilters({
+      countries: countriesData,
+      count: this.getMinMaxCount('max'),
+      maxWholePrice: this.getMinMaxWholesalePrice('max'),
+      maxRetailPrice: this.getMinMaxRetailPrice('max')
+    })
+
+    // this.selectedFilters = [];
   }
 
   addToCart(product: IProduct) {
