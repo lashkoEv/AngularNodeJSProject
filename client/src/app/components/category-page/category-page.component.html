@@ -109,54 +109,49 @@
 
   
   <div class="card">
+    
+    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+
+    <div class="wrapper">
     <div class="filters">
       <!-- <p-tree [value]="data" class="tree"> -->
         <!-- <ng-template let-node pTemplate="default"> -->
           <div class="tree">
             <div class="template" *ngFor="let node of data">
-
-              <b *ngIf="node.label !== 'Оптовая цена'">
-                <ng-container *ngIf="node.label !== 'Розничная цена'">
-                  <ng-container *ngIf="node.label !== 'Количество'">
+              <!-- <div *ngIf="node.label !== 'Оптовая цена'"> -->
+                <!-- <ng-container *ngIf="node.label !== 'Розничная цена'"> -->
+                  <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
                     <ng-container *ngIf="node.label === 'Страна'">
                       {{ node.label }}
                     </ng-container>
                     
-                    <ng-container *ngIf="node.label !== 'Страна'">
-                      <ng-container *ngIf="node.label !== 'Количество'">
-                        <p-checkbox
-                        (click)="sendFilterData()"
-                        name="groupname"
-                        value="{{ node.label }}"
-                        label="{{ node.label }}"
-                        [(ngModel)]="selectedFilters"
-                        ></p-checkbox>
-                      </ng-container>
-                    </ng-container> 
-                  </ng-container> 
-                </ng-container>
-              </b>
+                    <!-- <ng-container *ngIf="node.label !== 'Страна'"> -->
+                      <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
+                        <ng-container *ngIf="node.children">
+                          <ng-container *ngFor="let child of node.children">
+                            <p-checkbox (click)="sendFilterData()"
+                              class="nodeCheckbox" 
+                              name="groupname"
+                              value="{{ child.label }}"
+                              label="{{ child.label }}"
+                              [(ngModel)]="selectedFilters"
+                            ></p-checkbox>
+                          </ng-container>
+                        </ng-container>
+                      <!-- </ng-container> -->
+                    <!-- </ng-container>  -->
+                  <!-- </ng-container>  -->
+                <!-- </ng-container> -->
+              <!-- </div> -->
               
-              <b
-              class="priceWrapper"
-              *ngIf="node.label === 'Оптовая цена' || node.label === 'Розничная цена' || node.label === 'Количество'"
-              >
+              <div class="priceWrapper" *ngIf="node.label === 'Оптовая цена' || node.label === 'Розничная цена' || node.label === 'Количество'">
               {{ node.label }}
               
               <div class="price" *ngIf="node.label === 'Количество'">
                 <div class="inputs-warpper">
-                  <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="count"
-                  class="inputLs"
-                  />
+                  <input type="text" pInputText [(ngModel)]="count" class="inputLs"/>
                   
-                  <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true">
-                </p-button>
+                  <p-button (click)="sendFilterData()" label="OK" [outlined]="true"></p-button>
               </div>
               
               <mat-slider [max]="getMinMaxCount('max')">
@@ -210,7 +205,7 @@
               </mat-slider>
             </div>
             
-          </b>
+          </div>
           <!-- </ng-template> -->
           <!-- </p-tree> -->
         </div>
@@ -222,7 +217,6 @@
   </div>
   
   <div class="productsasd">
-    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
     
     <p-dataView
     [value]="toShow"
@@ -336,13 +330,15 @@
           </div>
         </ng-template>
       </p-dataView>
-    
-      <p-panel header="Описание" [toggleable]="true">
-        <p>
-          {{ category?.description }}
-        </p>
-      </p-panel>
     </div>
+    
+  </div>
+  
+  <p-panel header="Описание" [toggleable]="true">
+    <p>
+      {{ category?.description }}
+    </p>
+  </p-panel>
   </div>
 
 <app-spinner></app-spinner>

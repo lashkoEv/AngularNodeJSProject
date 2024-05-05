@@ -76,11 +76,24 @@ p {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin: 1.5rem 0;
+  margin-top: 0;
 }
 
 .tree{
   width: 300px;
+}
+
+.template{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+.nodeCheckbox{
+  font-size: 18px;
 }
 // -----------------------------------
 
@@ -94,7 +107,13 @@ p {
 
 .card{
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wrapper{
+  display: flex;
+  gap: 1rem;
 }
 
 .image {
