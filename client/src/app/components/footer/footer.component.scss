@@ -1,15 +1,21 @@
 .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: static;
   bottom: 0;
   width: 100%;
 }
 
 .logo {
-  font-size: 36px;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .left-footer {
-  font-size: 20px;
+  font-size: 1rem;
   .pin-icon,
   .phone-icon {
     width: 20px;
@@ -24,7 +30,11 @@
     .location {
       font-size: 25px;
     }
+    .info-piece {
+      margin: 5px 0;
+    }
   }
+
   .location-wrapper {
     display: flex;
   }
@@ -39,7 +49,7 @@
   .footer-navigation-wrapper {
     .navigation {
       .nav {
-        font-size: 1rem;
+        font-size: 0.8rem;
       }
     }
   }
@@ -51,7 +61,28 @@
       .instagram {
         width: 30px;
         height: 30px;
-        margin-right: 5px;
+        margin-right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      a:hover {
+        .fa-viber {
+          color: #7360f2;
+        }
+        .fa-telegram {
+          color: #0088cc;
+        }
+        .fa-facebook {
+          color: #1877F2;
+        }
+        .fa-instagram {
+          background: -webkit-gradient(linear, left top, left bottom, from(#833AB4), to(#FD1D1D), to(#FCB045));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          display: initial;
+        }
       }
     }
   }
@@ -62,8 +93,3 @@ a {
   text-decoration: none;
 }
 
-.footer {
-  position: static;
-  bottom: 0;
-  width: 100%;
-}

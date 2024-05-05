@@ -41,8 +41,8 @@ export class FooterComponent {
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public navigation: object[] = [
     {
-      titles: ['РЕГИСТРАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ', 'КОНСУЛЬТАЦИЯ'],
-      links: ['#', 'delivery', 'contacts','catalogue', 'consultation']
+      titles: ['РЕГИСТРАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
+      links: ['#', 'delivery', 'contacts','catalogue']
     }
   ];
 }

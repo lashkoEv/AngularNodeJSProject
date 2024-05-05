@@ -89,6 +89,7 @@ import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -177,6 +178,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     RippleModule,
     BreadcrumbModule,
     InputTextareaModule,
+    DividerModule
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

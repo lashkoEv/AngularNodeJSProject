@@ -80,6 +80,8 @@ export class CategoryPageComponent implements OnInit {
     this.sortOptions = [
       { label: 'Цена (по убыванию)', value: '!price' },
       { label: 'Цена (по возрастанию)', value: 'price' },
+      { label: 'Название (по убыванию)', value: '!title' },
+      { label: 'Название (по возрастанию)', value: 'title' }
     ];
   }
 
@@ -251,46 +253,63 @@ export class CategoryPageComponent implements OnInit {
 
   onSortChange(event: any) {
     let value = event.value;
+  
+    switch(value){
+      case 'price': {
+        this.sortOrder = 1
+        this.sortField = 'wholesalePrice'
 
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-      // this.toShow = this.toShow.sort()
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
+        break
+      } 
+      case '!price': {
+        this.sortOrder = -1
+        this.sortField = 'wholesalePrice'
+
+        break
+      }
+      case 'title': {
+        this.sortOrder = 1
+        this.sortField = 'title'
+
+        break
+      } 
+      case '!title': {
+        this.sortOrder = -1
+        this.sortField = 'title'
+
+        break
+      }
     }
   }
 
-  // sortProducts(option: string) {
-  //   if (option === 'A-Z') {
-  //     this.products.sort((a, b) => (a.name > b.name ? 1 : -1));
-  //   } else if (option === 'Z-A') {
-  //     this.products.sort((a, b) => (a.name < b.name ? 1 : -1));
+  // onSortChange(event: any) {
+  //   let value = event.value;
+  
+  //   if (value.indexOf('!') === 0) {
+  //     this.sortOrder = -1;
+  //     this.sortField = value.substring(1, value.length);
+  
+  //     // Сортировка по убыванию
+  //     this.toShow.sort((a, b) => {
+  //       if (this.sortField === 'price') {
+  //         return (parseFloat(b.retailPrice.toString()) - parseFloat(a.retailPrice.toString())) * this.sortOrder;
+  //       }
+  //       // Добавь дополнительные условия для других полей сортировки, если необходимо
+  //       return 0;
+  //     });
+  //   } else {
+  //     this.sortOrder = 1;
+  //     this.sortField = value;
+  
+  //     // Сортировка по возрастанию
+  //     this.toShow.sort((a, b) => {
+  //       if (this.sortField === 'price') {
+  //         return (parseFloat(a.retailPrice.toString()) - parseFloat(b.retailPrice.toString())) * this.sortOrder;
+  //       }
+  //       // Добавь дополнительные условия для других полей сортировки, если необходимо
+  //       return 0;
+  //     });
   //   }
-  //   this.toShow = this.products.slice(0, this.pageSize);
   // }
-
-  sortProducts(option: string) {
-    console.log(this.products);
-    
-    switch (option) {
-      case 'A-Z':
-        this.products.sort((a, b) => (a.title > b.title ? 1 : -1));
-        break;
-      case 'Z-A':
-        this.products.sort((a, b) => (a.title < b.title ? 1 : -1));
-        break;
-      case 'price-up':
-        this.products.sort((a, b) => (a.retailPrice > b.retailPrice ? 1 : -1));
-        break;
-      case 'price-down':
-        this.products.sort((a, b) => (a.retailPrice < b.retailPrice ? 1 : -1));
-        break;
-      default:
-        break;
-    }
-    
-    this.toShow = this.products.slice(0, this.pageSize);
-  }
+  
 }
