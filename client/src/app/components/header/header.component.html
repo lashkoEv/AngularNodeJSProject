@@ -68,62 +68,64 @@
   <div class="search">
     <app-search></app-search>
   </div>
-  <app-megamenu></app-megamenu>
-  <div class="profile">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-user"
-      class="p-button-rounded p-button-text"
-      *ngIf="!getAuthState()"
-      (click)="showForm()"
-    ></button>
-    <button
-      pButton
-      type="button"
-      icon="pi pi-user"
-      class="p-button-rounded p-button-text"
-      *ngIf="getAuthState()"
-      routerLink="/profile"
-    ></button>
-    <div class="admin-wrapper">
+  <div class="elements-wrapper">
+    <app-megamenu></app-megamenu>
+    <div class="profile">
       <button
         pButton
         type="button"
-        icon="pi pi-wrench"
+        icon="pi pi-user"
         class="p-button-rounded p-button-text"
-        *ngIf="getIsAdmin()"
-        [routerLink]="['/admin']"
+        *ngIf="!getAuthState()"
+        (click)="showForm()"
       ></button>
       <button
         pButton
         type="button"
-        icon="pi pi-times-circle"
+        icon="pi pi-user"
         class="p-button-rounded p-button-text"
         *ngIf="getAuthState()"
-        (click)="logout()"
+        routerLink="/profile"
       ></button>
+      <div class="admin-wrapper">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-wrench"
+          class="p-button-rounded p-button-text"
+          *ngIf="getIsAdmin()"
+          [routerLink]="['/admin']"
+        ></button>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-times-circle"
+          class="p-button-rounded p-button-text"
+          *ngIf="getAuthState()"
+          (click)="logout()"
+        ></button>
+      </div>
     </div>
-  </div>
-  <div class="messages">
-    <a routerLink="/consultation">
-      <button
-        pButton
-        type="button"
-        icon="pi pi-envelope"
-        class="p-button-rounded p-button-text"
-      ></button>
-    </a>
-  </div>
-  <div class="goods">
-    <a routerLink="/catalogue">
-      <button
-        pButton
-        type="button"
-        icon="pi pi-shopping-bag"
-        class="p-button-rounded p-button-text"
-      ></button>
-    </a>
+    <div class="messages">
+      <a routerLink="/consultation">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-envelope"
+          class="p-button-rounded p-button-text"
+        ></button>
+      </a>
+    </div>
+    <div class="goods">
+      <a routerLink="/catalogue">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-shopping-bag"
+          class="p-button-rounded p-button-text"
+        ></button>
+      </a>
+    </div>
   </div>
 
   <div class="wrapper">

@@ -34,7 +34,6 @@ import { MegamenuComponent } from './components/megamenu/megamenu.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderingFormComponent } from './components/ordering-form/ordering-form.component';
 
-
 //MODULES
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -96,6 +95,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { PasswordModule } from 'primeng/password';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @NgModule({
   declarations: [
@@ -190,6 +190,7 @@ import { PasswordModule } from 'primeng/password';
     AutoCompleteModule,
     MegaMenuModule,
     PasswordModule,
+    FloatLabelModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
