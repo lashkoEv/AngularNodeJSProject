@@ -1,9 +1,8 @@
-<span class="p-fluid">
-  <p-autoComplete
+<span class="p-fluid"
+  ><p-autoComplete
     (onSelect)="toShow($event)"
     [(ngModel)]="selectedItem"
     [suggestions]="options"
     (completeMethod)="search($event)"
     [emptyMessage]="'Продукты не найдены!'"
-  />
-</span>
+/></span>
