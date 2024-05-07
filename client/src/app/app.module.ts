@@ -67,6 +67,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CartComponent } from './components/cart/cart.component';
 import { MegamenuComponent } from './components/megamenu/megamenu.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // primeNG
 import { SidebarModule } from 'primeng/sidebar';
@@ -92,6 +93,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -124,6 +126,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
     ScrollUpComponent,
     CartComponent,
     MegamenuComponent,
+    ProfileComponent,
   ],
   imports: [
     FileUploadModule,
@@ -183,6 +186,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
     InputTextareaModule,
     AutoCompleteModule,
     MegaMenuModule,
+    PasswordModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

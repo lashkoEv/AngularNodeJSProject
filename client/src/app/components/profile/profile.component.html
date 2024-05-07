@@ -1,0 +1,96 @@
+<section class="profile" *ngIf="getAuthState()">
+  <div class="profile-container">
+    <div class="profile-img">
+      <img
+        class="profile-wrapper"
+        src="./../../../assets/Avatar Profile.png"
+        alt=""
+      />
+    </div>
+
+    <div class="profile-data">
+      <div class="profile-data flex flex-column gap-2">
+        <label for="username">Логин</label>
+        <input
+          pInputText
+          id="username"
+          aria-describedby="username-help"
+          [disabled]="true"
+          [(ngModel)]="user.login"
+        />
+      </div>
+      <div class="profile-data flex flex-column gap-2">
+        <label for="username">Пароль</label>
+        <p-password
+          feedback="false"
+          [disabled]="true"
+          [toggleMask]="true"
+          [(ngModel)]="user.password"
+        ></p-password>
+      </div>
+      <p-button
+        class="profile-change_button"
+        (click)="showDialog()"
+        label="Изменить пароль"
+      ></p-button>
+      <p-dialog
+        header="Пароль"
+        [(visible)]="visible"
+        [modal]="true"
+        [style]="{ width: 'auto', height: '35vw' }"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <p class="m-0">
+          <p-password
+            class="profile-change_old"
+            feedback="false"
+            [toggleMask]="true"
+            placeholder="Старый пароль"
+            [(ngModel)]="confirmPasswordold"
+            (ngModelChange)="checkPasswordsold()"
+          ></p-password>
+
+          <small *ngIf="!showerroeold" id="username-help"
+            >Не верный старый пароль</small
+          >
+
+          <p-password
+            class="profile-change_new"
+            placeholder="Новый пароль"
+            [toggleMask]="true"
+            [(ngModel)]="newPassword"
+          >
+            <ng-template pTemplate="header">
+              <h6>Введите в поле новый пароль</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p-divider></p-divider>
+              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                <li>Хотя бы одна строчная буква</li>
+                <li>Хотя бы одна заглавная буква</li>
+                <li>Хотя бы одна цифра</li>
+                <li>Минимум 8 символов</li>
+              </ul>
+            </ng-template>
+          </p-password>
+
+          <p-password
+            class="profile-change_new"
+            feedback="false"
+            [toggleMask]="true"
+            placeholder="Повторите новый пароль"
+            [(ngModel)]="confirmPassword"
+            (ngModelChange)="checkPasswords()"
+          ></p-password>
+
+          <small *ngIf="!showerroenew" id="username-help"
+            >Новые пароли не совпадают</small
+          >
+
+          <p-button label="Изменить" (onClick)="changePassword()"></p-button>
+        </p>
+      </p-dialog>
+    </div>
+  </div>
+</section>
