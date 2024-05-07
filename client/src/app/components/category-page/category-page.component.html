@@ -6,19 +6,21 @@
           <b *ngIf="node.label !== 'Оптовая цена'">
           <ng-container *ngIf="node.label !== 'Розничная цена'">
             <ng-container *ngIf="node.label !== 'Количество'">
-              <ng-container *ngIf="node.label === 'Страна'">
+              <ng-container *ngIf="node.label === 'Страна' || node.label === 'Наличие'">
                 {{ node.label }}
               </ng-container>
 
               <ng-container *ngIf="node.label !== 'Страна'">
                 <ng-container *ngIf="node.label !== 'Количество'">
-                  <p-checkbox
-                    (click)="sendFilterData()"
-                    name="groupname"
-                    value="{{ node.label }}"
-                    label="{{ node.label }}"
-                    [(ngModel)]="selectedFilters"
-                  ></p-checkbox>
+                  <ng-container *ngIf="node.label !== 'Наличие'">
+                    <p-checkbox
+                      (click)="sendFilterData()"
+                      name="groupname"
+                      value="{{ node.label }}"
+                      label="{{ node.label }}"
+                      [(ngModel)]="selectedFilters"
+                    ></p-checkbox>
+                  </ng-container>
                 </ng-container>
               </ng-container> 
             </ng-container> 
@@ -121,7 +123,7 @@
               <!-- <div *ngIf="node.label !== 'Оптовая цена'"> -->
                 <!-- <ng-container *ngIf="node.label !== 'Розничная цена'"> -->
                   <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
-                    <ng-container *ngIf="node.label === 'Страна'">
+                    <ng-container *ngIf="node.label === 'Страна' || node.label === 'Наличие'">
                       {{ node.label }}
                     </ng-container>
                     
@@ -331,7 +333,6 @@
         </ng-template>
       </p-dataView>
     </div>
-    
   </div>
   
   <p-panel header="Описание" [toggleable]="true">

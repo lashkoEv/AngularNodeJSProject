@@ -33,7 +33,12 @@ export class CategoryPageComponent implements OnInit {
   public data: any[] = [
     {
       label: 'Страна',
-      children: [],
+      children: []
+    },
+
+    {
+      label: 'Наличие',
+      children: [{label: "Есть в наличии"}, {label: "Нет в наличии"}]
     },
 
     {
@@ -52,6 +57,7 @@ export class CategoryPageComponent implements OnInit {
   public dataForFilters: {
     countries: string[];
     count: number;
+    available: boolean | null;
     maxWholePrice: number;
     maxRetailPrice: number;
   };
@@ -121,9 +127,7 @@ export class CategoryPageComponent implements OnInit {
 
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
-      const hasCountry = this.dataForFilters.countries.includes(
-        String(product.country)
-      );
+      const hasCountry = this.dataForFilters.countries.includes(String(product.country));
 
       const hasCount = this.dataForFilters.count >= parseInt(String(product.count));      
 
@@ -134,12 +138,22 @@ export class CategoryPageComponent implements OnInit {
         parseInt(String(product.retailPrice));
 
       if (hasCountry && hasCount && hasWholePrice && hasRetailPrice) {
-        return true;
+        switch (this.dataForFilters.available) {
+          case true:
+            return +product.count > 0 ? true : false;
+          
+          case false:
+            return +product.count < 1 ? true : false;
+          
+          case null:
+            return true;
+        }
+
+        // return true;
       }
     });
 
     this.toShow = filteredProducts;
-    console.log(this.toShow);
   }
 
   private pushToData(data: any, endPoint: string) {
@@ -207,6 +221,7 @@ export class CategoryPageComponent implements OnInit {
   public setDataForFilters(dataForFilters: {
     countries: string[];
     count: number;
+    available: boolean | null;
     maxWholePrice: number;
     maxRetailPrice: number;
   }) {
@@ -219,6 +234,7 @@ export class CategoryPageComponent implements OnInit {
     const filterData = {
       countries: [],
       count: this.count === 0 ? this.getMinMaxCount('max') : this.count,
+      available: null,
       maxWholePrice:
         this.wholeSaleValues === 0
           ? this.getMinMaxWholesalePrice('max')
@@ -238,6 +254,16 @@ export class CategoryPageComponent implements OnInit {
     countries.length === 0
       ? (filterData.countries = countriesData.map((country) => country.label))
       : (filterData.countries = countries.map((country) => country.label));
+
+      if(this.selectedFilters.includes("Есть в наличии") && this.selectedFilters.includes("Нет в наличии")){        
+        filterData.available = null;
+
+      } else if(this.selectedFilters.includes("Нет в наличии")){
+        filterData.available = false;
+
+      } else if(this.selectedFilters.includes("Есть в наличии")){
+        filterData.available = true;
+      }      
 
     // let counts = countsData.filter((count) =>
     //   this.selectedFilters.includes(count.label)
@@ -263,6 +289,7 @@ export class CategoryPageComponent implements OnInit {
     this.setDataForFilters({
       countries: countriesData,
       count: this.getMinMaxCount('max'),
+      available: null,
       maxWholePrice: this.getMinMaxWholesalePrice('max'),
       maxRetailPrice: this.getMinMaxRetailPrice('max')
     })
