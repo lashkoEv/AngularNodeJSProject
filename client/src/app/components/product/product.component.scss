@@ -94,6 +94,10 @@
 }
 
 .product {
+  word-break: break-all;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   border: 1px solid rgb(228, 228, 228);
   border-radius: 0.5rem;
   padding: 10px;
@@ -124,12 +128,14 @@
 }
 
 .availability {
+  line-height: normal;
   padding: 0.3rem 1rem;
   border-radius: 5px;
   background-color: rgb(186, 225, 127);
 }
 
 .unAvailability {
+  line-height: normal;
   padding: 0.3rem 1rem;
   border-radius: 5px;
   background-color: rgb(225, 127, 127);
