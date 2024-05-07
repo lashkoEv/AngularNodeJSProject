@@ -123,8 +123,17 @@
   margin-top: 1rem;
 }
 
-.line-break {
-  white-space: pre-line;
+.availability {
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  background-color: rgb(186, 225, 127);
+}
+
+.unAvailability {
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  background-color: rgb(225, 127, 127);
+  color: white;
 }
 
 @media screen and (max-width: 5000px) {

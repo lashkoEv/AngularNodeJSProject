@@ -34,12 +34,20 @@
   gap: 30px;
 }
 
+.price {
+  width: 95%;
+}
+
 .price,
 .inputs-warpper {
   // width: 175px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.inputLs {
+  width: 72%;
 }
 
 .inputs-warpper {
@@ -59,20 +67,52 @@ p {
   padding: 0;
 }
 
-.line-break {
-  white-space: pre-line;
-}
-
 .slider {
   width: 100%;
+  padding: 0;
+}
+
+.filterBtn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  margin-top: 0;
+}
+
+.tree {
+  width: 300px;
+}
+
+.template {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+.nodeCheckbox {
+  font-size: 18px;
 }
 // -----------------------------------
 
-.card {
+.productsasd {
   // padding-top: 0;
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wrapper {
+  display: flex;
   gap: 1rem;
 }
 
@@ -176,6 +216,10 @@ p {
 .controls {
   display: flex;
   gap: 1rem;
+}
+
+.card-wrapper {
+  display: flex;
 }
 
 @media screen and (max-width: 1400px) {
