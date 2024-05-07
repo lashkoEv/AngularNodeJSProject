@@ -18,12 +18,13 @@
           placeholder="ФИО"
         />
         <mat-error
+          class="error"
           *ngIf="
             orderForm.get('nameAndLastName').invalid &&
             orderForm.get('nameAndLastName').touched
           "
         >
-          Требуется Название
+          Требуется ФИО
         </mat-error>
       </div>
 
@@ -35,17 +36,17 @@
           required
           pInputText
           id="phoneNumber"
-          (ngModelChange)="onPhoneInput($event)"
           formControlName="phoneNumber"
           placeholder="Телефон"
         />
         <mat-error
+          class="error"
           *ngIf="
-            orderForm.get('phoneNumber').invalid &&
+            orderForm.controls.phoneNumber.errors?.pattern &&
             orderForm.get('phoneNumber').touched
           "
         >
-          Требуется Номер Телефона
+          Введите номер телефона в формате +380XXXXXXXXX
         </mat-error>
       </div>
 
@@ -56,14 +57,11 @@
           class="input"
           pInputText
           formControlName="email"
-          placeholder="Електронная почта"
+          placeholder="example&#64;gmail.com"
         />
-        <mat-error
-          *ngIf="
-            orderForm.get('email').invalid && orderForm.get('email').touched
-          "
-        >
-          Требуется Електронная Почта
+
+        <mat-error class="error" *ngIf="orderForm.controls.email.errors?.email">
+          Введите ел.почту в формате example&#64;gmail.com
         </mat-error>
       </div>
 
@@ -81,6 +79,7 @@
           (ngModelChange)="onCityChange($event)"
         ></p-dropdown>
         <mat-error
+          class="error"
           *ngIf="orderForm.get('city').invalid && orderForm.get('city').touched"
         >
           Требуется город
@@ -90,6 +89,7 @@
       <div *ngIf="filteredDeliveries" class="field">
         <p-inputGroupAddon class="label">Способ Доставки</p-inputGroupAddon>
         <p-dropdown
+          required
           class="input"
           formControlName="typeOfDelivery"
           [options]="typeOfDelivery"
@@ -98,12 +98,12 @@
           (ngModelChange)="onTypeOfDeliveryChange($event)"
         ></p-dropdown>
         <mat-error
+          class="error"
           *ngIf="
-            orderForm.get('phoneNumber').invalid &&
-            orderForm.get('phoneNumber').touched
+            orderForm.get('typeOfDelivery').invalid &&
+            orderForm.get('typeOfDelivery').touched
           "
         >
-          Способ Доставки
         </mat-error>
       </div>
 
@@ -133,6 +133,15 @@
           formControlName="deliveryAddress"
           placeholder="Адрес доставки"
         />
+        <mat-error
+          class="error"
+          *ngIf="
+            orderForm.get('deliveryAddress').invalid &&
+            orderForm.get('deliveryAddress').touched
+          "
+        >
+          Требуется адрес доставки
+        </mat-error>
       </div>
 
       <button class="add-message" type="button" (click)="toggleMessage()">
@@ -149,7 +158,12 @@
         ></textarea>
       </div>
 
-      <p-button class="btn" label="Принять" type="submit"></p-button>
+      <p-button
+        [disabled]="orderForm.invalid"
+        class="btn"
+        label="Принять"
+        type="submit"
+      ></p-button>
     </div>
   </form>
 </div>

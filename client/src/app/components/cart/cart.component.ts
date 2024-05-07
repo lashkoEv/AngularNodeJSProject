@@ -49,15 +49,16 @@ export class CartComponent implements OnInit {
     if (currentUser) {
       console.log('error');
       return;
-    }
-    this.showOrderForm();
-    const order: IOrder = {
-      user: currentUser,
-      products: this.products,
-      totalPrice: this.cartTotalPrice,
-    };
+    } else if (this.cartTotalPrice) {
+      this.showOrderForm();
+      const order: IOrder = {
+        user: currentUser,
+        products: this.products,
+        totalPrice: this.cartTotalPrice,
+      };
 
-    console.log('Order:', order);
+      console.log('Order:', order);
+    }
 
     // this.cartService.resetCart();
   }

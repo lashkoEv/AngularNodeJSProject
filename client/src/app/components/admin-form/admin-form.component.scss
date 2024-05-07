@@ -120,3 +120,35 @@ label::after {
   font-size: 14px;
   color: #666;
 }
+
+@media (max-width: 768px) {
+  .form {
+    width: 90%;
+    border-radius: 1rem;
+  }
+
+  .field {
+    width: 100%;
+  }
+
+  .content {
+    width: 60%;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    margin-top: 1.5rem;
+  }
+
+  .fields-input-wrapper {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .fields-input-wrapper input[type="text"] {
+    flex: 1 1 auto;
+  }
+}

@@ -81,7 +81,7 @@
 </div>
 
 <app-ordering-form
-  *ngIf="this.orderFormService.getIsOrder()"
+  *ngIf="this.orderFormService.getIsOrder() && cartTotalPrice"
 ></app-ordering-form>
 
 <!-- <p-button

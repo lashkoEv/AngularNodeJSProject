@@ -112,16 +112,19 @@ export class OrderingFormComponent implements OnInit {
     }
   }
   public onPhoneInput(event: any) {
-    // const phoneNumber = event;
-    // if (!phoneNumber.startsWith('+380')) {
-    //   event.target.setCustomValidity('Номер телефона должен начинаться с +380');
-    //   return;
-    // }
-    // if (phoneNumber.length !== 12) {
-    //   event.target.setCustomValidity('Номер телефона должен содержать 12 цифр');
-    //   return;
-    // }
-    // event.target.setCustomValidity('');
+    const phoneNumber = event;
+
+    if (!phoneNumber.startsWith('+380')) {
+      event.target.setCustomValidity('Номер телефона должен начинаться с +380');
+      return;
+    }
+
+    if (phoneNumber.length !== 12) {
+      event.target.setCustomValidity('Номер телефона должен содержать 12 цифр');
+      return;
+    }
+
+    event.target.setCustomValidity('');
   }
 
   private defineCart() {
@@ -134,9 +137,12 @@ export class OrderingFormComponent implements OnInit {
   private createForm(): void {
     this.orderForm = this.fb.group({
       nameAndLastName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: [
+        '+380',
+        [Validators.required, Validators.pattern(/^\+380\d{9}$/)],
+      ],
       city: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       typeOfDelivery: ['', Validators.required],
       deliveryAddress: ['', Validators.required],
       message: [''],
@@ -157,7 +163,7 @@ export class OrderingFormComponent implements OnInit {
             `Заказ успешно оформлен ${orderData._id}`
           );
           this.orderFormService.hideForm();
-          this.orderForm.reset();
+
           this.cartService.resetCart();
         },
         (error: Error) => {
