@@ -32,15 +32,21 @@
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <input
+        <textarea
+          [autoResize]="true"
           required
           pInputTextarea
           formControlName="description"
           placeholder="{{ product ? product.description : 'Описание' }}"
-        />
-        <mat-error *ngIf="productForm.get('description').hasError('required')"
-          >Требуется Описание</mat-error
+        ></textarea>
+        <mat-error
+          *ngIf="
+            productForm.get('description').invalid &&
+            productForm.get('description').touched
+          "
         >
+          Требуется Описание
+        </mat-error>
       </div>
 
       <div class="field">
@@ -197,14 +203,20 @@
       </div>
       <div class="field">
         <p-inputGroupAddon>Описание</p-inputGroupAddon>
-        <input
-          pInputText
+        <textarea
+          pInputTextarea
+          [autoResize]="true"
           formControlName="description"
           placeholder="{{ category ? category.description : 'Описание' }}"
-        />
-        <mat-error *ngIf="productForm.get('description').hasError('required')"
-          >Требуется Описание</mat-error
+        ></textarea>
+        <mat-error
+          *ngIf="
+            productForm.get('description').invalid &&
+            productForm.get('description').touched
+          "
         >
+          Требуется Категория
+        </mat-error>
       </div>
 
       <div class="field">
