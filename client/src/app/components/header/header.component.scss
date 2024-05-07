@@ -1,13 +1,13 @@
 .top-header {
   background-color: var(--primary-color);
   color: #fff;
-  padding: 5px;
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
 }
 
 .phone-wrapper {
-  margin-left: 20px;
+  // margin-left: 20px;
 }
 
 .admin-wrapper {
@@ -73,7 +73,7 @@
 .main-header {
   background-color: #fff;
   color: #000000;
-  padding: 15px;
+  padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -164,4 +164,8 @@
 .btn {
   background-color: #fff;
   padding: 1.7rem 2.5rem;
+}
+
+.profile {
+  display: flex;
 }

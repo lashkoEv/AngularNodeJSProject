@@ -1,6 +1,7 @@
 import { AuthorizationService } from '../../services/authorization.service';
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-header',

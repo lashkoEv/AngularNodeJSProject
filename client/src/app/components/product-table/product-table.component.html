@@ -77,7 +77,7 @@
       <td>{{ product.count }}</td>
       <td>{{ product.category.title || product.category }}</td>
       <td>{{ product.description.slice(0, 70) }}...</td>
-      <td>{{ product.country }}</td>
+      <td>{{ product.country.country }}</td>
       <td>
         <span *ngFor="let data of product.fields.slice(0, 2)">
           <span *ngIf="data.key && data.value">

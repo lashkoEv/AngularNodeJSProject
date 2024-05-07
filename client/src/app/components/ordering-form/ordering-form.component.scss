@@ -1,0 +1,28 @@
+.add-message {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.field {
+  display: flex;
+
+  margin-bottom: 1rem;
+}
+.label {
+  width: 200px;
+}
+.input {
+  width: 200px;
+}

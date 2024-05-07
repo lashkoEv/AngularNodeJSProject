@@ -34,12 +34,20 @@
   gap: 30px;
 }
 
+.price {
+  width: 95%;
+}
+
 .price,
 .inputs-warpper {
   // width: 175px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.inputLs {
+  width: 72%;
 }
 
 .inputs-warpper {
@@ -59,20 +67,44 @@ p {
   padding: 0;
 }
 
-.line-break {
-  white-space: pre-line;
-}
-
 .slider {
   width: 100%;
+  padding: 0;
+}
+
+.filterBtn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  margin-top: 0;
+}
+
+.tree {
+  width: 300px;
+}
+
+.template {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+.nodeCheckbox {
+  font-size: 18px;
 }
 // -----------------------------------
 
 .card {
-  // padding-top: 0;
-  padding-bottom: 0;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+}
+
+.wrapper {
+  display: flex;
   gap: 1rem;
 }
 
@@ -112,14 +144,14 @@ p {
 .title {
   font-weight: 800;
   line-height: normal;
-  font-size: larger;
+  font-size: 1rem;
   cursor: pointer;
 }
 
 .price {
   font-weight: 800;
   line-height: normal;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .product-grid {
@@ -127,6 +159,7 @@ p {
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   padding: 1rem 0;
+  width: 100%;
 }
 
 .product-grid > div > .product {
@@ -139,6 +172,10 @@ p {
   flex-direction: column;
   gap: 1rem;
   text-align: center;
+  word-break: break-all;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .product-grid > div > .product > .image {
@@ -178,9 +215,20 @@ p {
   gap: 1rem;
 }
 
+.card-wrapper {
+  display: flex;
+}
+
 @media screen and (max-width: 1400px) {
   .product-grid {
     gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .filters {
+    display: none;
+    visibility: hidden;
   }
 }
 

@@ -36,8 +36,12 @@ export class CategoryPageComponent implements OnInit {
     },
 
     {
+      label: 'Наличие',
+      children: [{ label: 'Есть в наличии' }, { label: 'Нет в наличии' }],
+    },
+
+    {
       label: 'Количество',
-      children: [],
     },
 
     {
@@ -51,7 +55,8 @@ export class CategoryPageComponent implements OnInit {
 
   public dataForFilters: {
     countries: string[];
-    counts: string[];
+    count: number;
+    available: boolean | null;
     maxWholePrice: number;
     maxRetailPrice: number;
   };
@@ -59,6 +64,7 @@ export class CategoryPageComponent implements OnInit {
   public wholeSaleValues: number = 0;
   public retailSaleValues: number = 0;
   public selectedFilters: any[] = [];
+  public count: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -78,10 +84,8 @@ export class CategoryPageComponent implements OnInit {
     });
 
     this.sortOptions = [
-      { label: 'Цена (по убыванию)', value: '-retailPrice' },
-      { label: 'Цена (по возрастанию)', value: '+retailPrice' },
-      { label: 'Название (по убыванию)', value: '-title' },
-      { label: 'Название (по возрастанию)', value: '+title' },
+      { label: 'Цена (по убыванию)', value: '!price' },
+      { label: 'Цена (по возрастанию)', value: 'price' },
     ];
   }
 
@@ -114,7 +118,8 @@ export class CategoryPageComponent implements OnInit {
         this.pushToData(this.countries, 'Страна');
 
         this.counts = [...new Set(this.counts)];
-        this.pushToData(this.counts, 'Количество');
+
+        // this.pushToData(this.counts, 'Количество');
       });
     });
   }
@@ -124,18 +129,31 @@ export class CategoryPageComponent implements OnInit {
       const hasCountry = this.dataForFilters.countries.includes(
         String(product.country.country)
       );
-      const hasCount = this.dataForFilters.counts.includes(
-        String(product.count)
-      );
+
+      const hasCount =
+        this.dataForFilters.count >= parseInt(String(product.count));
+
       const hasWholePrice =
         this.dataForFilters.maxWholePrice >=
         parseInt(String(product.wholesalePrice));
+
       const hasRetailPrice =
         this.dataForFilters.maxRetailPrice >=
         parseInt(String(product.retailPrice));
 
       if (hasCountry && hasCount && hasWholePrice && hasRetailPrice) {
-        return true;
+        switch (this.dataForFilters.available) {
+          case true:
+            return +product.count > 0 ? true : false;
+
+          case false:
+            return +product.count < 1 ? true : false;
+
+          case null:
+            return true;
+        }
+
+        // return true;
       }
     });
 
@@ -182,6 +200,18 @@ export class CategoryPageComponent implements OnInit {
     }
   }
 
+  public getMinMaxCount(minOrMax: string) {
+    if (this.products) {
+      const counts = this.products.map((product) =>
+        parseInt(String(product.count))
+      );
+
+      if (minOrMax === 'min') {
+        return Math.min(...counts);
+      } else return Math.max(...counts);
+    }
+  }
+
   public getCountries() {
     //find idx
     return this.data[0].children;
@@ -194,7 +224,8 @@ export class CategoryPageComponent implements OnInit {
 
   public setDataForFilters(dataForFilters: {
     countries: string[];
-    counts: string[];
+    count: number;
+    available: boolean | null;
     maxWholePrice: number;
     maxRetailPrice: number;
   }) {
@@ -203,14 +234,11 @@ export class CategoryPageComponent implements OnInit {
     this.setToShow();
   }
 
-  // getShown() {
-  //   return this.filtersService.getShown();
-  // }
-
   public sendFilterData() {
     const filterData = {
       countries: [],
-      counts: [],
+      count: this.count === 0 ? this.getMinMaxCount('max') : this.count,
+      available: null,
       maxWholePrice:
         this.wholeSaleValues === 0
           ? this.getMinMaxWholesalePrice('max')
@@ -222,23 +250,55 @@ export class CategoryPageComponent implements OnInit {
     };
 
     const countriesData = this.getCountries();
-    const countsData = this.getCounts();
 
     let countries = countriesData.filter((country) =>
       this.selectedFilters.includes(country.label)
     );
+
     countries.length === 0
       ? (filterData.countries = countriesData.map((country) => country.label))
       : (filterData.countries = countries.map((country) => country.label));
 
-    let counts = countsData.filter((count) =>
-      this.selectedFilters.includes(count.label)
-    );
-    counts.length === 0
-      ? (filterData.counts = countsData.map((count) => count.label))
-      : (filterData.counts = counts.map((count) => count.label));
+    if (
+      this.selectedFilters.includes('Есть в наличии') &&
+      this.selectedFilters.includes('Нет в наличии')
+    ) {
+      filterData.available = null;
+    } else if (this.selectedFilters.includes('Нет в наличии')) {
+      filterData.available = false;
+    } else if (this.selectedFilters.includes('Есть в наличии')) {
+      filterData.available = true;
+    }
+
+    // let counts = countsData.filter((count) =>
+    //   this.selectedFilters.includes(count.label)
+    // );
+
+    // counts.length === 0
+    //   ? (filterData.counts = countsData.map((count) => count.label))
+    //   : (filterData.counts = counts.map((count) => count.label));
 
     this.setDataForFilters(filterData);
+  }
+
+  public resetFilters() {
+    this.wholeSaleValues = 0;
+    this.retailSaleValues = 0;
+    this.count = 0;
+    this.selectedFilters = [];
+
+    // this.sendFilterData();
+    const countriesData = this.getCountries().map((country) => country.label);
+
+    this.setDataForFilters({
+      countries: countriesData,
+      count: this.getMinMaxCount('max'),
+      available: null,
+      maxWholePrice: this.getMinMaxWholesalePrice('max'),
+      maxRetailPrice: this.getMinMaxRetailPrice('max'),
+    });
+
+    // this.selectedFilters = [];
   }
 
   addToCart(product: IProduct) {
@@ -254,27 +314,13 @@ export class CategoryPageComponent implements OnInit {
   onSortChange(event: any) {
     let value = event.value;
 
-    switch (value) {
-      case '-retailPrice': {
-        this.sortOrder = -1;
-        this.sortField = 'retailPrice';
-        break;
-      }
-      case '+retailPrice': {
-        this.sortOrder = 1;
-        this.sortField = 'retailPrice';
-        break;
-      }
-      case '-title': {
-        this.sortOrder = -1;
-        this.sortField = 'title';
-        break;
-      }
-      case '+title': {
-        this.sortOrder = 1;
-        this.sortField = 'title';
-        break;
-      }
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+      // this.toShow = this.toShow.sort()
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
     }
   }
 }

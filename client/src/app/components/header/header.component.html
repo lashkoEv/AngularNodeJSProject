@@ -78,6 +78,14 @@
       *ngIf="!getAuthState()"
       (click)="showForm()"
     ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-user"
+      class="p-button-rounded p-button-text"
+      *ngIf="getAuthState()"
+      routerLink="/profile"
+    ></button>
     <div class="admin-wrapper">
       <button
         pButton
