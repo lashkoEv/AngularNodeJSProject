@@ -14,5 +14,5 @@ export interface IProduct {
   count: String;
   fields: any[];
   category: ICategory;
-  imgSrc: String;
+  imgSrc: string;
 }

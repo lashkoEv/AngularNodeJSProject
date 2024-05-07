@@ -108,7 +108,7 @@
       <td>{{ category._id }}</td>
       <td><img src="{{ category.imgSrc }}" class="img" alt="Category" /></td>
       <td>{{ category.title }}</td>
-      <td>{{ category.description }}</td>
+      <td class="line-break">{{ category.description }}</td>
       <td>
         <p-button
           icon="pi pi-trash"
@@ -154,7 +154,7 @@
       </p>
     </p-fieldset> -->
     <p-fieldset legend="Описание" [toggleable]="true">
-      <p class="m-0">
+      <p class="line-break m-0">
         {{ current?.description }}
       </p>
     </p-fieldset>
