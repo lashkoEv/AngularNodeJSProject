@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { IOrderedProduct } from '../../interfaces/IOrderedProduct';
 import { IOrder } from '../../interfaces/IOrder';
-import { IUser } from '../../interfaces/iUser';
+import { IUser } from '../../interfaces/IUser';
+import { OrderFormService } from '../../services/order-form.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,8 +15,12 @@ export class CartComponent implements OnInit {
   public products: IOrderedProduct[];
   public cartTotalPrice: number;
   public currentUser: IUser;
+  public isOrder: boolean;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    public orderFormService: OrderFormService
+  ) {}
 
   ngOnInit(): void {
     this.cartService.productSubject.subscribe((products: IOrderedProduct[]) => {
@@ -42,10 +47,10 @@ export class CartComponent implements OnInit {
 
   checkout(currentUser: IUser) {
     if (currentUser) {
-      console.error('Нет необходимой информации');
+      console.log('error');
       return;
     }
-
+    this.showOrderForm();
     const order: IOrder = {
       user: currentUser,
       products: this.products,
@@ -59,6 +64,10 @@ export class CartComponent implements OnInit {
 
   updateCartTotalPrice() {
     this.cartTotalPrice = this.cartService.getCartTotalPrice();
+  }
+
+  public showOrderForm() {
+    this.orderFormService.showForm();
   }
 }
 

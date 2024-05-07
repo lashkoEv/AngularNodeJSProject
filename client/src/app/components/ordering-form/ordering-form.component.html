@@ -1,0 +1,155 @@
+<div class="container">
+  <form
+    enctype="multipart/form-data"
+    [formGroup]="orderForm"
+    (ngSubmit)="onSubmit()"
+    class="form"
+  >
+    <div class="content">
+      <h1 class="title">{{ orderFormService.getFormTitle() }}</h1>
+
+      <div class="field">
+        <p-inputGroupAddon class="label">ФИО</p-inputGroupAddon>
+        <input
+          class="input"
+          required
+          pInputText
+          formControlName="nameAndLastName"
+          placeholder="ФИО"
+        />
+        <mat-error
+          *ngIf="
+            orderForm.get('nameAndLastName').invalid &&
+            orderForm.get('nameAndLastName').touched
+          "
+        >
+          Требуется Название
+        </mat-error>
+      </div>
+
+      <div class="field">
+        <p-inputGroupAddon class="label">Номер телефона</p-inputGroupAddon>
+        <input
+          type="tel"
+          class="input"
+          required
+          pInputText
+          id="phoneNumber"
+          (ngModelChange)="onPhoneInput($event)"
+          formControlName="phoneNumber"
+          placeholder="Телефон"
+        />
+        <mat-error
+          *ngIf="
+            orderForm.get('phoneNumber').invalid &&
+            orderForm.get('phoneNumber').touched
+          "
+        >
+          Требуется Номер Телефона
+        </mat-error>
+      </div>
+
+      <div class="field">
+        <p-inputGroupAddon class="label">Електронная почта</p-inputGroupAddon>
+        <input
+          type="email"
+          class="input"
+          pInputText
+          formControlName="email"
+          placeholder="Електронная почта"
+        />
+        <mat-error
+          *ngIf="
+            orderForm.get('email').invalid && orderForm.get('email').touched
+          "
+        >
+          Требуется Електронная Почта
+        </mat-error>
+      </div>
+
+      <div class="field">
+        <p-inputGroupAddon class="label">Город</p-inputGroupAddon>
+
+        <p-dropdown
+          class="input"
+          formControlName="city"
+          [filter]="true"
+          filterBy="city"
+          [options]="cities"
+          optionLabel="city"
+          placeholder="Выберите город"
+          (ngModelChange)="onCityChange($event)"
+        ></p-dropdown>
+        <mat-error
+          *ngIf="orderForm.get('city').invalid && orderForm.get('city').touched"
+        >
+          Требуется город
+        </mat-error>
+      </div>
+
+      <div *ngIf="filteredDeliveries" class="field">
+        <p-inputGroupAddon class="label">Способ Доставки</p-inputGroupAddon>
+        <p-dropdown
+          class="input"
+          formControlName="typeOfDelivery"
+          [options]="typeOfDelivery"
+          optionLabel="type"
+          placeholder="Выберите Способ Доставки"
+          (ngModelChange)="onTypeOfDeliveryChange($event)"
+        ></p-dropdown>
+        <mat-error
+          *ngIf="
+            orderForm.get('phoneNumber').invalid &&
+            orderForm.get('phoneNumber').touched
+          "
+        >
+          Способ Доставки
+        </mat-error>
+      </div>
+
+      <div class="field">
+        <p-inputGroupAddon class="label" *ngIf="isDeliveryOnPost"
+          >Отделение Почты</p-inputGroupAddon
+        >
+        <p-dropdown
+          class="input"
+          *ngIf="filteredDeliveries && isDeliveryOnPost"
+          formControlName="deliveryAddress"
+          [filter]="true"
+          filterBy="address"
+          [options]="filteredDeliveries"
+          optionLabel="address"
+          placeholder="Выберите отделение"
+        ></p-dropdown>
+
+        <p-inputGroupAddon class="label" *ngIf="isDeliveryAddress"
+          >Адрес доставки</p-inputGroupAddon
+        >
+        <input
+          class="input"
+          *ngIf="isDeliveryAddress"
+          required
+          pInputText
+          formControlName="deliveryAddress"
+          placeholder="Адрес доставки"
+        />
+      </div>
+
+      <button class="add-message" type="button" (click)="toggleMessage()">
+        {{ !isMessage ? "Добавить комантарий к заказу" : "X" }}
+      </button>
+      <div *ngIf="isMessage" class="field">
+        <textarea
+          class="input"
+          [autoResize]="true"
+          required
+          pInputTextarea
+          formControlName="message"
+          placeholder="сообщение..."
+        ></textarea>
+      </div>
+
+      <p-button class="btn" label="Принять" type="submit"></p-button>
+    </div>
+  </form>
+</div>

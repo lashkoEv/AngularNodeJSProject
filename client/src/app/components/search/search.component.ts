@@ -1,45 +1,56 @@
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable, map, startWith, switchMap } from 'rxjs';
+import { Component } from '@angular/core';
 import { IProduct } from '../../interfaces/IProduct';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
+interface AutoCompleteCompleteEvent {
+  originalEvent: Event;
+  query: string;
+}
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
-export class SearchComponent implements OnInit {
-  myControl = new FormControl<string | IProduct>('');
-  options: IProduct[] = [];
-  filteredOptions: Observable<IProduct[]>;
+export class SearchComponent {
+  products: IProduct[];
+  options: String[];
+  selectedItem: IProduct;
 
-  constructor(private productService: ProductService) {
-    this.productService.getAll().subscribe((data) => {
-      this.options = data;
+  constructor(private productService: ProductService, private router: Router) {}
+
+  ngOnInit() {
+    this.productService.getAll().subscribe((products: IProduct[]) => {
+      this.products = products;
+      this.options = products.map((p) => p.title);
     });
   }
 
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => {
-        const title = typeof value === 'string' ? value : value?.title;
-        return title ? this._filter(title as string) : this.options.slice();
-      })
-    );
+  search(event: AutoCompleteCompleteEvent) {
+    let query = event.query.toLowerCase();
+
+    this.options = this.products
+      .filter((p) => p.title.toLowerCase().includes(query))
+      .map((p) => p.title);
   }
 
-  displayFn(product: IProduct): String {
-    return product.title;
+  toShow(event: any) {
+    this.router.navigate([
+      '/products',
+      this.products.find((p) => p.title === event.value)._id,
+    ]);
   }
+  // filterProducts(event: AutoCompleteCompleteEvent) {
+  //   let filtered: IProduct[] = [];
+  //   let query = event.query.toLowerCase();
 
-  private _filter(title: string): IProduct[] {
-    const filterValue = title.toLowerCase();
-
-    return this.options.filter((option) =>
-      option.title.toLowerCase().includes(filterValue)
-    );
-  }
+  //   for (let i = 0; i < this.products.length; i++) {
+  //     let product = this.products[i];
+  //     if (product.category.title.toLowerCase().startsWith(query)) {
+  //       filtered.push(product);
+  //     }
+  //   }
+  //   this.filteredProducts = filtered;
+  // }
 }

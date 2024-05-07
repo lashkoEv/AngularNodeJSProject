@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="title-wrapper">
   <h2 id="title">КОНСУЛЬТАЦИЯ</h2>
 </section>
@@ -46,10 +47,58 @@
   
       <button
         mat-raised-button
+=======
+<section class="form">
+  <form #form="ngForm">
+    <section class="consultation-title">
+      <h2 id="consultation">CВЯЗАТЬСЯ С НАМИ</h2>
+    </section>
+    <div class="form-group">
+      <p-floatLabel>
+        <input
+          pInputText
+          id="email"
+          name="inputEmail"
+          [(ngModel)]="inputEmail"
+        />
+        <label for="username">Почта</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="form-group">
+      <p-floatLabel>
+        <input
+          pInputText
+          id="topic"
+          name="inputTopic"
+          [(ngModel)]="inputTopic"
+        />
+        <label for="username">Тема</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="form-group">
+      <p-floatLabel>
+        <textarea
+          id="message"
+          name="inputMessage"
+          [(ngModel)]="inputMessage"
+          rows="5"
+          cols="30"
+          required
+          pInputTextarea
+        ></textarea>
+        <label for="message" class="message-label">Сообщение:</label>
+      </p-floatLabel>
+    </div>
+    <div class="form-group">
+      <button
+>>>>>>> master
         type="submit"
         (click)="add(form.value)"
         class="sendBtn"
         role="button"
+<<<<<<< HEAD
       >
         Отправить
       </button>
@@ -59,3 +108,19 @@
     </div>
   </section>
 </div>
+=======
+        pButton
+        type="button"
+        label="Отправить"
+      ></button>
+    </div>
+  </form>
+  <!-- <div class="image-wrapper">
+    <img
+      src="../../assets/images/917597d6739fb1c47de373307030954b.png"
+      alt="+"
+      class="image"
+    />
+  </div> -->
+</section>
+>>>>>>> master

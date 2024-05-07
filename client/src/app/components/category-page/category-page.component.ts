@@ -42,6 +42,11 @@ export class CategoryPageComponent implements OnInit {
     },
 
     {
+      label: 'Наличие',
+      children: [{ label: 'Есть в наличии' }, { label: 'Нет в наличии' }],
+    },
+
+    {
       label: 'Количество',
     },
 
@@ -108,7 +113,7 @@ export class CategoryPageComponent implements OnInit {
         this.toShow = data;
 
         this.countries = this.products.map((product) => {
-          return product.country;
+          return product.country.country;
         });
 
         this.counts = this.products.map((product) => {
@@ -119,7 +124,11 @@ export class CategoryPageComponent implements OnInit {
         this.pushToData(this.countries, 'Страна');
 
         this.counts = [...new Set(this.counts)];
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> master
         // this.pushToData(this.counts, 'Количество');
       });
     });
@@ -127,11 +136,24 @@ export class CategoryPageComponent implements OnInit {
 
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
+<<<<<<< HEAD
       const hasCountry = this.dataForFilters.countries.includes(String(product.country));
 
       const hasCount = this.dataForFilters.count >= parseInt(String(product.count));      
 
       const hasWholePrice = this.dataForFilters.maxWholePrice >= parseInt(String(product.wholesalePrice));
+=======
+      const hasCountry = this.dataForFilters.countries.includes(
+        String(product.country.country)
+      );
+
+      const hasCount =
+        this.dataForFilters.count >= parseInt(String(product.count));
+
+      const hasWholePrice =
+        this.dataForFilters.maxWholePrice >=
+        parseInt(String(product.wholesalePrice));
+>>>>>>> master
 
       const hasRetailPrice =
         this.dataForFilters.maxRetailPrice >=
@@ -141,10 +163,17 @@ export class CategoryPageComponent implements OnInit {
         switch (this.dataForFilters.available) {
           case true:
             return +product.count > 0 ? true : false;
+<<<<<<< HEAD
           
           case false:
             return +product.count < 1 ? true : false;
           
+=======
+
+          case false:
+            return +product.count < 1 ? true : false;
+
+>>>>>>> master
           case null:
             return true;
         }
@@ -255,6 +284,7 @@ export class CategoryPageComponent implements OnInit {
       ? (filterData.countries = countriesData.map((country) => country.label))
       : (filterData.countries = countries.map((country) => country.label));
 
+<<<<<<< HEAD
       if(this.selectedFilters.includes("Есть в наличии") && this.selectedFilters.includes("Нет в наличии")){        
         filterData.available = null;
 
@@ -264,6 +294,18 @@ export class CategoryPageComponent implements OnInit {
       } else if(this.selectedFilters.includes("Есть в наличии")){
         filterData.available = true;
       }      
+=======
+    if (
+      this.selectedFilters.includes('Есть в наличии') &&
+      this.selectedFilters.includes('Нет в наличии')
+    ) {
+      filterData.available = null;
+    } else if (this.selectedFilters.includes('Нет в наличии')) {
+      filterData.available = false;
+    } else if (this.selectedFilters.includes('Есть в наличии')) {
+      filterData.available = true;
+    }
+>>>>>>> master
 
     // let counts = countsData.filter((count) =>
     //   this.selectedFilters.includes(count.label)
@@ -276,7 +318,11 @@ export class CategoryPageComponent implements OnInit {
     this.setDataForFilters(filterData);
   }
 
+<<<<<<< HEAD
   public resetFilters(){
+=======
+  public resetFilters() {
+>>>>>>> master
     this.wholeSaleValues = 0;
     this.retailSaleValues = 0;
     this.count = 0;
@@ -285,14 +331,22 @@ export class CategoryPageComponent implements OnInit {
     // this.sendFilterData();
     const countriesData = this.getCountries().map((country) => country.label);
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> master
     this.setDataForFilters({
       countries: countriesData,
       count: this.getMinMaxCount('max'),
       available: null,
       maxWholePrice: this.getMinMaxWholesalePrice('max'),
+<<<<<<< HEAD
       maxRetailPrice: this.getMinMaxRetailPrice('max')
     })
+=======
+      maxRetailPrice: this.getMinMaxRetailPrice('max'),
+    });
+>>>>>>> master
 
     // this.selectedFilters = [];
   }

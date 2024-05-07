@@ -24,10 +24,16 @@
         <div class="split info">
           <h1 class="title">{{ product?.title }}</h1>
 
+<<<<<<< HEAD
           <p>
             <span class="availability" *ngIf="product?.count > 0">Есть в наличии</span>
             <span class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</span>
           </p>
+=======
+          <p class="availability" *ngIf="product?.count > 0">Есть в наличии</p>
+
+          <p class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</p>
+>>>>>>> master
 
           <div class="price-wrapper">
             <div class="wholesale">
@@ -59,7 +65,7 @@
     </p-splitter>
 
     <p-panel header="Описание" [toggleable]="true">
-      <p>
+      <p class="line-break">
         {{ product?.description }}
       </p>
     </p-panel>
@@ -76,7 +82,7 @@
         </div>
         <div class="row">
           <div class="cell">Страна</div>
-          <div class="cell">{{ product?.country }}</div>
+          <div class="cell">{{ product?.country.country }}</div>
         </div>
         <div class="row_c" *ngFor="let item of product?.fields">
           <div *ngIf="item.key && item.value">

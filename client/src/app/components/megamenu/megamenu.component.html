@@ -1,0 +1,6 @@
+<p-dropdown
+  [options]="dropdownCategories"
+  [(ngModel)]="selectedCategoryId"
+  placeholder="Каталог"
+  (onChange)="toShow($event)"
+/>
