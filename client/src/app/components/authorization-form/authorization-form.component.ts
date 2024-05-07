@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
 import { SpinnerService } from '../../services/spinner.service';
 import { NotificationService } from '../../services/notification.service';
-import { IUser } from '../../interfaces/iUser';
+import { IUser } from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-authorization-form',

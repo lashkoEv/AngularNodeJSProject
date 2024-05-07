@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { IOrderedProduct } from '../../interfaces/IOrderedProduct';
 import { IOrder } from '../../interfaces/IOrder';
-import { IUser } from '../../interfaces/iUser';
+import { IUser } from '../../interfaces/IUser';
 import { OrderFormService } from '../../services/order-form.service';
 
 @Component({

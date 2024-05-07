@@ -112,19 +112,16 @@ export class OrderingFormComponent implements OnInit {
     }
   }
   public onPhoneInput(event: any) {
-    const phoneNumber = event;
-
-    if (!phoneNumber.startsWith('+380')) {
-      event.target.setCustomValidity('Номер телефона должен начинаться с +380');
-      return;
-    }
-
-    if (phoneNumber.length !== 12) {
-      event.target.setCustomValidity('Номер телефона должен содержать 12 цифр');
-      return;
-    }
-
-    event.target.setCustomValidity('');
+    // const phoneNumber = event;
+    // if (!phoneNumber.startsWith('+380')) {
+    //   event.target.setCustomValidity('Номер телефона должен начинаться с +380');
+    //   return;
+    // }
+    // if (phoneNumber.length !== 12) {
+    //   event.target.setCustomValidity('Номер телефона должен содержать 12 цифр');
+    //   return;
+    // }
+    // event.target.setCustomValidity('');
   }
 
   private defineCart() {

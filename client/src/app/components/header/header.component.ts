@@ -21,7 +21,6 @@ export class HeaderComponent {
       links: ['catalogue', 'consultation'],
     },
   ];
-  public sidebarVisible: boolean;
 
   constructor(
     private authorizationService: AuthorizationService,

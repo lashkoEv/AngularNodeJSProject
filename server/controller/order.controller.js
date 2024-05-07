@@ -1,10 +1,10 @@
-const { Order } = require('../model/order.model');
+const { Order } = require("../model/order.model");
 
 async function getAll(req, res) {
   try {
     const orders = await Order.find();
 
-    console.log('Found:', orders);
+    console.log("Found:", orders);
 
     return res.send(orders);
   } catch (error) {
@@ -20,7 +20,7 @@ async function getById(req, res) {
   try {
     const order = await Order.findOne({ _id: req.body.id });
 
-    console.log('Found:', order);
+    console.log("Found:", order);
 
     return res.send(order);
   } catch (error) {
@@ -47,7 +47,7 @@ async function add(req, res) {
 
     await order.save();
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -61,7 +61,7 @@ async function deleteById(req, res) {
   try {
     await Order.deleteOne({ _id: req.body.id });
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -85,7 +85,7 @@ async function updateById(req, res) {
       }
     );
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 

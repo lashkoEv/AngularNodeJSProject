@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
   nameAndLastName: String,
@@ -11,7 +11,7 @@ const orderSchema = mongoose.Schema({
   cart: {},
 });
 
-const Order = mongoose.model('Orders', orderSchema);
+const Order = mongoose.model("Orders", orderSchema);
 
 module.exports = {
   Order,
