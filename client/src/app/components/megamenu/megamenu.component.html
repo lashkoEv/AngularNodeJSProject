@@ -1,3 +1,6 @@
-<div class="card">
-  <p-megaMenu [model]="items" />
-</div>
+<p-dropdown
+  [options]="dropdownCategories"
+  [(ngModel)]="selectedCategoryId"
+  placeholder="Каталог"
+  (onChange)="toShow($event)"
+/>

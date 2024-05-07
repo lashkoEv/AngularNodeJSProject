@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MegaMenuItem, MenuItem } from 'primeng/api';
-import { IProduct } from '../../interfaces/IProduct';
 import { ICategory } from '../../interfaces/ICategory';
-import { ProductService } from '../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
+import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-megamenu',
@@ -12,85 +10,68 @@ import { CategoryService } from '../../services/category.service';
   styleUrl: './megamenu.component.scss',
 })
 export class MegamenuComponent implements OnInit {
-  items: MegaMenuItem[] | undefined;
-
-  public product: IProduct;
-  public products: IProduct[];
-  public category: ICategory[];
+  public dropdownCategories: SelectItem[];
+  public selectedCategoryId: any;
   public categories: ICategory[];
-  private id: string;
 
   constructor(
-    private productService: ProductService,
     private categoryService: CategoryService,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data) => {
-      // this.id = data.id;
-
-      this.categoryService.getAll().subscribe((categoryData) => {
-        this.category = categoryData;
-
-        const categoryItems: MenuItem[] = this.category.map((item) => {
-          return {
-            label: item.title.toString(),
-            icon: 'pi pi-box',
-            routerLink: ['/category', item._id],
-          };
-        });
-        this.items = [
-          {
-            label: 'Каталог',
-            icon: 'pi pi-box',
-            routerLink: '/catalogue',
-            items: [categoryItems],
-            //  [
-            // [
-            //   {
-            //     label: `${this.category[0].title}`,
-            //     routerLink: ['/category', this.category[0]._id],
-            // items: [
-            //   {
-            //     label: `${this.product.title}`,
-            //     routerLink: ['/products', this.product._id],
-            //   },
-            // ],
-            // },
-            // ],
-            // ],
-          },
-        ];
-
-        // this.productService
-        //   .getByCategory(this.category)
-        //   .subscribe((productData) => {
-        //     this.product = productData;
-
-        //     this.items = [
-        //       {
-        //         label: 'Каталог',
-        //         icon: 'pi pi-box',
-        //         routerLink: '/catalogue',
-        //         items: [
-        //           [
-        //             {
-        //               label: `${this.category.title}`,
-        //               routerLink: ['/category', this.product.category._id],
-        //               items: [
-        //                 {
-        //                   label: `${this.product.title}`,
-        //                   routerLink: ['/products', this.product._id],
-        //                 },
-        //               ],
-        //             },
-        //           ],
-        //         ],
-        //       },
-        //     ];
-        //   });
+    this.categoryService.getAll().subscribe((categoryData: ICategory[]) => {
+      this.categories = categoryData;
+      this.dropdownCategories = categoryData.map((item: ICategory) => {
+        return {
+          label: item.title.toString(),
+          value: item._id,
+        };
       });
     });
   }
+
+  toShow(event: any): void {
+    const selectedCategoryId = event.value;
+    const selectedCategory = this.categories.find(
+      (category) => category._id === selectedCategoryId
+    );
+    if (selectedCategory) {
+      this.router.navigate(['/category', selectedCategory._id]);
+    }
+  }
 }
+
+// getCategory(categoryID: string) {
+//   this.categoryService.getById(categoryID).subscribe((data) => {
+//     this.category = data;
+
+//     this.items = [
+//       { label: 'Каталог', routerLink: '/catalogue' },
+//       {
+//         label: `${this.category.title}`,
+//         routerLink: ['/category', this.category._id],
+//       },
+//     ];
+
+// this.route.params.subscribe((data) => {
+//   this.categoryService.getAll().subscribe((categoryData) => {
+//     this.category = categoryData;
+
+//     const categoryItems: MenuItem[] = this.category.map((item) => {
+//       return {
+//         label: item.title.toString(),
+//         icon: 'pi pi-box',
+//         routerLink: ['/category', item._id],
+//       };
+//     });
+//     this.items = [
+//       {
+//         label: 'Каталог',
+//         icon: 'pi pi-box',
+//         routerLink: '/catalogue',
+//         items: [categoryItems],
+//       },
+//     ];
+//   });
+// });
