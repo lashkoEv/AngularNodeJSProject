@@ -104,6 +104,10 @@
   transition: transform 0.3s ease;
 }
 
+.line-break {
+  white-space: pre-line;
+}
+
 .product:hover {
   transform: translateY(-5px);
 }
