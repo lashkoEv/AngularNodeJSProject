@@ -7,15 +7,31 @@
     class="p-button-rounded p-button-text"
     style="color: white"
   ></button> -->
-    <i class="pi pi-mobile"></i>
-    <span class="phone-number">{{ phoneNumber }}</span>
+    <a href="tel:{{ phoneNumber }}" class="tel"><i class="pi pi-mobile"></i></a>
+    <a href="tel:{{ phoneNumber }}" class="tel">
+      <span class="phone-number">{{ phoneNumber }}</span>
+    </a>
   </div>
   <div class="location-wrapper">
     <!-- <button -->
-    <i class="pi pi-map-marker"></i>
-
+    <a
+      href="https://maps.app.goo.gl/xDTu3DuLKQYyTqyi6"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tel"
+    >
+      <i class="pi pi-map-marker"></i>
+    </a>
     <!-- ></button> -->
-    <span class="location">{{ location }}</span>
+
+    <a
+      href="https://maps.app.goo.gl/xDTu3DuLKQYyTqyi6"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tel"
+    >
+      <span class="location">{{ location }}</span>
+    </a>
   </div>
   <div class="hours-wrapper" *ngFor="let data of workingHours">
     <span class="days">{{ data.days }}</span>

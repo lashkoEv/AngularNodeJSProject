@@ -84,6 +84,11 @@
   justify-content: space-between;
 }
 
+.tel {
+  color: white;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 800px) {
   .location-wrapper,
   .hours-wrapper {
@@ -99,6 +104,7 @@
     gap: 0.5rem;
   }
 }
+
 @media screen and (max-width: 500px) {
   .main-header {
     flex-wrap: wrap;
