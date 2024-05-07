@@ -44,28 +44,34 @@ export class ProfileComponent implements OnInit {
   }
 
   checkPasswords() {
-    this.passwordsMatch = this.newPassword === this.confirmPassword;
+    this.passwordsMatch =
+      this.newPassword === this.confirmPassword &&
+      this.newPassword.length > 0 &&
+      this.confirmPassword.length > 0;
   }
+
   checkPasswordsold() {
-    this.passwordsMatchold = this.user.password === this.confirmPasswordold;
+    this.passwordsMatchold =
+      this.user.password === this.confirmPasswordold &&
+      this.confirmPasswordold.length > 0;
   }
+
   changePassword() {
-    if (!this.passwordsMatch) {
-      this.showerroenew = false;
-      // alert('Новые пароли не совпадают');
-    } else if (!this.passwordsMatchold) {
-      this.showerroeold = false;
-      // alert('Старые пароли не совпадают');
-    } else {
-      if (this.passwordsMatch) {
-        this.showerroenew = true;
-      }
-      if (this.passwordsMatchold) {
-        this.showerroeold = true;
-      }
-      if (this.passwordsMatch && this.passwordsMatchold) {
-        this.visible = false;
-      }
+    this.checkPasswords();
+    this.checkPasswordsold();
+
+    this.showerroenew = this.passwordsMatch;
+
+    this.showerroeold = this.passwordsMatchold;
+
+    if (this.passwordsMatch && this.passwordsMatchold) {
+      this.user.password = this.newPassword;
+
+      this.authorizationService.update(this.user).subscribe((data) => {
+        if (data) {
+          localStorage.setItem('user', JSON.stringify(this.user));
+        }
+      });
     }
   }
 }
