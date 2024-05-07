@@ -1,8 +1,14 @@
+<footer>
   <div class="card flex">
-    <!-- <p-card> -->
       <section class="footer">
         <section class="left-footer">
           <section [routerLink]="['/']" class="logo">{{ logo }}</section>
+          <!-- <section class="sub-title">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+              Ipsa suscipit saepe eos aperiam sed modi sunt nostrum.
+            </p>
+          </section> -->
           <section class="info-contact">
             <section class="info-piece phone-number">{{ phoneNumber }}</section>
             <section class="info-piece email">{{ contactEmail }}</section>
@@ -11,31 +17,34 @@
               <span class="hours">{{ data.days }}</span>
             </section>
           </section>
-          <section class="location-wrapper">
+          <!-- <section class="location-wrapper">
             <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
             <section class="location">
               <a href="{{ location.src }}" class="location">{{ location.title }}</a>
             </section>
+          </section> -->
+          <section class="footer-socials-wrapper">
+            <socials class="footer-social" *ngFor="let social of socials">
+              <a 
+              href="{{ social.src }}" 
+              mat-buttonxs
+              class="social"
+              >
+                <i class="fa-brands fa-{{ social.name }} fa-xl" src="{{ social.img }}" alt="#"></i>
+              </a>
+            </socials>
           </section>
         </section>
-        <p-divider layout="vertical"></p-divider>
         <section class="middle-footer">
-          <section class="map-wrapper">
-            <iframe
-              class="map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1282.7239538992287!2d36.24360233917176!3d49.98421141753424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a08c651d29b3%3A0x36d760ce5e05b252!2z0L_RgNC-0YHQvy4g0JPQsNCz0LDRgNC40L3QsCwgMSwg0KXQsNGA0YzQutC-0LIsINCl0LDRgNGM0LrQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsINCj0LrRgNCw0LjQvdCwLCA2MTAwMA!5e0!3m2!1sru!2sbe!4v1711738474022!5m2!1sru!2sbe"
-              width="400"
-              height="300"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <section class="category-grid">
+            <div class="grid-item" *ngFor="let category of categories" [routerLink]="['/category', category._id]">
+              {{category.title}}
+            </div>
           </section>
+          
         </section>
-        <p-divider layout="vertical"></p-divider>
         <section class="right-footer">
-          <section class="footer-navigation-wrapper">
+          <!-- <section class="footer-navigation-wrapper">
             <div *ngFor="let nav of navigation">
               <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
                 <a [routerLink]="nav.links[i]" mat-button class="nav">{{ title }}</a>
@@ -44,15 +53,56 @@
                 <a href="#consultation" mat-button class="nav">КОНСУЛЬТАЦИЯ</a>
               </nav>
             </div>
-          </section>
-          <section class="footer-socials-wrapper">
-            <socials class="footer-social" *ngFor="let social of socials">
-              <a href="{{ social.src }}" mat-button class="social">
-                <i class="fa-brands fa-{{ social.name }} fa-2xl" src="{{ social.img }}" alt="#"></i>
-              </a>
-            </socials>
-          </section>
+          </section> -->
+          <div class="profile">
+            <button
+              pButton
+              type="button"
+              icon="pi pi-user"
+              class="p-button-rounded p-button-text"
+              *ngIf="!getAuthState()"
+              (click)="showForm()"
+            ></button>
+            <div class="admin-wrapper">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-wrench"
+                class="p-button-rounded p-button-text"
+                *ngIf="getIsAdmin()"
+                [routerLink]="['/admin']"
+              ></button>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times-circle"
+                class="p-button-rounded p-button-text"
+                *ngIf="getAuthState()"
+                (click)="logout()"
+              ></button>
+            </div>
+          </div>
+          <div class="messages">
+            <a href="#consultation">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-envelope"
+                class="p-button-rounded p-button-text"
+              ></button>
+            </a>
+          </div>
+          <div class="goods">
+            <a routerLink="/catalogue">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-shopping-bag"
+                class="p-button-rounded p-button-text"
+              ></button>
+            </a>
+          </div>
         </section>
       </section>
-    <!-- </p-card> -->
   </div>
+</footer>

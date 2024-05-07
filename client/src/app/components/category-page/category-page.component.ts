@@ -280,36 +280,5 @@ export class CategoryPageComponent implements OnInit {
         break
       }
     }
-  }
-
-  // onSortChange(event: any) {
-  //   let value = event.value;
-  
-  //   if (value.indexOf('!') === 0) {
-  //     this.sortOrder = -1;
-  //     this.sortField = value.substring(1, value.length);
-  
-  //     // Сортировка по убыванию
-  //     this.toShow.sort((a, b) => {
-  //       if (this.sortField === 'price') {
-  //         return (parseFloat(b.retailPrice.toString()) - parseFloat(a.retailPrice.toString())) * this.sortOrder;
-  //       }
-  //       // Добавь дополнительные условия для других полей сортировки, если необходимо
-  //       return 0;
-  //     });
-  //   } else {
-  //     this.sortOrder = 1;
-  //     this.sortField = value;
-  
-  //     // Сортировка по возрастанию
-  //     this.toShow.sort((a, b) => {
-  //       if (this.sortField === 'price') {
-  //         return (parseFloat(a.retailPrice.toString()) - parseFloat(b.retailPrice.toString())) * this.sortOrder;
-  //       }
-  //       // Добавь дополнительные условия для других полей сортировки, если необходимо
-  //       return 0;
-  //     });
-  //   }
-  // }
-  
+  }  
 }

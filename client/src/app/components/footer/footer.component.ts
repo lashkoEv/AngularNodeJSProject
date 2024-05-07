@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { AuthorizationService } from '../../services/authorization.service';
+import { CategoryService } from '../../services/category.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -28,6 +30,7 @@ export class FooterComponent {
       src: '#',
     },
   ];
+  public categories: any;
 
   public phoneNumber = '+380505667571';
   public contactEmail = 'ipstorg@gmail.com';
@@ -45,4 +48,33 @@ export class FooterComponent {
       links: ['#', 'delivery', 'contacts','catalogue']
     }
   ];
+
+  constructor(private authorizationService: AuthorizationService, private categoryService: CategoryService){}
+
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  async getCategories() {
+    await this.categoryService.getAll().subscribe((data) => {
+      this.categories = data;
+    });
+  }
+
+  getAuthState() {
+    return this.authorizationService.getAuthState();
+  }
+
+  getIsAdmin() {
+    return this.authorizationService.getRole();
+  }
+
+  showForm() {
+    this.authorizationService.setFormState();
+  }
+
+  logout() {
+    this.authorizationService.setAuthState();
+    this.authorizationService.setRole(false);
+  }
 }
