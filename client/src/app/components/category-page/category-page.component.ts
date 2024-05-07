@@ -84,8 +84,14 @@ export class CategoryPageComponent implements OnInit {
     });
 
     this.sortOptions = [
-      { label: 'Цена (по убыванию)', value: '!price' },
-      { label: 'Цена (по возрастанию)', value: 'price' },
+      { label: 'Название (по возрастанию)', value: '+title' },
+      { label: 'Название (по убыванию)', value: '-title' },
+      { label: 'Оптовая цена (по возрастанию)', value: '+wholesalePrice' },
+      { label: 'Оптовая цена (по убыванию)', value: '-wholesalePrice' },
+      { label: 'Розничная цена (по возрастанию)', value: '+retailPrice' },
+      { label: 'Розничная цена (по убыванию)', value: '-retailPrice' },
+      { label: 'Количество (по возрастанию)', value: '+count' },
+      { label: 'Количество (по убыванию)', value: '-count' },
     ];
   }
 
@@ -314,13 +320,7 @@ export class CategoryPageComponent implements OnInit {
   onSortChange(event: any) {
     let value = event.value;
 
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-      // this.toShow = this.toShow.sort()
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
-    }
+    this.sortOrder = value[0] === '+' ? 1 : -1;
+    this.sortField = value.slice(1, value.length);
   }
 }
