@@ -173,3 +173,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.consultation > .form {
+  height: max-content;
+}

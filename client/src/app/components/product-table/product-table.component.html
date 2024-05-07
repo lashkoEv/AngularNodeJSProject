@@ -29,8 +29,9 @@
   currentPageReportTemplate="{first} до {last} из {totalRecords}"
   [rowsPerPageOptions]="[10, 20, 50, 100]"
   [value]="products"
-  [tableStyle]="{ 'min-width': '50rem' }"
+  [scrollable]="true"
 >
+  >
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th pSortableColumn="_id">Код <p-sortIcon field="_id"></p-sortIcon></th>
