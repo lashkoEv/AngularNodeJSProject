@@ -1,6 +1,7 @@
 import { AuthorizationService } from '../../services/authorization.service';
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ export class HeaderComponent {
       links: ['catalogue', 'consultation'],
     },
   ];
+  public sidebarVisible: boolean;
 
   constructor(
     private authorizationService: AuthorizationService,
