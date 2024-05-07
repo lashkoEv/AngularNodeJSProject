@@ -1,7 +1,7 @@
 .top-header {
   background-color: var(--primary-color);
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,9 +45,12 @@
 // }
 
 .logo {
-  font-size: 20px;
-  font-weight: bold;
   cursor: pointer;
+}
+
+.logo-img {
+  height: 50px;
+  // height: 100%;
 }
 
 // ---------------------------------------
