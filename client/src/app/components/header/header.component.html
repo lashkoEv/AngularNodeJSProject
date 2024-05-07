@@ -1,10 +1,22 @@
 <section class="top-header">
   <div class="phone-wrapper">
-    <img src="../../assets/phone-solid.svg" alt="#" class="phone-icon" />
-    <a href="tel:{{ phoneNumber }}" class="phone-number">{{ phoneNumber }}</a>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-mobile"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <span class="phone-number">{{ phoneNumber }}</span>
   </div>
   <div class="location-wrapper">
-    <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
+    <button
+      pButton
+      type="button"
+      icon="pi pi-map-marker"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
     <span class="location">{{ location }}</span>
   </div>
   <div class="hours-wrapper" *ngFor="let data of workingHours">
@@ -12,19 +24,130 @@
     <span class="hours">{{ data.hours }}</span>
   </div>
   <div class="socials-wrapper">
-    <img src="../../assets/viber.svg" alt="" class="viber" />
-    <img src="../../assets/telegram.svg" alt="" class="telegram" />
-    <img src="../../assets/facebook.svg" alt="" class="facebook" />
-    <img src="../../assets/instagram.svg" alt="" class="instagram" />
+    <button
+      pButton
+      type="button"
+      icon="pi pi-phone"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-telegram"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-facebook"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-instagram"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+
     <span class="lang-switch" *ngFor="let language of languageSwitch">
-      <button mat-button class="language">{{ language.ua }}</button>
-      <button mat-button class="language">{{ language.ru }}</button>
+      <button mat-button class="language" style="color: white">
+        {{ language.ua }}
+      </button>
+      <button mat-button class="language" style="color: white">
+        {{ language.ru }}
+      </button>
     </span>
   </div>
 </section>
 <section class="main-header">
   <div class="logo" [routerLink]="['/']">{{ logo }}</div>
-  <div class="navigation-wrapper" *ngFor="let nav of navigation">
+  <div class="search">
+    <app-search></app-search>
+  </div>
+  <app-megamenu></app-megamenu>
+  <div class="profile">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-user"
+      class="p-button-rounded p-button-text"
+      *ngIf="!getAuthState()"
+      (click)="showForm()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-user"
+      class="p-button-rounded p-button-text"
+      *ngIf="getAuthState()"
+      routerLink="/profile"
+    ></button>
+    <div class="admin-wrapper">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-wrench"
+        class="p-button-rounded p-button-text"
+        *ngIf="getIsAdmin()"
+        [routerLink]="['/admin']"
+      ></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-times-circle"
+        class="p-button-rounded p-button-text"
+        *ngIf="getAuthState()"
+        (click)="logout()"
+      ></button>
+    </div>
+  </div>
+  <div class="messages">
+    <a routerLink="/consultation">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-envelope"
+        class="p-button-rounded p-button-text"
+      ></button>
+    </a>
+  </div>
+  <div class="goods">
+    <a routerLink="/catalogue">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-shopping-bag"
+        class="p-button-rounded p-button-text"
+      ></button>
+    </a>
+  </div>
+
+  <div class="wrapper">
+    <p-sidebar
+      [(visible)]="sidebarVisible"
+      position="right"
+      [style]="{ width: '50rem' }"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    >
+      <app-cart></app-cart>
+    </p-sidebar>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-shopping-cart"
+      class="p-button-rounded p-button-text"
+      (click)="sidebarVisible = true"
+    ></button>
+  </div>
+</section>
+
+<app-authorization-form *ngIf="getFormState()"></app-authorization-form>
+
+<!-- <div class="navigation-wrapper" *ngFor="let nav of navigation">
     <a href="#consultation" mat-button class="nav">КОНСУЛЬТАЦИЯ</a>
     <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
       <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
@@ -45,14 +168,9 @@
         (click)="sidebarVisible = true"
       />
     </div>
-  </div>
-</section>
-<section class="sub-header">
-  <!-- <div class="search-wrapper"> -->
-  <!-- <mat-form-field> -->
-  <!-- <input matInput type="text" class="input" /> -->
-  <!-- <img src="../../assets/search.svg" alt="#" class="search-icon" /> -->
-  <!-- </mat-form-field> -->
+  </div> -->
+
+<!-- <section class="sub-header">
   <div class="search">
     <app-search></app-search>
   </div>
@@ -73,6 +191,4 @@
       Выход
     </button>
   </div>
-</section>
-
-<app-authorization-form *ngIf="getFormState()"></app-authorization-form>
+</section> -->

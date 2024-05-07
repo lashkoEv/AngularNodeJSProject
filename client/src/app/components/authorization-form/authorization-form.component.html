@@ -1,27 +1,27 @@
 <!-- <section class="container"> -->
-<p-dialog
-  class="dialog"
-  header="Header"
-  [modal]="true"
-  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-  [(visible)]="authorizationService.showForm"
-  [style]="{ width: '30vw' }"
->
-  <ng-template pTemplate="header" class="tmp">
-    <div class="title-wrapper">
-      <h1 *ngIf="hasAccount" class="title">АВТОРИЗАЦИЯ</h1>
-      <h1 *ngIf="!hasAccount" class="title">РЕГИСТРАЦИЯ</h1>
-    </div>
-  </ng-template>
-  <form #form="ngForm" (submit)="regOrAuth(form.value)">
-    <!-- <div class="wrapper"> -->
-    <!-- <button class="close" (click)="close()">
+<div class="wrapper">
+  <p-dialog
+    class="dialog"
+    header="Header"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [(visible)]="authorizationService.showForm"
+    [style]="{ width: '30vw' }"
+  >
+    <ng-template pTemplate="header" class="tmp">
+      <div class="title-wrapper">
+        <h1 *ngIf="hasAccount" class="title">АВТОРИЗАЦИЯ</h1>
+        <h1 *ngIf="!hasAccount" class="title">РЕГИСТРАЦИЯ</h1>
+      </div>
+    </ng-template>
+    <form #form="ngForm" (submit)="regOrAuth(form.value)">
+      <!-- <div class="wrapper"> -->
+      <!-- <button class="close" (click)="close()">
         <i class="fa-solid fa-xmark"></i>
       </button> -->
-    <!-- </div> -->
+      <!-- </div> -->
 
-    <div class="content">
-      <!-- <mat-form-field class="field">
+      <div class="content">
+        <!-- <mat-form-field class="field">
         <mat-label>Логин</mat-label>
         <input
           pInput
@@ -32,7 +32,7 @@
           value=""
         />
       </mat-form-field> -->
-      <!-- <span class="p-input-icon-left">
+        <!-- <span class="p-input-icon-left">
         <i class="pi pi-user"></i>
         <input
           type="text"
@@ -44,34 +44,34 @@
         />
       </span> -->
 
-      <p-inputGroup>
-        <p-inputGroupAddon>
-          <i class="pi pi-user"></i>
-        </p-inputGroupAddon>
-        <input
-          type="text"
-          pInputText
-          ngModel
-          name="login"
-          placeholder="Введите логин..."
-          class="input"
-        />
-      </p-inputGroup>
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="pi pi-user"></i>
+          </p-inputGroupAddon>
+          <input
+            type="text"
+            pInputText
+            ngModel
+            name="login"
+            placeholder="Введите логин..."
+            class="input"
+          />
+        </p-inputGroup>
 
-      <p-inputGroup>
-        <p-inputGroupAddon>
-          <i class="pi pi-key"></i>
-        </p-inputGroupAddon>
-        <input
-          type="password"
-          pInputText
-          ngModel
-          name="password"
-          placeholder="Введите пароль..."
-          class="input"
-        />
-      </p-inputGroup>
-      <!-- 
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="pi pi-key"></i>
+          </p-inputGroupAddon>
+          <input
+            type="password"
+            pInputText
+            ngModel
+            name="password"
+            placeholder="Введите пароль..."
+            class="input"
+          />
+        </p-inputGroup>
+        <!-- 
       <input
         type="text"
         pInputText
@@ -80,7 +80,7 @@
         placeholder="Введите пароль..."
         class="input"
       /> -->
-      <!-- 
+        <!-- 
       <mat-form-field class="field">
         <mat-label>Пароль</mat-label>
         <input
@@ -93,17 +93,18 @@
         />
       </mat-form-field> -->
 
-      <button pButton class="btn">Вход</button>
+        <button pButton class="btn">Вход</button>
 
-      <span (click)="toogleHasAcc()" *ngIf="hasAccount" class="registration"
-        >Нет аккаунта? <b>Зарегистрируйтесь!</b></span
-      >
-      <span (click)="toogleHasAcc()" *ngIf="!hasAccount" class="registration"
-        >Есть аккаунт? <b>Авторизуйтесь!</b></span
-      >
-    </div>
-  </form>
-</p-dialog>
-<!-- </section> -->
-<app-spinner></app-spinner>
-<app-notification></app-notification>
+        <span (click)="toogleHasAcc()" *ngIf="hasAccount" class="registration"
+          >Нет аккаунта? <b>Зарегистрируйтесь!</b></span
+        >
+        <span (click)="toogleHasAcc()" *ngIf="!hasAccount" class="registration"
+          >Есть аккаунт? <b>Авторизуйтесь!</b></span
+        >
+      </div>
+    </form>
+  </p-dialog>
+  <!-- </section> -->
+  <app-spinner></app-spinner>
+  <app-notification></app-notification>
+</div>

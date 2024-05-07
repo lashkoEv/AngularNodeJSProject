@@ -29,6 +29,11 @@ import { SearchComponent } from './components/search/search.component';
 import { ConsultationTableComponent } from './components/consultation-table/consultation-table.component';
 import { ProductComponent } from './components/product/product.component';
 import { ScrollUpComponent } from './components/scroll-up/scroll-up.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MegamenuComponent } from './components/megamenu/megamenu.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { OrderingFormComponent } from './components/ordering-form/ordering-form.component';
+
 
 //MODULES
 import { BrowserModule } from '@angular/platform-browser';
@@ -65,7 +70,6 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CartComponent } from './components/cart/cart.component';
 
 // primeNG
 import { SidebarModule } from 'primeng/sidebar';
@@ -89,7 +93,9 @@ import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { OrderingFormComponent } from './components/ordering-form/ordering-form.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -122,6 +128,8 @@ import { OrderingFormComponent } from './components/ordering-form/ordering-form.
     ScrollUpComponent,
     CartComponent,
     OrderingFormComponent,
+    MegamenuComponent,
+    ProfileComponent,
   ],
   imports: [
     FileUploadModule,
@@ -179,6 +187,9 @@ import { OrderingFormComponent } from './components/ordering-form/ordering-form.
     RippleModule,
     BreadcrumbModule,
     InputTextareaModule,
+    AutoCompleteModule,
+    MegaMenuModule,
+    PasswordModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

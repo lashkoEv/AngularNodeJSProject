@@ -24,6 +24,15 @@
         <div class="split info">
           <h1 class="title">{{ product?.title }}</h1>
 
+          <p>
+            <span class="availability" *ngIf="product?.count > 0"
+              >Есть в наличии</span
+            >
+            <span class="unAvailability" *ngIf="product?.count < 1"
+              >Нет в наличии</span
+            >
+          </p>
+
           <div class="price-wrapper">
             <div class="wholesale">
               <p class="price-title">Оптовая цена</p>
@@ -71,7 +80,7 @@
         </div>
         <div class="row">
           <div class="cell">Страна</div>
-          <div class="cell">{{ product?.country.country }}</div>
+          <div class="cell">{{ product?.country }}</div>
         </div>
         <div class="row_c" *ngFor="let item of product?.fields">
           <div *ngIf="item.key && item.value">

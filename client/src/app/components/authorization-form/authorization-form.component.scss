@@ -93,6 +93,18 @@ span > b {
   // padding-bottom: 0.1rem;
 }
 
+.wrapper {
+  height: 100%;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.384);
+  z-index: 30;
+}
+
 // .container {
 //   position: fixed;
 //   top: 0;

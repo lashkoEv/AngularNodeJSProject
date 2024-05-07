@@ -14,40 +14,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrl: './category-table.component.scss',
 })
 export class CategoryTableComponent {
-  // @ViewChild('paginator') paginator: MatPaginator;
-
-  // displayedColumnsCategory = [
-  //   '_id',
-  //   'imgSrc',
-  //   'title',
-  //   'description',
-  //   'delete',
-  //   'update',
-  // ];
-
-  // dataSourceCategory: MatTableDataSource<ICategory>;
-
-  // constructor(
-  //   private categoryService: CategoryService,
-  //   public formService: FormService,
-  //   public notification: NotificationService
-  // ) {
-  //   // categoryService
-  //   //   .add({ title: 'dfdf', description: 'dffddf', imgSrc: 'dfdfdfdf' })
-  //   //   .subscribe((d) => {
-  //   //     console.log(d);
-  //   //   });
-  // }
-
-  // ngOnInit() {
-  //   this.categoryService.getAll().subscribe((data) => {
-  //     this.dataSourceCategory = new MatTableDataSource<ICategory>(data);
-  //     this.dataSourceCategory.paginator = this.paginator;
-  //     this.dataSourceCategory.paginator._intl.itemsPerPageLabel =
-  //       'Категорий на странице: ';
-  //   });
-  // }
-
   visible: boolean = false;
   current: ICategory;
   categories!: ICategory[];

@@ -1,5 +1,5 @@
 .top-header {
-  background-color: #167586;
+  background-color: var(--primary-color);
   color: #fff;
   padding: 5px;
   display: flex;
@@ -8,6 +8,11 @@
 
 .phone-wrapper {
   margin-left: 20px;
+}
+
+.admin-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
 .location-wrapper,
@@ -72,10 +77,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgb(234, 234, 234);
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -139,9 +145,10 @@
 // }
 
 .search {
-  margin: 0;
+  margin-left: 50px;
+
   padding: 0;
-  width: 30%;
+  width: 65%;
 }
 
 // ----------------------------
@@ -157,4 +164,8 @@
 .btn {
   background-color: #fff;
   padding: 1.7rem 2.5rem;
+}
+
+.profile {
+  display: flex;
 }
