@@ -13,8 +13,6 @@ export class ConsultationComponent {
 
   constructor(private consultationService: ConsultationService) {}
 
-  // public isValidData()
-
   public add(data: any) {
     this.consultationService.add(data).subscribe((data) => {
       if (data.ok) {

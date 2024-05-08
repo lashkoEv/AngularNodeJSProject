@@ -6,24 +6,14 @@
       </section>
       <div class="form-group">
         <p-floatLabel>
-          <input
-            pInputText
-            id="email"
-            name="inputEmail"
-            [(ngModel)]="inputEmail"
-          />
+          <input pInputText id="email" name="email" [(ngModel)]="inputEmail" />
           <label for="username">Почта</label>
         </p-floatLabel>
       </div>
 
       <div class="form-group">
         <p-floatLabel>
-          <input
-            pInputText
-            id="topic"
-            name="inputTopic"
-            [(ngModel)]="inputTopic"
-          />
+          <input pInputText id="topic" name="topic" [(ngModel)]="inputTopic" />
           <label for="username">Тема</label>
         </p-floatLabel>
       </div>
@@ -32,7 +22,7 @@
         <p-floatLabel>
           <textarea
             id="message"
-            name="inputMessage"
+            name="message"
             [(ngModel)]="inputMessage"
             rows="5"
             cols="30"
