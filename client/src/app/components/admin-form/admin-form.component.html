@@ -14,108 +14,157 @@
     <div class="content">
       <h1 class="title">{{ formService.getFormTitle() }}</h1>
 
-      <mat-form-field class="field">
-        <mat-label>Название</mat-label>
+      <div class="field">
+        <p-inputGroupAddon>Название</p-inputGroupAddon>
         <input
-          matInput
+          required
+          pInputText
           formControlName="title"
           placeholder="{{ product ? product.title : 'Название' }}"
         />
-        <mat-error *ngIf="productForm.get('title').hasError('required')"
-          >Требуется Название</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('title').invalid && productForm.get('title').touched
+          "
         >
-      </mat-form-field>
-      <mat-form-field class="field">
-        <mat-label>Описание</mat-label>
-        <input
-          matInput
+          Требуется Название
+        </mat-error>
+      </div>
+      <div class="field">
+        <p-inputGroupAddon>Описание</p-inputGroupAddon>
+        <textarea
+          [autoResize]="true"
+          required
+          pInputTextarea
           formControlName="description"
           placeholder="{{ product ? product.description : 'Описание' }}"
-        />
-        <mat-error *ngIf="productForm.get('description').hasError('required')"
-          >Требуется Описание</mat-error
-        ></mat-form-field
-      >
-      <mat-form-field class="field">
-        <mat-label>{{ product ? product.country : "Страна" }}</mat-label>
-        <mat-select formControlName="country" required>
-          @for (country of formService.getAllCountries(); track country) {
-          <mat-option [value]="country">{{ country }}</mat-option
-          >}
-        </mat-select>
-        <mat-error *ngIf="productForm.get('country').hasError('required')"
-          >Требуется Страна</mat-error
-        ></mat-form-field
-      >
+        ></textarea>
+        <mat-error
+          *ngIf="
+            productForm.get('description').invalid &&
+            productForm.get('description').touched
+          "
+        >
+          Требуется Описание
+        </mat-error>
+      </div>
 
-      <mat-form-field class="field">
-        <mat-label>Розничная цена</mat-label>
+      <div class="field">
+        <p-inputGroupAddon>Розничная цена</p-inputGroupAddon>
         <input
-          matInput
+          required
+          pInputText
           formControlName="wholesalePrice"
           placeholder="{{
             product ? product.wholesalePrice : 'Розничная цена'
           }}"
         />
         <mat-error
-          *ngIf="productForm.get('wholesalePrice').hasError('required')"
-          >Требуется Розничная цена</mat-error
-        ></mat-form-field
-      >
+          *ngIf="
+            productForm.get('wholesalePrice').invalid &&
+            productForm.get('wholesalePrice').touched
+          "
+        >
+          Требуется Розничная Цена
+        </mat-error>
+      </div>
 
-      <mat-form-field class="field">
-        <mat-label>Кол-во</mat-label>
+      <div class="field">
+        <p-inputGroupAddon>Кол-во</p-inputGroupAddon>
         <input
-          matInput
+          required
+          pInputText
           formControlName="count"
           placeholder="{{ product ? product.count : 'Кол-во' }}"
         />
-        <mat-error *ngIf="productForm.get('count').hasError('required')"
-          >Требуется кол-во</mat-error
-        ></mat-form-field
-      >
+        <mat-error
+          *ngIf="
+            productForm.get('count').invalid && productForm.get('count').touched
+          "
+        >
+          Требуется Кол-во
+        </mat-error>
+      </div>
 
-      <mat-form-field class="field">
-        <mat-label>{{ product ? product.category : "Категория" }}</mat-label>
-        <mat-select formControlName="category" required>
-          @for (category of categories; track category) {
-          <mat-option [value]="category.title">{{ category.title }}</mat-option
-          >}
-        </mat-select>
-        <mat-error *ngIf="productForm.get('category').hasError('required')"
-          >Требуется категория</mat-error
-        ></mat-form-field
-      >
-
-      <mat-form-field class="field">
-        <mat-label>Оптовая цена</mat-label>
+      <div class="field">
+        <p-inputGroupAddon>Оптовая цена</p-inputGroupAddon>
         <input
-          matInput
+          pInputText
           formControlName="retailPrice"
           placeholder="{{ product ? product.retailPrice : 'Оптовая цена' }}"
         />
-        <mat-error *ngIf="productForm.get('retailPrice').hasError('required')"
-          >Требуется Оптовая Цена</mat-error
-        ></mat-form-field
-      >
+      </div>
+
       <div class="field">
-        <mat-label>Изображение</mat-label>
-        <input type="file" formControlName="imgSrc" placeholder="Изображение" />
-        <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
-          >Требуется изображение</mat-error
+        <p-inputGroupAddon>Страна</p-inputGroupAddon>
+
+        <p-dropdown
+          formControlName="country"
+          [filter]="true"
+          filterBy="country"
+          [options]="countries"
+          optionLabel="country"
+          placeholder="Выберите Страну"
+        ></p-dropdown>
+      </div>
+
+      <div class="field">
+        <p-inputGroupAddon> Категория </p-inputGroupAddon>
+        <p-dropdown
+          formControlName="category"
+          [filter]="true"
+          filterBy="title"
+          [options]="categories"
+          optionLabel="title"
+          placeholder="Выберите Категорию"
+        ></p-dropdown>
+
+        <!-- <input
+          *ngIf="formService.getIsEditProduct()"
+          formControlName="category"
+          pInputText
+          placeholder="Категория"
+        /> -->
+
+        <mat-error
+          *ngIf="
+            productForm.get('category').invalid &&
+            productForm.get('category').touched
+          "
         >
+          Требуется Категория
+        </mat-error>
+      </div>
+
+      <div class="field">
+        <label for="inputFile"></label>
+        <input
+          id="inputFile"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          type="file"
+          formControlName="imgSrc"
+        />
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
+        >
+          Требуется Изображение
+        </mat-error>
       </div>
       <div
         class="fields-input-wrapper"
         *ngFor="let field of productForm.get('fields').controls"
         [formGroup]="field"
       >
-        <mat-form-field>
-          <input matInput formControlName="key" placeholder="Ключ" />
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput formControlName="value" placeholder="Значение" />
-        </mat-form-field>
+        <div>
+          <input pInputText formControlName="key" placeholder="Ключ" />
+        </div>
+        <div>
+          <input pInputText formControlName="value" placeholder="Значение" />
+        </div>
       </div>
       <button class="add-field" type="button" (click)="addField()">+</button>
 
@@ -136,51 +185,75 @@
     <div class="content">
       <h1 class="title">{{ formService.getFormTitle() }}</h1>
 
-      <mat-form-field class="field">
-        <mat-label>{{ category ? category.title : "Категория" }}</mat-label>
+      <div class="field">
+        <p-inputGroupAddon>{{ "Категория" }}</p-inputGroupAddon>
         <input
-          *ngIf="formService.getIsAddCategory()"
-          matInput
+          pInputText
           formControlName="title"
-          placeholder="Название"
+          placeholder="{{ category ? category.title : 'Название' }}"
         />
-        <mat-select
-          *ngIf="formService.getIsUpdateCategory()"
-          formControlName="title"
-          required
-        >
-          @for (category of categories; track category) {
-          <mat-option [value]="category.title">{{ category.title }}</mat-option
-          >}
-        </mat-select>
 
-        <mat-error *ngIf="productForm.get('title').hasError('required')"
-          >Требуется Название</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('title').invalid && productForm.get('title').touched
+          "
         >
-      </mat-form-field>
-      <mat-form-field class="field">
-        <mat-label>Описание</mat-label>
-        <input
-          matInput
+          Требуется Название
+        </mat-error>
+      </div>
+      <div class="field">
+        <p-inputGroupAddon>Описание</p-inputGroupAddon>
+        <textarea
+          pInputTextarea
+          [autoResize]="true"
           formControlName="description"
           placeholder="{{ category ? category.description : 'Описание' }}"
-        />
-        <mat-error *ngIf="productForm.get('description').hasError('required')"
-          >Требуется Описание</mat-error
-        ></mat-form-field
-      >
+        ></textarea>
+        <mat-error
+          *ngIf="
+            productForm.get('description').invalid &&
+            productForm.get('description').touched
+          "
+        >
+          Требуется Категория
+        </mat-error>
+      </div>
 
       <div class="field">
+        <label for="inputFileCategory"></label>
         <input
+          id="inputFileCategory"
+          (change)="onFileSelected($event)"
           accept="image/*"
           type="file"
           formControlName="imgSrc"
-          placeholder="Изображение"
         />
-        <mat-error *ngIf="productForm.get('imgSrc').hasError('required')"
-          >Требуется изображение</mat-error
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
         >
+          Требуется Изображение
+        </mat-error>
       </div>
+
+      <!-- <div class="field">
+        <input
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          type="file"
+          formControlName="imgSrc"
+        />
+        <mat-error
+          *ngIf="
+            productForm.get('imgSrc').invalid &&
+            productForm.get('imgSrc').touched
+          "
+        >
+          Требуется Изображение
+        </mat-error>
+      </div> -->
 
       <button class="btn" mat-raised-button type="submit">Принять</button>
     </div>

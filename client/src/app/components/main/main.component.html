@@ -1,29 +1,135 @@
-<div class="main-wrapper">
-    
-        <app-carousel></app-carousel>
-        
-        <section class="title-wrapper">
-            <h2 class="title">ТОВАРЫ</h2>
-        </section>
-        
-        <app-products-carousel></app-products-carousel>
-        
-        <section class="main-img-wrapper"><img class="img" src="{{mainImgSrc}}" alt=""></section>
-        
-        <section class="title-wrapper">
-            <h2 class="title">ИНТЕР-ПЛАСТ СЕРВИС</h2>
-        </section>
-        
-        <section class="about-us">
-            <p class="about-us-text">{{aboutUsText}}</p>
-        </section>
-        
-        <section class="title-wrapper">
-            <h2 class="title">ХИТ ПРОДАЖ</h2>
-        </section>
-        
-        <section class="main-category-carousel">//пока ничего//</section>
-        
-        <app-consultation></app-consultation>
-        
+<app-carousel></app-carousel>
+
+<div class="card">
+  <div class="container">
+    <section class="title-wrapper">
+      <h2 class="title">КАТЕГОРИИ</h2>
+      <button
+        pButton
+        type="button"
+        label="Показать все"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        class="buy-button"
+        size="small"
+        severity="secondary"
+        [routerLink]="['/catalogue']"
+      ></button>
+    </section>
+
+    <section *ngIf="categories && categories.length > 0" class="catalogue">
+      <div class="grid-container">
+        <div
+          pRipple
+          *ngFor="let category of categories"
+          class="category styled-box"
+          [routerLink]="['/category', category._id]"
+        >
+          <img [src]="category.imgSrc" alt="Category Image" class="img" />
+          <div class="text">
+            {{ category.title }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="title-wrapper">
+      <h2 class="title">ТОВАРЫ</h2>
+      <button
+        pButton
+        type="button"
+        label="Показать все"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        class="buy-button"
+        size="small"
+        severity="secondary"
+        [routerLink]="['/catalogue']"
+      ></button>
+    </section>
+
+    <section class="products">
+      <div class="product-grid">
+        <div *ngFor="let product of products | async | slice : 0 : 8">
+          <div class="product">
+            <img
+              class="image"
+              [src]="product.imgSrc"
+              [alt]="product.title"
+              [routerLink]="['/products', product._id]"
+            />
+
+            <div class="title" [routerLink]="['/products', product._id]">
+              {{ product.title }}
+            </div>
+
+            <span class="flex align-items-center gap-2">
+              <i class="pi pi-tag"></i>
+              <span class="category"> {{ product.category.title }}</span>
+            </span>
+
+            <span class="price">
+              {{ product.retailPrice }}
+            </span>
+
+            <button
+              pButton
+              icon="pi pi-shopping-cart"
+              class="button"
+              (click)="addToCart(product)"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
+<app-consultation id="consultation" class="consultation"></app-consultation>
+<!-- <div class="product">
+  <div class="info">
+    <div class="title" [routerLink]="['/products', product._id]">
+      {{ product.title }}
+    </div>
+    <div class="flex align-items-center gap-3">
+      <span class="flex align-items-center gap-2">
+        <i class="pi pi-tag"></i>
+        <span class="category">
+          {{ product.category.title }}
+        </span>
+      </span>
+    </div>
+    <span class="price">
+      {{ product.retailPrice }}
+    </span>
+  </div>
+
+  <button
+    pButton
+    icon="pi pi-shopping-cart"
+    class="md:align-self-end mb-2 p-button-rounded"
+    (click)="addToCart(product)"
+  ></button>
+</div> -->
+
+<!-- <app-products-carousel></app-products-carousel>
+
+    <section class="main-img-wrapper">
+      <img class="img" src="{{ mainImgSrc }}" alt="" />
+    </section>
+
+    <section class="title-wrapper">
+      <h2 class="title">ИНТЕР-ПЛАСТ СЕРВИС</h2>
+    </section>
+
+    <section class="about-us">
+      <p class="about-us-text">{{ aboutUsText }}</p>
+    </section>
+
+    <section class="title-wrapper">
+      <h2 class="title">ХИТ ПРОДАЖ</h2>
+    </section>
+
+    <section class="main-category-carousel">//пока ничего//</section>
+
+    <app-consultation></app-consultation> -->
+<!-- <app-scroll-up></app-scroll-up> -->

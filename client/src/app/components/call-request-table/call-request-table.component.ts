@@ -1,9 +1,8 @@
 import { CallRequestService } from './../../services/call-request.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ICallRequest } from '../../interfaces/ICallRequest';
 import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ConfirmPopup } from 'primeng/confirmpopup';
 
 @Component({
   selector: 'app-call-request-table',
@@ -63,14 +62,13 @@ export class CallRequestTableComponent implements OnInit {
       accept: () => {
         setTimeout(() => {
           this.deleteCallRequest(id);
-        }, 2000);
+        }, 2100);
         this.messageService.clear();
 
         this.messageService.add({
           severity: 'info',
           summary: 'Запись удалена!',
           detail: 'Запись удалена успешно!',
-          life: 3000,
         });
       },
       reject: () => {
@@ -79,7 +77,6 @@ export class CallRequestTableComponent implements OnInit {
           severity: 'warn',
           summary: 'Удаление отменено!',
           detail: 'Запись не удалена!',
-          life: 3000,
         });
       },
     });

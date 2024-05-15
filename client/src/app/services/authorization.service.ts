@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
-import { IUser } from "../interfaces/iUser";
+import { IUser } from '../interfaces/IUser';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { IUser } from "../interfaces/iUser";
 export class AuthorizationService {
   private isAuthorized: boolean;
   private isAdmin: boolean;
-  private showForm: boolean;
+  public showForm: boolean;
 
   constructor(private http: HttpClient) {
     this.isAuthorized = false;
@@ -59,11 +59,25 @@ export class AuthorizationService {
     );
   }
 
-  isValidData(user: IUser){
-    const condition = user.login.length >= 5 && user.password.length >= 5 && /\d/.test(user.password) && /[a-zA-Z]/.test(user.password);
+  update(data: IUser): any {
+    console.log(data);
+    return this.http.post('http://localhost:3000/user/update', data).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
+  }
+
+  isValidData(user: IUser) {
+    const condition =
+      user.login.length >= 5 &&
+      user.password.length >= 5 &&
+      /\d/.test(user.password) &&
+      /[a-zA-Z]/.test(user.password);
     user.isAdmin = false;
 
     console.log(user);
-    return condition ? true : false
+    return condition ? true : false;
   }
 }

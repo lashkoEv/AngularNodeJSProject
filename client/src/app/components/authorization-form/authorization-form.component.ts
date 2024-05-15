@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
 import { SpinnerService } from '../../services/spinner.service';
 import { NotificationService } from '../../services/notification.service';
-import { IUser } from '../../interfaces/iUser';
+import { IUser } from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-authorization-form',
@@ -14,7 +14,7 @@ export class AuthorizationFormComponent {
 
   constructor(
     // private authorizationService: AuthorizationService,
-    private authorizationService: AuthorizationService,
+    public authorizationService: AuthorizationService,
     private spinner: SpinnerService,
     private notification: NotificationService
   ) {}

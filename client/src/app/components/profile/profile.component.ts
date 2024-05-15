@@ -1,11 +1,13 @@
-import { Component, ElementRef } from '@angular/core';
+import { IUser } from '../../interfaces/IUser';
+import { AuthorizationService } from './../../services/authorization.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   visible: boolean = false;
   value!: string;
 
@@ -19,7 +21,18 @@ export class ProfileComponent {
   showerroenew: boolean = true;
   showerroeold: boolean = true;
 
-  user = JSON.parse(localStorage.getItem('user'));
+  user: IUser;
+
+  constructor(private authorizationService: AuthorizationService) {}
+
+  ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
+  }
+
+  getAuthState() {
+    return this.authorizationService.getAuthState();
+  }
+
   showDialog() {
     this.visible = true;
     this.newPassword = '';
@@ -31,28 +44,34 @@ export class ProfileComponent {
   }
 
   checkPasswords() {
-    this.passwordsMatch = this.newPassword === this.confirmPassword;
+    this.passwordsMatch =
+      this.newPassword === this.confirmPassword &&
+      this.newPassword.length > 0 &&
+      this.confirmPassword.length > 0;
   }
+
   checkPasswordsold() {
-    this.passwordsMatchold = this.user.password === this.confirmPasswordold;
+    this.passwordsMatchold =
+      this.user.password === this.confirmPasswordold &&
+      this.confirmPasswordold.length > 0;
   }
+
   changePassword() {
-    if (!this.passwordsMatch) {
-      this.showerroenew = false;
-      // alert('Новые пароли не совпадают');
-    } else if (!this.passwordsMatchold) {
-      this.showerroeold = false;
-      // alert('Старые пароли не совпадают');
-    } else {
-      if (this.passwordsMatch) {
-        this.showerroenew = true;
-      }
-      if (this.passwordsMatchold) {
-        this.showerroeold = true;
-      }
-      if (this.passwordsMatch && this.passwordsMatchold) {
-        this.visible = false;
-      }
+    this.checkPasswords();
+    this.checkPasswordsold();
+
+    this.showerroenew = this.passwordsMatch;
+
+    this.showerroeold = this.passwordsMatchold;
+
+    if (this.passwordsMatch && this.passwordsMatchold) {
+      this.user.password = this.newPassword;
+
+      this.authorizationService.update(this.user).subscribe((data) => {
+        if (data) {
+          localStorage.setItem('user', JSON.stringify(this.user));
+        }
+      });
     }
   }
 }
