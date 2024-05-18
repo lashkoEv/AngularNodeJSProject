@@ -60,7 +60,7 @@ export class AdminFormComponent implements OnInit {
         this.productForm = this.fb.group({
           title: [this.product.title, Validators.required],
           description: [this.product.description, Validators.required],
-          country: [this.product.country, Validators.required],
+          // country: [this.product.country, Validators.required],
           wholesalePrice: [this.product.wholesalePrice, Validators.required],
           count: [this.product.count, Validators.required],
           fields: this.fb.array([]),

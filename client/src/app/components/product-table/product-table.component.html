@@ -57,9 +57,9 @@
       <th pSortableColumn="description">
         Описание <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="country">
+      <!-- <th pSortableColumn="country">
         Страна <p-sortIcon field="country"></p-sortIcon>
-      </th>
+      </th> -->
       <th pSortableColumn="fields">
         Характеристики <p-sortIcon field="fields"></p-sortIcon>
       </th>
@@ -78,7 +78,7 @@
       <td>{{ product.count }}</td>
       <td>{{ product.category.title || product.category }}</td>
       <td>{{ product.description.slice(0, 70) }}...</td>
-      <td>{{ product.country.country }}</td>
+      <!-- <td>{{ product.country.country }}</td> -->
       <td>
         <span *ngFor="let data of product.fields.slice(0, 2)">
           <span *ngIf="data.key && data.value">
@@ -136,11 +136,11 @@
         {{ current?.description }}
       </p>
     </p-fieldset>
-    <p-fieldset legend="Страна" [toggleable]="true">
+    <!-- <p-fieldset legend="Страна" [toggleable]="true">
       <p class="m-0">
         {{ current?.country.country }}
       </p>
-    </p-fieldset>
+    </p-fieldset> -->
     <p-fieldset legend="Цена" [toggleable]="true">
       <p class="m-0">Оптовая: {{ current?.wholesalePrice }}</p>
       <p class="m-0">Розничная: {{ current?.retailPrice }}</p>
