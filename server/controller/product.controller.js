@@ -38,7 +38,7 @@ async function add(req, res) {
     const product = new Product({
       title: req.body.title,
       description: req.body.description,
-      country: req.body.country,
+      // country: req.body.country,
       wholesalePrice: req.body.wholesalePrice,
       retailPrice: req.body.retailPrice,
       count: req.body.count,
@@ -98,7 +98,7 @@ async function updateById(req, res) {
       {
         title: req.body.title,
         description: req.body.description,
-        country: req.body.country,
+        // country: req.body.country,
         wholesalePrice: req.body.wholesalePrice,
         retailPrice: req.body.retailPrice,
         count: req.body.count,
