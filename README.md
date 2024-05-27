@@ -3,7 +3,7 @@
 ### Branches:
 
 #### Yevheniia - master
-#### Masha - Mishanya
+#### Mіsha - Mishanya
 #### Yaroslav - Yaroslav
 #### Dima - Tomato
 #### Max I - Max
