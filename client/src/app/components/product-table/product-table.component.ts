@@ -50,22 +50,22 @@ export class ProductTableComponent implements OnInit {
 
   duplicateProduct(product: IProduct) {
     const clonedProduct = cloneDeep(product);
-    const { _id, ...productWithoutId } = clonedProduct; // Exclude _id
+    const { _id, ...productWithoutId } = clonedProduct;
 
     this.productService.add(productWithoutId).subscribe(
       (newProduct: IProduct) => {
-        this.products.push(newProduct); // Add the new product to the list
+        this.products.push(newProduct);
         this.messageService.add({
           severity: 'success',
-          summary: 'Продукт продублирован',
-          detail: `Продукт ${newProduct.title} успешно продублирован`,
+          summary: 'Product Duplicated',
+          detail: `Product ${newProduct.title} has been duplicated successfully`,
         });
       },
       (error) => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Ошибка. Дубликат не сформирован',
-          detail: `Дубликат продукта не сформирован: ${error.message}`,
+          summary: 'Duplication Failed',
+          detail: `Product duplication failed: ${error.message}`,
         });
       }
     );
@@ -86,7 +86,7 @@ export class ProductTableComponent implements OnInit {
       { field: 'wholesalePrice', header: 'Оптовая цена' },
       { field: 'retailPrice', header: 'Розничная цена' },
       { field: 'count', header: 'Количество' },
-      // { field: 'availability', header: 'Наличие' },
+      { field: 'availability', header: 'Наличие' },
       { field: 'country', header: 'Страна' },
       { field: 'fields', header: 'Характеристики' },
       { field: '', header: '' },

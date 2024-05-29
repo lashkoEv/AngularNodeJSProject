@@ -12,10 +12,15 @@ export class FormService {
   private productId: string = '';
   private categoryId: string = '';
 
-  // private availability: { availability: string }[] = [
-  //   { availability: 'Есть в наличии' },
-  // { availability: 'Нет в наличии' },
-  // ];
+  private availabilities: { availability: string }[] = [
+    { availability: 'Есть в наличии' },
+    { availability: 'Нет в наличии' },
+  ];
+
+  private countries: { country: string }[] = [
+    { country: 'Афганистан' },
+    { country: 'Албания' },
+  ];
 
   constructor() {}
 
@@ -23,9 +28,13 @@ export class FormService {
     return this.formTitle;
   }
 
-  // public getAllAvailability(): { availability: string }[] {
-  //   return this.availability;
-  // }
+  public getAllCountries(): { country: string }[] {
+    return this.countries;
+  }
+
+  public getAvailability(): { availability: string }[] {
+    return this.availabilities;
+  }
 
   public hideForm() {
     this.isEditProduct = false;

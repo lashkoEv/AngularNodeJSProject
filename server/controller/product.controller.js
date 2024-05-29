@@ -38,11 +38,11 @@ async function add(req, res) {
     const product = new Product({
       title: req.body.title,
       description: req.body.description,
-      // availability: req.body.availability,
-      // country: req.body.country,
+      // country: req.body.country
       wholesalePrice: req.body.wholesalePrice,
       retailPrice: req.body.retailPrice,
       count: req.body.count,
+      availability: req.body.availability,
       fields: req.body.fields,
       category: req.body.category,
       imgSrc: req.body.imgSrc,
@@ -99,11 +99,11 @@ async function updateById(req, res) {
       {
         title: req.body.title,
         description: req.body.description,
-        // availability: req.body.availability,
         // country: req.body.country,
         wholesalePrice: req.body.wholesalePrice,
         retailPrice: req.body.retailPrice,
         count: req.body.count,
+        availability: req.body.availability,
         fields: req.body.fields,
         category: req.body.category,
         imgSrc: req.body.imgSrc,

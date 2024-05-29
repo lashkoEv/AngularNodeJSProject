@@ -51,18 +51,16 @@
       <th pSortableColumn="count">
         Количество <p-sortIcon field="count"></p-sortIcon>
       </th>
-      <!-- <th pSortableColumn="availability">
+      <th pSortableColumn="availability">
         Наличие <p-sortIcon field="availability"></p-sortIcon>
-      </th> -->
+      </th>
       <th pSortableColumn="category">
         Категория <p-sortIcon field="category"></p-sortIcon>
       </th>
       <th pSortableColumn="description">
         Описание <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <!-- <th pSortableColumn="country">
-        Страна <p-sortIcon field="country"></p-sortIcon>
-      </th> -->
+
       <th pSortableColumn="fields">
         Характеристики <p-sortIcon field="fields"></p-sortIcon>
       </th>
@@ -79,7 +77,7 @@
       <td>{{ product.wholesalePrice }}</td>
       <td>{{ product.retailPrice }}</td>
       <td>{{ product.count }}</td>
-      <!-- <td>{{ product.availability }}</td> -->
+      <td>{{ product.availability?.availability }}</td>
       <td>{{ product.category.title || product.category }}</td>
       <td>{{ product.description.slice(0, 70) }}...</td>
       <!-- <td>{{ product.country.country }}</td> -->
@@ -113,7 +111,7 @@
           (click)="duplicateProduct(product)"
           icon="pi pi-pen-to-square"
           severity="danger"
-          label="Дублировать"
+          label="Duplicate"
         ></p-button>
       </td>
     </tr>
@@ -138,21 +136,12 @@
         <img src="{{ current?.imgSrc }}" alt="" class="image" />
       </div>
     </p-fieldset>
-    <!-- <p-fieldset legend="Код" [toggleable]="true">
-      <p class="m-0">
-        {{ current?._id }}
-      </p>
-    </p-fieldset> -->
+
     <p-fieldset legend="Описание" [toggleable]="true">
       <p class="line-break m-0">
         {{ current?.description }}
       </p>
     </p-fieldset>
-    <!-- <p-fieldset legend="Страна" [toggleable]="true">
-      <p class="m-0">
-        {{ current?.country.country }}
-      </p>
-    </p-fieldset> -->
     <p-fieldset legend="Цена" [toggleable]="true">
       <p class="m-0">Оптовая: {{ current?.wholesalePrice }}</p>
       <p class="m-0">Розничная: {{ current?.retailPrice }}</p>
@@ -162,11 +151,11 @@
         {{ current?.count }}
       </p>
     </p-fieldset>
-    <!-- <p-fieldset legend="Наличие" [toggleable]="true">
+    <p-fieldset legend="Наличие" [toggleable]="true">
       <p class="m-0">
-        {{ current?.availability }}
+        {{ current?.availability?.availability }}
       </p>
-    </p-fieldset> -->
+    </p-fieldset>
     <p-fieldset legend="Категория" [toggleable]="true">
       <p class="m-0">
         {{ current?.category.title || current?.category }}

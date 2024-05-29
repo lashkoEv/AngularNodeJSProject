@@ -24,9 +24,19 @@
         <div class="split info">
           <h1 class="title">{{ product?.title }}</h1>
 
-          <p class="availability" *ngIf="product?.count > 0">Есть в наличии</p>
+          <p
+            class="availability"
+            *ngIf="product?.availability?.availability === 'Есть в наличии'"
+          >
+            Есть в наличии
+          </p>
 
-          <p class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</p>
+          <p
+            class="unAvailability"
+            *ngIf="product?.availability?.availability === 'Нет в наличии'"
+          >
+            Нет в наличии
+          </p>
 
           <div class="price-wrapper">
             <div class="wholesale">
