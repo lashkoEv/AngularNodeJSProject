@@ -86,6 +86,7 @@ export class ProductTableComponent implements OnInit {
       { field: 'wholesalePrice', header: 'Оптовая цена' },
       { field: 'retailPrice', header: 'Розничная цена' },
       { field: 'count', header: 'Количество' },
+      // { field: 'availability', header: 'Наличие' },
       { field: 'country', header: 'Страна' },
       { field: 'fields', header: 'Характеристики' },
       { field: '', header: '' },

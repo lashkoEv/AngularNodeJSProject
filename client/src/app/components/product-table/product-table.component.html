@@ -51,6 +51,9 @@
       <th pSortableColumn="count">
         Количество <p-sortIcon field="count"></p-sortIcon>
       </th>
+      <!-- <th pSortableColumn="availability">
+        Наличие <p-sortIcon field="availability"></p-sortIcon>
+      </th> -->
       <th pSortableColumn="category">
         Категория <p-sortIcon field="category"></p-sortIcon>
       </th>
@@ -76,6 +79,7 @@
       <td>{{ product.wholesalePrice }}</td>
       <td>{{ product.retailPrice }}</td>
       <td>{{ product.count }}</td>
+      <!-- <td>{{ product.availability }}</td> -->
       <td>{{ product.category.title || product.category }}</td>
       <td>{{ product.description.slice(0, 70) }}...</td>
       <!-- <td>{{ product.country.country }}</td> -->
@@ -158,6 +162,11 @@
         {{ current?.count }}
       </p>
     </p-fieldset>
+    <!-- <p-fieldset legend="Наличие" [toggleable]="true">
+      <p class="m-0">
+        {{ current?.availability }}
+      </p>
+    </p-fieldset> -->
     <p-fieldset legend="Категория" [toggleable]="true">
       <p class="m-0">
         {{ current?.category.title || current?.category }}

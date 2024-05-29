@@ -8,6 +8,7 @@ export interface IProduct {
   _id?: String;
   title: String;
   description: String;
+  // availability: String;
   // country: ICountry;
   wholesalePrice: String;
   retailPrice: String;

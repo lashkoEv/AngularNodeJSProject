@@ -27,7 +27,7 @@ export class AdminFormComponent implements OnInit {
   public category: ICategory;
   public product: IProduct;
   private selectedFile: File | null = null;
-  public countries: { country: string }[];
+  // public availability: { availability: string }[];
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +46,7 @@ export class AdminFormComponent implements OnInit {
       console.log(this.categories);
     });
     this.product = this.productService.getProduct();
-    this.countries = this.formService.getAllCountries();
+    // this.availability = this.formService.getAllAvailability();
     this.category = this.categoryService.getCategory();
     this.createForm();
   }
@@ -60,7 +60,7 @@ export class AdminFormComponent implements OnInit {
         this.productForm = this.fb.group({
           title: [this.product.title, Validators.required],
           description: [this.product.description, Validators.required],
-          // country: [this.product.country, Validators.required],
+          // availability: [this.product.availability, Validators.required],
           wholesalePrice: [this.product.wholesalePrice, Validators.required],
           count: [this.product.count, Validators.required],
           fields: this.fb.array([]),
@@ -76,7 +76,7 @@ export class AdminFormComponent implements OnInit {
         this.productForm = this.fb.group({
           title: ['', Validators.required],
           description: ['', Validators.required],
-          country: [{}, Validators.required],
+          // availability: [{}, Validators.required],
           wholesalePrice: ['', Validators.required],
           count: ['', Validators.required],
           fields: this.fb.array([]),
