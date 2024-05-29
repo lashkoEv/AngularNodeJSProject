@@ -104,6 +104,14 @@
       <td>
         <p-button icon="pi pi-eye" (click)="show(product)"></p-button>
       </td>
+      <td>
+        <p-button
+          (click)="duplicateProduct(product)"
+          icon="pi pi-pen-to-square"
+          severity="danger"
+          label="Дублировать"
+        ></p-button>
+      </td>
     </tr>
   </ng-template>
 </p-table>

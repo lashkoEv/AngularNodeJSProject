@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { FormService } from '../../services/form.service';
 import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-product-table',
@@ -45,6 +46,29 @@ export class ProductTableComponent implements OnInit {
     this.getProduct(product);
     this.formService.invokeEditForm();
     this.ngOnInit();
+  }
+
+  duplicateProduct(product: IProduct) {
+    const clonedProduct = cloneDeep(product);
+    const { _id, ...productWithoutId } = clonedProduct; // Exclude _id
+
+    this.productService.add(productWithoutId).subscribe(
+      (newProduct: IProduct) => {
+        this.products.push(newProduct); // Add the new product to the list
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Продукт продублирован',
+          detail: `Продукт ${newProduct.title} успешно продублирован`,
+        });
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Ошибка. Дубликат не сформирован',
+          detail: `Дубликат продукта не сформирован: ${error.message}`,
+        });
+      }
+    );
   }
 
   ngOnInit() {
