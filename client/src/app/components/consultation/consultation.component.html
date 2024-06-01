@@ -1,56 +1,55 @@
-<section class="consultation-title">
-  <h2 id="consultation">КОНСУЛЬТАЦИЯ</h2>
-</section>
-
 <section class="form">
-  <form #form="ngForm">
-    <div class="form-group">
-      <label for="email" class="email-label">Почта:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="inputEmail"
-        required
-        email
-        pInputText
-      />
-    </div>
+  <div class="card">
+    <form #form="ngForm">
+      <section class="consultation-title">
+        <h2 id="consultation">CВЯЗАТЬСЯ С НАМИ</h2>
+      </section>
+      <div class="form-group">
+        <p-floatLabel>
+          <input pInputText id="email" name="email" ngModel />
+          <label for="username">Почта</label>
+        </p-floatLabel>
+      </div>
 
-    <div class="form-group">
-      <label for="topic" class="topic-label">Тема:</label>
-      <input
-        type="text"
-        id="topic"
-        name="topic"
-        [(ngModel)]="inputTopic"
-        required
-        pInputText
-      />
-    </div>
+      <div class="form-group">
+        <p-floatLabel>
+          <input pInputText id="topic" name="topic" ngModel />
+          <label for="username">Тема</label>
+        </p-floatLabel>
+      </div>
 
-    <div class="form-group">
-      <label for="message" class="message-label">Сообщение:</label>
-      <textarea
-        id="message"
-        name="message"
-        [(ngModel)]="inputMessage"
-        required
-        pInputTextarea
-      ></textarea>
-    </div>
-
-    <button
-      type="submit"
-      (click)="add(form.value)"
-      class="sendBtn"
-      role="button"
-      pButton
-      type="button"
-      label="Отправить"
-    ></button>
-  </form>
-  <div class="image-wrapper">
-    <img src="../../assets/images/asbestos.png" alt="+" class="image" />
+      <div class="form-group">
+        <p-floatLabel>
+          <textarea
+            id="message"
+            name="message"
+            ngModel
+            rows="5"
+            cols="30"
+            required
+            pInputTextarea
+          ></textarea>
+          <label for="message" class="message-label">Сообщение:</label>
+        </p-floatLabel>
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          (click)="add(form.value)"
+          class="sendBtn"
+          role="button"
+          pButton
+          type="button"
+          label="Отправить"
+        ></button>
+      </div>
+    </form>
   </div>
+  <!-- <div class="image-wrapper">
+    <img
+      src="../../assets/images/917597d6739fb1c47de373307030954b.png"
+      alt="+"
+      class="image"
+    />
+  </div> -->
 </section>

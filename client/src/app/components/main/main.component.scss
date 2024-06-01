@@ -120,7 +120,7 @@
 .price {
   font-weight: 800;
   line-height: normal;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .product-grid {
@@ -140,6 +140,10 @@
   flex-direction: column;
   gap: 1rem;
   text-align: center;
+  word-break: break-all;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .product-grid > div > .product > .image {
@@ -156,4 +160,20 @@
   border-bottom-left-radius: 0.5rem;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.consultation > .form {
+  height: max-content;
 }

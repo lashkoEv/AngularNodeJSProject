@@ -40,7 +40,27 @@ async function register(req, res) {
   }
 }
 
+async function changePassword(req, res) {
+  try {
+    await User.updateOne(
+      { _id: req.body._id },
+      {
+        password: req.body.password,
+      }
+    );
+
+    return res.send({ ok: "ok" });
+  } catch (error) {
+    console.error(`Error: ${error}`);
+
+    return res
+      .status(500)
+      .send({ error: `Failed to complete the request! Error: ${error}` });
+  }
+}
+
 module.exports = {
   authorize,
-  register
+  register,
+  changePassword,
 };

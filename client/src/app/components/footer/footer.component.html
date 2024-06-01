@@ -1,50 +1,56 @@
 <footer>
   <div class="card flex">
-      <section class="footer">
-        <section class="left-footer">
-          <section [routerLink]="['/']" class="logo">{{ logo }}</section>
-          <!-- <section class="sub-title">
+    <section class="footer">
+      <section class="left-footer">
+        <section [routerLink]="['/']" class="logo">{{ logo }}</section>
+        <!-- <section class="sub-title">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. 
               Ipsa suscipit saepe eos aperiam sed modi sunt nostrum.
             </p>
           </section> -->
-          <section class="info-contact">
-            <section class="info-piece phone-number">{{ phoneNumber }}</section>
-            <section class="info-piece email">{{ contactEmail }}</section>
-            <section class="info-piece working-hours" *ngFor="let data of workingHours">
-              <span class="days">{{ data.hours }}</span>
-              <span class="hours">{{ data.days }}</span>
-            </section>
+        <section class="info-contact">
+          <section class="info-piece phone-number">{{ phoneNumber }}</section>
+          <section class="info-piece email">{{ contactEmail }}</section>
+          <section
+            class="info-piece working-hours"
+            *ngFor="let data of workingHours"
+          >
+            <span class="days">{{ data.hours }}</span>
+            <span class="hours">{{ data.days }}</span>
           </section>
-          <!-- <section class="location-wrapper">
+        </section>
+        <!-- <section class="location-wrapper">
             <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
             <section class="location">
               <a href="{{ location.src }}" class="location">{{ location.title }}</a>
             </section>
           </section> -->
-          <section class="footer-socials-wrapper">
-            <socials class="footer-social" *ngFor="let social of socials">
-              <a 
-              href="{{ social.src }}" 
-              mat-buttonxs
-              class="social"
-              >
-                <i class="fa-brands fa-{{ social.name }} fa-xl" src="{{ social.img }}" alt="#"></i>
-              </a>
-            </socials>
-          </section>
+        <section class="footer-socials-wrapper">
+          <socials class="footer-social" *ngFor="let social of socials">
+            <a href="{{ social.src }}" mat-buttonxs class="social">
+              <i
+                class="fa-brands fa-{{ social.name }} fa-xl"
+                src="{{ social.img }}"
+                alt="#"
+              ></i>
+            </a>
+          </socials>
         </section>
-        <section class="middle-footer">
-          <section class="category-grid">
-            <div class="grid-item" *ngFor="let category of categories" [routerLink]="['/category', category._id]">
-              {{category.title}}
-            </div>
-          </section>
-          
+      </section>
+      <section class="middle-footer">
+        <section class="category-grid">
+          <div
+            class="grid-item"
+            *ngFor="let category of categories"
+            [routerLink]="['/category', category._id]"
+          >
+            {{ category.title }}
+          </div>
         </section>
-        <section class="right-footer">
-          <!-- <section class="footer-navigation-wrapper">
+      </section>
+      <section class="right-footer">
+        <!-- <section class="footer-navigation-wrapper">
             <div *ngFor="let nav of navigation">
               <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
                 <a [routerLink]="nav.links[i]" mat-button class="nav">{{ title }}</a>
@@ -54,55 +60,55 @@
               </nav>
             </div>
           </section> -->
-          <div class="profile">
+        <div class="profile">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-user"
+            class="p-button-rounded p-button-text"
+            *ngIf="!getAuthState()"
+            (click)="showForm()"
+          ></button>
+          <div class="admin-wrapper">
             <button
               pButton
               type="button"
-              icon="pi pi-user"
+              icon="pi pi-wrench"
               class="p-button-rounded p-button-text"
-              *ngIf="!getAuthState()"
-              (click)="showForm()"
+              *ngIf="getIsAdmin()"
+              [routerLink]="['/admin']"
             ></button>
-            <div class="admin-wrapper">
-              <button
-                pButton
-                type="button"
-                icon="pi pi-wrench"
-                class="p-button-rounded p-button-text"
-                *ngIf="getIsAdmin()"
-                [routerLink]="['/admin']"
-              ></button>
-              <button
-                pButton
-                type="button"
-                icon="pi pi-times-circle"
-                class="p-button-rounded p-button-text"
-                *ngIf="getAuthState()"
-                (click)="logout()"
-              ></button>
-            </div>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-times-circle"
+              class="p-button-rounded p-button-text"
+              *ngIf="getAuthState()"
+              (click)="logout()"
+            ></button>
           </div>
-          <div class="messages">
-            <a href="#consultation">
-              <button
-                pButton
-                type="button"
-                icon="pi pi-envelope"
-                class="p-button-rounded p-button-text"
-              ></button>
-            </a>
-          </div>
-          <div class="goods">
-            <a routerLink="/catalogue">
-              <button
-                pButton
-                type="button"
-                icon="pi pi-shopping-bag"
-                class="p-button-rounded p-button-text"
-              ></button>
-            </a>
-          </div>
-        </section>
+        </div>
+        <div class="messages">
+          <a href="#consultation">
+            <button
+              pButton
+              type="button"
+              icon="pi pi-envelope"
+              class="p-button-rounded p-button-text"
+            ></button>
+          </a>
+        </div>
+        <div class="goods">
+          <a routerLink="/catalogue">
+            <button
+              pButton
+              type="button"
+              icon="pi pi-shopping-bag"
+              class="p-button-rounded p-button-text"
+            ></button>
+          </a>
+        </div>
       </section>
+    </section>
   </div>
 </footer>

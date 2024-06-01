@@ -1,7 +1,9 @@
 footer {
+  width: 100%;
   background-color: rgb(248, 248, 248);
   border-top: 1px solid rgb(240, 240, 240);
-  margin-top: 1rem;
+  // margin-top: 1rem;
+  height: 100%;
 }
 
 .footer {
@@ -26,20 +28,20 @@ footer {
     margin-right: 5px;
   }
   .logo {
-    margin: .6rem 0;
+    margin: 0.6rem 0;
     font-size: 1.3rem;
     color: black;
     font-weight: 700;
     cursor: pointer;
   }
   .sub-title {
-    font-size: .9rem;
+    font-size: 0.9rem;
     max-width: 300px;
     margin: 10px 0;
   }
   .info-contact {
-    margin: .6rem;
-    font-size: .95rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
     .location {
       font-size: 25px;
     }
@@ -56,7 +58,7 @@ footer {
     margin-left: 0;
   }
 
-  .footer-socials-wrapper{
+  .footer-socials-wrapper {
     display: flex;
     .footer-social {
       margin-right: 20px;
@@ -72,7 +74,7 @@ footer {
         align-items: center;
         color: rgb(182, 188, 201);
       }
-      
+
       a:hover {
         .fa-viber {
           color: #7360f2;
@@ -81,10 +83,17 @@ footer {
           color: #0088cc;
         }
         .fa-facebook {
-          color: #1877F2;
+          color: #1877f2;
         }
         .fa-instagram {
-          background: -webkit-gradient(linear, left top, left bottom, from(#833AB4), to(#FD1D1D), to(#FCB045));
+          background: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(#833ab4),
+            to(#fd1d1d),
+            to(#fcb045)
+          );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           // display: initial;
@@ -101,7 +110,7 @@ footer {
     grid-gap: 10px;
     justify-items: start;
     align-items: center;
-    
+
     .grid-item {
       cursor: pointer;
       color: rgb(165, 170, 182);
@@ -119,7 +128,6 @@ footer {
       }
     }
   }
-  
 }
 
 a {
@@ -127,3 +135,13 @@ a {
   text-decoration: none;
 }
 
+@media screen and (max-width: 800px) {
+  .middle-footer {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.flex {
+  margin-top: 2rem;
+}

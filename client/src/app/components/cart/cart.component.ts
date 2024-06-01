@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { IOrderedProduct } from '../../interfaces/IOrderedProduct';
 import { IOrder } from '../../interfaces/IOrder';
 import { IUser } from '../../interfaces/IUser';
+import { OrderFormService } from '../../services/order-form.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,8 +15,12 @@ export class CartComponent implements OnInit {
   public products: IOrderedProduct[];
   public cartTotalPrice: number;
   public currentUser: IUser;
+  public isOrder: boolean;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    public orderFormService: OrderFormService
+  ) {}
 
   ngOnInit(): void {
     this.cartService.productSubject.subscribe((products: IOrderedProduct[]) => {
@@ -42,23 +47,28 @@ export class CartComponent implements OnInit {
 
   checkout(currentUser: IUser) {
     if (currentUser) {
-      console.error('Нет необходимой информации');
+      console.log('error');
       return;
+    } else if (this.cartTotalPrice) {
+      this.showOrderForm();
+      const order: IOrder = {
+        user: currentUser,
+        products: this.products,
+        totalPrice: this.cartTotalPrice,
+      };
+
+      console.log('Order:', order);
     }
-
-    const order: IOrder = {
-      user: currentUser,
-      products: this.products,
-      totalPrice: this.cartTotalPrice,
-    };
-
-    console.log('Order:', order);
 
     // this.cartService.resetCart();
   }
 
   updateCartTotalPrice() {
     this.cartTotalPrice = this.cartService.getCartTotalPrice();
+  }
+
+  public showOrderForm() {
+    this.orderFormService.showForm();
   }
 }
 
