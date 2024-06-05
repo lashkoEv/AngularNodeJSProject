@@ -5,6 +5,7 @@ async function authorize(req, res) {
     const user = await User.findOne({
       login: req.body.login,
       password: req.body.password,
+      // isAdmin: req.body.isAdmin
     });
 
     console.log("Found:", user);
@@ -19,6 +20,47 @@ async function authorize(req, res) {
   }
 }
 
+async function register(req, res) {
+  try {
+    const user = new User({
+      login: req.body.login,
+      password: req.body.password,
+      isAdmin: req.body.isAdmin,
+    });
+
+    await user.save();
+
+    return res.send(user);
+  } catch (error) {
+    console.error("Error: ${error}");
+
+    return res
+      .status(500)
+      .send({ error: "Failed to complete the request! Error: ${error}" });
+  }
+}
+
+async function changePassword(req, res) {
+  try {
+    await User.updateOne(
+      { _id: req.body._id },
+      {
+        password: req.body.password,
+      }
+    );
+
+    return res.send({ ok: "ok" });
+  } catch (error) {
+    console.error(`Error: ${error}`);
+
+    return res
+      .status(500)
+      .send({ error: `Failed to complete the request! Error: ${error}` });
+  }
+}
+
 module.exports = {
   authorize,
+  register,
+  changePassword,
 };

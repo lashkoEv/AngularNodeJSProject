@@ -1,59 +1,109 @@
-<table mat-table [dataSource]="dataSourceCategory" class="mat-elevation-z8">
-  <ng-container matColumnDef="_id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let category">{{ category._id }}</td>
-  </ng-container>
+<p-toast [life]="2000"></p-toast>
 
-  <ng-container matColumnDef="imgSrc">
-    <th mat-header-cell *matHeaderCellDef>Изображение</th>
-    <td mat-cell *matCellDef="let category">
-      <!-- {{ category.imgSrc }} -->
-      <img src="{{ category.imgSrc }}" class="img" />
-    </td>
-  </ng-container>
+<p-confirmPopup key="popup4"></p-confirmPopup>
 
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Название</th>
-    <td mat-cell *matCellDef="let category">{{ category.title }}</td>
-  </ng-container>
+<div class="btn-wrapper">
+  <p-button
+    [outlined]="true"
+    icon="pi pi-plus"
+    (click)="addCategory()"
+    label="Добавить новую категорию"
+  ></p-button
+  ><p-button
+    severity="secondary"
+    [outlined]="true"
+    icon="pi pi-sync"
+    (click)="ngOnInit()"
+    label="Перезагрузить таблицу"
+  ></p-button>
+</div>
 
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Описание</th>
-    <td mat-cell *matCellDef="let category">
-      {{ category.description }}
-    </td>
-  </ng-container>
+<p-table
+  [paginator]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="{first} до {last} из {totalRecords}"
+  [rowsPerPageOptions]="[10, 20, 50, 100]"
+  [value]="categories"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th pSortableColumn="_id">Код <p-sortIcon field="_id"></p-sortIcon></th>
+      <th pSortableColumn="imgSrc">
+        Фото <p-sortIcon field="imgSrc"></p-sortIcon>
+      </th>
+      <th pSortableColumn="title">
+        Название <p-sortIcon field="title"></p-sortIcon>
+      </th>
+      <th pSortableColumn="description">
+        Описание <p-sortIcon field="description"></p-sortIcon>
+      </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-category let-columns="columns">
+    <tr>
+      <td>{{ category._id }}</td>
+      <td><img src="{{ category.imgSrc }}" class="img" alt="Category" /></td>
+      <td>{{ category.title }}</td>
+      <td class="line-break">{{ category.description.slice(0, 100) }}...</td>
+      <td>
+        <p-button
+          icon="pi pi-trash"
+          severity="danger"
+          (click)="confirm($event, category._id)"
+        ></p-button>
+      </td>
+      <td>
+        <p-button
+          severity="help"
+          icon="pi pi-pen-to-square"
+          (click)="updateCategory(category)"
+        ></p-button>
+      </td>
+      <td>
+        <p-button icon="pi pi-eye" (click)="show(category)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
 
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let category">
-      <button mat-button (click)="deleteCategory(category._id)" class="delete">
-        Удалить
-      </button>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="update">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let category">
-      <button mat-button (click)="updateCategory(category)" class="update">
-        Редактировать
-      </button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumnsCategory"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumnsCategory"></tr>
-</table>
-
-<mat-paginator
-  #paginator
-  [pageSizeOptions]="[10, 25, 100]"
-  showFirstLastButtons
-></mat-paginator>
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <ng-template pTemplate="header">
+    <h1 style="margin: 0; padding: 0" class="font-bold white-space-nowrap">
+      {{ current?.title }}
+    </h1>
+  </ng-template>
+  <div class="wrapper">
+    <p-fieldset legend="Фото" [toggleable]="true">
+      <div class="image-wrapper">
+        <img src="{{ current?.imgSrc }}" alt="" class="image" />
+      </div>
+    </p-fieldset>
+    <!-- <p-fieldset legend="Код" [toggleable]="true">
+      <p class="m-0">
+        {{ current?._id }}
+      </p>
+    </p-fieldset> -->
+    <p-fieldset legend="Описание" [toggleable]="true">
+      <p class="line-break">
+        {{ current?.description }}
+      </p>
+    </p-fieldset>
+  </div>
+</p-dialog>
 
 <app-admin-form
   *ngIf="formService.getIsAddCategory() || formService.getIsUpdateCategory()"
 ></app-admin-form>
-<app-spinner></app-spinner>
-<app-notification></app-notification>
+
+<!-- <app-spinner></app-spinner> -->

@@ -1,0 +1,38 @@
+.profile,
+.profile-container {
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+}
+.profile-data {
+  display: flex;
+  flex-direction: column;
+}
+.profile-container {
+  margin-top: 50px;
+}
+.p-float-label {
+  margin-bottom: 15px;
+}
+.profile-change_button {
+  margin-top: 15px;
+}
+.m-0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-change_new,
+.profile-change_old {
+  margin: 10px;
+}
+.profile-img {
+  padding-right: 250px;
+}
+.profile-wrapper {
+  width: 200px;
+}
+#username-help {
+  padding-bottom: 20px;
+  color: red;
+}

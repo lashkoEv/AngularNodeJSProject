@@ -1,61 +1,172 @@
 <section class="top-header">
   <div class="phone-wrapper">
-    <img src="../../assets/phone-solid.svg" alt="#" class="phone-icon" />
-    <span class="phone-number">{{ phoneNumber }}</span>
+    <!-- <button
+    pButton
+    type="button"
+    icon="pi pi-mobile"
+    class="p-button-rounded p-button-text"
+    style="color: white"
+  ></button> -->
+    <a href="tel:{{ phoneNumber }}" class="tel"><i class="pi pi-mobile"></i></a>
+    <a href="tel:{{ phoneNumber }}" class="tel">
+      <span class="phone-number">{{ phoneNumber }}</span>
+    </a>
   </div>
   <div class="location-wrapper">
-    <img src="../../assets/location-pin-solid.svg" alt="#" class="pin-icon" />
-    <span class="location">{{ location }}</span>
+    <!-- <button -->
+    <a
+      href="https://maps.app.goo.gl/xDTu3DuLKQYyTqyi6"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tel"
+    >
+      <i class="pi pi-map-marker"></i>
+    </a>
+    <!-- ></button> -->
+
+    <a
+      href="https://maps.app.goo.gl/xDTu3DuLKQYyTqyi6"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tel"
+    >
+      <span class="location">{{ location }}</span>
+    </a>
   </div>
   <div class="hours-wrapper" *ngFor="let data of workingHours">
     <span class="days">{{ data.days }}</span>
     <span class="hours">{{ data.hours }}</span>
   </div>
   <div class="socials-wrapper">
-    <img src="../../assets/viber.svg" alt="" class="viber" />
-    <img src="../../assets/telegram.svg" alt="" class="telegram" />
-    <img src="../../assets/facebook.svg" alt="" class="facebook" />
-    <img src="../../assets/instagram.svg" alt="" class="instagram" />
-    <span class="lang-switch" *ngFor="let language of languageSwitch">
-      <button mat-button class="language">{{ language.ua }}</button>
-      <button mat-button class="language">{{ language.ru }}</button>
-    </span>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-phone"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-telegram"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-facebook"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-instagram"
+      class="p-button-rounded p-button-text"
+      style="color: white"
+    ></button>
   </div>
+
+  <!-- <span class="lang-switch" *ngFor="let language of languageSwitch">
+      <button mat-button class="language" style="color: white">
+        {{ language.ua }}
+      </button>
+      <button mat-button class="language" style="color: white">
+        {{ language.ru }}
+      </button>
+    </span> -->
+  <!-- </div> -->
 </section>
 <section class="main-header">
-  <div class="logo" [routerLink]="['/']">{{ logo }}</div>
-  <div class="navigation-wrapper" *ngFor="let nav of navigation">
-    <nav class="navigation" *ngFor="let title of nav.titles; let i = index">
-      <a [routerLink]="[nav.links[i]]" mat-button class="nav">{{ title }}</a>
-    </nav>
-    <img src="../../assets/cart-shopping-solid.svg" alt="" class="cart-icon" />
+  <div class="logo" [routerLink]="['/']">
+    <img src="../../../assets/logo-64-2.png" alt="Logo" class="logo-img" />
   </div>
-</section>
-<section class="sub-header">
-  <!-- <div class="search-wrapper"> -->
-  <!-- <mat-form-field> -->
-  <!-- <input matInput type="text" class="input" /> -->
-  <!-- <img src="../../assets/search.svg" alt="#" class="search-icon" /> -->
-  <!-- </mat-form-field> -->
   <div class="search">
     <app-search></app-search>
   </div>
-
-  <div class="auth-wrapper">
-    <button mat-button class="btn" *ngIf="!getAuthState()" (click)="showForm()">
-      Авторизация
-    </button>
-    <button
-      mat-button
-      class="btn"
-      *ngIf="getAuthState()"
+  <!-- <div class="elements-wrapper"> -->
+  <app-megamenu class="megamenu"></app-megamenu>
+  <!-- <div class="profile"> -->
+  <span *ngIf="!getAuthState()"
+    ><button
+      pButton
+      type="button"
+      icon="pi pi-user"
+      class="p-button-rounded p-button-text"
+      (click)="showForm()"
+    ></button
+  ></span>
+  <span *ngIf="getAuthState()"
+    ><button
+      pButton
+      type="button"
+      icon="pi pi-user"
+      class="p-button-rounded p-button-text"
+      routerLink="/profile"
+    ></button
+  ></span>
+  <!-- <div class="admin-wrapper"> -->
+  <span *ngIf="getIsAdmin()"
+    ><button
+      pButton
+      type="button"
+      icon="pi pi-wrench"
+      class="p-button-rounded p-button-text"
       [routerLink]="['/admin']"
-    >
-      Админ-панель
-    </button>
-    <button mat-button class="btn" *ngIf="getAuthState()" (click)="logout()">
-      Выход
-    </button>
-  </div>
+    ></button
+  ></span>
+  <span *ngIf="getAuthState()"
+    ><button
+      pButton
+      type="button"
+      icon="pi pi-times-circle"
+      class="p-button-rounded p-button-text"
+      (click)="logout()"
+    ></button
+  ></span>
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- <div class="messages"> -->
+  <a routerLink="/consultation">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-envelope"
+      class="p-button-rounded p-button-text"
+    ></button>
+  </a>
+  <!-- </div> -->
+  <!-- <div class="goods"> -->
+  <a routerLink="/catalogue">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-shopping-bag"
+      class="p-button-rounded p-button-text"
+    ></button>
+  </a>
+  <!-- </div> -->
+  <!-- <div class="wrapper"> -->
+  <span
+    ><button
+      pButton
+      type="button"
+      icon="pi pi-shopping-cart"
+      class="p-button-rounded p-button-text"
+      (click)="sidebarVisible = true"
+    ></button
+  ></span>
+
+  <!-- </div> -->
+  <!-- </div> -->
 </section>
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  position="right"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <app-cart></app-cart>
+</p-sidebar>
 <app-authorization-form *ngIf="getFormState()"></app-authorization-form>

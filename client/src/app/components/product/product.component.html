@@ -1,73 +1,104 @@
-<div class="container">
-  <div class="image-wrapper">
-    <img src="{{ product?.imgSrc }}" alt="Product image" class="image" />
-  </div>
+<p-toast [life]="2000"></p-toast>
 
-  <div class="main-info">
-    <h1 class="title">{{ product?.title }}</h1>
+<div class="card">
+  <div class="container">
+    <p-breadcrumb
+      class="max-w-full"
+      [model]="items"
+      [home]="home"
+    ></p-breadcrumb>
 
-    <div class="price-wrapper">
-      <div class="wholesale">
-        <p class="price-title">Оптовая цена</p>
+    <p-splitter class="splitter">
+      <ng-template pTemplate>
+        <div class="split">
+          <p-image
+            [preview]="true"
+            width="100%"
+            [src]="product?.imgSrc"
+            alt="Product Image"
+          />
+        </div>
+      </ng-template>
 
-        <p class="price">
-          {{ product?.wholesalePrice }}
-        </p>
+      <ng-template pTemplate>
+        <div class="split info">
+          <h1 class="title">{{ product?.title }}</h1>
+
+          <p class="availability" *ngIf="product?.count > 0">Есть в наличии</p>
+
+          <p class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</p>
+
+          <div class="price-wrapper">
+            <div class="wholesale">
+              <p class="price-title">Оптовая цена</p>
+
+              <p class="price">
+                {{ product?.wholesalePrice }}
+              </p>
+            </div>
+
+            <div class="retail">
+              <p class="price-title">Розничная цена</p>
+
+              <p class="price">
+                {{ product?.retailPrice }}
+              </p>
+            </div>
+          </div>
+
+          <p-button
+            label="В корзину "
+            icon="pi pi-shopping-cart"
+            iconPos="right"
+            (click)="addToCart(product)"
+            class="button"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-splitter>
+
+    <p-panel header="Описание" [toggleable]="true">
+      <p class="line-break">
+        {{ product?.description }}
+      </p>
+    </p-panel>
+
+    <p-panel header="Характеристики" [toggleable]="true">
+      <div class="table">
+        <div class="row">
+          <div class="cell">Категория</div>
+          <div class="cell">{{ product?.category.title }}</div>
+        </div>
+        <div class="row">
+          <div class="cell">Количество</div>
+          <div class="cell">{{ product?.count }}</div>
+        </div>
+        <div class="row">
+          <div class="cell">Страна</div>
+          <div class="cell">{{ product?.country.country }}</div>
+        </div>
+        <div class="row_c" *ngFor="let item of product?.fields">
+          <div *ngIf="item.key && item.value">
+            <div class="cell" *ngIf="item.key">{{ item.key }}</div>
+            <div class="cell" *ngIf="item.value">{{ item.value }}</div>
+          </div>
+        </div>
       </div>
+    </p-panel>
 
-      <div class="retail">
-        <p class="price-title">Розничная цена</p>
+    <div class="similar">
+      <h1>Похожие товары</h1>
 
-        <p class="price">
-          {{ product?.retailPrice }}
-        </p>
-      </div>
-    </div>
-
-    <button mat-stroked-button class="button">Купить</button>
-  </div>
-
-  <div class="description">
-    <h1>Описание</h1>
-
-    <p class="text">{{ product?.description }}</p>
-  </div>
-
-  <div class="characteristics">
-    <h1>Характеристики</h1>
-
-    <div class="table">
-      <div class="row">
-        <div class="cell">Категория</div>
-        <div class="cell">{{ product?.category }}</div>
-      </div>
-      <div class="row">
-        <div class="cell">Количество</div>
-        <div class="cell">{{ product?.count }}</div>
-      </div>
-      <div class="row">
-        <div class="cell">Страна</div>
-        <div class="cell">{{ product?.country }}</div>
-      </div>
-      <div class="row" *ngFor="let item of product?.fields">
-        <div class="cell" *ngIf="item.key">{{ item.key }}</div>
-        <div class="cell" *ngIf="item.value">{{ item.value }}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="similar">
-    <h1>Похожие товары</h1>
-
-    <div class="products">
-      <div
-        class="product"
-        *ngFor="let p of products"
-        [routerLink]="['/products', p._id]"
-      >
-        <img [src]="p.imgSrc" alt="Product Image" class="p-img" />
-        <h1 class="p-title">{{ p.title }}</h1>
-        <p class="p-price">{{ p.retailPrice }}</p>
+      <div class="products">
+        <div
+          class="product"
+          *ngFor="let p of products"
+          [routerLink]="['/products', p._id]"
+        >
+          <img [src]="p.imgSrc" alt="Product Image" class="p-img" />
+          <h1 class="p-title">{{ p.title }}</h1>
+          <p class="p-price">{{ p.retailPrice }}</p>
+        </div>
       </div>
     </div>
   </div>

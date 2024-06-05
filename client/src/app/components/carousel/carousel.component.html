@@ -1,17 +1,22 @@
-<!-- <div class="carousel-wrapper">
-  <c-carousel [interval]="0">
-    <c-carousel-inner>
-      <c-carousel-item *ngFor="let slide of slides">
-        <img
-          [src]="slide.src"
-          alt="{{slide.title}}"
-          class="carousel-img d-block w-100"
-          loading="lazy"
-        />
-      </c-carousel-item>
-    </c-carousel-inner>
-    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-  </c-carousel>
+<div class="carousel-wrapper">
+  <p-carousel
+    [value]="products"
+    [numVisible]="2"
+    [numScroll]="1"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    autoplayInterval="3000"
+  >
+    <ng-template let-product pTemplate="item">
+      <div
+        class="border-1 surface-border border-round m-2 text-center py-5 px-3"
+        style="position: relative"
+      >
+        <div class="wrapper">
+          <img src="{{ product.src }}" class="w-6 shadow-2 carousel-img" />
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+  <div class="text">ИНТЕР-ПЛАСТ СЕРВИС</div>
 </div>
- -->

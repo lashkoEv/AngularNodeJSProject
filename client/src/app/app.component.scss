@@ -11,5 +11,19 @@
 }
 
 .phone-icon {
-  color: #167586;
+  color: var(--primary-color);
+}
+
+.app {
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // flex-direction: column;
+  // width: 100%;
+  // min-width: 100%;
+  // max-width: 100%;
+  // min-height: 100vh;
+  // display: grid;
+  // grid-template-rows: min-content 0px 1fr min-content;
+  position: relative;
 }
