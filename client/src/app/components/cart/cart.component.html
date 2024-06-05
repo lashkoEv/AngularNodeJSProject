@@ -70,6 +70,7 @@
   <span class="total-price-text">Сумма</span>
   <span class="total-price">{{ cartTotalPrice }} грн</span>
   <button
+    [disabled]="products.length <= 0"
     pButton
     type="button"
     label="Оформить заказ"
@@ -77,12 +78,9 @@
     iconPos="right"
     class="buy-button"
     (click)="checkout(currentUser)"
+    routerLink="/checkout"
   ></button>
 </div>
-
-<app-ordering-form
-  *ngIf="this.orderFormService.getIsOrder() && cartTotalPrice"
-></app-ordering-form>
 
 <!-- <p-button
     pButton
