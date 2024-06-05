@@ -6,23 +6,16 @@
   [preventOpenDuplicates]="true"
 ></p-confirmPopup>
 
-<div class="btn-wrapper">
-  <p-button
-    [outlined]="true"
-    icon="pi pi-plus"
-    (click)="addProduct()"
-    label="Добавить новый продукт"
-  ></p-button
-  ><p-button
-    severity="secondary"
-    [outlined]="true"
-    icon="pi pi-sync"
-    (click)="ngOnInit()"
-    label="Перезагрузить таблицу"
-  ></p-button>
-</div>
-
 <p-table
+  #dt2
+  dataKey="id"
+  [globalFilterFields]="[
+    'title',
+    'wholesalePrice',
+    'retailPrice',
+    'availability'
+  ]"
+  [loading]="loading"
   [paginator]="true"
   [rows]="10"
   [showCurrentPageReport]="true"
@@ -31,7 +24,42 @@
   [value]="products"
   [scrollable]="true"
 >
-  >
+  <ng-template pTemplate="caption">
+    <div class="btn-wrapper">
+      <p-button
+        icon="pi pi-plus"
+        (click)="addProduct()"
+        label="Добавить новый продукт"
+      />
+      <p-button
+        label="Очистить фильтры"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt2)"
+      />
+      <span class="p-input-icon-left ml-auto full-width">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt2.filterGlobal($event.target.value, 'contains')"
+          placeholder="Поиск"
+          style="width: 100%"
+        />
+      </span>
+      <p-button
+        severity="secondary"
+        icon="pi pi-sync"
+        (click)="ngOnInit()"
+        label="Перезагрузить таблицу"
+      />
+    </div>
+    <!--     
+    <div class="flex">
+      
+      
+    </div> -->
+  </ng-template>
+
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th pSortableColumn="_id">Код <p-sortIcon field="_id"></p-sortIcon></th>
@@ -67,6 +95,49 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="title"
+          placeholder="Поиск по названию"
+          ariaLabel="Filter Title"
+        />
+      </th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="wholesalePrice"
+          placeholder="Поиск по оптовой цене"
+          ariaLabel="Filter Wholesale"
+        />
+      </th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="retailPrice"
+          placeholder="Поиск по розничой цене"
+          ariaLabel="Filter Retail"
+        />
+      </th>
+
+      <th></th>
+
+      <th>
+        <p-columnFilter type="boolean" field="availability" />
+      </th>
+
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product let-columns="columns">
@@ -77,12 +148,12 @@
       <td>{{ product.wholesalePrice }}</td>
       <td>{{ product.retailPrice }}</td>
       <td>{{ product.count }}</td>
-      <td>{{ product.availability?.availability }}</td>
+      <td>{{ product.availability?.availability ? "+" : "-" }}</td>
       <td>{{ product.category.title || product.category }}</td>
-      <td>{{ product.description.slice(0, 70) }}...</td>
+      <td>{{ product.description.slice(0, 30) }}...</td>
       <!-- <td>{{ product.country.country }}</td> -->
       <td>
-        <span *ngFor="let data of product.fields.slice(0, 2)">
+        <span *ngFor="let data of product.fields.slice(0, 1)">
           <span *ngIf="data.key && data.value">
             {{ data.key }}: {{ data.value }};
           </span>
@@ -109,9 +180,8 @@
       <td>
         <p-button
           (click)="duplicateProduct(product)"
-          icon="pi pi-pen-to-square"
-          severity="danger"
-          label="Duplicate"
+          icon="pi pi-clone"
+          severity="secondary"
         ></p-button>
       </td>
     </tr>

@@ -5,6 +5,7 @@ import { FormService } from '../../services/form.service';
 import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { cloneDeep } from 'lodash';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-product-table',
@@ -16,6 +17,7 @@ export class ProductTableComponent implements OnInit {
   current: IProduct;
   products!: IProduct[];
   cols!: IColumn[];
+  loading: boolean = true;
 
   constructor(
     private productService: ProductService,
@@ -74,7 +76,9 @@ export class ProductTableComponent implements OnInit {
   ngOnInit() {
     this.productService.getAll().subscribe((data) => {
       this.products = data;
-      console.log(this.products);
+      // console.log(this.products);
+
+      this.loading = false;
     });
 
     this.cols = [
@@ -92,7 +96,12 @@ export class ProductTableComponent implements OnInit {
       { field: '', header: '' },
       { field: '', header: '' },
       { field: '', header: '' },
+      { field: '', header: '' },
     ];
+  }
+
+  clear(table: Table) {
+    table.clear();
   }
 
   show(product: IProduct) {
