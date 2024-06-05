@@ -1,31 +1,31 @@
 <section class="top-header">
   <!-- <div class="card"> -->
-  <div class="phone-wrapper">
-    <!-- <button
+  <!-- <div class="phone-wrapper"> -->
+  <!-- <button
     pButton
     type="button"
     icon="pi pi-mobile"
     class="p-button-rounded p-button-text"
     style="color: white"
   ></button> -->
-    <a href="tel:{{ phoneNumber }}" class="tel"><i class="pi pi-mobile"></i></a>
+  <!-- <a href="tel:{{ phoneNumber }}" class="tel"><i class="pi pi-mobile"></i></a>
     <a href="tel:{{ phoneNumber }}" class="tel">
       <span class="phone-number">{{ phoneNumber }}</span>
     </a>
   </div>
-  <div class="location-wrapper">
-    <!-- <button -->
-    <a
+  <div class="location-wrapper"> -->
+  <!-- <button -->
+  <!-- <a
       href="https://maps.app.goo.gl/xDTu3DuLKQYyTqyi6"
       target="_blank"
       rel="noopener noreferrer"
       class="tel"
     >
       <i class="pi pi-map-marker"></i>
-    </a>
-    <!-- ></button> -->
+    </a> -->
+  <!-- ></button> -->
 
-    <a
+  <!-- <a
       href="https://maps.app.goo.gl/xDTu3DuLKQYyTqyi6"
       target="_blank"
       rel="noopener noreferrer"
@@ -67,7 +67,7 @@
       class="p-button-rounded p-button-text"
       style="color: white"
     ></button>
-  </div>
+  </div> -->
 
   <!-- <span class="lang-switch" *ngFor="let language of languageSwitch">
       <button mat-button class="language" style="color: white">
@@ -79,10 +79,12 @@
     </span> -->
   <!-- </div> -->
   <!-- </div> -->
+  <div class="left-side"></div>
+  <div class="right-side"></div>
 </section>
 <section class="main-header">
   <div class="logo" [routerLink]="['/']">
-    <img src="../../../assets/logo-64-2.png" alt="Logo" class="logo-img" />
+    <img src="../../../assets/images/planet.png" alt="Logo" class="logo-img" />
   </div>
   <div class="search">
     <app-search></app-search>
@@ -90,6 +92,52 @@
   <!-- <div class="elements-wrapper"> -->
   <app-megamenu class="megamenu"></app-megamenu>
   <!-- <div class="profile"> -->
+
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- <div class="messages"> -->
+  <!-- <a routerLink="/consultation">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-envelope"
+      class="p-button-rounded p-button-text"
+    ></button>
+  </a> -->
+  <!-- </div> -->
+  <!-- <div class="goods"> -->
+  <!-- <a routerLink="/catalogue">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-shopping-bag"
+      class="p-button-rounded p-button-text"
+    ></button>
+  </a> -->
+  <!-- </div> -->
+  <!-- <div class="wrapper"> -->
+  <a routerLink="/catalogue">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-shopping-bag"
+      class="p-button-rounded p-button-text"
+      label="Товары"
+      style="color: #000000"
+      size="small"
+    ></button>
+  </a>
+  <a routerLink="/consultation">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-envelope"
+      class="p-button-rounded p-button-text"
+      label="Контакты"
+      style="color: #000000"
+      size="small"
+    ></button>
+  </a>
   <span *ngIf="!getAuthState()"
     ><button
       pButton
@@ -97,6 +145,9 @@
       icon="pi pi-user"
       class="p-button-rounded p-button-text"
       (click)="showForm()"
+      style="color: #000000"
+      label="Вход"
+      size="small"
     ></button
   ></span>
   <span *ngIf="getAuthState()"
@@ -106,6 +157,9 @@
       icon="pi pi-user"
       class="p-button-rounded p-button-text"
       routerLink="/profile"
+      style="color: #000000"
+      label="Вход"
+      size="small"
     ></button
   ></span>
   <!-- <div class="admin-wrapper"> -->
@@ -116,6 +170,8 @@
       icon="pi pi-wrench"
       class="p-button-rounded p-button-text"
       [routerLink]="['/admin']"
+      style="color: #000000"
+      size="small"
     ></button
   ></span>
   <span *ngIf="getAuthState()"
@@ -125,31 +181,10 @@
       icon="pi pi-times-circle"
       class="p-button-rounded p-button-text"
       (click)="logout()"
+      style="color: #000000"
+      size="small"
     ></button
   ></span>
-  <!-- </div> -->
-  <!-- </div> -->
-  <!-- <div class="messages"> -->
-  <a routerLink="/consultation">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-envelope"
-      class="p-button-rounded p-button-text"
-    ></button>
-  </a>
-  <!-- </div> -->
-  <!-- <div class="goods"> -->
-  <a routerLink="/catalogue">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-shopping-bag"
-      class="p-button-rounded p-button-text"
-    ></button>
-  </a>
-  <!-- </div> -->
-  <!-- <div class="wrapper"> -->
   <span
     ><button
       pButton
@@ -157,6 +192,9 @@
       icon="pi pi-shopping-cart"
       class="p-button-rounded p-button-text"
       (click)="sidebarVisible = true"
+      label="Корзина"
+      style="color: #000000"
+      size="small"
     ></button
   ></span>
 

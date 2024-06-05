@@ -1,22 +1,33 @@
-<div class="carousel-wrapper">
-  <p-carousel
-    [value]="products"
-    [numVisible]="2"
-    [numScroll]="1"
-    [circular]="true"
-    [responsiveOptions]="responsiveOptions"
-    autoplayInterval="3000"
-  >
-    <ng-template let-product pTemplate="item">
-      <div
-        class="border-1 surface-border border-round m-2 text-center py-5 px-3"
-        style="position: relative"
-      >
-        <div class="wrapper">
-          <img src="{{ product.src }}" class="w-6 shadow-2 carousel-img" />
+<section class="top-main">
+  <section class="category">
+    <div
+      class="category-item"
+      *ngFor="let category of categories"
+      [routerLink]="['/category', category._id]"
+    >
+      {{ category.title }}
+    </div>
+  </section>
+
+  <div class="carousel-wrapper">
+    <p-carousel
+      [value]="products"
+      [numVisible]="2"
+      [numScroll]="1"
+      [circular]="true"
+      [responsiveOptions]="responsiveOptions"
+      autoplayInterval="3000"
+    >
+      <ng-template let-product pTemplate="item">
+        <div
+          class="border-1 surface-border border-round m-2 text-center py-5 px-3"
+          style="position: relative"
+        >
+          <div class="wrapper">
+            <img src="{{ product.src }}" class="w-6 shadow-2 carousel-img" />
+          </div>
         </div>
-      </div>
-    </ng-template>
-  </p-carousel>
-  <!-- <div class="text">ИНТЕР-ПЛАСТ СЕРВИС</div> -->
-</div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</section>

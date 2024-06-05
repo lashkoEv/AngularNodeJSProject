@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../interfaces/IProduct';
 import { ProductService } from '../../services/product.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
   public products: any[] = new Array(3).fill({
     id: -1,
     src: '',
@@ -15,7 +16,8 @@ export class CarouselComponent {
     subtitle: '',
   });
   public responsiveOptions: any[] | undefined;
-  constructor() {}
+  public categories: any;
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.products[0] = {
@@ -69,5 +71,12 @@ export class CarouselComponent {
         numScroll: 1,
       },
     ];
+    this.getCategories();
+  }
+
+  async getCategories() {
+    await this.categoryService.getAll().subscribe((data) => {
+      this.categories = data;
+    });
   }
 }

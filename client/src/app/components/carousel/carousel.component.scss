@@ -1,3 +1,22 @@
+.top-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-direction: row;
+  padding: 45px;
+}
+
+.category-item {
+  font-size: medium;
+  padding: 10px;
+}
+
+.category-item:hover {
+  background: rgba(18, 121, 238, 0.3);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 .carousel-wrapper {
   width: 100%;
 
