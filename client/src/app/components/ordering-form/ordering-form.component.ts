@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { FormService } from '../../services/form.service';
 import { ProductService } from '../../services/product.service';
 
 import { NotificationService } from '../../services/notification.service';
@@ -10,11 +9,11 @@ import { SpinnerService } from '../../services/spinner.service';
 import { IProduct } from '../../interfaces/IProduct';
 import { ICategory } from '../../interfaces/ICategory';
 
-import { HttpClient } from '@angular/common/http';
 import { OrderFormService } from '../../services/order-form.service';
 import { CartService } from '../../services/cart.service';
 import { IOrder } from '../../interfaces/IOrder';
 import { IOrdering } from '../../interfaces/IOrdering';
+import { IWarehouse } from '../../interfaces/IWarehouse';
 
 @Component({
   selector: 'app-ordering-form',
@@ -23,47 +22,25 @@ import { IOrdering } from '../../interfaces/IOrdering';
 })
 export class OrderingFormComponent implements OnInit {
   public orderForm: FormGroup;
-
+  public selectedCity: any;
   public categories: {}[] = [];
   public category: ICategory;
   public product: IProduct;
-  public cities: { city: string; delivery: string[] }[] = [
-    {
-      city: 'Киев',
-      delivery: [
-        'відділення №1  Адреса: вул. Пирогівський шлях, 135, 1100кг',
-        'відділення №2 Адреса: вул. Богатирська, 11, 1100кг',
-        'відділення №3 Адреса: вул. Слобожанська,13, 30кг',
-      ],
-    },
-    {
-      city: 'Днепр',
-      delivery: [
-        'відділення №1  Адреса: вул. Маршала Малиновського, 114, 135, 1100кг',
-        'відділення №2 Адреса: просп. Богдана Хмельницького, 31Д, 1100кг',
-        'відділення №3 Адреса:  вул. Тверська, 1,13, 30кг',
-      ],
-    },
-    {
-      city: 'Харьков',
-      delivery: [
-        'відділення №1  Адреса: Польова, 67, 114, 135, 1100кг',
-        'відділення №2 Адреса: просп.Героїв Харкова (ран. Московський), 54а, 1100кг',
-        'відділення №3 Адреса:  вул. Тюрінська (ран. Якіра), 124 30кг',
-      ],
-    },
-  ];
+  public orderId: String;
+  public isOrderSucces: boolean = false;
   public isMessage: boolean = false;
   private cart: IOrder;
-  public filteredDeliveries: { address: string }[];
+
   public typeOfDelivery: { type: String }[] = [
     { type: 'Отделение Новой Почты' },
     { type: 'Курьерская Доставка' },
   ];
   public isDeliveryAddress: boolean = false;
   public isDeliveryOnPost: boolean = false;
-
+  public offices: IWarehouse[] = [];
   public filteredTypeOfDelivery: { type: String }[];
+  public cities: IWarehouse[] = [];
+  public filteredOffices: IWarehouse[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -76,12 +53,44 @@ export class OrderingFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.isOrderSucces) {
+      this.isOrderSucces = false;
+    }
+
     this.product = this.productService.getProduct();
     this.defineCart();
     this.createForm();
-  }
+    this.orderFormService.getNovaPoshtaOffices().subscribe((data) => {
+      this.offices = data;
 
-  onTypeOfDeliveryChange(selectedDelivery: any) {
+      if (data) {
+        const uniqueCities = this.getUniqueByRegionCity(this.offices);
+
+        this.cities.push(...uniqueCities);
+      }
+    });
+  }
+  private sortCitiesAlphabetically(cities: IWarehouse[]): IWarehouse[] {
+    return cities.sort((a, b) =>
+      a.CityDescription.localeCompare(b.CityDescription)
+    );
+  }
+  public getUniqueByRegionCity(offices: IWarehouse[]): IWarehouse[] {
+    const seen = new Set();
+    return offices.filter((office) => {
+      const isUnique = !seen.has(office.CityDescription);
+      if (isUnique) {
+        seen.add(office.CityDescription);
+      }
+      return isUnique;
+    });
+  }
+  private generateRandomId(): string {
+    const timestamp = new Date().getTime();
+    const randomNum = Math.floor(Math.random() * 10000);
+    return timestamp.toString() + randomNum.toString();
+  }
+  public onTypeOfDeliveryChange(selectedDelivery: any) {
     const typeOfDelivery = selectedDelivery.type;
     const typeOfDeliveryObject = this.typeOfDelivery.find(
       (delivery) => delivery.type === typeOfDelivery
@@ -90,26 +99,17 @@ export class OrderingFormComponent implements OnInit {
     if (typeOfDeliveryObject.type === 'Курьерская Доставка') {
       this.isDeliveryAddress = true;
       this.isDeliveryOnPost = false;
-      console.log('if', this.isDeliveryAddress);
     } else if (typeOfDeliveryObject.type === 'Отделение Новой Почты') {
       this.isDeliveryOnPost = true;
       this.isDeliveryAddress = false;
-      console.log('else', this.isDeliveryAddress);
     }
   }
 
-  onCityChange(selectedCity: any) {
-    const cityName = selectedCity.city;
-
-    const cityObject = this.cities.find((city) => city.city === cityName);
-
-    if (cityObject) {
-      this.filteredDeliveries = cityObject.delivery.map((address) => ({
-        address,
-      }));
-    } else {
-      this.filteredDeliveries = [];
-    }
+  public onCityChange(selectedCity: IWarehouse): void {
+    const cityName = selectedCity.CityDescription;
+    this.filteredOffices = this.offices.filter(
+      (office) => office.CityDescription === cityName
+    );
   }
   public onPhoneInput(event: any) {
     const phoneNumber = event;
@@ -136,6 +136,7 @@ export class OrderingFormComponent implements OnInit {
 
   private createForm(): void {
     this.orderForm = this.fb.group({
+      id: [this.generateRandomId()],
       nameAndLastName: ['', Validators.required],
       phoneNumber: [
         '+380',
@@ -156,24 +157,27 @@ export class OrderingFormComponent implements OnInit {
     if (this.orderForm.valid) {
       const orderData: IOrdering = this.orderForm.value;
       orderData.cart = this.cart;
+      this.orderFormService.setOrderId(orderData.id);
       this.orderFormService.add(orderData).subscribe(
         (response: Response) => {
           console.log('order is  successfully:', response);
           this.notification.setTextOfNotification(
-            `Заказ успешно оформлен ${orderData._id}`
+            `Заказ успешно оформлен ${orderData.id}`
           );
           this.orderFormService.hideForm();
 
           this.cartService.resetCart();
+          this.isOrderSucces = true;
         },
         (error: Error) => {
           console.error('Error adding product:', error);
           this.notification.setTextOfNotification(
-            `Ошибка в оформлении заказа ${orderData._id}, ${error}`
+            `Ошибка в оформлении заказа ${orderData.id}, ${error}`
           );
         }
       );
       console.log(orderData);
+
       this.spinner.start();
       this.notification.notify();
     }

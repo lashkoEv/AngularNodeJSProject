@@ -10,12 +10,17 @@ import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
+  public isVisible: boolean;
   constructor(
     private router: Router,
     private spinner: SpinnerService,
     public callUsModalWindow: CallUsModalWindowService,
     private primengConfig: PrimeNGConfig
-  ) {}
+  ) {
+    this.callUsModalWindow
+      .getIsVisible()
+      .subscribe((visible) => (this.isVisible = visible));
+  }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -60,6 +65,10 @@ export class AppComponent implements OnInit, OnDestroy {
         }, 1000);
       }
     });
+
+    setTimeout(() => {
+      this.callUsModalWindow.toggleIsVisible();
+    }, 5000);
   }
 
   ngOnDestroy(): void {}

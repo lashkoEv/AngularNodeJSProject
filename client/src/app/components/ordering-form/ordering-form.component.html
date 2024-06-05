@@ -1,5 +1,6 @@
 <div class="container">
   <form
+    *ngIf="!isOrderSucces"
     enctype="multipart/form-data"
     [formGroup]="orderForm"
     (ngSubmit)="onSubmit()"
@@ -72,11 +73,14 @@
           class="input"
           formControlName="city"
           [filter]="true"
-          filterBy="city"
+          filterBy="CityDescription"
           [options]="cities"
-          optionLabel="city"
-          placeholder="Выберите город"
+          optionLabel="CityDescription"
+          placeholder="Выберите город "
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
           (ngModelChange)="onCityChange($event)"
+          [style]="{ width: '500px' }"
         ></p-dropdown>
         <mat-error
           class="error"
@@ -86,7 +90,7 @@
         </mat-error>
       </div>
 
-      <div *ngIf="filteredDeliveries" class="field">
+      <div *ngIf="filteredOffices.length !== 0" class="field">
         <p-inputGroupAddon class="label">Способ Доставки</p-inputGroupAddon>
         <p-dropdown
           required
@@ -113,13 +117,19 @@
         >
         <p-dropdown
           class="input"
-          *ngIf="filteredDeliveries && isDeliveryOnPost"
+          *ngIf="isDeliveryOnPost"
           formControlName="deliveryAddress"
           [filter]="true"
-          filterBy="address"
-          [options]="filteredDeliveries"
-          optionLabel="address"
+          filterBy="Description"
+          [options]="filteredOffices"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+          optionLabel="Description"
           placeholder="Выберите отделение"
+          [style]="{
+            width: '850px',
+         
+          }"
         ></p-dropdown>
 
         <p-inputGroupAddon class="label" *ngIf="isDeliveryAddress"
@@ -151,7 +161,6 @@
         <textarea
           class="input"
           [autoResize]="true"
-          required
           pInputTextarea
           formControlName="message"
           placeholder="сообщение..."

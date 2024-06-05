@@ -1,0 +1,54 @@
+<div class="container" [ngClass]="{ visible: isVisible }">
+  <form #form="ngForm" class="modal-window">
+    <div class="close-wrapper">
+      <button (click)="closeWindow()" class="close">✖</button>
+    </div>
+
+    <div class="title">Перезвонить вам?</div>
+
+    <div class="description">
+      <div>Укажите ваш номер телефонa и имя.</div>
+      <div>Мы свяжемся с вами в ближайшее время.</div>
+    </div>
+
+    <div class="name-wrapper">
+      <label for="inp" class="inp">
+        <input
+          name="name"
+          ngModel
+          [(ngModel)]="inputName"
+          type="text"
+          id="inp"
+          placeholder="&nbsp;"
+        />
+        <span class="label">Имя</span>
+      </label>
+    </div>
+
+    <div class="tel-wrapper">
+      <label for="inp" class="inp">
+        <input
+          appFixedPhoneNumberFormatInput
+          autocomplete="off"
+          maxlength="19"
+          name="phone"
+          ngModel
+          type="text"
+          id="inp"
+          placeholder="&nbsp;"
+        />
+        <span class="label">Телефон</span>
+      </label>
+    </div>
+
+    <button
+      (click)="addUser(form.value)"
+      [disabled]="!isValidData()"
+      [class.disabled]="!isValidData()"
+      class="sendBtn"
+      role="button"
+    >
+      Отправить
+    </button>
+  </form>
+</div>

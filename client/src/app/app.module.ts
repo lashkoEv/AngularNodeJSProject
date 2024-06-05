@@ -96,6 +96,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { PasswordModule } from 'primeng/password';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { OrderPageComponent } from './components/order-page/order-page.component';
+import { OrderListModule } from 'primeng/orderlist';
+import { CallUsPopUpComponent } from './components/call-us-pop-up/call-us-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +133,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     OrderingFormComponent,
     MegamenuComponent,
     ProfileComponent,
+    OrderPageComponent,
+    CallUsPopUpComponent,
   ],
   imports: [
     FileUploadModule,
@@ -191,6 +196,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     MegaMenuModule,
     PasswordModule,
     FloatLabelModule,
+    OrderListModule,
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
