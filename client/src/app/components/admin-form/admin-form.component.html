@@ -96,15 +96,13 @@
       </div>
 
       <div class="field">
-        <p-inputGroupAddon>Страна</p-inputGroupAddon>
+        <p-inputGroupAddon>Наличие</p-inputGroupAddon>
 
         <p-dropdown
-          formControlName="country"
-          [filter]="true"
-          filterBy="country"
-          [options]="countries"
-          optionLabel="country"
-          placeholder="Выберите Страну"
+          formControlName="availability"
+          [options]="availability"
+          optionLabel="availability"
+          placeholder="Наличие"
         ></p-dropdown>
       </div>
 

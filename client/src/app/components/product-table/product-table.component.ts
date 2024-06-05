@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { FormService } from '../../services/form.service';
 import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-product-table',
@@ -47,6 +48,29 @@ export class ProductTableComponent implements OnInit {
     this.ngOnInit();
   }
 
+  duplicateProduct(product: IProduct) {
+    const clonedProduct = cloneDeep(product);
+    const { _id, ...productWithoutId } = clonedProduct;
+
+    this.productService.add(productWithoutId).subscribe(
+      (newProduct: IProduct) => {
+        this.products.push(newProduct);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Product Duplicated',
+          detail: `Product ${newProduct.title} has been duplicated successfully`,
+        });
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Duplication Failed',
+          detail: `Product duplication failed: ${error.message}`,
+        });
+      }
+    );
+  }
+
   ngOnInit() {
     this.productService.getAll().subscribe((data) => {
       this.products = data;
@@ -62,6 +86,7 @@ export class ProductTableComponent implements OnInit {
       { field: 'wholesalePrice', header: 'Оптовая цена' },
       { field: 'retailPrice', header: 'Розничная цена' },
       { field: 'count', header: 'Количество' },
+      { field: 'availability', header: 'Наличие' },
       { field: 'country', header: 'Страна' },
       { field: 'fields', header: 'Характеристики' },
       { field: '', header: '' },

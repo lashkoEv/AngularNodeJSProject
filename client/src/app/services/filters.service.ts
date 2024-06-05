@@ -43,9 +43,9 @@ export class FiltersService {
     this.allProducts = products;
     this.toShow = products;
 
-    this.countries = this.allProducts.map((product) => {
-      return product.country.country;
-    });
+    // this.countries = this.allProducts.map((product) => {
+    //   return product.country.country;
+    // });
 
     this.counts = this.allProducts.map((product) => {
       return product.count;
@@ -60,9 +60,9 @@ export class FiltersService {
 
   private setToShow() {
     const filtredProducts = this.allProducts.filter((product) => {
-      const hasCountry = this.dataForFilters.countries.includes(
-        String(product.country.country)
-      );
+      // const hasCountry = this.dataForFilters.countries.includes(
+      //   String(product.country.country)
+      // );
       const hasCount = this.dataForFilters.counts.includes(
         String(product.count)
       );
@@ -72,8 +72,8 @@ export class FiltersService {
       const hasRetailPrice =
         this.dataForFilters.maxRetailPrice >=
         parseInt(String(product.retailPrice));
-
-      if (hasCountry && hasCount && hasWholePrice && hasRetailPrice) {
+      // if(hasCountry)
+      if (hasCount && hasWholePrice && hasRetailPrice) {
         return true;
       }
     });

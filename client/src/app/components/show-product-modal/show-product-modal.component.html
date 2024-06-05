@@ -35,10 +35,10 @@
           <div class="cell">Категория</div>
           <div class="cell">{{ data.category }}</div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="cell">Страна</div>
           <div class="cell">{{ data.country }}</div>
-        </div>
+        </div> -->
         <div class="row" *ngFor="let item of data.fields">
           <div class="cell" *ngIf="item.key">{{ item.key }}</div>
           <div class="cell" *ngIf="item.value">{{ item.value }}</div>

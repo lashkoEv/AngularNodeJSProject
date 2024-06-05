@@ -112,9 +112,9 @@ export class CategoryPageComponent implements OnInit {
         this.products = data;
         this.toShow = data;
 
-        this.countries = this.products.map((product) => {
-          return product.country.country;
-        });
+        // this.countries = this.products.map((product) => {
+        //   return product.country.country;
+        // });
 
         this.counts = this.products.map((product) => {
           return product.count;
@@ -132,9 +132,9 @@ export class CategoryPageComponent implements OnInit {
 
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
-      const hasCountry = this.dataForFilters.countries.includes(
-        String(product.country.country)
-      );
+      // const hasCountry = this.dataForFilters.countries.includes(
+      //   String(product.country.country)
+      // );
 
       const hasCount =
         this.dataForFilters.count >= parseInt(String(product.count));
@@ -146,8 +146,8 @@ export class CategoryPageComponent implements OnInit {
       const hasRetailPrice =
         this.dataForFilters.maxRetailPrice >=
         parseInt(String(product.retailPrice));
-
-      if (hasCountry && hasCount && hasWholePrice && hasRetailPrice) {
+      // if(hasCountry)
+      if (hasCount && hasWholePrice && hasRetailPrice) {
         switch (this.dataForFilters.available) {
           case true:
             return +product.count > 0 ? true : false;
