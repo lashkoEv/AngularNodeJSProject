@@ -29,72 +29,6 @@
     margin: 0;
     padding: 0;
 
-<<<<<<< HEAD
-.main-wrapper {
-    padding: 20px 5%;
-    // border-left: 3px solid #167586;
-    // border-right: 3px solid #167586;
-}
-
-.main{
-    margin: 20px 5%;
-}
-
-.section{
-    margin-bottom: 50px;
-}
-
-// .title-wrapper {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: #167586;
-//     color: #fff;
-//     padding: 20px;
-//     .title {
-//         margin: 0;
-//         font-size: 24px;
-//     }
-// }
-
-.aboutUs-wrapper{
-    display: flex;
-    justify-content: space-around;
-}
-
-.about-us {
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: #cad8db;
-    border-radius: 50px;
-    padding: 30px;
-
-    &-text {
-        text-align: start;
-        margin: 0;
-        font-size: 20px;
-        color: #474747;
-        margin-bottom: 30px;
-        // padding: 1% 10%;
-        // background-color: rgb(207, 214, 207);
-    }
-}
-
-.main-category-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.main-img-wrapper {
-    // border-top: 3px solid #167586;
-    height: 20rem;
-    overflow: hidden;
-}
-
-=======
     &.styled-box {
       .p-ink {
         background: rgba(#1279ee, 0.3);
@@ -103,7 +37,6 @@
   }
 }
 
->>>>>>> master
 .img {
   width: 100%;
   margin: 0;
@@ -241,32 +174,6 @@
   }
 }
 
-<<<<<<< HEAD
-.title-wrapper{
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    padding: 80px 0 50px;
-}
-
-.title{
-    padding: 0;
-    margin: 0;
-    font-family: "Raleway", sans-serif;
-    font-weight: 300;
-    font-size: 50px;
-    color: #080808;
-    -webkit-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
-}
-
-.aboutUsTxtGroup{
-    color: #474747;
-    margin-bottom: 50px;
-}
-=======
 .consultation > .form {
   height: max-content;
 }
->>>>>>> master
