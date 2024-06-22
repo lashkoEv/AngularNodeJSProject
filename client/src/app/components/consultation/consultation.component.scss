@@ -2,22 +2,25 @@
   background: url("../../../assets/images/pawel-czerwinski-Qiy4hr18aGs-unsplash.jpg")
     center center no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 100px;
+  padding: 4rem 0;
+  min-width: 100%;
+  min-height: max-content;
 }
 
 form {
   background-color: aliceblue;
-  padding: 50px 100px;
+  padding: 3rem 4rem;
+  width: 100%;
 }
+
 h2 {
   display: flex;
   justify-content: center;
+  font-size: 1.7rem;
 }
 
-input {
+input,
+textarea {
   width: 100%;
 }
 
@@ -27,4 +30,5 @@ input {
 
 button {
   width: 100%;
+  margin-bottom: 0.7rem;
 }

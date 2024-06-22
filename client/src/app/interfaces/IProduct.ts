@@ -1,14 +1,14 @@
 import { ICategory } from './ICategory';
 
-interface ICountry {
-  country: String;
+interface IAvailability {
+  availability: String;
 }
 
 export interface IProduct {
   _id?: String;
   title: String;
   description: String;
-  country: ICountry;
+  availability: IAvailability;
   wholesalePrice: String;
   retailPrice: String;
   count: String;
@@ -16,3 +16,7 @@ export interface IProduct {
   category: ICategory;
   imgSrc: string;
 }
+
+// interface ICountry {
+//   country: String;
+// }

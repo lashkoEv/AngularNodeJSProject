@@ -6,31 +6,60 @@
   [preventOpenDuplicates]="true"
 ></p-confirmPopup>
 
-<div class="btn-wrapper">
-  <p-button
-    [outlined]="true"
-    icon="pi pi-plus"
-    (click)="addProduct()"
-    label="Добавить новый продукт"
-  ></p-button
-  ><p-button
-    severity="secondary"
-    [outlined]="true"
-    icon="pi pi-sync"
-    (click)="ngOnInit()"
-    label="Перезагрузить таблицу"
-  ></p-button>
-</div>
-
 <p-table
+  #dt2
+  dataKey="id"
+  [globalFilterFields]="[
+    'title',
+    'wholesalePrice',
+    'retailPrice',
+    'availability'
+  ]"
+  [loading]="loading"
   [paginator]="true"
   [rows]="10"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="{first} до {last} из {totalRecords}"
   [rowsPerPageOptions]="[10, 20, 50, 100]"
   [value]="products"
-  [tableStyle]="{ 'min-width': '50rem' }"
+  [scrollable]="true"
 >
+  <ng-template pTemplate="caption">
+    <div class="btn-wrapper">
+      <p-button
+        icon="pi pi-plus"
+        (click)="addProduct()"
+        label="Добавить новый продукт"
+      />
+      <p-button
+        label="Очистить фильтры"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt2)"
+      />
+      <span class="p-input-icon-left ml-auto full-width">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt2.filterGlobal($event.target.value, 'contains')"
+          placeholder="Поиск"
+          style="width: 100%"
+        />
+      </span>
+      <p-button
+        severity="secondary"
+        icon="pi pi-sync"
+        (click)="ngOnInit()"
+        label="Перезагрузить таблицу"
+      />
+    </div>
+    <!--     
+    <div class="flex">
+      
+      
+    </div> -->
+  </ng-template>
+
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th pSortableColumn="_id">Код <p-sortIcon field="_id"></p-sortIcon></th>
@@ -50,18 +79,62 @@
       <th pSortableColumn="count">
         Количество <p-sortIcon field="count"></p-sortIcon>
       </th>
+      <th pSortableColumn="availability">
+        Наличие <p-sortIcon field="availability"></p-sortIcon>
+      </th>
       <th pSortableColumn="category">
         Категория <p-sortIcon field="category"></p-sortIcon>
       </th>
       <th pSortableColumn="description">
         Описание <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="country">
-        Страна <p-sortIcon field="country"></p-sortIcon>
-      </th>
+
       <th pSortableColumn="fields">
         Характеристики <p-sortIcon field="fields"></p-sortIcon>
       </th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="title"
+          placeholder="Поиск по названию"
+          ariaLabel="Filter Title"
+        />
+      </th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="wholesalePrice"
+          placeholder="Поиск по оптовой цене"
+          ariaLabel="Filter Wholesale"
+        />
+      </th>
+      <th>
+        <p-columnFilter
+          type="text"
+          field="retailPrice"
+          placeholder="Поиск по розничой цене"
+          ariaLabel="Filter Retail"
+        />
+      </th>
+
+      <th></th>
+
+      <th>
+        <p-columnFilter type="boolean" field="availability" />
+      </th>
+
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -75,11 +148,12 @@
       <td>{{ product.wholesalePrice }}</td>
       <td>{{ product.retailPrice }}</td>
       <td>{{ product.count }}</td>
+      <td>{{ product.availability?.availability ? "+" : "-" }}</td>
       <td>{{ product.category.title || product.category }}</td>
-      <td>{{ product.description.slice(0, 70) }}...</td>
-      <td>{{ product.country.country }}</td>
+      <td>{{ product.description.slice(0, 30) }}...</td>
+      <!-- <td>{{ product.country.country }}</td> -->
       <td>
-        <span *ngFor="let data of product.fields.slice(0, 2)">
+        <span *ngFor="let data of product.fields.slice(0, 1)">
           <span *ngIf="data.key && data.value">
             {{ data.key }}: {{ data.value }};
           </span>
@@ -103,6 +177,13 @@
       <td>
         <p-button icon="pi pi-eye" (click)="show(product)"></p-button>
       </td>
+      <td>
+        <p-button
+          (click)="duplicateProduct(product)"
+          icon="pi pi-clone"
+          severity="secondary"
+        ></p-button>
+      </td>
     </tr>
   </ng-template>
 </p-table>
@@ -125,19 +206,10 @@
         <img src="{{ current?.imgSrc }}" alt="" class="image" />
       </div>
     </p-fieldset>
-    <!-- <p-fieldset legend="Код" [toggleable]="true">
-      <p class="m-0">
-        {{ current?._id }}
-      </p>
-    </p-fieldset> -->
+
     <p-fieldset legend="Описание" [toggleable]="true">
       <p class="line-break m-0">
         {{ current?.description }}
-      </p>
-    </p-fieldset>
-    <p-fieldset legend="Страна" [toggleable]="true">
-      <p class="m-0">
-        {{ current?.country.country }}
       </p>
     </p-fieldset>
     <p-fieldset legend="Цена" [toggleable]="true">
@@ -147,6 +219,11 @@
     <p-fieldset legend="Количество" [toggleable]="true">
       <p class="m-0">
         {{ current?.count }}
+      </p>
+    </p-fieldset>
+    <p-fieldset legend="Наличие" [toggleable]="true">
+      <p class="m-0">
+        {{ current?.availability?.availability }}
       </p>
     </p-fieldset>
     <p-fieldset legend="Категория" [toggleable]="true">

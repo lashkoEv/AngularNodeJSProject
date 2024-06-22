@@ -25,6 +25,7 @@
           <h1 class="title">{{ product?.title }}</h1>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           <p>
             <span class="availability" *ngIf="product?.count > 0">Есть в наличии</span>
             <span class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</span>
@@ -33,6 +34,21 @@
           <p class="availability" *ngIf="product?.count > 0">Есть в наличии</p>
 
           <p class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</p>
+>>>>>>> master
+=======
+          <p
+            class="availability"
+            *ngIf="product?.availability?.availability === 'Есть в наличии'"
+          >
+            Есть в наличии
+          </p>
+
+          <p
+            class="unAvailability"
+            *ngIf="product?.availability?.availability === 'Нет в наличии'"
+          >
+            Нет в наличии
+          </p>
 >>>>>>> master
 
           <div class="price-wrapper">
@@ -80,10 +96,10 @@
           <div class="cell">Количество</div>
           <div class="cell">{{ product?.count }}</div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="cell">Страна</div>
           <div class="cell">{{ product?.country.country }}</div>
-        </div>
+        </div> -->
         <div class="row_c" *ngFor="let item of product?.fields">
           <div *ngIf="item.key && item.value">
             <div class="cell" *ngIf="item.key">{{ item.key }}</div>

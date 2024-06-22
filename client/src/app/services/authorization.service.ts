@@ -59,6 +59,16 @@ export class AuthorizationService {
     );
   }
 
+  update(data: IUser): any {
+    console.log(data);
+    return this.http.post('http://localhost:3000/user/update', data).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
+  }
+
   isValidData(user: IUser) {
     const condition =
       user.login.length >= 5 &&

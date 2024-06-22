@@ -90,8 +90,14 @@ export class CategoryPageComponent implements OnInit {
     });
 
     this.sortOptions = [
-      { label: 'Цена (по убыванию)', value: '!price' },
-      { label: 'Цена (по возрастанию)', value: 'price' },
+      { label: 'Название (по возрастанию)', value: '+title' },
+      { label: 'Название (по убыванию)', value: '-title' },
+      { label: 'Оптовая цена (по возрастанию)', value: '+wholesalePrice' },
+      { label: 'Оптовая цена (по убыванию)', value: '-wholesalePrice' },
+      { label: 'Розничная цена (по возрастанию)', value: '+retailPrice' },
+      { label: 'Розничная цена (по убыванию)', value: '-retailPrice' },
+      { label: 'Количество (по возрастанию)', value: '+count' },
+      { label: 'Количество (по убыванию)', value: '-count' },
     ];
   }
 
@@ -112,9 +118,9 @@ export class CategoryPageComponent implements OnInit {
         this.products = data;
         this.toShow = data;
 
-        this.countries = this.products.map((product) => {
-          return product.country.country;
-        });
+        // this.countries = this.products.map((product) => {
+        //   return product.country.country;
+        // });
 
         this.counts = this.products.map((product) => {
           return product.count;
@@ -131,9 +137,9 @@ export class CategoryPageComponent implements OnInit {
 
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
-      const hasCountry = this.dataForFilters.countries.includes(
-        String(product.country.country)
-      );
+      // const hasCountry = this.dataForFilters.countries.includes(
+      //   String(product.country.country)
+      // );
 
       const hasCount =
         this.dataForFilters.count >= parseInt(String(product.count));
@@ -145,8 +151,8 @@ export class CategoryPageComponent implements OnInit {
       const hasRetailPrice =
         this.dataForFilters.maxRetailPrice >=
         parseInt(String(product.retailPrice));
-
-      if (hasCountry && hasCount && hasWholePrice && hasRetailPrice) {
+      // if(hasCountry)
+      if (hasCount && hasWholePrice && hasRetailPrice) {
         switch (this.dataForFilters.available) {
           case true:
             return +product.count > 0 ? true : false;
@@ -319,13 +325,7 @@ export class CategoryPageComponent implements OnInit {
   onSortChange(event: any) {
     let value = event.value;
 
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-      // this.toShow = this.toShow.sort()
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
-    }
+    this.sortOrder = value[0] === '+' ? 1 : -1;
+    this.sortField = value.slice(1, value.length);
   }
 }

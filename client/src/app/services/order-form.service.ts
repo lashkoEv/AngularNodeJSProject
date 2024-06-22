@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { IOrder } from '../interfaces/IOrder';
+
 import { IOrdering } from '../interfaces/IOrdering';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { IOrdering } from '../interfaces/IOrdering';
 export class OrderFormService {
   private isOrder: boolean = false;
   private formTitle: string = 'Оформление заказа';
-  private orderId: string = '';
+  private orderId: String = '';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +19,14 @@ export class OrderFormService {
   }
   getAll(): Observable<any> {
     return this.http.get('http://localhost:3000/order').pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
+  }
+  getNovaPoshtaOffices(): Observable<any> {
+    return this.http.get('http://localhost:3000/delivery/posts').pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -65,7 +73,7 @@ export class OrderFormService {
   public getIsOrder(): boolean {
     return this.isOrder;
   }
-  public setOrderId(orderId: string) {
+  public setOrderId(orderId: String) {
     this.orderId = orderId;
   }
 
