@@ -91,16 +91,11 @@ import { SplitterModule } from 'primeng/splitter';
 import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
-<<<<<<< HEAD
-import { AnimateOnScrollModule } from 'primeng/animateonscroll';
-import { TimelineModule } from 'primeng/timeline';
-=======
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { PasswordModule } from 'primeng/password';
 import { FloatLabelModule } from 'primeng/floatlabel';
->>>>>>> master
 
 @NgModule({
   declarations: [
@@ -191,16 +186,11 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     PanelModule,
     RippleModule,
     BreadcrumbModule,
-<<<<<<< HEAD
-    AnimateOnScrollModule,
-    TimelineModule
-=======
     InputTextareaModule,
     AutoCompleteModule,
     MegaMenuModule,
     PasswordModule,
     FloatLabelModule,
->>>>>>> master
   ],
   providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
