@@ -22,10 +22,10 @@
   margin-bottom: 1rem;
 }
 .label {
-  width: 200px;
+  width: 100px;
 }
 .input {
-  width: 500px;
+  min-width: 500px;
 }
 
 .form {
@@ -48,7 +48,7 @@
   margin-right: 0.5rem;
 }
 
-.p-dropdown {
+p-dropdown {
   flex: 1 1 auto;
 }
 
@@ -57,7 +57,12 @@
   width: 100%;
   margin-top: 1rem;
 }
-
+.no-border {
+  display: none;
+}
+.minWidthOverride {
+  min-width: 650px !important;
+}
 @media (max-width: 576px) {
   .label {
     flex: 0 0 25%;

@@ -17,7 +17,7 @@ export class FooterComponent {
     {
       name: 'telegram',
       img: '../../../assets/telegram.svg',
-      src: '#',
+      src: 'https://web.telegram.org/k/#@InterPlastServiceBot',
     },
     {
       name: 'facebook',

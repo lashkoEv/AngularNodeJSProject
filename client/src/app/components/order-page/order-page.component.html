@@ -1,25 +1,5 @@
 <div *ngIf="products.length > 0" class="container">
   <app-ordering-form></app-ordering-form>
-  <!-- 
-  <div class="product-list">
-    <div *ngFor="let item of products; let first = first" class="product-item">
-      <div class="left-side">
-        <img
-          class="product-image"
-          [src]="item.product.imgSrc"
-          [alt]="item.product.title"
-        />
-        <div class="title">
-          <div class="product-title">{{ item.product.title }}</div>
-          <div class="product-category">
-            {{ item.product.category.title }}
-          </div>
-          <div class="product-price">
-            {{ item.product.wholesalePrice }}
-          </div>
-        </div>
-      </div>
-    </div> -->
 
   <div class="cart">
     <h2 class="sidebar-title">Ваш заказ</h2>

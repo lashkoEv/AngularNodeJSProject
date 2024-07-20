@@ -40,6 +40,7 @@ export class OrderingFormComponent implements OnInit {
   public offices: IWarehouse[] = [];
   public filteredTypeOfDelivery: { type: String }[];
   public cities: IWarehouse[] = [];
+
   public filteredOffices: IWarehouse[] = [];
 
   constructor(
@@ -62,7 +63,6 @@ export class OrderingFormComponent implements OnInit {
     this.createForm();
     this.orderFormService.getNovaPoshtaOffices().subscribe((data) => {
       this.offices = data;
-
       if (data) {
         const uniqueCities = this.getUniqueByRegionCity(this.offices);
 
@@ -107,9 +107,12 @@ export class OrderingFormComponent implements OnInit {
 
   public onCityChange(selectedCity: IWarehouse): void {
     const cityName = selectedCity.CityDescription;
+    this.selectedCity = cityName;
     this.filteredOffices = this.offices.filter(
       (office) => office.CityDescription === cityName
     );
+
+    console.log(this.selectedCity);
   }
   public onPhoneInput(event: any) {
     const phoneNumber = event;
