@@ -1,0 +1,33 @@
+.about-us-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-us-header h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.info p {
+  margin: 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.info .left {
+  font-weight: bold;
+  color: #002855;
+}
+
+.info .right {
+  text-align: right;
+  color: #333;
+}

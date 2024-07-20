@@ -5,14 +5,19 @@
 // }
 
 .top-header {
-  background-color: #002855;
+  // background-color: #002855;
+  background: url("../../../assets/images/5.png");
   color: #fff;
-  padding: 0.5rem;
+  // padding: 0.5rem;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  // gap: 1rem;
+}
+
+.center {
+  padding: 4px;
 }
 
 .left-side {

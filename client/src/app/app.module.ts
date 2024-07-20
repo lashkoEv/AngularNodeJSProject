@@ -99,6 +99,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { OrderPageComponent } from './components/order-page/order-page.component';
 import { OrderListModule } from 'primeng/orderlist';
 import { CallUsPopUpComponent } from './components/call-us-pop-up/call-us-pop-up.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { CallUsPopUpComponent } from './components/call-us-pop-up/call-us-pop-up
     ProfileComponent,
     OrderPageComponent,
     CallUsPopUpComponent,
+    AboutUsComponent,
   ],
   imports: [
     FileUploadModule,
