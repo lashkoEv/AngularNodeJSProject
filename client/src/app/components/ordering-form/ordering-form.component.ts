@@ -117,7 +117,9 @@ export class OrderingFormComponent implements OnInit {
     const cityName = selectedCity.CityDescription;
     this.selectedCity = cityName;
     this.filteredOffices = this.offices.filter(
-      (office) => office.CityDescription === cityName
+      (office) =>
+        office.CityDescription === cityName &&
+        !office.Description.includes('Поштомат')
     );
 
     console.log(this.selectedCity);
