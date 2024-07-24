@@ -50,7 +50,6 @@ export class CartComponent implements OnInit {
       console.log('error');
       return;
     } else if (this.cartTotalPrice) {
-      this.showOrderForm();
       const order: IOrder = {
         user: currentUser,
         products: this.products,
