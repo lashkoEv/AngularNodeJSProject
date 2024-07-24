@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ProductService } from '../../services/product.service';
@@ -19,6 +25,12 @@ import { IWarehouse } from '../../interfaces/IWarehouse';
   selector: 'app-ordering-form',
   templateUrl: './ordering-form.component.html',
   styleUrl: './ordering-form.component.scss',
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter', [animate('500ms ease-in', style({ opacity: 1 }))]),
+    ]),
+  ],
 })
 export class OrderingFormComponent implements OnInit {
   public orderForm: FormGroup;
@@ -70,11 +82,7 @@ export class OrderingFormComponent implements OnInit {
       }
     });
   }
-  private sortCitiesAlphabetically(cities: IWarehouse[]): IWarehouse[] {
-    return cities.sort((a, b) =>
-      a.CityDescription.localeCompare(b.CityDescription)
-    );
-  }
+
   public getUniqueByRegionCity(offices: IWarehouse[]): IWarehouse[] {
     const seen = new Set();
     return offices.filter((office) => {
@@ -109,7 +117,9 @@ export class OrderingFormComponent implements OnInit {
     const cityName = selectedCity.CityDescription;
     this.selectedCity = cityName;
     this.filteredOffices = this.offices.filter(
-      (office) => office.CityDescription === cityName
+      (office) =>
+        office.CityDescription === cityName &&
+        !office.Description.includes('Поштомат')
     );
 
     console.log(this.selectedCity);

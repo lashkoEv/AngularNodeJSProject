@@ -27,14 +27,46 @@ async function add(req, res) {
       cart: orderData.cart,
     });
 
-    const mailOption = {
-      from: 't24848576@gmail.com',
+    let cartItems;
+    try {
+      cartItems = orderData.cart.products
+        .map(
+          (product) =>
+            `Товар: ${product.product.title}, Кількість: ${product.count}, Ціна: ${product.product.wholesalePrice}`
+        )
+        .join('\n');
+    } catch (cartError) {
+      console.error('Error processing cart items:', cartError);
+      return res.status(500).json({
+        error: `Failed to process cart items: ${cartError.toString()}`,
+      });
+    }
+
+    const customerMailOption = {
+      from: 't24848576@gmail.com', // изменить на настоящий вместо тестового
       to: orderData.email,
       subject: 'Підтвердження замовлення',
       text: `Дякуємо за замовляння, ${orderData.nameAndLastName}. Ваше замовлення:  №${orderData.id} успішно оформленно.`,
     };
+
+    const sellerMailOptions = {
+      from: 't24848576@gmail.com',
+      to: 'zetsu223@gmail.com', // изменить на эмейл отца
+      subject: 'Нове замовлення',
+      text: `Нове замовлення від ${orderData.nameAndLastName}. Деталі замовлення: 
+      ID: ${orderData.id}
+      Ім'я та Прізвище: ${orderData.nameAndLastName}
+      Номер телефону: ${orderData.phoneNumber}
+      Місто: ${orderData.city.CityDescription}
+      Адреса доставки: ${orderData.deliveryAddress.Description}
+      Спосіб доставки: ${orderData.typeOfDelivery.type}
+      Кошик: ${cartItems}
+      Сума:${orderData.cart.totalPrice}
+      Повідомлення: ${orderData.message}`,
+    };
+
     await order.save();
-    return transporter.sendMail(mailOption, (error, info) => {
+    transporter.sendMail(customerMailOption, (error, info) => {
       if (error) {
         console.error('Error sending email:', error);
         return res.status(500).json({ error: error.toString() });
@@ -44,6 +76,14 @@ async function add(req, res) {
         message: 'Order placed and email sent',
         response: info.response,
       });
+    });
+
+    transporter.sendMail(sellerMailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email to seller:', error);
+        return res.status(500).json({ error: error.toString() });
+      }
+      console.log('Seller email sent:', info.response);
     });
 
     // return res.send({ ok: 'ok' });

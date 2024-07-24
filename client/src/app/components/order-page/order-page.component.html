@@ -1,6 +1,4 @@
 <div *ngIf="products.length > 0" class="container">
-  <app-ordering-form></app-ordering-form>
-
   <div class="cart">
     <h2 class="sidebar-title">Ваш заказ</h2>
     <p-dataView #dv [value]="products">
@@ -37,6 +35,7 @@
       </ng-template>
     </p-dataView>
   </div>
+  <app-ordering-form></app-ordering-form>
 </div>
 
 <div *ngIf="products.length <= 0 && getOrderId()" class="order-container">

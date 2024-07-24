@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class CartService {
   private products: IOrderedProduct[] = [];
   public productSubject = new BehaviorSubject<IOrderedProduct[]>([]);
+
   constructor(private http: HttpClient) {}
 
   getCartItems() {

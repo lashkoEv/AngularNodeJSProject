@@ -1,14 +1,15 @@
 import { AuthorizationService } from '../../services/authorization.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { HeaderService } from '../../services/header.service';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   sidebarVisible: boolean = false;
   public phoneNumber = '+380505667571';
   public location = 'Харьков, Проспект Гагарина 1';
@@ -24,8 +25,16 @@ export class HeaderComponent {
 
   constructor(
     private authorizationService: AuthorizationService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.sidebarVisible = false;
+      }
+    });
+  }
 
   getAuthState() {
     return this.authorizationService.getAuthState();

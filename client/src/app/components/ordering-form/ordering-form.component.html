@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" @fadeIn>
   <form
     *ngIf="!isOrderSucces"
     enctype="multipart/form-data"
@@ -23,13 +23,14 @@
       <div class="field">
         <p-inputGroupAddon class="label">Номер телефона</p-inputGroupAddon>
         <input
-          type="tel"
+          autocomplete="off"
+          maxlength="19"
           class="input"
           required
           pInputText
           id="phoneNumber"
           formControlName="phoneNumber"
-          placeholder="Телефон"
+          placeholder="&nbsp;"
         />
       </div>
 
@@ -43,12 +44,23 @@
           placeholder="example&#64;gmail.com"
         />
       </div>
-
-      <div *ngIf="cities.length !== 0" class="field">
+    </div>
+    <div
+      *ngIf="
+        orderForm.get('email').valid &&
+        orderForm.get('phoneNumber').valid &&
+        orderForm.get('nameAndLastName').valid
+      "
+      class="content"
+      @fadeIn
+    >
+      <h1 class="title">Доставка</h1>
+      <div class="field">
         <p-inputGroupAddon class="label">Город</p-inputGroupAddon>
 
         <p-dropdown
-          class="input city-select"
+          panelStyleClass="input-panel"
+          class="input"
           formControlName="city"
           [filter]="true"
           filterBy="CityDescription"
@@ -58,13 +70,13 @@
           [virtualScroll]="true"
           [virtualScrollItemSize]="38"
           (ngModelChange)="onCityChange($event)"
-          panelStyleClass="minWidthOverride"
         ></p-dropdown>
       </div>
 
       <div *ngIf="filteredOffices.length !== 0" class="field">
         <p-inputGroupAddon class="label">Способ Доставки</p-inputGroupAddon>
         <p-dropdown
+          panelStyleClass="input-panel"
           required
           class="input"
           formControlName="typeOfDelivery"
@@ -80,7 +92,8 @@
           >Отделение Почты</p-inputGroupAddon
         >
         <p-dropdown
-          class="input delivery-offices"
+          panelStyleClass="input-panel"
+          class="input"
           *ngIf="isDeliveryOnPost"
           formControlName="deliveryAddress"
           [filter]="true"
@@ -104,7 +117,6 @@
           placeholder="Адрес доставки"
         />
       </div>
-
       <button class="add-message" type="button" (click)="toggleMessage()">
         {{ !isMessage ? "Добавить комантарий к заказу" : "X" }}
       </button>
