@@ -32,26 +32,11 @@ export class CategoryPageComponent implements OnInit {
 
   public data: any[] = [
     {
-      label: 'Страна',
-      children: []
-    },
-
-    {
       label: 'Наличие',
       children: [{label: "Есть в наличии"}, {label: "Нет в наличии"}]
     },
-
-    {
-      label: 'Наличие',
-      children: [{ label: 'Есть в наличии' }, { label: 'Нет в наличии' }],
-    },
-
     {
       label: 'Количество',
-    },
-
-    {
-      label: 'Оптовая цена',
     },
 
     {
@@ -60,17 +45,18 @@ export class CategoryPageComponent implements OnInit {
   ];
 
   public dataForFilters: {
-    countries: string[];
     count: number;
     available: boolean | null;
-    maxWholePrice: number;
+    minRetailPrice: number;
     maxRetailPrice: number;
+    productFields: object[];
   };
 
-  public wholeSaleValues: number = 0;
-  public retailSaleValues: number = 0;
+  public retailSaleValueFrom: number;
+  public retailSaleValueTo: number;
   public selectedFilters: any[] = [];
   public count: number = 0;
+  public additionalInfo: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -117,59 +103,180 @@ export class CategoryPageComponent implements OnInit {
         this.filtersService.setProducts(data);
         this.products = data;
         this.toShow = data;
-
-        // this.countries = this.products.map((product) => {
-        //   return product.country.country;
-        // });
-
+        
         this.counts = this.products.map((product) => {
           return product.count;
         });
 
-        this.countries = [...new Set(this.countries)];
-        this.pushToData(this.countries, 'Страна');
+        // this.countries = [...new Set(this.countries)];
+        // this.pushToData(this.countries, 'Страна');
 
         this.counts = [...new Set(this.counts)];
-        // this.pushToData(this.counts, 'Количество');
+
+        const prices = this.products.map((price) =>
+          parseInt(String(price.retailPrice))
+        );      
+  
+        this.retailSaleValueFrom = Math.min(...prices);
+        this.retailSaleValueTo = Math.max(...prices);
+
+        this.addAdditionalInfo(this.products)
+        console.log("this.additionalInfo", this.additionalInfo);
+        
+        this.additionalInfo.map((el: any) => {
+          const productField = {
+            label: el.key,
+            children: [{label: el.value}]
+          };
+
+          // console.log(productField);
+
+          // let duplicates = this.hasDuplicates(this.additionalInfo, productField);
+          // console.log('duplicates', duplicates);
+
+          // if(!this.hasDuplicates(this.data, productField)){
+            //   this.data.push(productField);
+            // }
+            
+            // data.children.push(...productField.children)
+            
+          for(let data of this.data){
+            console.log("data", data.children);
+            if (data.label !== productField.label) {
+              // console.log("data.label", data.label);
+              // console.log("productField.label", productField.label);
+              // console.log("huy");
+              
+              return this.data.push(productField);
+            } else if(!data.children.includes(productField.children[0])){
+              // console.log('pizda');
+              
+              data.children.push(productField.children[0])
+            }
+
+          }
+
+          // console.log('end');
+        })
+
+        console.log("this.data", this.data);
       });
     });
   }
 
+  private hasDuplicates(arr: any[], el) {
+    for (let item of arr) {
+      if (item.label === el.label) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+
+  private addAdditionalInfo(products: IProduct[]){
+    for(let product of products){
+      if(product.fields.length > 0){
+        this.additionalInfo.push(...product.fields);
+      }
+    }
+
+    const additionalProducts = this.additionalInfo.map((el) => {
+      for(const adtl of this.additionalInfo){
+        if(adtl.key !== el.key){
+          return true
+        } else if (adtl.value){}
+      }   
+    })
+
+  }
+
+  private isAdditionalInfoInProduct(){
+    const productsFields = this.products.filter((product) => {
+      for(let field of product.fields){
+        for(let addtl of this.dataForFilters.productFields){
+          if(field.value === addtl['value']){
+            return true
+          }
+        }
+      }
+    })
+
+
+    // const productsAvailibility = this.products.filter((product) => {
+    //   switch (this.dataForFilters.available) {
+    //     case true:
+    //       return product.availability.availability === 'Есть в наличии' ? true : false;
+
+    //     case false:
+    //       return product.availability.availability === 'Нет в наличии' ? true : false;
+
+    //     case null:
+    //       return true;
+    //   }
+    // })
+
+    return productsFields;
+  }
+
   private setToShow() {
     const filteredProducts = this.products.filter((product) => {
-      // const hasCountry = this.dataForFilters.countries.includes(
-      //   String(product.country.country)
-      // );
-
+      
       const hasCount =
         this.dataForFilters.count >= parseInt(String(product.count));
 
-      const hasWholePrice =
-        this.dataForFilters.maxWholePrice >=
-        parseInt(String(product.wholesalePrice));
-
       const hasRetailPrice =
-        this.dataForFilters.maxRetailPrice >=
-        parseInt(String(product.retailPrice));
-      // if(hasCountry)
-      if (hasCount && hasWholePrice && hasRetailPrice) {
+        this.dataForFilters.minRetailPrice <= +product.retailPrice &&
+        this.dataForFilters.maxRetailPrice >= +product.retailPrice
+      
+      if (hasCount && hasRetailPrice) {
+        // if(this.dataForFilters.productFields.length > 0){
+        //   for(let el of this.dataForFilters.productFields){
+        //     for(let productField of product.fields){
+        //       const selectedFieldValue = el['value'];
+        //       const productFieldValue = productField['value'];
+              
+        //       if(selectedFieldValue === productFieldValue){
+        //         console.log('selectedFieldValue', selectedFieldValue);
+                
+        //         console.log('productFieldValue', productFieldValue);
+                
+        //         return true
+        //       }
+        //     }
+        //   }
+        // }
+
+        const productsWhithAdtl = this.isAdditionalInfoInProduct();
+        
+        // console.log("product", productsWhithAdtl);
+        for(let productWhithAdtl of productsWhithAdtl){
+          // product._id === productWhithAdtl['_id']
+          
+          if(product._id === productWhithAdtl['_id']){
+            console.log("productWhithAdtl", productWhithAdtl);
+            
+            return true;
+          }
+        }
+
         switch (this.dataForFilters.available) {
           case true:
-            return +product.count > 0 ? true : false;
+            return product.availability.availability === 'Есть в наличии' ? true : false;
 
           case false:
-            return +product.count < 1 ? true : false;
+            return product.availability.availability === 'Нет в наличии' ? true : false;
 
           case null:
             return true;
         }
-
-        // return true;
       }
     });
 
     this.toShow = filteredProducts;
+    console.log("this.toShow", this.toShow);
   }
+
 
   private pushToData(data: any, endPoint: string) {
     let endPointIndex;
@@ -187,18 +294,6 @@ export class CategoryPageComponent implements OnInit {
     }
   }
 
-  public getMinMaxWholesalePrice(minOrMax: string) {
-    if (this.products) {
-      const prices = this.products.map((price) =>
-        parseInt(String(price.wholesalePrice))
-      );
-
-      if (minOrMax === 'min') {
-        return Math.min(...prices);
-      } else return Math.max(...prices);
-    }
-  }
-
   public getMinMaxRetailPrice(minOrMax: string) {
     if (this.products) {
       const prices = this.products.map((price) =>
@@ -207,7 +302,9 @@ export class CategoryPageComponent implements OnInit {
 
       if (minOrMax === 'min') {
         return Math.min(...prices);
-      } else return Math.max(...prices);
+      } else {
+        return Math.max(...prices);
+      }
     }
   }
 
@@ -234,41 +331,41 @@ export class CategoryPageComponent implements OnInit {
   }
 
   public setDataForFilters(dataForFilters: {
-    countries: string[];
     count: number;
     available: boolean | null;
-    maxWholePrice: number;
+    minRetailPrice: number;
     maxRetailPrice: number;
+    productFields: object[];
   }) {
     this.dataForFilters = dataForFilters;
-
+    console.log("this.dataForFilters", this.dataForFilters);
+    
     this.setToShow();
   }
 
   public sendFilterData() {
     const filterData = {
-      countries: [],
       count: this.count === 0 ? this.getMinMaxCount('max') : this.count,
       available: null,
-      maxWholePrice:
-        this.wholeSaleValues === 0
-          ? this.getMinMaxWholesalePrice('max')
-          : this.wholeSaleValues,
+      minRetailPrice: this.retailSaleValueFrom <= this.getMinMaxRetailPrice('min')
+      ? this.getMinMaxRetailPrice('min')
+      : +this.retailSaleValueFrom,
       maxRetailPrice:
-        this.retailSaleValues === 0
+        this.retailSaleValueTo >= this.getMinMaxRetailPrice('max')
           ? this.getMinMaxRetailPrice('max')
-          : this.retailSaleValues,
+          : +this.retailSaleValueTo,
+      productFields: []
     };
 
-    const countriesData = this.getCountries();
+    if(isNaN(filterData.minRetailPrice) || filterData.minRetailPrice === this.getMinMaxRetailPrice('min')){
+      filterData.minRetailPrice = this.getMinMaxRetailPrice('min');
+      this.retailSaleValueFrom = filterData.minRetailPrice;
+    }
 
-    let countries = countriesData.filter((country) =>
-      this.selectedFilters.includes(country.label)
-    );
-
-    countries.length === 0
-      ? (filterData.countries = countriesData.map((country) => country.label))
-      : (filterData.countries = countries.map((country) => country.label));
+    if(isNaN(filterData.maxRetailPrice) || filterData.maxRetailPrice === 0){
+      filterData.maxRetailPrice = this.getMinMaxRetailPrice('max');
+      this.retailSaleValueTo = filterData.maxRetailPrice;
+    }
 
     if (
       this.selectedFilters.includes('Есть в наличии') &&
@@ -277,44 +374,41 @@ export class CategoryPageComponent implements OnInit {
       filterData.available = null;
     } else if (this.selectedFilters.includes('Нет в наличии')) {
       filterData.available = false;
+      
     } else if (this.selectedFilters.includes('Есть в наличии')) {
       filterData.available = true;
     }
 
-    // let counts = countsData.filter((count) =>
-    //   this.selectedFilters.includes(count.label)
-    // );
-
-    // counts.length === 0
-    //   ? (filterData.counts = countsData.map((count) => count.label))
-    //   : (filterData.counts = counts.map((count) => count.label));
-
+    this.additionalInfo.filter((el: any) => {
+      for(let selectedFilter of this.selectedFilters){
+        if(el.value === selectedFilter){
+          filterData.productFields.push(el);
+        }
+      }
+    })
+    
     this.setDataForFilters(filterData);
   }
 
   public resetFilters() {
-    this.wholeSaleValues = 0;
-    this.retailSaleValues = 0;
+    this.retailSaleValueFrom = this.getMinMaxRetailPrice('min');
+    this.retailSaleValueTo = this.getMinMaxRetailPrice('max');
     this.count = 0;
     this.selectedFilters = [];
 
-    // this.sendFilterData();
-    const countriesData = this.getCountries().map((country) => country.label);
+    // const countriesData = this.getCountries().map((country) => country.label);
 
     this.setDataForFilters({
-      countries: countriesData,
       count: this.getMinMaxCount('max'),
       available: null,
-      maxWholePrice: this.getMinMaxWholesalePrice('max'),
+      minRetailPrice: this.getMinMaxRetailPrice('min'),
       maxRetailPrice: this.getMinMaxRetailPrice('max'),
+      productFields: []
     });
-
-    // this.selectedFilters = [];
   }
 
   addToCart(product: IProduct) {
     this.cartService.add(product);
-    console.log(product);
     this.messageService.add({
       severity: 'success',
       summary: `Продукт добавлен в корзину!`,
