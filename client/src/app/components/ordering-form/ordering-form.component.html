@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" @fadeIn>
   <form
     *ngIf="!isOrderSucces"
     enctype="multipart/form-data"
@@ -18,37 +18,20 @@
           formControlName="nameAndLastName"
           placeholder="ФИО"
         />
-        <mat-error
-          class="error"
-          *ngIf="
-            orderForm.get('nameAndLastName').invalid &&
-            orderForm.get('nameAndLastName').touched
-          "
-        >
-          Требуется ФИО
-        </mat-error>
       </div>
 
       <div class="field">
         <p-inputGroupAddon class="label">Номер телефона</p-inputGroupAddon>
         <input
-          type="tel"
+          autocomplete="off"
+          maxlength="19"
           class="input"
           required
           pInputText
           id="phoneNumber"
           formControlName="phoneNumber"
-          placeholder="Телефон"
+          placeholder="&nbsp;"
         />
-        <mat-error
-          class="error"
-          *ngIf="
-            orderForm.controls.phoneNumber.errors?.pattern &&
-            orderForm.get('phoneNumber').touched
-          "
-        >
-          Введите номер телефона в формате +380XXXXXXXXX
-        </mat-error>
       </div>
 
       <div class="field">
@@ -60,39 +43,40 @@
           formControlName="email"
           placeholder="example&#64;gmail.com"
         />
-
-        <mat-error class="error" *ngIf="orderForm.controls.email.errors?.email">
-          Введите ел.почту в формате example&#64;gmail.com
-        </mat-error>
       </div>
-
+    </div>
+    <div
+      *ngIf="
+        orderForm.get('email').valid &&
+        orderForm.get('phoneNumber').valid &&
+        orderForm.get('nameAndLastName').valid
+      "
+      class="content"
+      @fadeIn
+    >
+      <h1 class="title">Доставка</h1>
       <div class="field">
         <p-inputGroupAddon class="label">Город</p-inputGroupAddon>
 
         <p-dropdown
+          panelStyleClass="input-panel"
           class="input"
           formControlName="city"
           [filter]="true"
           filterBy="CityDescription"
           [options]="cities"
           optionLabel="CityDescription"
-          placeholder="Выберите город "
+          placeholder="Выберите город"
           [virtualScroll]="true"
           [virtualScrollItemSize]="38"
           (ngModelChange)="onCityChange($event)"
-          [style]="{ width: '500px' }"
         ></p-dropdown>
-        <mat-error
-          class="error"
-          *ngIf="orderForm.get('city').invalid && orderForm.get('city').touched"
-        >
-          Требуется город
-        </mat-error>
       </div>
 
       <div *ngIf="filteredOffices.length !== 0" class="field">
         <p-inputGroupAddon class="label">Способ Доставки</p-inputGroupAddon>
         <p-dropdown
+          panelStyleClass="input-panel"
           required
           class="input"
           formControlName="typeOfDelivery"
@@ -101,14 +85,6 @@
           placeholder="Выберите Способ Доставки"
           (ngModelChange)="onTypeOfDeliveryChange($event)"
         ></p-dropdown>
-        <mat-error
-          class="error"
-          *ngIf="
-            orderForm.get('typeOfDelivery').invalid &&
-            orderForm.get('typeOfDelivery').touched
-          "
-        >
-        </mat-error>
       </div>
 
       <div class="field">
@@ -116,6 +92,7 @@
           >Отделение Почты</p-inputGroupAddon
         >
         <p-dropdown
+          panelStyleClass="input-panel"
           class="input"
           *ngIf="isDeliveryOnPost"
           formControlName="deliveryAddress"
@@ -126,10 +103,6 @@
           [virtualScrollItemSize]="38"
           optionLabel="Description"
           placeholder="Выберите отделение"
-          [style]="{
-            width: '850px',
-         
-          }"
         ></p-dropdown>
 
         <p-inputGroupAddon class="label" *ngIf="isDeliveryAddress"
@@ -143,17 +116,7 @@
           formControlName="deliveryAddress"
           placeholder="Адрес доставки"
         />
-        <mat-error
-          class="error"
-          *ngIf="
-            orderForm.get('deliveryAddress').invalid &&
-            orderForm.get('deliveryAddress').touched
-          "
-        >
-          Требуется адрес доставки
-        </mat-error>
       </div>
-
       <button class="add-message" type="button" (click)="toggleMessage()">
         {{ !isMessage ? "Добавить комантарий к заказу" : "X" }}
       </button>
@@ -168,6 +131,7 @@
       </div>
 
       <p-button
+        [ngClass]="{ 'no-border': orderForm.invalid }"
         [disabled]="orderForm.invalid"
         class="btn"
         label="Принять"

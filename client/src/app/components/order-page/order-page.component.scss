@@ -1,11 +1,3 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  margin-bottom: 5rem;
-  margin-top: 5rem;
-}
-
 .order-container {
   display: flex;
   justify-content: center;
@@ -30,6 +22,9 @@
 }
 
 .cart {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
   font-family: Arial, sans-serif;
   border: 1px solid #ccc;
   padding: 20px;
