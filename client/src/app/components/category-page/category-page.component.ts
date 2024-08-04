@@ -1,3 +1,5 @@
+import * as _ from'lodash';
+import isEqual from'lodash/isEqual';
 import { MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
@@ -129,6 +131,8 @@ export class CategoryPageComponent implements OnInit {
             children: [{label: el.value}]
           };
 
+
+
           // console.log(productField);
 
           // let duplicates = this.hasDuplicates(this.additionalInfo, productField);
@@ -156,7 +160,7 @@ export class CategoryPageComponent implements OnInit {
 
           }
 
-          // console.log('end');
+          console.log('end');
         })
 
         console.log("this.data", this.data);
@@ -175,11 +179,27 @@ export class CategoryPageComponent implements OnInit {
   }
 
   private addAdditionalInfo(products: IProduct[]){
+    let allAdtl = []
+    let adtlNoDuplicates = []
+
     for(let product of products){
       if(product.fields.length > 0){
-        this.additionalInfo.push(...product.fields);
+        allAdtl.push(...product.fields);
       }
     }
+
+    allAdtl = allAdtl.map((el, i) => {
+      for (let j = i + 1; j < allAdtl.length; j++) {
+        if (isEqual(allAdtl[i], allAdtl[j])) {
+          console.log(el);
+          
+          return allAdtl.slice(0, i).concat(allAdtl.slice(i + 1));
+        }
+      }
+      adtlNoDuplicates.push(allAdtl[i]);
+    })
+
+    this.additionalInfo = adtlNoDuplicates;
 
     const additionalProducts = this.additionalInfo.map((el) => {
       for(const adtl of this.additionalInfo){
