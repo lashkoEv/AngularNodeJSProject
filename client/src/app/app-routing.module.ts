@@ -11,6 +11,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderPageComponent } from './components/order-page/order-page.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'delivery', component: AppComponent },
   { path: 'catalogue', component: CatalogueComponent },
   { path: 'consultation', component: ConsultationComponent },
+  { path: 'about-us', component: AboutUsComponent },
   { path: 'category/:id', component: CategoryPageComponent },
   { path: 'cart', component: CartComponent },
   { path: 'profile', component: ProfileComponent },

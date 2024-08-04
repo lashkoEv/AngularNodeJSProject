@@ -1,20 +1,34 @@
+<p-toast [life]="2000"></p-toast>
+
 <section class="form">
   <div class="card">
-    <form #form="ngForm">
+    <form #form="ngForm" (ngSubmit)="add(form.value)">
       <section class="consultation-title">
         <h2 id="consultation">CВЯЗАТЬСЯ С НАМИ</h2>
       </section>
       <div class="form-group">
         <p-floatLabel>
-          <input pInputText id="email" name="email" ngModel />
-          <label for="username">Почта</label>
+          <input
+            pInputText
+            id="email"
+            name="email"
+            [(ngModel)]="inputEmail"
+            required
+          />
+          <label for="email">Почта</label>
         </p-floatLabel>
       </div>
 
       <div class="form-group">
         <p-floatLabel>
-          <input pInputText id="topic" name="topic" ngModel />
-          <label for="username">Тема</label>
+          <input
+            pInputText
+            id="topic"
+            name="topic"
+            [(ngModel)]="inputTopic"
+            required
+          />
+          <label for="topic">Тема</label>
         </p-floatLabel>
       </div>
 
@@ -23,7 +37,7 @@
           <textarea
             id="message"
             name="message"
-            ngModel
+            [(ngModel)]="inputMessage"
             rows="5"
             cols="30"
             required
@@ -35,21 +49,12 @@
       <div class="form-group">
         <button
           type="submit"
-          (click)="add(form.value)"
           class="sendBtn"
           role="button"
           pButton
-          type="button"
           label="Отправить"
         ></button>
       </div>
     </form>
   </div>
-  <!-- <div class="image-wrapper">
-    <img
-      src="../../assets/images/917597d6739fb1c47de373307030954b.png"
-      alt="+"
-      class="image"
-    />
-  </div> -->
 </section>
