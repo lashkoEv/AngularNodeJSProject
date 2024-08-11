@@ -25,6 +25,14 @@ export class ProductService {
       })
     );
   }
+  getAllFavorite(): Observable<any> {
+    return this.http.get('http://localhost:3000/favorite').pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
+  }
 
   getById(id: String): Observable<any> {
     return this.http.post('http://localhost:3000/products', { id: id }).pipe(
@@ -54,10 +62,31 @@ export class ProductService {
       })
     );
   }
+  addFavorite(data: IProduct): any {
+    return this.http
+      .post('http://localhost:3000/products/favorite/add', data)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
+  }
 
   deleteById(id: String): any {
     return this.http
       .post('http://localhost:3000/products/delete', { id: id })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
+  }
+
+  deleteFavoriteById(id: String): any {
+    return this.http
+      .post('http://localhost:3000/products/favorite/delete', { id: id })
       .pipe(
         catchError((err) => {
           console.log(err);

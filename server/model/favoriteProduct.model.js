@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const productSchema = mongoose.Schema({
+const favoriteProductSchema = new mongoose.Schema({
   id: String,
   title: String,
   description: String,
@@ -14,8 +14,6 @@ const productSchema = mongoose.Schema({
   imgSrc: String,
 });
 
-const Product = mongoose.model('Products', productSchema);
+const Favorite = mongoose.model('FavoriteProducts', favoriteProductSchema);
 
-module.exports = {
-  Product,
-};
+module.exports = Favorite;

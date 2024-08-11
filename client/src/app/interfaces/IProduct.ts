@@ -6,6 +6,7 @@ interface IAvailability {
 
 export interface IProduct {
   _id?: String;
+  id?: String;
   title: String;
   description: String;
   availability: IAvailability;
