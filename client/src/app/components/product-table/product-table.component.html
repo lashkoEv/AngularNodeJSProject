@@ -179,6 +179,13 @@
       </td>
       <td>
         <p-button
+          [icon]="getFavoriteIcon(product._id)"
+          severity="danger"
+          (click)="toggleFavorite(product._id)"
+        ></p-button>
+      </td>
+      <td>
+        <p-button
           (click)="duplicateProduct(product)"
           icon="pi pi-clone"
           severity="secondary"

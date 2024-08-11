@@ -47,40 +47,7 @@
       ></button>
     </section>
 
-    <section class="products">
-      <div class="product-grid">
-        <div *ngFor="let product of products | async | slice : 0 : 8">
-          <div class="product">
-            <img
-              class="image"
-              [src]="product.imgSrc"
-              [alt]="product.title"
-              [routerLink]="['/products', product._id]"
-            />
-
-            <div class="title" [routerLink]="['/products', product._id]">
-              {{ product.title }}
-            </div>
-
-            <span class="flex align-items-center gap-2">
-              <i class="pi pi-tag"></i>
-              <span class="category"> {{ product.category.title }}</span>
-            </span>
-
-            <span class="price">
-              {{ product.retailPrice }}
-            </span>
-
-            <button
-              pButton
-              icon="pi pi-shopping-cart"
-              class="button"
-              (click)="addToCart(product)"
-            ></button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <app-favorite-products></app-favorite-products>
   </div>
 </div>
 <app-consultation id="consultation" class="consultation"></app-consultation>

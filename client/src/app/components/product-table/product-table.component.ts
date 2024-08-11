@@ -18,28 +18,44 @@ export class ProductTableComponent implements OnInit {
   products!: IProduct[];
   cols!: IColumn[];
   loading: boolean = true;
+  favoriteProducts: { [key: string]: boolean } = {};
+  fav: IProduct[];
 
   constructor(
     private productService: ProductService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     public formService: FormService
-  ) {}
+  ) {
+    this.productService.getAllFavorite().subscribe((data) => {
+      this.fav = data;
+    });
+  }
 
   private getProduct(product: IProduct) {
     const findProduct = this.productService.setProduct(product);
     return findProduct;
   }
+
   addProduct() {
     const resetProduct = null;
     this.productService.setProduct(resetProduct);
     this.formService.invokeAddForm();
     this.ngOnInit();
   }
+
   async deleteProduct(id: String) {
     await this.productService.deleteById(id).subscribe((data) => {
       if (data.ok) {
         this.ngOnInit();
+      }
+    });
+  }
+
+  async deleteFavoriteProduct(id: String) {
+    await this.productService.deleteFavoriteById(id).subscribe((data) => {
+      if (data.ok) {
+        console.log('favorite deleted');
       }
     });
   }
@@ -71,6 +87,37 @@ export class ProductTableComponent implements OnInit {
         });
       }
     );
+  }
+
+  toggleFavorite(productId: string) {
+    const wasFavorite = this.isFavorite(productId);
+    const product = this.productService.getById(productId);
+    product.subscribe((data: IProduct) => {
+      data.id = productId;
+      if (!wasFavorite && this.fav.length <= 6) {
+        this.productService.addFavorite(data).subscribe((response) => {
+          this.fav.push(data);
+          console.log(data, 'added', response);
+        });
+      } else if (wasFavorite && this.fav.length >= 0) {
+        this.productService
+          .deleteFavoriteById(data.id)
+          .subscribe((response) => {
+            this.fav = this.fav.filter((item) => item.id !== productId);
+            console.log(data.id, 'deleted', response);
+          });
+      }
+    });
+  }
+  isFavorite(productId: string): boolean {
+    const isFav = this.fav.find((product) => {
+      return product.id === productId;
+    });
+    return !!isFav;
+  }
+
+  getFavoriteIcon(productId: string): string {
+    return this.isFavorite(productId) ? 'pi pi-star-fill' : 'pi pi-star';
   }
 
   ngOnInit() {
