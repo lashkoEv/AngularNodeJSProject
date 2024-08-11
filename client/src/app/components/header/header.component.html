@@ -84,14 +84,40 @@
   <div class="right-side"></div> -->
 </section>
 <section class="main-header">
-  <div class="logo" [routerLink]="['/']">
-    <img src="../../../assets/images/planet.png" alt="Logo" class="logo-img" />
+  <div class="left">
+    <div class="logo" [routerLink]="['/']">
+      <img
+        src="../../../assets/images/planet.png"
+        alt="Logo"
+        class="logo-img"
+      />
+    </div>
+    <div class="search">
+      <app-search></app-search>
+    </div>
+    <!-- <div class="elements-wrapper"> -->
+    <app-megamenu class="megamenu"></app-megamenu>
+    <div class="socials-wrapper">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-phone"
+        class="p-button-rounded p-button-text"
+        style="color: #002855"
+      ></button>
+      <a href="tel:{{ phoneNumber }}" class="tel">
+        <span class="phone-number">{{ phoneNumber }}</span>
+      </a>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-telegram"
+        class="p-button-rounded p-button-text"
+        style="color: #002855"
+      ></button>
+    </div>
   </div>
-  <div class="search">
-    <app-search></app-search>
-  </div>
-  <!-- <div class="elements-wrapper"> -->
-  <app-megamenu class="megamenu"></app-megamenu>
+
   <!-- <div class="profile"> -->
 
   <!-- </div> -->
@@ -117,108 +143,95 @@
   </a> -->
   <!-- </div> -->
   <!-- <div class="wrapper"> -->
-  <a routerLink="/catalogue">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-shopping-bag"
-      class="p-button-rounded p-button-text"
-      label="Товары"
-      style="color: #000000"
-      size="small"
-    ></button>
-  </a>
-  <a routerLink="/about-us">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-envelope"
-      class="p-button-rounded p-button-text"
-      label="Контакты"
-      style="color: #000000"
-      size="small"
-    ></button>
-  </a>
-  <span *ngIf="!getAuthState()"
-    ><button
-      pButton
-      type="button"
-      icon="pi pi-user"
-      class="p-button-rounded p-button-text"
-      (click)="showForm()"
-      style="color: #000000"
-      label="Вход"
-      size="small"
-    ></button
-  ></span>
-  <span *ngIf="getAuthState()"
-    ><button
-      pButton
-      type="button"
-      icon="pi pi-user"
-      class="p-button-rounded p-button-text"
-      routerLink="/profile"
-      style="color: #000000"
-      label="Вход"
-      size="small"
-    ></button
-  ></span>
-  <!-- <div class="admin-wrapper"> -->
-  <span *ngIf="getIsAdmin()"
-    ><button
-      pButton
-      type="button"
-      icon="pi pi-wrench"
-      class="p-button-rounded p-button-text"
-      [routerLink]="['/admin']"
-      style="color: #000000"
-      size="small"
-    ></button
-  ></span>
-  <span *ngIf="getAuthState()"
-    ><button
-      pButton
-      type="button"
-      icon="pi pi-times-circle"
-      class="p-button-rounded p-button-text"
-      (click)="logout()"
-      style="color: #000000"
-      size="small"
-    ></button
-  ></span>
-  <span
-    ><button
-      pButton
-      type="button"
-      icon="pi pi-shopping-cart"
-      class="p-button-rounded p-button-text"
-      (click)="sidebarVisible = true"
-      label="Корзина"
-      style="color: #000000"
-      size="small"
-    ></button
-  ></span>
+  <div class="right">
+    <a routerLink="/catalogue">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-shopping-bag"
+        class="p-button-rounded p-button-text"
+        label="Товары"
+        style="color: #000000"
+        size="small"
+      ></button>
+    </a>
+    <a routerLink="/about-us">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-envelope"
+        class="p-button-rounded p-button-text"
+        label="Контакты"
+        style="color: #000000"
+        size="small"
+      ></button>
+    </a>
+    <span *ngIf="!getAuthState()"
+      ><button
+        pButton
+        type="button"
+        icon="pi pi-user"
+        class="p-button-rounded p-button-text"
+        (click)="showForm()"
+        style="color: #000000"
+        label="Вход"
+        size="small"
+      ></button
+    ></span>
+    <span *ngIf="getAuthState()"
+      ><button
+        pButton
+        type="button"
+        icon="pi pi-user"
+        class="p-button-rounded p-button-text"
+        routerLink="/profile"
+        style="color: #000000"
+        label="Вход"
+        size="small"
+      ></button
+    ></span>
+    <!-- <div class="admin-wrapper"> -->
+    <span *ngIf="getIsAdmin()"
+      ><button
+        pButton
+        type="button"
+        icon="pi pi-wrench"
+        class="p-button-rounded p-button-text"
+        [routerLink]="['/admin']"
+        style="color: #000000"
+        size="small"
+      ></button
+    ></span>
+    <span *ngIf="getAuthState()"
+      ><button
+        pButton
+        type="button"
+        icon="pi pi-times-circle"
+        class="p-button-rounded p-button-text"
+        (click)="logout()"
+        style="color: #000000"
+        size="small"
+      ></button
+    ></span>
+    <span
+      ><button
+        pButton
+        type="button"
+        icon="pi pi-shopping-cart"
+        class="p-button-rounded p-button-text"
+        (click)="sidebarVisible = true"
+        label="Корзина"
+        style="color: #000000"
+        size="small"
+      ></button
+    ></span>
+  </div>
 
   <!-- </div> -->
   <!-- </div> -->
 </section>
 <section class="sub-header">
-  <div class="socials-wrapper">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-phone"
-      class="p-button-rounded p-button-text"
-      style="color: #002855"
-    ></button>
-    <button
-      pButton
-      type="button"
-      icon="pi pi-telegram"
-      class="p-button-rounded p-button-text"
-      style="color: #002855"
-    ></button>
-    <button
+  <!-- <button
       pButton
       type="button"
       icon="pi pi-facebook"
@@ -231,8 +244,7 @@
       icon="pi pi-instagram"
       class="p-button-rounded p-button-text"
       style="color: #002855"
-    ></button>
-  </div>
+    ></button> -->
 </section>
 <p-sidebar
   [(visible)]="sidebarVisible"
