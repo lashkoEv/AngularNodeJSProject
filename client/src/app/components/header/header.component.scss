@@ -37,11 +37,19 @@
 }
 .location-wrapper,
 .phone-wrapper,
-.socials-wrapper,
 .hours-wrapper {
   display: flex;
   align-items: center;
   // gap: 0.5rem;
+}
+
+.socials-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-two {
+  display: flex;
 }
 
 /* Main Header Section */

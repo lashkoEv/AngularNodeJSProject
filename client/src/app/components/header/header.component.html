@@ -97,24 +97,42 @@
     </div>
     <!-- <div class="elements-wrapper"> -->
     <app-megamenu class="megamenu"></app-megamenu>
-    <div class="socials-wrapper">
-      <button
-        pButton
-        type="button"
-        icon="pi pi-phone"
-        class="p-button-rounded p-button-text"
-        style="color: #002855"
-      ></button>
+  </div>
+  <div class="socials-wrapper">
+    <div class="row-one">
       <a href="tel:{{ phoneNumber }}" class="tel">
         <span class="phone-number">{{ phoneNumber }}</span>
       </a>
       <button
         pButton
         type="button"
+        icon="pi pi-phone"
+        class="p-button-rounded p-button-text"
+        style="color: #002855"
+        label="Viber"
+      ></button>
+    </div>
+    <div class="row-two">
+      <a href="tel:{{ phoneNumber }}" class="tel">
+        <span class="phone-number">{{ phoneNumber }}</span>
+      </a>
+      <div class="vertical">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-telegram"
+          class="p-button-rounded p-button-text"
+          style="color: #002855"
+          label="Telegram"
+        ></button>
+        <!-- <button
+        pButton
+        type="button"
         icon="pi pi-telegram"
         class="p-button-rounded p-button-text"
         style="color: #002855"
-      ></button>
+      ></button> -->
+      </div>
     </div>
   </div>
 

@@ -1,12 +1,12 @@
-const { Order } = require('../model/order.model');
+const { Order } = require("../model/order.model");
 
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  service: 'Gmail',
+  service: "Gmail",
   auth: {
-    user: 't24848576@gmail.com',
-    pass: 'tlox eaxi agvu efzx',
+    user: "zarubinmihail99@gmail.com",
+    pass: "amrg mqda fyno udmo",
   },
   // pass for nodemailer
 });
@@ -34,25 +34,25 @@ async function add(req, res) {
           (product) =>
             `Товар: ${product.product.title}, Кількість: ${product.count}, Ціна: ${product.product.wholesalePrice}`
         )
-        .join('\n');
+        .join("\n");
     } catch (cartError) {
-      console.error('Error processing cart items:', cartError);
+      console.error("Error processing cart items:", cartError);
       return res.status(500).json({
         error: `Failed to process cart items: ${cartError.toString()}`,
       });
     }
 
     const customerMailOption = {
-      from: 't24848576@gmail.com', // изменить на настоящий вместо тестового
+      from: "zarubinmihail99@gmail.com", // изменить на настоящий вместо тестового
       to: orderData.email,
-      subject: 'Підтвердження замовлення',
+      subject: "Підтвердження замовлення",
       text: `Дякуємо за замовляння, ${orderData.nameAndLastName}. Ваше замовлення:  №${orderData.id} успішно оформленно.`,
     };
 
     const sellerMailOptions = {
-      from: 't24848576@gmail.com',
-      to: 'zetsu223@gmail.com', // изменить на эмейл отца
-      subject: 'Нове замовлення',
+      from: "zarubinmihail99@gmail.com",
+      to: "ipstorg@gmail.com", // изменить на эмейл отца
+      subject: "Нове замовлення",
       text: `Нове замовлення від ${orderData.nameAndLastName}. Деталі замовлення: 
       ID: ${orderData.id}
       Ім'я та Прізвище: ${orderData.nameAndLastName}
@@ -68,22 +68,22 @@ async function add(req, res) {
     await order.save();
     transporter.sendMail(customerMailOption, (error, info) => {
       if (error) {
-        console.error('Error sending email:', error);
+        console.error("Error sending email:", error);
         return res.status(500).json({ error: error.toString() });
       }
-      console.log('Email sent:', info.response);
+      console.log("Email sent:", info.response);
       res.status(200).json({
-        message: 'Order placed and email sent',
+        message: "Order placed and email sent",
         response: info.response,
       });
     });
 
     transporter.sendMail(sellerMailOptions, (error, info) => {
       if (error) {
-        console.error('Error sending email to seller:', error);
+        console.error("Error sending email to seller:", error);
         return res.status(500).json({ error: error.toString() });
       }
-      console.log('Seller email sent:', info.response);
+      console.log("Seller email sent:", info.response);
     });
 
     // return res.send({ ok: 'ok' });
@@ -100,7 +100,7 @@ async function getAll(req, res) {
   try {
     const orders = await Order.find();
 
-    console.log('Found:', orders);
+    console.log("Found:", orders);
 
     return res.send(orders);
   } catch (error) {
@@ -116,7 +116,7 @@ async function getById(req, res) {
   try {
     const order = await Order.findOne({ _id: req.body.id });
 
-    console.log('Found:', order);
+    console.log("Found:", order);
 
     return res.send(order);
   } catch (error) {
@@ -132,7 +132,7 @@ async function deleteById(req, res) {
   try {
     await Order.deleteOne({ _id: req.body.id });
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -156,7 +156,7 @@ async function updateById(req, res) {
       }
     );
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
