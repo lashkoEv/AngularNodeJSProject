@@ -1,5 +1,6 @@
 <section class="top-header">
   <div class="center">- Ми працюємо 24/7! -</div>
+
   <!-- <div class="card"> -->
   <!-- <div class="phone-wrapper"> -->
   <!-- <button
@@ -98,44 +99,34 @@
     <!-- <div class="elements-wrapper"> -->
     <app-megamenu class="megamenu"></app-megamenu>
   </div>
-  <div class="socials-wrapper">
-    <div class="row-one">
-      <a href="tel:{{ phoneNumber }}" class="tel">
-        <span class="phone-number">{{ phoneNumber }}</span>
-      </a>
-      <button
-        pButton
-        type="button"
-        icon="pi pi-phone"
-        class="p-button-rounded p-button-text"
-        style="color: #002855"
-        label="Viber"
-      ></button>
-    </div>
-    <div class="row-two">
-      <a href="tel:{{ phoneNumber }}" class="tel">
-        <span class="phone-number">{{ phoneNumber }}</span>
-      </a>
-      <div class="vertical">
-        <button
-          pButton
-          type="button"
-          icon="pi pi-telegram"
-          class="p-button-rounded p-button-text"
-          style="color: #002855"
-          label="Telegram"
-        ></button>
-        <!-- <button
-        pButton
-        type="button"
-        icon="pi pi-telegram"
-        class="p-button-rounded p-button-text"
-        style="color: #002855"
-      ></button> -->
-      </div>
-    </div>
+  <div class="contacts-wrapper">
+    <a href="tel:{{ phoneNumber }}" class="tel">
+      <span class="phone-number">{{ phoneNumber }}</span>
+    </a>
+    <a href="mailto:{{ mail }}" class="mail"
+      ><span class="email">{{ mail }}</span></a
+    >
   </div>
 
+  <!-- <div class="socials-wrapper">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-phone"
+      class="p-button-rounded p-button-text viber"
+      style="color: #000000"
+      size="small"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      icon="pi pi-telegram"
+      class="p-button-rounded p-button-text telegram"
+      style="color: #000000"
+      size="small"
+    ></button>
+  </div> -->
   <!-- <div class="profile"> -->
 
   <!-- </div> -->

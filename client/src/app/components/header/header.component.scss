@@ -43,13 +43,17 @@
   // gap: 0.5rem;
 }
 
-.socials-wrapper {
+.socials-wrapper,
+.contacts-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.row-two {
-  display: flex;
+.viber,
+.telegram {
+  padding: 0.1rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 /* Main Header Section */
@@ -98,7 +102,7 @@
 
 .btn {
   background-color: #fff;
-  padding: 1.7rem 2.5rem;
+  padding: 1rem 2rem;
 }
 
 .profile {
@@ -110,9 +114,11 @@
   justify-content: space-between;
 }
 
-.tel {
+.tel,
+.mail {
   color: black;
   text-decoration: none;
+  text-align: center;
 }
 
 .sub-header {

@@ -11,7 +11,8 @@ import { NavigationStart, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   sidebarVisible: boolean = false;
-  public phoneNumber = '0505667571';
+  public phoneNumber = '+38 (050) 566-75-71';
+  public mail = 'ipstorg@gmail.com';
   public location = 'Харьков, Проспект Гагарина 1';
   public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
   public languageSwitch: {}[] = [{ ru: 'RU', ua: 'UA' }];
