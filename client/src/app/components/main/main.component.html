@@ -31,25 +31,24 @@
         </div>
       </div>
     </section>
-
-    <section class="title-wrapper">
-      <h2 class="title">ТОВАРЫ</h2>
-      <button
-        pButton
-        type="button"
-        label="Показать все"
-        icon="pi pi-arrow-right"
-        iconPos="right"
-        class="buy-button"
-        size="small"
-        severity="secondary"
-        [routerLink]="['/catalogue']"
-      ></button>
-    </section>
-
-    <app-favorite-products></app-favorite-products>
   </div>
 </div>
+<section class="title-wrapper-bottom">
+  <h2 class="title">ТОВАРЫ</h2>
+  <button
+    pButton
+    type="button"
+    label="Показать все"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    class="buy-button"
+    size="small"
+    severity="secondary"
+    [routerLink]="['/catalogue']"
+  ></button>
+</section>
+<app-favorite-products></app-favorite-products>
+
 <app-consultation id="consultation" class="consultation"></app-consultation>
 <!-- <div class="product">
   <div class="info">
