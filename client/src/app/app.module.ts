@@ -101,6 +101,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { CallUsPopUpComponent } from './components/call-us-pop-up/call-us-pop-up.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FavoriteProductsComponent } from './components/favorite-products/favorite-products.component';
+import { OrderTableComponent } from './components/order-table/order-table.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { FavoriteProductsComponent } from './components/favorite-products/favori
     CallUsPopUpComponent,
     AboutUsComponent,
     FavoriteProductsComponent,
+    OrderTableComponent,
   ],
   imports: [
     FileUploadModule,

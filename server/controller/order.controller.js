@@ -25,6 +25,7 @@ async function add(req, res) {
       typeOfDelivery: orderData.typeOfDelivery,
       deliveryAddress: orderData.deliveryAddress,
       cart: orderData.cart,
+      status: orderData.status,
     });
 
     let cartItems;
@@ -147,12 +148,7 @@ async function updateById(req, res) {
     await Order.updateOne(
       { _id: req.body._id },
       {
-        nameAndLastName: req.body.nameAndLastName,
-        phoneNumber: req.body.phoneNumber,
-        city: req.body.city,
-        email: req.body.email,
-        message: req.body.message,
-        cart: req.body.cart,
+        status: req.body.status,
       }
     );
 

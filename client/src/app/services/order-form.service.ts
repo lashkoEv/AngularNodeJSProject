@@ -52,6 +52,15 @@ export class OrderFormService {
     );
   }
 
+  updateById(data: IOrdering): any {
+    return this.http.post('http://localhost:3000//order/update', data).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
+  }
+
   deleteById(id: String): any {
     return this.http
       .post('http://localhost:3000/order/delete', { id: id })

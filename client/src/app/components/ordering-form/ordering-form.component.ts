@@ -18,7 +18,7 @@ import { ICategory } from '../../interfaces/ICategory';
 import { OrderFormService } from '../../services/order-form.service';
 import { CartService } from '../../services/cart.service';
 import { IOrder } from '../../interfaces/IOrder';
-import { IOrdering } from '../../interfaces/IOrdering';
+import { IOrdering, OrderStatus } from '../../interfaces/IOrdering';
 import { IWarehouse } from '../../interfaces/IWarehouse';
 
 @Component({
@@ -161,6 +161,7 @@ export class OrderingFormComponent implements OnInit {
       deliveryAddress: ['', Validators.required],
       message: [''],
       cart: [{}],
+      status: [''],
     });
   }
   public toggleMessage() {
@@ -170,6 +171,7 @@ export class OrderingFormComponent implements OnInit {
     if (this.orderForm.valid) {
       const orderData: IOrdering = this.orderForm.value;
       orderData.cart = this.cart;
+      orderData.status = OrderStatus.PENDING;
       this.orderFormService.setOrderId(orderData.id);
       this.orderFormService.add(orderData).subscribe(
         (response: Response) => {

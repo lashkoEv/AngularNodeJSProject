@@ -10,6 +10,7 @@ const orderSchema = mongoose.Schema({
   typeOfDelivery: {},
   deliveryAddress: {},
   cart: {},
+  status: String,
 });
 
 const Order = mongoose.model('Orders', orderSchema);

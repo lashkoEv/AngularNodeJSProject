@@ -1,5 +1,12 @@
 import { IOrder } from './IOrder';
 
+export enum OrderStatus {
+  PENDING = 'Новий',
+  CONFIRMED = 'Підтверджений',
+  SHIPPED = 'Відправлений',
+  COMPLETED = 'Виконаний',
+}
+
 export interface IOrdering {
   _id?: String;
   id: String;
@@ -11,4 +18,5 @@ export interface IOrdering {
   typeOfDelivery: String;
   deliveryAddress: String;
   cart: IOrder;
+  status?: OrderStatus;
 }
