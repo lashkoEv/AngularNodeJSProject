@@ -1,7 +1,7 @@
 <p-carousel
   [value]="products"
-  [numVisible]="3"
-  [numScroll]="3"
+  [numVisible]="4"
+  [numScroll]="4"
   [circular]="false"
   [responsiveOptions]="responsiveOptions"
 >
@@ -22,13 +22,10 @@
           />
         </div>
       </div>
-      <div class="mb-3 font-medium">
+      <div class="mb-3 font-medium product-title">
         {{ product.title }}
       </div>
       <div class="flex justify-content-between align-items-center">
-        <div class="mt-0 font-semibold text-xl">
-          {{ "$" + product.wholesalePrice }}
-        </div>
         <span class="buttons">
           <p-button icon="pi pi-eye" (click)="show(product)"></p-button>
           <p-button
@@ -36,6 +33,9 @@
             icon="pi pi-shopping-cart"
             styleClass="ml-2"
           />
+          <div class="mt-0 font-semibold text-xl pricetag">
+            {{ product.wholesalePrice }}
+          </div>
         </span>
       </div>
     </div>

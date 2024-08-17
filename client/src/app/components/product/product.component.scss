@@ -31,6 +31,7 @@
 .price-wrapper {
   display: flex;
   justify-content: start;
+  flex-direction: column;
   align-items: center;
   width: 100%;
 }
@@ -41,9 +42,9 @@
   width: 100%;
 }
 
-.retail {
-  padding-left: 1rem;
-}
+// .retail {
+//   padding-left: 1rem;
+// }
 
 .wholesale {
   border-right: 1px solid rgb(228, 228, 228);
@@ -91,6 +92,10 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
+}
+
+.card {
+  padding: 2rem;
 }
 
 .product {

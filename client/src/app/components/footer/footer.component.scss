@@ -16,6 +16,11 @@ footer {
   margin-bottom: 2rem;
 }
 
+.admin-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .left-footer {
   display: flex;
   flex-direction: column;

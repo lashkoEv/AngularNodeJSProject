@@ -39,20 +39,24 @@
           </p>
 
           <div class="price-wrapper">
-            <div class="wholesale">
-              <p class="price-title">Оптовая цена</p>
-
-              <p class="price">
-                {{ product?.wholesalePrice }}
-              </p>
-            </div>
-
             <div class="retail">
-              <p class="price-title">Розничная цена</p>
+              <p class="price-title">Цена</p>
 
               <p class="price">
                 {{ product?.retailPrice }}
               </p>
+            </div>
+
+            <div class="wholesale">
+              <p-panel
+                header="Оптовая цена"
+                [toggleable]="true"
+                [collapsed]="true"
+              >
+                <p class="price">
+                  {{ product?.wholesalePrice }}
+                </p>
+              </p-panel>
             </div>
           </div>
 

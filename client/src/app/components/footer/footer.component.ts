@@ -32,7 +32,7 @@ export class FooterComponent {
   ];
   public categories: any;
 
-  public phoneNumber = '+380505667571';
+  public phoneNumber = '+38 (050) 566-75-71';
   public contactEmail = 'ipstorg@gmail.com';
   public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
 
@@ -41,7 +41,7 @@ export class FooterComponent {
     src: 'https://www.google.com/maps/place/%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82+%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D1%96%D0%BD%D0%B0,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0,+61000/@49.984072,36.2373798,16z/data=!4m6!3m5!1s0x41270acf708a91b3:0x2b1c4f630c1e7e80!8m2!3d49.933187!4d36.2619082!16s%2Fg%2F1213_dpz?hl=ru&entry=ttu',
   };
 
-  public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
+  public logo = 'ТОВ "ИНТЕР-ПЛАСТ СЕРВИС"';
   public navigation: object[] = [
     {
       titles: ['РЕГИСТРАЦИЯ', 'ДОСТАВКА', 'КОНТАКТЫ', 'ТОВАРЫ'],
