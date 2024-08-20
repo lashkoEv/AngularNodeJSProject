@@ -1,6 +1,7 @@
 <section class="top-header">
-  <div class="center">- Ми працюємо 24/7! -</div>
-
+  <div class="center">{{ "header.top-header" | translate }}</div>
+  <button (click)="switchLanguage('ua')">UA</button>
+  <button (click)="switchLanguage('ru')">RU</button>
   <!-- <div class="card"> -->
   <!-- <div class="phone-wrapper"> -->
   <!-- <button
@@ -159,7 +160,7 @@
         type="button"
         icon="pi pi-shopping-bag"
         class="p-button-rounded p-button-text"
-        label="Товары"
+        [label]="'header.goods' | translate"
         style="color: #000000"
         size="small"
       ></button>
@@ -170,7 +171,7 @@
         type="button"
         icon="pi pi-envelope"
         class="p-button-rounded p-button-text"
-        label="Контакты"
+        [label]="'header.contacts' | translate"
         style="color: #000000"
         size="small"
       ></button>
@@ -229,7 +230,7 @@
         icon="pi pi-shopping-cart"
         class="p-button-rounded p-button-text"
         (click)="sidebarVisible = true"
-        label="Корзина"
+        [label]="'header.cart' | translate"
         style="color: #000000"
         size="small"
       ></button

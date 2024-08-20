@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { SpinnerService } from './services/spinner.service';
 import { CallUsModalWindowService } from './services/call-us-modal-window.service';
 import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private spinner: SpinnerService,
+    private translateService: TranslateService,
     public callUsModalWindow: CallUsModalWindowService,
     private primengConfig: PrimeNGConfig
   ) {
@@ -23,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.translateService.setDefaultLang('ua');
     this.primengConfig.ripple = true;
 
     this.primengConfig.zIndex = {
@@ -69,6 +72,13 @@ export class AppComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.callUsModalWindow.toggleIsVisible();
     }, 5000);
+  }
+
+  translate(lang: string) {
+    this.translateService.use(lang);
+    this.translateService
+      .get('primeng')
+      .subscribe((res) => this.primengConfig.setTranslation(res));
   }
 
   ngOnDestroy(): void {}

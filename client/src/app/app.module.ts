@@ -42,7 +42,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -102,6 +102,13 @@ import { CallUsPopUpComponent } from './components/call-us-pop-up/call-us-pop-up
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FavoriteProductsComponent } from './components/favorite-products/favorite-products.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
+
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -203,8 +210,21 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
     PasswordModule,
     FloatLabelModule,
     OrderListModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
-  providers: [provideAnimationsAsync(), ConfirmationService, MessageService],
+  providers: [
+    provideAnimationsAsync(),
+    ConfirmationService,
+    MessageService,
+    HttpClient,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })

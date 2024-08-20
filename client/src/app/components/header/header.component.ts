@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { HeaderService } from '../../services/header.service';
 import { NavigationStart, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authorizationService: AuthorizationService,
     private cartService: CartService,
+    private translateService: TranslateService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -63,5 +65,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authorizationService.setAuthState();
     this.authorizationService.setRole(false);
+  }
+
+  switchLanguage(language: string) {
+    this.translateService.use(language);
   }
 }

@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "lodash": "^4.17.21",
     "primeicons": "^7.0.0",
     "primeng": "^17.13.0",
