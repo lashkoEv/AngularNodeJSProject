@@ -149,11 +149,9 @@ export class CategoryPageComponent implements OnInit {
             if (data.label !== productField.label) {
               // console.log("data.label", data.label);
               // console.log("productField.label", productField.label);
-              // console.log("huy");
               
               return this.data.push(productField);
             } else if(!data.children.includes(productField.children[0])){
-              // console.log('pizda');
               
               data.children.push(productField.children[0])
             }
