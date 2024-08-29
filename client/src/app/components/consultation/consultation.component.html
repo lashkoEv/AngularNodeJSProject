@@ -4,7 +4,7 @@
   <div class="card">
     <form #form="ngForm" (ngSubmit)="add(form.value)">
       <section class="consultation-title">
-        <h2 id="consultation">CВЯЗАТЬСЯ С НАМИ</h2>
+        <h2 id="consultation">{{ "consultation.title" | translate }}</h2>
       </section>
       <div class="form-group">
         <p-floatLabel>
@@ -15,7 +15,7 @@
             [(ngModel)]="inputEmail"
             required
           />
-          <label for="email">Почта</label>
+          <label for="email">{{ "consultation.mail" | translate }}</label>
         </p-floatLabel>
       </div>
 
@@ -28,7 +28,7 @@
             [(ngModel)]="inputTopic"
             required
           />
-          <label for="topic">Тема</label>
+          <label for="topic">{{ "consultation.topic" | translate }}</label>
         </p-floatLabel>
       </div>
 
@@ -43,7 +43,9 @@
             required
             pInputTextarea
           ></textarea>
-          <label for="message" class="message-label">Сообщение:</label>
+          <label for="message" class="message-label">{{
+            "consultation.message" | translate
+          }}</label>
         </p-floatLabel>
       </div>
       <div class="form-group">
@@ -51,8 +53,8 @@
           type="submit"
           class="sendBtn"
           role="button"
+          [label]="'consultation.send-btn' | translate"
           pButton
-          label="Отправить"
         ></button>
       </div>
     </form>
