@@ -111,26 +111,21 @@
   </div>
 </p-sidebar>
 
-<div class="card">
-  <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+  
+  <div class="card">
+    
+    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
 
   <div class="wrapper">
     <div class="filters">
-      <!-- <p-tree [value]="data" class="tree"> -->
-      <!-- <ng-template let-node pTemplate="default"> -->
       <div class="tree">
         <div class="template" *ngFor="let node of data">
-          <!-- <div *ngIf="node.label !== 'Оптовая цена'"> -->
-          <!-- <ng-container *ngIf="node.label !== 'Розничная цена'"> -->
-          <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
-          <ng-container
-            *ngIf="node.label === 'Страна' || node.label === 'Наличие'"
-          >
+          <!-- <ng-container
+            *ngIf="node.label === 'Наличие'"
+          > -->
             {{ node.label }}
-          </ng-container>
+          <!-- </ng-container> -->
 
-          <!-- <ng-container *ngIf="node.label !== 'Страна'"> -->
-          <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
           <ng-container *ngIf="node.children">
             <ng-container *ngFor="let child of node.children">
               <p-checkbox
@@ -143,21 +138,15 @@
               ></p-checkbox>
             </ng-container>
           </ng-container>
-          <!-- </ng-container> -->
-          <!-- </ng-container>  -->
-          <!-- </ng-container>  -->
-          <!-- </ng-container> -->
-          <!-- </div> -->
 
           <div
             class="priceWrapper"
             *ngIf="
-              node.label === 'Оптовая цена' ||
               node.label === 'Розничная цена' ||
               node.label === 'Количество'
             "
           >
-            {{ node.label }}
+            <!-- {{ node.label }} -->
 
             <div class="price" *ngIf="node.label === 'Количество'">
               <div class="inputs-warpper">
@@ -180,50 +169,30 @@
               </mat-slider>
             </div>
 
-            <div class="price" *ngIf="node.label === 'Оптовая цена'">
-              <div class="inputs-warpper">
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="wholeSaleValues"
-                  class="w-full md:w-30rem inputLs"
-                />
-                <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true"
-                ></p-button>
-              </div>
-              <mat-slider [max]="getMinMaxWholesalePrice('max')">
-                <input
-                  matSliderThumb
-                  [(ngModel)]="wholeSaleValues"
-                  class="slider"
-                />
-              </mat-slider>
-            </div>
-
             <div class="price" *ngIf="node.label === 'Розничная цена'">
               <div class="inputs-warpper">
                 <input
                   type="text"
                   pInputText
-                  [(ngModel)]="retailSaleValues"
+                  [(ngModel)]="retailSaleValueFrom"
                   class="w-full md:w-30rem inputLs"
                 />
+                -
+                <input
+                  type="text"
+                  pInputText
+                  [(ngModel)]="retailSaleValueTo"
+                  class="w-full md:w-30rem inputLs"
+                />
+
                 <p-button
                   (click)="sendFilterData()"
                   label="OK"
                   [outlined]="true"
                 ></p-button>
               </div>
-              <mat-slider [max]="getMinMaxRetailPrice('max')">
-                <input matSliderThumb [(ngModel)]="retailSaleValues" />
-              </mat-slider>
             </div>
           </div>
-          <!-- </ng-template> -->
-          <!-- </p-tree> -->
         </div>
       </div>
 
@@ -357,6 +326,6 @@
       {{ category?.description }}
     </p>
   </p-panel>
-</div>
+  </div>
 
 <app-spinner></app-spinner>
