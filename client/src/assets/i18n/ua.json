@@ -1,11 +1,15 @@
 {
   "header": {
-    "top-header": "- Ми працюємо 24/7! -",
+    "top-header": "- Мы працюємо 24/7! -",
     "goods": "Товари",
     "contacts": "Контакти",
     "cart": "Кошик",
-    "search": "Пошук",
+    "search-input": "Пошук...",
     "catalogue": "Каталог"
+  },
+
+  "search": {
+    "empty": "Товар не знайдено!"
   },
 
   "main": {

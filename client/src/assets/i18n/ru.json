@@ -4,8 +4,12 @@
     "goods": "Товары",
     "contacts": "Контакты",
     "cart": "Корзина",
-    "search": "Поиск",
+    "search-input": "Поиск...",
     "catalogue": "Каталог"
+  },
+
+  "search": {
+    "empty": "Продукты не найдены!"
   },
 
   "main": {

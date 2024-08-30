@@ -4,7 +4,7 @@
     [(ngModel)]="selectedItem"
     [suggestions]="options"
     (completeMethod)="search($event)"
-    [emptyMessage]="'Продукты не найдены!'"
-    placeholder="Поиск..."
+    [emptyMessage]="'search.empty' | translate"
+    [placeholder]="'header.search-input' | translate"
   ></p-autoComplete>
 </span>
