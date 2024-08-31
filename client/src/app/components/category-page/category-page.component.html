@@ -1,6 +1,6 @@
 <p-toast [life]="2000"></p-toast>
 
-<p-sidebar [(visible)]="sidebarVisible" [style]="{ width: '30rem' }">
+<!-- <p-sidebar [(visible)]="sidebarVisible" [style]="{ width: '30rem' }">
   <p-tree [value]="data" class="tree">
     <ng-template let-node pTemplate="default">
       <b *ngIf="node.label !== 'Оптовая цена'">
@@ -109,102 +109,12 @@
       label="Сбросить фильтры"
     ></p-button>
   </div>
-</p-sidebar>
+</p-sidebar> -->
 
-  
-  <div class="card">
-    
-    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+<div class="card">
+  <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
 
   <div class="wrapper">
-    <div class="filters">
-      <div class="tree">
-        <div class="template" *ngFor="let node of data">
-          <!-- <ng-container
-            *ngIf="node.label === 'Наличие'"
-          > -->
-            {{ node.label }}
-          <!-- </ng-container> -->
-
-          <ng-container *ngIf="node.children">
-            <ng-container *ngFor="let child of node.children">
-              <p-checkbox
-                (click)="sendFilterData()"
-                class="nodeCheckbox"
-                name="groupname"
-                value="{{ child.label }}"
-                label="{{ child.label }}"
-                [(ngModel)]="selectedFilters"
-              ></p-checkbox>
-            </ng-container>
-          </ng-container>
-
-          <div
-            class="priceWrapper"
-            *ngIf="
-              node.label === 'Розничная цена' ||
-              node.label === 'Количество'
-            "
-          >
-            <!-- {{ node.label }} -->
-
-            <div class="price" *ngIf="node.label === 'Количество'">
-              <div class="inputs-warpper">
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="count"
-                  class="inputLs"
-                />
-
-                <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true"
-                ></p-button>
-              </div>
-
-              <mat-slider [max]="getMinMaxCount('max')">
-                <input matSliderThumb [(ngModel)]="count" class="slider" />
-              </mat-slider>
-            </div>
-
-            <div class="price" *ngIf="node.label === 'Розничная цена'">
-              <div class="inputs-warpper">
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="retailSaleValueFrom"
-                  class="w-full md:w-30rem inputLs"
-                />
-                -
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="retailSaleValueTo"
-                  class="w-full md:w-30rem inputLs"
-                />
-
-                <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true"
-                ></p-button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="filterBtn-wrapper">
-        <p-button
-          [raised]="true"
-          (click)="resetFilters()"
-          label="Сбросить фильтры"
-        ></p-button>
-      </div>
-    </div>
-
     <p-dataView
       [value]="toShow"
       [layout]="layout"
@@ -227,15 +137,6 @@
               (onChange)="onSortChange($event)"
               class="dropdown"
             ></p-dropdown>
-
-            <p-button
-              icon="pi 
-            pi-filter"
-              label="Фильтры"
-              [outlined]="true"
-              (click)="sidebarVisible = true"
-              class="filter-btn"
-            ></p-button>
 
             <p-dataViewLayoutOptions
               [layout]="layout"
@@ -326,6 +227,6 @@
       {{ category?.description }}
     </p>
   </p-panel>
-  </div>
+</div>
 
 <app-spinner></app-spinner>
