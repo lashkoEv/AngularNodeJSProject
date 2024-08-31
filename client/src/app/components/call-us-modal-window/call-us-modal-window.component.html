@@ -4,15 +4,15 @@
       <button (click)="closeWindow()" class="close">✖</button>
     </div>
 
-    <div class="title">Перезвонить вам?</div>
+    <div class="title">{{ "call-us.title" | translate }}</div>
 
     <div class="description">
-      <div>Укажите ваш номер телефонa и имя.</div>
-      <div>Мы свяжемся с вами в ближайшее время.</div>
+      <div>{{ "call-us.description-first" | translate }}</div>
+      <div>{{ "call-us.description-second" | translate }}</div>
     </div>
 
     <div class="name-wrapper">
-      <label for="inp" class="inp">
+      <label for="nameInput" class="inp">
         <input
           name="name"
           ngModel
@@ -21,12 +21,12 @@
           id="inp"
           placeholder="&nbsp;"
         />
-        <span class="label">Имя</span>
+        <span class="label">{{ "call-us.name" | translate }}</span>
       </label>
     </div>
 
     <div class="tel-wrapper">
-      <label for="inp" class="inp">
+      <label for="phoneInput" class="inp">
         <input
           appFixedPhoneNumberFormatInput
           autocomplete="off"
@@ -37,7 +37,7 @@
           id="inp"
           placeholder="&nbsp;"
         />
-        <span class="label">Телефон</span>
+        <span class="label">{{ "call-us.phone" | translate }}</span>
       </label>
     </div>
 
@@ -48,7 +48,7 @@
       class="sendBtn"
       role="button"
     >
-      Отправить
+      {{ "call-us.send-btn" | translate }}
     </button>
   </form>
 </div>
