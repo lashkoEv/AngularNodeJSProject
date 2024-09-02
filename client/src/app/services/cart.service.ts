@@ -72,7 +72,7 @@ export class CartService {
 
   getTotalPrice(orderedProduct: IOrderedProduct): number {
     return (
-      parseInt(orderedProduct.product.wholesalePrice.toString()) *
+      parseInt(orderedProduct.product.retailPrice.toString()) *
       orderedProduct.count
     );
   }
