@@ -71,10 +71,10 @@ export class CartService {
   }
 
   getTotalPrice(orderedProduct: IOrderedProduct): number {
-    return (
-      parseInt(orderedProduct.product.retailPrice.toString()) *
-      orderedProduct.count
+    const price = parseFloat(
+      orderedProduct.product.retailPrice.toString().replace(/[^0-9.]/g, '')
     );
+    return price * orderedProduct.count;
   }
 
   getCartTotalPrice(): number {
