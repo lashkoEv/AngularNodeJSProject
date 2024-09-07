@@ -36,11 +36,10 @@ export class CartService {
 
   increase(product: IOrderedProduct) {
     const found = this.find(product);
-
-    if (found.count <= parseInt(found.product.count.toString())) {
+    if (found) {
       found.count++;
+      this.productSubject.next(this.products);
     }
-    this.productSubject.next(this.products);
   }
 
   decrease(product: IOrderedProduct) {

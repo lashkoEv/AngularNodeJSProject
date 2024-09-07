@@ -47,9 +47,9 @@ export class FiltersService {
     //   return product.country.country;
     // });
 
-    this.counts = this.allProducts.map((product) => {
-      return product.count;
-    });
+    // this.counts = this.allProducts.map((product) => {
+    //   return product.count;
+    // });
 
     this.countries = [...new Set(this.countries)];
     this.pushToData(this.countries, 'Страна');
@@ -63,9 +63,9 @@ export class FiltersService {
       // const hasCountry = this.dataForFilters.countries.includes(
       //   String(product.country.country)
       // );
-      const hasCount = this.dataForFilters.counts.includes(
-        String(product.count)
-      );
+      // const hasCount = this.dataForFilters.counts.includes(
+      //   String(product.count)
+      // );
       const hasWholePrice =
         this.dataForFilters.maxWholePrice >=
         parseInt(String(product.wholesalePrice));
@@ -73,9 +73,9 @@ export class FiltersService {
         this.dataForFilters.maxRetailPrice >=
         parseInt(String(product.retailPrice));
       // if(hasCountry)
-      if (hasCount && hasWholePrice && hasRetailPrice) {
-        return true;
-      }
+      // if (hasCount && hasWholePrice && hasRetailPrice) {
+      //   return true;
+      // }
     });
 
     this.toShow = filtredProducts;

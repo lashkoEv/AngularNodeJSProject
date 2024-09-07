@@ -63,7 +63,7 @@ export class AdminFormComponent implements OnInit {
           title: [this.product.title, Validators.required],
           description: [this.product.description, Validators.required],
           wholesalePrice: [this.product.wholesalePrice, Validators.required],
-          count: [this.product.count, Validators.required],
+          // count: [this.product.count, Validators.required],
           availability: [this.product.availability, Validators.required],
           fields: this.fb.array([]),
           retailPrice: [this.product.retailPrice],
