@@ -114,6 +114,18 @@
 <div class="card">
   <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
 
+  <p-panel header="Фильтры" [toggleable]="true" [collapsed]="!sidebarVisible">
+    <div class="filter-content">
+      <p-checkbox
+        *ngFor="let availability of availabilities"
+        [value]="availability.availability"
+        name="availability"
+        label="{{ availability.availability }}"
+        (onChange)="toggleAvailability(availability.availability)"
+      ></p-checkbox>
+    </div>
+  </p-panel>
+
   <div class="wrapper">
     <p-dataView
       [value]="toShow"

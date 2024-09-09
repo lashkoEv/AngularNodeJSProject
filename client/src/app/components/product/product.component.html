@@ -31,19 +31,19 @@
             class="availability"
             *ngIf="product?.availability?.availability === 'Есть в наличии'"
           >
-            Есть в наличии
+            {{ "product.available" | translate }}
           </p>
 
           <p
             class="unAvailability"
             *ngIf="product?.availability?.availability === 'Нет в наличии'"
           >
-            Нет в наличии
+            {{ "product.unavailable" | translate }}
           </p>
 
           <div class="price-wrapper">
             <div class="retail">
-              <p class="price-title">Цена</p>
+              <p class="price-title">{{ "product.price" | translate }}</p>
 
               <p class="price">
                 {{ product?.retailPrice }}
@@ -52,11 +52,11 @@
 
             <div class="wholesale">
               <p-panel
-                header="Оптовая цена"
+                [header]="'product.wholesale-price' | translate"
                 [toggleable]="true"
                 [collapsed]="true"
               >
-                <p class="price">
+                <p class="price-wholesale">
                   {{ product?.wholesalePrice }}
                 </p>
               </p-panel>
@@ -64,7 +64,7 @@
           </div>
 
           <p-button
-            label="В корзину "
+            [label]="'product.to-cart' | translate"
             icon="pi pi-shopping-cart"
             iconPos="right"
             (click)="addToCart(product)"
@@ -74,13 +74,16 @@
       </ng-template>
     </p-splitter>
 
-    <p-panel header="Описание" [toggleable]="true">
+    <p-panel [header]="'product.description' | translate" [toggleable]="true">
       <p class="line-break">
         {{ product?.description }}
       </p>
     </p-panel>
 
-    <p-panel header="Характеристики" [toggleable]="true">
+    <p-panel
+      [header]="'product.specifications' | translate"
+      [toggleable]="true"
+    >
       <div class="table">
         <div class="row">
           <div class="cell">Категория</div>
@@ -104,7 +107,7 @@
     </p-panel>
 
     <div class="similar">
-      <h1>Похожие товары</h1>
+      <h1>{{ "product.related" | translate }}</h1>
 
       <div class="products">
         <div

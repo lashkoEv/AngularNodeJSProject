@@ -52,5 +52,21 @@
     "cart-empty": "Додайте товари до кошика...",
     "sum": "Сума",
     "order-btn": "Оформити замовлення"
+  },
+
+  "product": {
+    "available": "Є в наявності",
+    "unavailable": "Немає в наявності",
+    "price": "Ціна",
+    "wholesale-price": "Оптова ціна",
+    "to-cart": "Кошик",
+    "description": "Опис",
+    "specifications": "Характеристики",
+    "related": "Схожі товари"
+  },
+
+  "availability": {
+    "available": "Є в наявності",
+    "unavailable": "Немає в наявності"
   }
 }

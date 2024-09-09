@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../interfaces/IProduct';
 import { ICategory } from '../../interfaces/ICategory';
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: 'app-category-page',
@@ -27,12 +28,16 @@ export class CategoryPageComponent implements OnInit {
   public products: IProduct[];
   public toShow: IProduct[];
 
+  public availabilities: { availability: string }[] = [];
+  public selectedAvailabilities: Set<string> = new Set();
+
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService,
     private cartService: CartService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private formService: FormService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +56,8 @@ export class CategoryPageComponent implements OnInit {
       { label: 'Розничная цена (по возрастанию)', value: '+retailPrice' },
       { label: 'Розничная цена (по убыванию)', value: '-retailPrice' },
     ];
+
+    this.availabilities = this.formService.getAvailability();
   }
 
   getCategory(categoryID: string) {
@@ -86,5 +93,24 @@ export class CategoryPageComponent implements OnInit {
 
     this.sortOrder = value[0] === '+' ? 1 : -1;
     this.sortField = value.slice(1, value.length);
+  }
+
+  toggleAvailability(availability: string) {
+    if (this.selectedAvailabilities.has(availability)) {
+      this.selectedAvailabilities.delete(availability);
+    } else {
+      this.selectedAvailabilities.add(availability);
+    }
+    this.filterProducts();
+  }
+
+  filterProducts() {
+    if (this.selectedAvailabilities.size > 0) {
+      this.toShow = this.products.filter((product) =>
+        this.selectedAvailabilities.has(product.availability.availability)
+      );
+    } else {
+      this.toShow = this.products;
+    }
   }
 }

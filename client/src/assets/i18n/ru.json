@@ -52,5 +52,21 @@
     "cart-empty": "Добавьте товары в корзину...",
     "sum": "Сумма",
     "order-btn": "Оформить заказ"
+  },
+
+  "product": {
+    "available": "Есть в наличии",
+    "unavailable": "Нет в наличии",
+    "price": "Цена",
+    "wholesale-price": "Оптовая цена",
+    "to-cart": "В корзину",
+    "description": "Описание",
+    "specifications": "Характеристики",
+    "related": "Похожие товары"
+  },
+
+  "availability": {
+    "available": "Есть в наличии",
+    "unavailable": "Нет в наличии"
   }
 }
