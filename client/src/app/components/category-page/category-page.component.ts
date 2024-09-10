@@ -8,6 +8,7 @@ import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../interfaces/IProduct';
 import { ICategory } from '../../interfaces/ICategory';
 import { FormService } from '../../services/form.service';
+import { FiltersService } from '../../services/filters.service';
 
 @Component({
   selector: 'app-category-page',
@@ -31,13 +32,18 @@ export class CategoryPageComponent implements OnInit {
   public availabilities: { availability: string }[] = [];
   public selectedAvailabilities: Set<string> = new Set();
 
+  public minPrice: number = 0;
+  public maxPrice: number = 10000;
+  public priceRange: number[] = [this.minPrice, this.maxPrice];
+
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService,
     private cartService: CartService,
     private messageService: MessageService,
-    private formService: FormService
+    private formService: FormService,
+    private filtersService: FiltersService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +64,8 @@ export class CategoryPageComponent implements OnInit {
     ];
 
     this.availabilities = this.formService.getAvailability();
+
+    this.applyFilters();
   }
 
   getCategory(categoryID: string) {
@@ -112,5 +120,23 @@ export class CategoryPageComponent implements OnInit {
     } else {
       this.toShow = this.products;
     }
+  }
+
+  applyFilters(): void {
+    let filteredProducts = this.filtersService.filterProductsByPriceRange(
+      this.products,
+      this.priceRange[0],
+      this.priceRange[1]
+    );
+    this.toShow = filteredProducts;
+  }
+
+  onPriceInputChange(): void {
+    this.applyFilters();
+  }
+
+  onSliderChange(event: any): void {
+    this.priceRange = event.values;
+    this.applyFilters();
   }
 }

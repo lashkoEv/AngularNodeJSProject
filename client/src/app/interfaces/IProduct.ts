@@ -11,7 +11,7 @@ export interface IProduct {
   description: String;
   availability: IAvailability;
   wholesalePrice: String;
-  retailPrice: String;
+  retailPrice: string;
   fields: any[];
   category: ICategory;
   imgSrc: string;

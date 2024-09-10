@@ -34,6 +34,17 @@ export class FiltersService {
     );
     this.productsSubject.next(filteredProducts);
   }
+
+  filterProductsByPriceRange(
+    products: IProduct[],
+    minPrice: number,
+    maxPrice: number
+  ): IProduct[] {
+    return products.filter((product) => {
+      const retailPrice = parseInt(product.retailPrice, 10);
+      return retailPrice >= minPrice && retailPrice <= maxPrice;
+    });
+  }
 }
 
 // private allProducts: IProduct[];
