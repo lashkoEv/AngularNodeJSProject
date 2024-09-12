@@ -20,6 +20,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads');
@@ -31,6 +32,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 connect();
+
 app.use('/uploads', express.static('uploads'));
 app.use('', productRouter);
 app.use('', callRequestRouter);

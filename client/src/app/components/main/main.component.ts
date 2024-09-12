@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
   public categories: any;
@@ -26,19 +26,20 @@ export class MainComponent implements OnInit {
     this.getCategories();
     this.getProducts();
   }
-  async getCategories() {
-    await this.categoryService.getAll().subscribe((data) => {
+  getProducts() {
+    this.productService.getAll().subscribe((products) => {
+      this.products = products;
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getAll().subscribe((data) => {
       this.categories = data;
     });
   }
 
-  async getProducts() {
-    this.products = this.productService.getAll();
-  }
-
   addToCart(product: IProduct) {
     this.cartService.add(product);
-    console.log(product);
     this.messageService.add({
       severity: 'success',
       summary: `Продукт добавлен в корзину!`,

@@ -47,6 +47,7 @@ async function add(req, res) {
       fields: req.body.fields,
       category: req.body.category,
       imgSrc: req.body.imgSrc,
+      productUA: req.body.productUA,
     });
 
     await product.save();
@@ -108,6 +109,7 @@ async function updateById(req, res) {
         fields: req.body.fields,
         category: req.body.category,
         imgSrc: req.body.imgSrc,
+        productUA: req.body.productUA,
       }
     );
 
