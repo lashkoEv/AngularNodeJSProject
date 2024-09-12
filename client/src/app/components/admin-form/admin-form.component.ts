@@ -175,9 +175,13 @@ export class AdminFormComponent implements OnInit {
             const translatedProduct = await this.translateProduct(
               translatedProductData
             );
-            translatedProduct.fields = await this.translateFields(
-              productData.fields
-            );
+            if (translatedProduct) {
+              translatedProduct.fields = await this.translateFields(
+                productData.fields,
+                5500
+              );
+            }
+
             console.log(productData);
             productData.productUA = { ...translatedProduct };
             this.productService.add(productData).subscribe(
@@ -217,7 +221,8 @@ export class AdminFormComponent implements OnInit {
               translatedProductData
             );
             translatedProduct.fields = await this.translateFields(
-              productUpdateData.fields
+              productUpdateData.fields,
+              5500
             );
             console.log(productUpdateData);
             productUpdateData.productUA = { ...translatedProduct };
@@ -409,21 +414,40 @@ export class AdminFormComponent implements OnInit {
         });
     });
   }
-
-  translateFields(fields: { key: string; value: string }[]): Promise<any> {
-    const translatedFields = fields.map(async (field) => {
-      const translatedKey = await this.translateText(field.key);
-
-      const translatedValue = await this.translateText(field.value);
-
-      return {
-        key: translatedKey,
-        value: translatedValue,
-      };
-    });
-
-    return Promise.all(translatedFields);
+  // Функция для создания задержки
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
+  async translateFields(
+    fields: { key: string; value: string }[],
+    delayMs: number
+  ): Promise<IProduct[]> {
+    const translatedFields = [];
+
+    // Проходим по каждому полю по очереди
+    for (const field of fields) {
+      try {
+        // Переводим ключ
+        const translatedKey = await this.translateText(field.key);
+
+        // Переводим значение
+        const translatedValue = await this.translateText(field.value);
+
+        // Сохраняем переведенные значения в массив
+        translatedFields.push({ key: translatedKey, value: translatedValue });
+
+        // Задержка перед следующим запросом
+        await this.delay(delayMs);
+      } catch (error) {
+        console.error('Ошибка перевода:', error);
+        throw error; // Прерываем выполнение при ошибке
+      }
+    }
+
+    return translatedFields;
+  }
+
   translateText(text: string): Promise<string> {
     return new Promise((resolve, reject) => {
       this.translationService.translate(text, 'ru', 'uk').subscribe({
