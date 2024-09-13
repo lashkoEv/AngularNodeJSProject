@@ -11,6 +11,7 @@ import { ICategory } from '../../interfaces/ICategory';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-admin-form',
@@ -38,7 +39,8 @@ export class AdminFormComponent implements OnInit {
 
     private categoryService: CategoryService,
     private spinner: SpinnerService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,7 @@ export class AdminFormComponent implements OnInit {
           retailPrice: [this.product.retailPrice],
           category: [this.product.category, Validators.required],
           imgSrc: ['', Validators.required],
+          productUA: [{}, Validators.required],
         });
 
         for (const item of this.product.fields) {
@@ -86,6 +89,7 @@ export class AdminFormComponent implements OnInit {
           retailPrice: [''],
           category: [{}, Validators.required],
           imgSrc: ['', Validators.required],
+          productUA: [{}, Validators.required],
         });
       }
     } else if (
@@ -163,12 +167,30 @@ export class AdminFormComponent implements OnInit {
           productData.imgSrc = await this.uploadImage();
 
           if (this.formService.getIsAddProduct() && productData.imgSrc) {
+            const translatedProductData: IProduct = JSON.parse(
+              JSON.stringify(productData)
+            );
+
+            // Переводим продукт
+            const translatedProduct = await this.translateProduct(
+              translatedProductData
+            );
+            if (translatedProduct) {
+              translatedProduct.fields = await this.translateFields(
+                productData.fields,
+                5500
+              );
+            }
+
+            console.log(productData);
+            productData.productUA = { ...translatedProduct };
             this.productService.add(productData).subscribe(
               (response: Response) => {
                 console.log('Product added successfully:', response);
                 this.notification.setTextOfNotification(
                   `Продукт успешно добавлен ${productData.title}`
                 );
+
                 this.formService.hideForm();
                 this.productForm.reset();
               },
@@ -190,6 +212,20 @@ export class AdminFormComponent implements OnInit {
         try {
           productUpdateData.imgSrc = await this.uploadImage();
           if (this.formService.getIsEditProduct() && productUpdateData.imgSrc) {
+            const translatedProductData: IProduct = JSON.parse(
+              JSON.stringify(productUpdateData)
+            );
+
+            // Переводим продукт
+            const translatedProduct = await this.translateProduct(
+              translatedProductData
+            );
+            translatedProduct.fields = await this.translateFields(
+              productUpdateData.fields,
+              5500
+            );
+            console.log(productUpdateData);
+            productUpdateData.productUA = { ...translatedProduct };
             productUpdateData._id = this.formService.getProductId();
             this.productService.update(productUpdateData).subscribe(
               (response: Response) => {
@@ -217,6 +253,17 @@ export class AdminFormComponent implements OnInit {
         try {
           categoryData.imgSrc = await this.uploadImage();
           if (this.formService.getIsAddCategory() && categoryData.imgSrc) {
+            const translatedCategoryData: ICategory = JSON.parse(
+              JSON.stringify(categoryData)
+            );
+
+            // Переводим продукт
+            const translatedCategory = await this.translateCategory(
+              translatedCategoryData
+            );
+
+            console.log(categoryData);
+            categoryData.categoryUA = { ...translatedCategory };
             this.categoryService.add(categoryData).subscribe(
               (response: Response) => {
                 console.log('Category added successfully:', response);
@@ -247,6 +294,17 @@ export class AdminFormComponent implements OnInit {
             categoryUpdateData.imgSrc
           ) {
             categoryData._id = this.formService.getCategoryId();
+            const translatedCategoryData: ICategory = JSON.parse(
+              JSON.stringify(categoryUpdateData)
+            );
+
+            // Переводим продукт
+            const translatedCategory = await this.translateCategory(
+              translatedCategoryData
+            );
+
+            categoryUpdateData.categoryUA = { ...translatedCategory };
+            console.log(categoryUpdateData);
             this.categoryService.update(categoryData).subscribe(
               (response: Response) => {
                 console.log('Category updated successfully:', response);
@@ -271,5 +329,141 @@ export class AdminFormComponent implements OnInit {
         }
       }
     }
+  }
+
+  translateProduct(product: IProduct): Promise<IProduct> {
+    return new Promise((resolve, reject) => {
+      // Перевод названия продукта
+      this.translationService
+        .translate(product.title.toString(), 'ru', 'uk')
+        .subscribe({
+          next: (translatedTitle) => {
+            if (typeof translatedTitle === 'string') {
+              product.title = translatedTitle;
+            } else {
+              console.error('Ожидалась строка, но получено:', translatedTitle);
+              reject('Ошибка при переводе названия');
+            }
+          },
+          error: (error) => {
+            console.error('Ошибка перевода названия:', error);
+            reject(error);
+          },
+          complete: () => {
+            console.log('Перевод названия завершён');
+          },
+        });
+
+      // Перевод описания продукта
+      this.translationService
+        .translate(product.description.toString(), 'ru', 'uk')
+        .subscribe({
+          next: (translatedDescription) => {
+            product.description = translatedDescription;
+          },
+          error: (error) => {
+            console.error('Ошибка перевода описания:', error);
+            reject(error);
+          },
+          complete: () => {
+            console.log('Перевод описания завершён');
+            resolve(product); // Возвращаем продукт с переведёнными полями
+          },
+        });
+    });
+  }
+
+  translateCategory(category: ICategory): Promise<ICategory> {
+    return new Promise((resolve, reject) => {
+      // Перевод названия продукта
+      this.translationService
+        .translate(category.title.toString(), 'ru', 'uk')
+        .subscribe({
+          next: (translatedTitle) => {
+            if (typeof translatedTitle === 'string') {
+              category.title = translatedTitle;
+            } else {
+              console.error('Ожидалась строка, но получено:', translatedTitle);
+              reject('Ошибка при переводе названия');
+            }
+          },
+          error: (error) => {
+            console.error('Ошибка перевода названия:', error);
+            reject(error);
+          },
+          complete: () => {
+            console.log('Перевод названия завершён');
+          },
+        });
+
+      // Перевод описания продукта
+      this.translationService
+        .translate(category.description.toString(), 'ru', 'uk')
+        .subscribe({
+          next: (translatedDescription) => {
+            category.description = translatedDescription;
+          },
+          error: (error) => {
+            console.error('Ошибка перевода описания:', error);
+            reject(error);
+          },
+          complete: () => {
+            console.log('Перевод описания завершён');
+            resolve(category); // Возвращаем продукт с переведёнными полями
+          },
+        });
+    });
+  }
+  // Функция для создания задержки
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async translateFields(
+    fields: { key: string; value: string }[],
+    delayMs: number
+  ): Promise<IProduct[]> {
+    const translatedFields = [];
+
+    // Проходим по каждому полю по очереди
+    for (const field of fields) {
+      try {
+        // Переводим ключ
+        const translatedKey = await this.translateText(field.key);
+
+        // Переводим значение
+        const translatedValue = await this.translateText(field.value);
+
+        // Сохраняем переведенные значения в массив
+        translatedFields.push({ key: translatedKey, value: translatedValue });
+
+        // Задержка перед следующим запросом
+        await this.delay(delayMs);
+      } catch (error) {
+        console.error('Ошибка перевода:', error);
+        throw error; // Прерываем выполнение при ошибке
+      }
+    }
+
+    return translatedFields;
+  }
+
+  translateText(text: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.translationService.translate(text, 'ru', 'uk').subscribe({
+        next: (translatedText) => {
+          if (typeof translatedText === 'string') {
+            resolve(translatedText);
+          } else {
+            console.error('Ошибка при переводе:', translatedText);
+            reject('Ошибка при переводе текста');
+          }
+        },
+        error: (error) => {
+          console.error('Ошибка перевода:', error);
+          reject(error);
+        },
+      });
+    });
   }
 }

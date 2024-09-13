@@ -1,6 +1,7 @@
 export interface ICategory {
   _id?: String;
-  title: String;
-  description: string;
-  imgSrc: String;
+  title?: String;
+  description?: string;
+  imgSrc?: String;
+  categoryUA?: ICategory;
 }

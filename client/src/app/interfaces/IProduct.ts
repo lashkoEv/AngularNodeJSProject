@@ -7,14 +7,18 @@ interface IAvailability {
 export interface IProduct {
   _id?: String;
   id?: String;
-  title: String;
-  description: String;
-  availability: IAvailability;
-  wholesalePrice: String;
-  retailPrice: string;
-  fields: any[];
-  category: ICategory;
-  imgSrc: string;
+
+  title?: String;
+  description?: String;
+  availability?: IAvailability;
+  wholesalePrice?: String;
+  retailPrice?: String;
+  count?: String;
+  fields?: any[];
+  category?: ICategory;
+  imgSrc?: string;
+  productUA?: IProduct;
+
 }
 // count: String;
 // interface ICountry {

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 require('./bot');
 
 const productRouter = require('./routes/product.router');
@@ -20,6 +20,16 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(
+  '/api', // Прокси для запросов к API
+  createProxyMiddleware({
+    target: 'http://localhost:3000', // URL вашего API сервера
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api': '', // Удаляет /api из пути
+    },
+  })
+);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads');
@@ -31,6 +41,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 connect();
+
 app.use('/uploads', express.static('uploads'));
 app.use('', productRouter);
 app.use('', callRequestRouter);

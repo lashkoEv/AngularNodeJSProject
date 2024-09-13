@@ -12,6 +12,7 @@ const productSchema = mongoose.Schema({
   fields: [{}],
   category: {},
   imgSrc: String,
+  productUA: {},
 });
 
 const Product = mongoose.model('Products', productSchema);
