@@ -36,11 +36,10 @@ export class CartService {
 
   increase(product: IOrderedProduct) {
     const found = this.find(product);
-
-    if (found.count <= parseInt(found.product.count.toString())) {
+    if (found) {
       found.count++;
+      this.productSubject.next(this.products);
     }
-    this.productSubject.next(this.products);
   }
 
   decrease(product: IOrderedProduct) {
@@ -71,10 +70,10 @@ export class CartService {
   }
 
   getTotalPrice(orderedProduct: IOrderedProduct): number {
-    return (
-      parseInt(orderedProduct.product.wholesalePrice.toString()) *
-      orderedProduct.count
+    const price = parseFloat(
+      orderedProduct.product.retailPrice.toString().replace(/[^0-9.]/g, '')
     );
+    return price * orderedProduct.count;
   }
 
   getCartTotalPrice(): number {

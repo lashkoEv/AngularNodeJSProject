@@ -2,11 +2,11 @@
 <div class="card">
   <div class="container">
     <section class="title-wrapper">
-      <h2 class="title">КАТЕГОРИИ</h2>
+      <h2 class="title">{{ "main.title" | translate }}</h2>
       <button
         pButton
         type="button"
-        label="Показать все"
+        [label]="'main.show' | translate"
         icon="pi pi-arrow-right"
         iconPos="right"
         class="buy-button"
@@ -34,11 +34,11 @@
   </div>
 </div>
 <section class="title-wrapper-bottom">
-  <h2 class="title">ТОВАРЫ</h2>
+  <h2 class="title">{{ "main.goods" | translate }}</h2>
   <button
     pButton
     type="button"
-    label="Показать все"
+    [label]="'main.show' | translate"
     icon="pi pi-arrow-right"
     iconPos="right"
     class="buy-button"

@@ -1,6 +1,6 @@
 <p-toast [life]="2000"></p-toast>
 
-<p-sidebar [(visible)]="sidebarVisible" [style]="{ width: '30rem' }">
+<!-- <p-sidebar [(visible)]="sidebarVisible" [style]="{ width: '30rem' }">
   <p-tree [value]="data" class="tree">
     <ng-template let-node pTemplate="default">
       <b *ngIf="node.label !== 'Оптовая цена'">
@@ -109,133 +109,51 @@
       label="Сбросить фильтры"
     ></p-button>
   </div>
-</p-sidebar>
+</p-sidebar> -->
 
 <div class="card">
   <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
 
-  <div class="wrapper">
-    <div class="filters">
-      <!-- <p-tree [value]="data" class="tree"> -->
-      <!-- <ng-template let-node pTemplate="default"> -->
-      <div class="tree">
-        <div class="template" *ngFor="let node of data">
-          <!-- <div *ngIf="node.label !== 'Оптовая цена'"> -->
-          <!-- <ng-container *ngIf="node.label !== 'Розничная цена'"> -->
-          <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
-          <ng-container
-            *ngIf="node.label === 'Страна' || node.label === 'Наличие'"
-          >
-            {{ node.label }}
-          </ng-container>
-
-          <!-- <ng-container *ngIf="node.label !== 'Страна'"> -->
-          <!-- <ng-container *ngIf="node.label !== 'Количество'"> -->
-          <ng-container *ngIf="node.children">
-            <ng-container *ngFor="let child of node.children">
-              <p-checkbox
-                (click)="sendFilterData()"
-                class="nodeCheckbox"
-                name="groupname"
-                value="{{ child.label }}"
-                label="{{ child.label }}"
-                [(ngModel)]="selectedFilters"
-              ></p-checkbox>
-            </ng-container>
-          </ng-container>
-          <!-- </ng-container> -->
-          <!-- </ng-container>  -->
-          <!-- </ng-container>  -->
-          <!-- </ng-container> -->
-          <!-- </div> -->
-
-          <div
-            class="priceWrapper"
-            *ngIf="
-              node.label === 'Оптовая цена' ||
-              node.label === 'Розничная цена' ||
-              node.label === 'Количество'
-            "
-          >
-            {{ node.label }}
-
-            <div class="price" *ngIf="node.label === 'Количество'">
-              <div class="inputs-warpper">
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="count"
-                  class="inputLs"
-                />
-
-                <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true"
-                ></p-button>
-              </div>
-
-              <mat-slider [max]="getMinMaxCount('max')">
-                <input matSliderThumb [(ngModel)]="count" class="slider" />
-              </mat-slider>
-            </div>
-
-            <div class="price" *ngIf="node.label === 'Оптовая цена'">
-              <div class="inputs-warpper">
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="wholeSaleValues"
-                  class="w-full md:w-30rem inputLs"
-                />
-                <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true"
-                ></p-button>
-              </div>
-              <mat-slider [max]="getMinMaxWholesalePrice('max')">
-                <input
-                  matSliderThumb
-                  [(ngModel)]="wholeSaleValues"
-                  class="slider"
-                />
-              </mat-slider>
-            </div>
-
-            <div class="price" *ngIf="node.label === 'Розничная цена'">
-              <div class="inputs-warpper">
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="retailSaleValues"
-                  class="w-full md:w-30rem inputLs"
-                />
-                <p-button
-                  (click)="sendFilterData()"
-                  label="OK"
-                  [outlined]="true"
-                ></p-button>
-              </div>
-              <mat-slider [max]="getMinMaxRetailPrice('max')">
-                <input matSliderThumb [(ngModel)]="retailSaleValues" />
-              </mat-slider>
-            </div>
-          </div>
-          <!-- </ng-template> -->
-          <!-- </p-tree> -->
-        </div>
-      </div>
-
-      <div class="filterBtn-wrapper">
-        <p-button
-          [raised]="true"
-          (click)="resetFilters()"
-          label="Сбросить фильтры"
-        ></p-button>
-      </div>
+  <p-panel header="Фильтры" [toggleable]="true" [collapsed]="!sidebarVisible">
+    <div class="filter-content">
+      <p-checkbox
+        *ngFor="let availability of availabilities"
+        [value]="availability.availability"
+        name="availability"
+        label="{{ availability.availability }}"
+        (onChange)="toggleAvailability(availability.availability)"
+      ></p-checkbox>
     </div>
 
+    <!-- Price Range Slider -->
+    <div class="price-filter">
+      <label for="min-price">Минимальная цена:</label>
+      <input
+        type="number"
+        id="min-price"
+        [(ngModel)]="priceRange[0]"
+        (input)="onPriceInputChange()"
+      />
+
+      <label for="max-price">Максимальная цена:</label>
+      <input
+        type="number"
+        id="max-price"
+        [(ngModel)]="priceRange[1]"
+        (input)="onPriceInputChange()"
+      />
+
+      <p-slider
+        [(ngModel)]="priceRange"
+        [min]="minPrice"
+        [max]="maxPrice"
+        (onSlideEnd)="onSliderChange($event)"
+        range="true"
+      ></p-slider>
+    </div>
+  </p-panel>
+
+  <div class="wrapper">
     <p-dataView
       [value]="toShow"
       [layout]="layout"
@@ -258,15 +176,6 @@
               (onChange)="onSortChange($event)"
               class="dropdown"
             ></p-dropdown>
-
-            <p-button
-              icon="pi 
-            pi-filter"
-              label="Фильтры"
-              [outlined]="true"
-              (click)="sidebarVisible = true"
-              class="filter-btn"
-            ></p-button>
 
             <p-dataViewLayoutOptions
               [layout]="layout"

@@ -1,10 +1,10 @@
-<h2 class="sidebar-title">Ваш заказ</h2>
+<h2 class="sidebar-title">{{ "cart.cart-title" | translate }}</h2>
 
 <div class="cart">
   <p-dataView
     #dv
     [value]="products"
-    [emptyMessage]="'Добавьте товары в корзину...'"
+    [emptyMessage]="'cart.cart-empty' | translate"
   >
     <ng-template pTemplate="list" let-products>
       <div class="product-list">
@@ -25,7 +25,7 @@
                   {{ item.product.category.title }}
                 </div>
                 <div class="product-price">
-                  {{ item.product.wholesalePrice }}
+                  {{ item.product.retailPrice }}
                 </div>
               </div>
             </div>
@@ -67,13 +67,13 @@
 </div>
 
 <div class="checkout">
-  <span class="total-price-text">Сумма</span>
+  <span class="total-price-text">{{ "cart.sum" | translate }}</span>
   <span class="total-price">{{ cartTotalPrice }} грн</span>
   <button
     [disabled]="products.length <= 0"
     pButton
     type="button"
-    label="Оформить заказ"
+    [label]="'cart.order-btn' | translate"
     icon="pi pi-arrow-right"
     iconPos="right"
     class="buy-button"

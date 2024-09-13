@@ -34,7 +34,7 @@
             styleClass="ml-2"
           />
           <div class="mt-0 font-semibold text-xl pricetag">
-            {{ product.wholesalePrice }}
+            {{ product.retailPrice }}
           </div>
         </span>
       </div>
@@ -70,11 +70,11 @@
       <p class="m-0">Оптовая: {{ current?.wholesalePrice }}</p>
       <p class="m-0">Розничная: {{ current?.retailPrice }}</p>
     </p-fieldset>
-    <p-fieldset legend="Количество" [toggleable]="true">
+    <!-- <p-fieldset legend="Количество" [toggleable]="true">
       <p class="m-0">
         {{ current?.count }}
       </p>
-    </p-fieldset>
+    </p-fieldset> -->
     <p-fieldset legend="Наличие" [toggleable]="true">
       <p class="m-0">
         {{ current?.availability?.availability }}

@@ -150,7 +150,21 @@
       <td>{{ product.wholesalePrice }}</td>
       <td>{{ product.retailPrice }}</td>
       <td>{{ product.count }}</td>
-      <td>{{ product.availability?.availability ? "+" : "-" }}</td>
+      <td>
+        <p
+          class="availability"
+          *ngIf="product?.availability?.availability === 'Есть в наличии'"
+        >
+          +
+        </p>
+
+        <p
+          class="unAvailability"
+          *ngIf="product?.availability?.availability === 'Нет в наличии'"
+        >
+          -
+        </p>
+      </td>
       <td>{{ product.category.title || product.category }}</td>
       <td>{{ product.description.slice(0, 30) }}...</td>
       <!-- <td>{{ product.country.country }}</td> -->
@@ -225,11 +239,11 @@
       <p class="m-0">Оптовая: {{ current?.wholesalePrice }}</p>
       <p class="m-0">Розничная: {{ current?.retailPrice }}</p>
     </p-fieldset>
-    <p-fieldset legend="Количество" [toggleable]="true">
+    <!-- <p-fieldset legend="Количество" [toggleable]="true">
       <p class="m-0">
         {{ current?.count }}
       </p>
-    </p-fieldset>
+    </p-fieldset> -->
     <p-fieldset legend="Наличие" [toggleable]="true">
       <p class="m-0">
         {{ current?.availability?.availability }}

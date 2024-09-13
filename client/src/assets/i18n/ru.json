@@ -3,6 +3,70 @@
     "top-header": "- Мы работаем 24/7! -",
     "goods": "Товары",
     "contacts": "Контакты",
-    "cart": "Корзина"
+    "cart": "Корзина",
+    "search-input": "Поиск...",
+    "catalogue": "Каталог"
+  },
+
+  "search": {
+    "empty": "Продукты не найдены!"
+  },
+
+  "main": {
+    "title": "Категории",
+    "show": "Показать все",
+    "goods": "Товары"
+  },
+
+  "consultation": {
+    "title": "Напишите нам!",
+    "mail": "Почта",
+    "topic": "Тема",
+    "message": "Сообщение:",
+    "send-btn": "Отправить"
+  },
+
+  "call-us": {
+    "title": "Перезвонить вам?",
+    "description-first": "Укажите ваш номер телефонa и имя.",
+    "description-second": "Мы свяжемся с вами в ближайшее время.",
+    "name": "Имя",
+    "phone": "Телефон",
+    "send-btn": "Отправить"
+  },
+
+  "about-us": {
+    "header": "Контакты",
+    "comp-left": "Фирма",
+    "ceo-left": "Директор",
+    "ceo-right": "Зарубин Алексей Леонидович",
+    "loc-left": "Адрес",
+    "loc-right": "пр.Гагарина 1, Харьков, Украина",
+    "mail-left": "Електронная почта",
+    "phone-left": "Телефон",
+    "phone-right": "+38(050)566-75-71"
+  },
+
+  "cart": {
+    "cart-title": "Ваш заказ",
+    "cart-empty": "Добавьте товары в корзину...",
+    "sum": "Сумма",
+    "order-btn": "Оформить заказ"
+  },
+
+  "product": {
+    "available": "Есть в наличии",
+    "unavailable": "Нет в наличии",
+    "price": "Цена",
+    "wholesale-price": "Оптовая цена",
+    "to-cart": "В корзину",
+    "description": "Описание",
+    "specifications": "Характеристики",
+    "related": "Похожие товары"
+  },
+
+  "availability": {
+    "available": "Есть в наличии",
+    "unavailable": "Нет в наличии"
   }
 }
