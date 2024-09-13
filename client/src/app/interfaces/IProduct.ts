@@ -12,13 +12,12 @@ export interface IProduct {
   description?: String;
   availability?: IAvailability;
   wholesalePrice?: String;
-  retailPrice?: String;
-  count?: String;
+  retailPrice?: string;
+  // count?: String;
   fields?: any[];
   category?: ICategory;
   imgSrc?: string;
   productUA?: IProduct;
-
 }
 // count: String;
 // interface ICountry {
