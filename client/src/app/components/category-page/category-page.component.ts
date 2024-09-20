@@ -123,12 +123,16 @@ export class CategoryPageComponent implements OnInit {
   }
 
   applyFilters(): void {
-    let filteredProducts = this.filtersService.filterProductsByPriceRange(
-      this.products,
-      this.priceRange[0],
-      this.priceRange[1]
-    );
-    this.toShow = filteredProducts;
+    if (this.products && this.products.length > 0) {
+      let filteredProducts = this.filtersService.filterProductsByPriceRange(
+        this.products,
+        this.priceRange[0],
+        this.priceRange[1]
+      );
+      this.toShow = filteredProducts;
+    } else {
+      this.toShow = this.products;
+    }
   }
 
   onPriceInputChange(): void {

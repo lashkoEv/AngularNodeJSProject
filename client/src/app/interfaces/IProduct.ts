@@ -13,7 +13,6 @@ export interface IProduct {
   availability?: IAvailability;
   wholesalePrice?: String;
   retailPrice?: string;
-  // count?: String;
   fields?: any[];
   category?: ICategory;
   imgSrc?: string;
