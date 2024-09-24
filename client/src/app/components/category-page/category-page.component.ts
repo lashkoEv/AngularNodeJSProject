@@ -32,6 +32,9 @@ export class CategoryPageComponent implements OnInit {
   public availabilities: { availability: string }[] = [];
   public selectedAvailabilities: Set<string> = new Set();
 
+  public fieldFilters: { key: string; values: string[] }[] = [];
+  public selectedFields: Map<string, Set<string>> = new Map();
+
   public minPrice: number = 0;
   public maxPrice: number = 10000;
   public priceRange: number[] = [this.minPrice, this.maxPrice];
@@ -83,6 +86,7 @@ export class CategoryPageComponent implements OnInit {
       this.productService.getByCategory(this.category).subscribe((data) => {
         this.products = data;
         this.toShow = data;
+        this.extractFields();
       });
     });
   }
@@ -142,5 +146,34 @@ export class CategoryPageComponent implements OnInit {
   onSliderChange(event: any): void {
     this.priceRange = event.values;
     this.applyFilters();
+  }
+
+  extractFields() {
+    const fieldMap: Map<string, Set<string>> = new Map();
+
+    this.products.forEach((product) => {
+      product.fields?.forEach((field) => {
+        const trimmedKey = field.key.trim(); // Trim the key to remove spaces
+
+        // Initialize a new Set for the key if it doesn't exist
+        if (!fieldMap.has(trimmedKey)) {
+          fieldMap.set(trimmedKey, new Set());
+        }
+        // Add the value to the corresponding Set (this ensures uniqueness)
+        fieldMap.get(trimmedKey)!.add(field.value);
+      });
+    });
+
+    // Convert the fieldMap (Map) to an array of objects for easier use in the template
+    this.fieldFilters = Array.from(fieldMap).map(([key, values]) => ({
+      key,
+      values: Array.from(values), // Convert Set to Array for rendering
+    }));
+
+    console.log(this.fieldFilters); // Debugging - Check the final structure
+  }
+
+  toggleFieldFilter(key: string, value: string) {
+    this.filtersService.toggleFieldFilter(key, value);
   }
 }

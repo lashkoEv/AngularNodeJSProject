@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FiltersService {
   private availabilityFilters: Set<string> = new Set();
+  private fieldFilters: Map<string, Set<string>> = new Map();
   private productsSubject = new BehaviorSubject<IProduct[]>([]);
   products$ = this.productsSubject.asObservable();
 
@@ -25,13 +26,40 @@ export class FiltersService {
     this.applyFilters();
   }
 
+  toggleFieldFilter(key: string, value: string) {
+    if (!this.fieldFilters.has(key)) {
+      this.fieldFilters.set(key, new Set());
+    }
+    const valuesSet = this.fieldFilters.get(key)!;
+    if (valuesSet.has(value)) {
+      valuesSet.delete(value);
+      if (valuesSet.size === 0) {
+        this.fieldFilters.delete(key);
+      }
+    } else {
+      valuesSet.add(value);
+    }
+    this.applyFilters();
+  }
+
   private applyFilters() {
     const products = this.productsSubject.getValue();
-    const filteredProducts = products.filter((product) =>
-      this.availabilityFilters.size
+
+    const filteredProducts = products.filter((product) => {
+      const matchAvailability = this.availabilityFilters.size
         ? this.availabilityFilters.has(product.availability.availability)
-        : true
-    );
+        : true;
+
+      const matchFields = this.fieldFilters.size
+        ? product.fields?.some((field) => {
+            const selectedValues = this.fieldFilters.get(field.key);
+            return selectedValues ? selectedValues.has(field.value) : false;
+          })
+        : true;
+
+      return matchAvailability && matchFields;
+    });
+
     this.productsSubject.next(filteredProducts);
   }
 
