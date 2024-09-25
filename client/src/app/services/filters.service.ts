@@ -11,10 +11,13 @@ export class FiltersService {
   private productsSubject = new BehaviorSubject<IProduct[]>([]);
   products$ = this.productsSubject.asObservable();
 
+  private originalProducts: IProduct[] = [];
+
   constructor() {}
 
   setProducts(products: IProduct[]) {
-    this.productsSubject.next(products);
+    this.originalProducts = products; // Store original products
+    this.applyFilters(); // Apply filters on initial load
   }
 
   toggleAvailabilityFilter(availability: string) {
@@ -42,24 +45,36 @@ export class FiltersService {
     this.applyFilters();
   }
 
-  private applyFilters() {
-    const products = this.productsSubject.getValue();
+  applyFilters() {
+    let filteredProducts = this.originalProducts; // Start with the original product list
 
-    const filteredProducts = products.filter((product) => {
-      const matchAvailability = this.availabilityFilters.size
-        ? this.availabilityFilters.has(product.availability.availability)
-        : true;
+    // Filter by availability if any availability filter is selected
+    if (this.availabilityFilters.size > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        this.availabilityFilters.has(product.availability.availability)
+      );
+    }
 
-      const matchFields = this.fieldFilters.size
-        ? product.fields?.some((field) => {
-            const selectedValues = this.fieldFilters.get(field.key);
-            return selectedValues ? selectedValues.has(field.value) : false;
-          })
-        : true;
+    // Filter by field filters if any field filters are selected
+    if (this.fieldFilters.size > 0) {
+      filteredProducts = filteredProducts.filter((product) => {
+        return Array.from(this.fieldFilters.keys()).every((key) => {
+          const productFieldValues =
+            product.fields
+              ?.filter((field) => field.key.trim() === key)
+              .map((field) => field.value) || [];
 
-      return matchAvailability && matchFields;
-    });
+          const selectedValues = Array.from(this.fieldFilters.get(key)!);
 
+          // Return true if at least one value from the selected field matches
+          return selectedValues.some((value) =>
+            productFieldValues.includes(value)
+          );
+        });
+      });
+    }
+
+    // Emit the filtered products
     this.productsSubject.next(filteredProducts);
   }
 
@@ -72,6 +87,10 @@ export class FiltersService {
       const retailPrice = parseInt(product.retailPrice, 10);
       return retailPrice >= minPrice && retailPrice <= maxPrice;
     });
+  }
+
+  getSelectedFieldFilters() {
+    return this.fieldFilters; // Return the current field filters
   }
 }
 

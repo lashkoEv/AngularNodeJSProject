@@ -1,7 +1,6 @@
-import * as _ from 'lodash';
-import { MenuItem, MessageService, SelectItem } from 'primeng/api';
-import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { MenuItem, SelectItem, MessageService } from 'primeng/api';
+import { CartService } from './../../services/cart.service';
 import { CategoryService } from '../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
@@ -25,7 +24,7 @@ export class CategoryPageComponent implements OnInit {
   sortOrder!: number;
   sortField!: string;
 
-  public category: ICategory;
+  public category!: ICategory;
   public products: IProduct[];
   public toShow: IProduct[];
 
@@ -33,7 +32,6 @@ export class CategoryPageComponent implements OnInit {
   public selectedAvailabilities: Set<string> = new Set();
 
   public fieldFilters: { key: string; values: string[] }[] = [];
-  public selectedFields: Map<string, Set<string>> = new Map();
 
   public minPrice: number = 0;
   public maxPrice: number = 10000;
@@ -67,7 +65,9 @@ export class CategoryPageComponent implements OnInit {
     ];
 
     this.availabilities = this.formService.getAvailability();
-
+    this.filtersService.products$.subscribe((filteredProducts) => {
+      this.toShow = filteredProducts;
+    });
     this.applyFilters();
   }
 
@@ -86,6 +86,7 @@ export class CategoryPageComponent implements OnInit {
       this.productService.getByCategory(this.category).subscribe((data) => {
         this.products = data;
         this.toShow = data;
+        this.filtersService.setProducts(this.products);
         this.extractFields();
       });
     });
@@ -113,6 +114,10 @@ export class CategoryPageComponent implements OnInit {
     } else {
       this.selectedAvailabilities.add(availability);
     }
+    console.log(
+      'Selected availabilities:',
+      Array.from(this.selectedAvailabilities)
+    );
     this.filterProducts();
   }
 
@@ -127,16 +132,7 @@ export class CategoryPageComponent implements OnInit {
   }
 
   applyFilters(): void {
-    if (this.products && this.products.length > 0) {
-      let filteredProducts = this.filtersService.filterProductsByPriceRange(
-        this.products,
-        this.priceRange[0],
-        this.priceRange[1]
-      );
-      this.toShow = filteredProducts;
-    } else {
-      this.toShow = this.products;
-    }
+    this.filtersService.applyFilters(); // Apply all filters via FiltersService
   }
 
   onPriceInputChange(): void {
@@ -153,27 +149,30 @@ export class CategoryPageComponent implements OnInit {
 
     this.products.forEach((product) => {
       product.fields?.forEach((field) => {
-        const trimmedKey = field.key.trim(); // Trim the key to remove spaces
+        const trimmedKey = field.key.trim();
 
-        // Initialize a new Set for the key if it doesn't exist
         if (!fieldMap.has(trimmedKey)) {
           fieldMap.set(trimmedKey, new Set());
         }
-        // Add the value to the corresponding Set (this ensures uniqueness)
+
         fieldMap.get(trimmedKey)!.add(field.value);
       });
     });
 
-    // Convert the fieldMap (Map) to an array of objects for easier use in the template
     this.fieldFilters = Array.from(fieldMap).map(([key, values]) => ({
       key,
-      values: Array.from(values), // Convert Set to Array for rendering
+      values: Array.from(values),
     }));
 
-    console.log(this.fieldFilters); // Debugging - Check the final structure
+    console.log(this.fieldFilters);
   }
 
   toggleFieldFilter(key: string, value: string) {
     this.filtersService.toggleFieldFilter(key, value);
+    console.log('Toggled field:', key, value);
+    console.log(
+      'Selected field filters:',
+      this.filtersService.getSelectedFieldFilters()
+    );
   }
 }
