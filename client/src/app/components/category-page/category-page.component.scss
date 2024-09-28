@@ -96,6 +96,56 @@ p {
 .nodeCheckbox {
   font-size: 18px;
 }
+
+.filter-panel {
+  // border: 1px solid #dcdcdc;
+  // border-radius: 4px;
+  // padding: 1rem;
+
+  .filter-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .availability-filter,
+    .field-filter {
+      display: flex;
+      flex-direction: column;
+
+      .filter-header {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      .checkbox-item {
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    .price-filter {
+      display: flex;
+      flex-direction: column; // You can change this to row if you want inputs in a row
+      gap: 0.5rem;
+
+      .price-label {
+        font-weight: bold;
+      }
+
+      .price-input {
+        width: 25%; // Set width to 25% of the container
+        padding: 0.4rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .price-slider {
+        width: 25%; // Restrict slider width to 25% as well
+      }
+    }
+  }
+}
 // -----------------------------------
 
 .card {
@@ -236,6 +286,31 @@ p {
     display: none;
     visibility: hidden;
   }
+
+  .filter-panel .price-filter {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .price-input,
+    .price-slider {
+      width: 50%; // Reduce width for smaller screens
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .filter-panel {
+    .filter-content {
+      gap: 0.75rem;
+    }
+
+    .price-filter {
+      .price-input,
+      .price-slider {
+        width: 100%; // Full width on very small screens
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -255,5 +330,19 @@ p {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
+  .filter-panel {
+    padding: 0.5rem;
 
+    .filter-content {
+      gap: 0.5rem;
+    }
+
+    .price-filter {
+      flex-direction: column;
+      .price-input,
+      .price-slider {
+        width: 100%; // Full width on mobile
+      }
+    }
+  }
+}

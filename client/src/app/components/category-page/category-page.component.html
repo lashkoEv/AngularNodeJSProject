@@ -114,46 +114,58 @@
 <div class="card">
   <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
 
-  <p-panel header="Фильтры" [toggleable]="true" [collapsed]="!sidebarVisible">
+  <p-panel
+    header="Фильтры"
+    [toggleable]="true"
+    [collapsed]="!sidebarVisible"
+    class="filter-panel"
+  >
     <div class="filter-content">
       <!-- Existing Availability Filter -->
-      <p-checkbox
-        *ngFor="let availability of availabilities"
-        [value]="availability.availability"
-        name="availability"
-        label="{{ availability.availability }}"
-        (onChange)="toggleAvailability(availability.availability)"
-      ></p-checkbox>
+      <div class="availability-filter">
+        <h5 class="filter-header">Наличие</h5>
+        <p-checkbox
+          *ngFor="let availability of availabilities"
+          [value]="availability.availability"
+          name="availability"
+          label="{{ availability.availability }}"
+          (onChange)="toggleAvailability(availability.availability)"
+          class="checkbox-item"
+        ></p-checkbox>
+      </div>
 
       <!-- Dynamic Field Filters -->
       <div *ngFor="let filter of fieldFilters" class="field-filter">
-        <h5>{{ filter.key }}</h5>
-        <div *ngFor="let value of filter.values">
+        <h5 class="filter-header">{{ filter.key }}</h5>
+        <div *ngFor="let value of filter.values" class="filter-checkbox">
           <p-checkbox
             [value]="value"
             name="{{ filter.key }}"
             label="{{ value }}"
             (onChange)="toggleFieldFilter(filter.key, value)"
+            class="checkbox-item"
           ></p-checkbox>
         </div>
       </div>
 
       <!-- Price Range Slider -->
       <div class="price-filter">
-        <label for="min-price">Минимальная цена:</label>
+        <label for="min-price" class="price-label">Минимальная цена:</label>
         <input
           type="number"
           id="min-price"
           [(ngModel)]="priceRange[0]"
           (input)="onPriceInputChange()"
+          class="price-input"
         />
 
-        <label for="max-price">Максимальная цена:</label>
+        <label for="max-price" class="price-label">Максимальная цена:</label>
         <input
           type="number"
           id="max-price"
           [(ngModel)]="priceRange[1]"
           (input)="onPriceInputChange()"
+          class="price-input"
         />
 
         <p-slider
@@ -162,6 +174,7 @@
           [max]="maxPrice"
           (onSlideEnd)="onSliderChange($event)"
           range="true"
+          class="price-slider"
         ></p-slider>
       </div>
     </div>

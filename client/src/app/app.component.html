@@ -19,9 +19,28 @@
   <!-- <app-admin-form></app-admin-form> -->
   <!-- <app-notification></app-notification> -->
 
-  <button mat-raised-button (click)="open()" class="call">
-    <i class="fa-solid fa-phone phone-icon"></i>
-  </button>
+  <a
+    href="viber://chat?number=%2B380935089353"
+    target="_blank"
+    class="call-viber"
+  >
+    <button
+      mat-raised-button
+      class="call-viber"
+      style="background-color: #f7f7f8"
+    >
+      <i class="fa-brands fa-viber viber-icon" style="color: #665cac"></i>
+    </button>
+  </a>
+  <a
+    href="https://web.telegram.org/k/#@InterPlastServiceBot"
+    target="_blank"
+    class="call"
+  >
+    <button mat-raised-button class="call" style="background-color: #f7f7f8">
+      <i class="fa-brands fa-telegram telegram-icon" style="color: #0088cc"></i>
+    </button>
+  </a>
 </div>
 <app-call-us-pop-up *ngIf="isVisible"></app-call-us-pop-up>
 <!-- <app-carousel></app-carousel> -->

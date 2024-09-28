@@ -35,7 +35,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { OrderingFormComponent } from './components/ordering-form/ordering-form.component';
 
 //MODULES
-import { BrowserModule } from '@angular/platform-browser';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,8 +48,6 @@ import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FileUploadModule } from 'primeng/fileupload';
 
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -102,9 +100,13 @@ import { CallUsPopUpComponent } from './components/call-us-pop-up/call-us-pop-up
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FavoriteProductsComponent } from './components/favorite-products/favorite-products.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -152,7 +154,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     FileUploadModule,
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     MatButtonModule,
     MatInputModule,
@@ -163,7 +164,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     MatIconModule,
     MatMenuModule,
-    ReactiveFormsModule,
     MatTabsModule,
     MatTableModule,
     MatPaginator,
@@ -211,6 +211,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     FloatLabelModule,
     OrderListModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToggleButtonModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
