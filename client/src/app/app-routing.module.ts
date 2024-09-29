@@ -12,6 +12,7 @@ import { ConsultationComponent } from './components/consultation/consultation.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderPageComponent } from './components/order-page/order-page.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AuthorizationFormComponent } from './components/authorization-form/authorization-form.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPanelComponent },
   { path: 'products/:id', component: ProductComponent },
   { path: 'checkout', component: OrderPageComponent },
+  { path: 'login', component: AuthorizationFormComponent },
   { path: '**', pathMatch: 'full', component: ErrorComponent },
 ];
 

@@ -13,7 +13,6 @@ export class AuthorizationFormComponent {
   public hasAccount: boolean = true;
 
   constructor(
-    // private authorizationService: AuthorizationService,
     public authorizationService: AuthorizationService,
     private spinner: SpinnerService,
     private notification: NotificationService
@@ -25,20 +24,13 @@ export class AuthorizationFormComponent {
         localStorage.setItem('user', JSON.stringify(data));
 
         this.authorizationService.setAuthState();
-
-        this.authorizationService.setFormState();
-
-        this.spinner.start();
-
         this.authorizationService.setRole(data.isAdmin);
 
         this.spinner.start();
-
         this.notification.setTextOfNotification('Авторизация успешна');
       } else {
-        this.notification.setTextOfNotification(`Ошибка авторизации `);
+        this.notification.setTextOfNotification(`Ошибка авторизации`);
       }
-
       this.notification.notify();
     });
   }
