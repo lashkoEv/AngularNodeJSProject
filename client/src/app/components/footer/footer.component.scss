@@ -140,10 +140,23 @@ a {
   text-decoration: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1045px) {
+  .right-footer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
   .middle-footer {
     display: none;
-    visibility: hidden;
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .footer-social {
+    display: none;
   }
 }
 

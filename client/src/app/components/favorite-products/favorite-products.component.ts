@@ -38,17 +38,27 @@ export class FavoriteProductsComponent implements OnInit {
 
     this.responsiveOptions = [
       {
-        breakpoint: '1199px',
+        breakpoint: '1205px',
+        numVisible: 2,
+        numScroll: 2,
+      },
+      {
+        breakpoint: '1045px',
+        numVisible: 2,
+        numScroll: 2,
+      },
+      {
+        breakpoint: '985px',
+        numVisible: 2,
+        numScroll: 2,
+      },
+      {
+        breakpoint: '685px',
         numVisible: 1,
         numScroll: 1,
       },
       {
-        breakpoint: '991px',
-        numVisible: 2,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '767px',
+        breakpoint: '375px',
         numVisible: 1,
         numScroll: 1,
       },
