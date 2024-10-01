@@ -1,19 +1,10 @@
-// .card {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// }
-
 .top-header {
-  // background-color: #002855;
   background: url("../../../assets/images/5.png");
   color: #fff;
-  // padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  // gap: 1rem;
 }
 
 .center {
@@ -23,27 +14,8 @@
 .left {
   display: flex;
   gap: 10px;
-  // margin-left: 45px;
 }
 
-.admin-wrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-/* Set the color of language switch buttons to #fff */
-.hours-wrapper {
-  gap: 10px;
-}
-.location-wrapper,
-.phone-wrapper,
-.hours-wrapper {
-  display: flex;
-  align-items: center;
-  // gap: 0.5rem;
-}
-
-.socials-wrapper,
 .contacts-wrapper {
   display: flex;
   flex-direction: column;
@@ -69,10 +41,6 @@
   gap: 1rem;
 }
 
-// input {
-//   width: 100%;
-// }
-
 .logo {
   cursor: pointer;
   margin-left: 21px;
@@ -80,38 +48,11 @@
 
 .logo-img {
   height: 40px;
-  // height: 100%;
 }
-
-// ---------------------------------------
 
 .search {
   padding: 0;
-  width: 100%;
-}
-
-// ----------------------------
-
-.auth-wrapper {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.btn {
-  background-color: #fff;
-  padding: 1rem 2rem;
-}
-
-.profile {
-  display: flex;
-}
-
-.elements-wrapper {
-  display: flex;
-  justify-content: space-between;
+  width: 20%;
 }
 
 .tel,
@@ -131,29 +72,124 @@
   font-weight: 700;
 }
 
-@media screen and (max-width: 800px) {
-  .location-wrapper,
-  .hours-wrapper {
+/* Media Queries */
+@media screen and (max-width: 1385px) {
+  .right button::ng-deep .p-button-label {
     display: none;
-    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .megamenu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1045px) {
+  .contacts-wrapper {
+    display: none;
   }
 
+  .right button::ng-deep .p-button-label {
+    display: flex;
+  }
+
+  .main-header {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Center content when it wraps */
+  }
+
+  .logo-img {
+    height: 30px; /* Adjust the height to make the logo smaller */
+    width: auto; /* Maintain the aspect ratio */
+  }
+
+  .search {
+    padding: 0;
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 985px) {
+  .location-wrapper,
+  .hours-wrapper,
   .megamenu {
     display: none;
     visibility: hidden;
   }
+
   .main-header {
     gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center; /* Space out contents to the sides */
+  }
+
+  .logo {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+
+  .search,
+  .megamenu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contacts-wrapper {
+    display: flex; /* Change to flex to align items in a row */
+    width: auto; /* Set width to auto to prevent full width */
+    text-align: center;
+    flex-direction: row; /* Align items in a row */
+    gap: 10px; /* Add gap between phone and email */
+  }
+
+  .right {
+    display: flex; /* Ensure right class is also flex */
+    flex-direction: row; /* Align buttons in a row */
+    gap: 10px; /* Add gap between buttons */
+  }
+
+  /* Optional: Add margin to the contacts-wrapper and right class to increase spacing */
+  .contacts-wrapper,
+  .right {
+    margin-left: auto; /* Push contacts-wrapper to the left */
+    margin-right: auto; /* Push right section to the right */
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 375px) {
   .main-header {
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
   }
+
   .logo {
+    width: 100%;
     padding: 0.5rem 0;
     text-align: center;
+  }
+
+  .search {
     width: 100%;
+    text-align: center;
+    margin-bottom: 1rem; /* Add spacing between search and megamenu */
+  }
+
+  .megamenu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contacts-wrapper {
+    width: 100%;
+    text-align: center;
   }
 }
