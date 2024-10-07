@@ -8,7 +8,7 @@
       [home]="home"
     ></p-breadcrumb>
 
-    <p-splitter class="splitter">
+    <p-splitter class="splitter" *ngIf="!isMobile">
       <ng-template pTemplate>
         <div class="split">
           <p-image
@@ -23,10 +23,6 @@
       <ng-template pTemplate>
         <div class="split info">
           <h1 class="title">{{ product?.title }}</h1>
-
-          <!-- <p class="availability" *ngIf="product?.count > 0">Есть в наличии</p>
-
-          <p class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</p> -->
           <p
             class="availability"
             *ngIf="product?.availability?.availability === 'Есть в наличии'"
@@ -74,6 +70,65 @@
       </ng-template>
     </p-splitter>
 
+    <div class="mobile-layout" *ngIf="isMobile">
+      <div class="image">
+        <p-image
+          [preview]="true"
+          width="100%"
+          [src]="product?.imgSrc"
+          alt="Product Image"
+        />
+      </div>
+      <div class="info">
+        <h1 class="title">{{ product?.title }}</h1>
+        <p
+          class="availability"
+          *ngIf="product?.availability?.availability === 'Есть в наличии'"
+        >
+          {{ "product.available" | translate }}
+        </p>
+
+        <p
+          class="unAvailability"
+          *ngIf="product?.availability?.availability === 'Нет в наличии'"
+        >
+          {{ "product.unavailable" | translate }}
+        </p>
+
+        <div class="price-wrapper">
+          <div class="retail">
+            <div class="price-wrapper">
+              <p class="price-title">{{ "product.price" | translate }}</p>
+
+              <p class="price">
+                {{ product?.retailPrice }}
+              </p>
+            </div>
+
+            <p-button
+              [label]="'product.to-cart' | translate"
+              icon="pi pi-shopping-cart"
+              iconPos="right"
+              (click)="addToCart(product)"
+              class="button"
+            ></p-button>
+          </div>
+
+          <div class="wholesale">
+            <p-panel
+              [header]="'product.wholesale-price' | translate"
+              [toggleable]="true"
+              [collapsed]="true"
+            >
+              <p class="price-wholesale">
+                {{ product?.wholesalePrice }}
+              </p>
+            </p-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <p-panel [header]="'product.description' | translate" [toggleable]="true">
       <p class="line-break">
         {{ product?.description }}
@@ -89,14 +144,6 @@
           <div class="cell">Категория</div>
           <div class="cell">{{ product?.category.title }}</div>
         </div>
-        <!-- <div class="row">
-          <div class="cell">Количество</div>
-          <div class="cell">{{ product?.count }}</div>
-        </div> -->
-        <!-- <div class="row">
-          <div class="cell">Страна</div>
-          <div class="cell">{{ product?.country.country }}</div>
-        </div> -->
         <div class="row_c" *ngFor="let item of product?.fields">
           <div *ngIf="item.key && item.value">
             <div class="cell" *ngIf="item.key">{{ item.key }}</div>
