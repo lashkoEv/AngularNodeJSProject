@@ -7,21 +7,25 @@
     class="form"
   >
     <div class="content">
-      <h1 class="title">{{ orderFormService.getFormTitle() }}</h1>
+      <h1 class="title">{{ "order.formTitle" | translate }}</h1>
 
       <div class="field">
-        <p-inputGroupAddon class="label">ФИО</p-inputGroupAddon>
+        <p-inputGroupAddon class="label">{{
+          "order.nameLabel" | translate
+        }}</p-inputGroupAddon>
         <input
           class="input"
           required
           pInputText
           formControlName="nameAndLastName"
-          placeholder="ФИО"
+          [placeholder]="'order.namePlaceholder' | translate"
         />
       </div>
 
       <div class="field">
-        <p-inputGroupAddon class="label">Номер телефона</p-inputGroupAddon>
+        <p-inputGroupAddon class="label">{{
+          "order.phoneLabel" | translate
+        }}</p-inputGroupAddon>
         <input
           autocomplete="off"
           maxlength="19"
@@ -35,16 +39,19 @@
       </div>
 
       <div class="field">
-        <p-inputGroupAddon class="label">Електронная почта</p-inputGroupAddon>
+        <p-inputGroupAddon class="label">{{
+          "order.emailLabel" | translate
+        }}</p-inputGroupAddon>
         <input
           type="email"
           class="input"
           pInputText
           formControlName="email"
-          placeholder="example&#64;gmail.com"
+          placeholder="{{ 'order.emailPlaceholder' | translate }}"
         />
       </div>
     </div>
+
     <div
       *ngIf="
         orderForm.get('email').valid &&
@@ -54,10 +61,12 @@
       class="content"
       @fadeIn
     >
-      <h1 class="title">Доставка</h1>
-      <div class="field">
-        <p-inputGroupAddon class="label">Город</p-inputGroupAddon>
+      <h1 class="title">{{ "order.deliveryTitle" | translate }}</h1>
 
+      <div class="field">
+        <p-inputGroupAddon class="label">{{
+          "order.cityLabel" | translate
+        }}</p-inputGroupAddon>
         <p-dropdown
           panelStyleClass="input-panel"
           class="input"
@@ -66,7 +75,7 @@
           filterBy="CityDescription"
           [options]="cities"
           optionLabel="CityDescription"
-          placeholder="Выберите город"
+          placeholder="{{ 'order.cityPlaceholder' | translate }}"
           [virtualScroll]="true"
           [virtualScrollItemSize]="38"
           (ngModelChange)="onCityChange($event)"
@@ -74,7 +83,9 @@
       </div>
 
       <div *ngIf="filteredOffices.length !== 0" class="field">
-        <p-inputGroupAddon class="label">Способ Доставки</p-inputGroupAddon>
+        <p-inputGroupAddon class="label">{{
+          "order.deliveryMethodLabel" | translate
+        }}</p-inputGroupAddon>
         <p-dropdown
           panelStyleClass="input-panel"
           required
@@ -82,15 +93,15 @@
           formControlName="typeOfDelivery"
           [options]="typeOfDelivery"
           optionLabel="type"
-          placeholder="Выберите Способ Доставки"
+          placeholder="{{ 'order.deliveryMethodPlaceholder' | translate }}"
           (ngModelChange)="onTypeOfDeliveryChange($event)"
         ></p-dropdown>
       </div>
 
       <div class="field">
-        <p-inputGroupAddon class="label" *ngIf="isDeliveryOnPost"
-          >Отделение Почты</p-inputGroupAddon
-        >
+        <p-inputGroupAddon class="label" *ngIf="isDeliveryOnPost">
+          {{ "order.postOfficeLabel" | translate }}
+        </p-inputGroupAddon>
         <p-dropdown
           panelStyleClass="input-panel"
           class="input"
@@ -102,31 +113,33 @@
           [virtualScroll]="true"
           [virtualScrollItemSize]="38"
           optionLabel="Description"
-          placeholder="Выберите отделение"
+          placeholder="{{ 'order.postOfficePlaceholder' | translate }}"
         ></p-dropdown>
 
-        <p-inputGroupAddon class="label" *ngIf="isDeliveryAddress"
-          >Адрес доставки</p-inputGroupAddon
-        >
+        <p-inputGroupAddon class="label" *ngIf="isDeliveryAddress">
+          {{ "order.deliveryAddressLabel" | translate }}
+        </p-inputGroupAddon>
         <input
           class="input"
           *ngIf="isDeliveryAddress"
           required
           pInputText
           formControlName="deliveryAddress"
-          placeholder="Адрес доставки"
+          placeholder="{{ 'order.deliveryAddressPlaceholder' | translate }}"
         />
       </div>
+
       <button class="add-message" type="button" (click)="toggleMessage()">
-        {{ !isMessage ? "Добавить комантарий к заказу" : "X" }}
+        {{ !isMessage ? ("order.addMessage" | translate) : "X" }}
       </button>
+
       <div *ngIf="isMessage" class="field">
         <textarea
           class="input"
           [autoResize]="true"
           pInputTextarea
           formControlName="message"
-          placeholder="сообщение..."
+          placeholder="{{ 'order.messagePlaceholder' | translate }}"
         ></textarea>
       </div>
 
@@ -134,7 +147,7 @@
         [ngClass]="{ 'no-border': orderForm.invalid }"
         [disabled]="orderForm.invalid"
         class="btn"
-        label="Принять"
+        label="{{ 'order.submitButton' | translate }}"
         type="submit"
       ></p-button>
     </div>

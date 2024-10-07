@@ -56,7 +56,6 @@
 
 .price {
   font-size: 2rem;
-  line-height: normal;
 }
 
 .price-wholesale {
@@ -172,6 +171,9 @@
 }
 
 @media screen and (max-width: 800px) {
+  .price {
+    font-size: 2rem;
+  }
   .mobile-layout {
     display: flex;
     flex-direction: column;
@@ -193,10 +195,6 @@
 
   .price-wrapper {
     align-items: flex-start;
-  }
-
-  .price {
-    font-size: 1rem;
   }
 
   .availability,

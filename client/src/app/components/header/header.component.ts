@@ -1,5 +1,5 @@
 import { AuthorizationService } from '../../services/authorization.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { HeaderService } from '../../services/header.service';
 import { NavigationStart, Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
   sidebarVisible: boolean = false;
+  isMobile: boolean = false;
+
   public phoneNumber = '+38 (050) 566-75-71';
   public mail = 'ipstorg@gmail.com';
   public location = 'Харьков, Проспект Гагарина 1';
@@ -31,7 +33,15 @@ export class HeaderComponent implements OnInit {
     private translateService: TranslateService,
     private router: Router
   ) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.isMobile = window.innerWidth <= 1000;
+  }
+
   ngOnInit(): void {
+    this.isMobile = window.innerWidth <= 1000;
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.sidebarVisible = false;

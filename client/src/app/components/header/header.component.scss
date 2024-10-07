@@ -97,12 +97,12 @@
   .main-header {
     gap: 0.5rem;
     flex-wrap: wrap;
-    justify-content: space-between; /* Center content when it wraps */
+    justify-content: space-between;
   }
 
   .logo-img {
-    height: 30px; /* Adjust the height to make the logo smaller */
-    width: auto; /* Maintain the aspect ratio */
+    height: 30px;
+    width: auto;
   }
 
   .search {
@@ -122,7 +122,7 @@
   .main-header {
     gap: 0.5rem;
     flex-wrap: wrap;
-    justify-content: center; /* Space out contents to the sides */
+    justify-content: center;
   }
 
   .logo {
@@ -138,24 +138,23 @@
   }
 
   .contacts-wrapper {
-    display: flex; /* Change to flex to align items in a row */
-    width: auto; /* Set width to auto to prevent full width */
+    display: flex;
+    width: auto;
     text-align: center;
-    flex-direction: row; /* Align items in a row */
-    gap: 10px; /* Add gap between phone and email */
+    flex-direction: row;
+    gap: 10px;
   }
 
   .right {
-    display: flex; /* Ensure right class is also flex */
-    flex-direction: row; /* Align buttons in a row */
-    gap: 10px; /* Add gap between buttons */
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
   }
 
-  /* Optional: Add margin to the contacts-wrapper and right class to increase spacing */
   .contacts-wrapper,
   .right {
-    margin-left: auto; /* Push contacts-wrapper to the left */
-    margin-right: auto; /* Push right section to the right */
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -175,7 +174,7 @@
   .search {
     width: 100%;
     text-align: center;
-    margin-bottom: 1rem; /* Add spacing between search and megamenu */
+    margin-bottom: 1rem;
   }
 
   .megamenu {

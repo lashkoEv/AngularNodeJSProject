@@ -49,9 +49,12 @@
 
   "cart": {
     "cart-title": "Ваш заказ",
-    "cart-empty": "Добавьте товары в корзину...",
     "sum": "Сумма",
-    "order-btn": "Оформить заказ"
+    "order-success": "Ваш заказ успешно оформлен",
+    "order-number": "Номер вашего заказа",
+    "order-btn": "Оформить",
+    "cart-empty": "Добавьте товары в корзину...",
+    "order-suggestion": "Сделайте заказ"
   },
 
   "product": {
@@ -68,5 +71,26 @@
   "availability": {
     "available": "Есть в наличии",
     "unavailable": "Нет в наличии"
+  },
+
+  "order": {
+    "formTitle": "Оформление заказа",
+    "nameLabel": "ФИО",
+    "namePlaceholder": "Введите ФИО",
+    "phoneLabel": "Номер телефона",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "example@gmail.com",
+    "deliveryTitle": "Доставка",
+    "cityLabel": "Город",
+    "cityPlaceholder": "Выберите город",
+    "deliveryMethodLabel": "Способ доставки",
+    "deliveryMethodPlaceholder": "Выберите способ доставки",
+    "postOfficeLabel": "Отделение Почты",
+    "postOfficePlaceholder": "Выберите отделение",
+    "deliveryAddressLabel": "Адрес доставки",
+    "deliveryAddressPlaceholder": "Введите адрес доставки",
+    "addMessage": "Добавить комментарий к заказу",
+    "messagePlaceholder": "Сообщение...",
+    "submitButton": "Принять"
   }
 }
