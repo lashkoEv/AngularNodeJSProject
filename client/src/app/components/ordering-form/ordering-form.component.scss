@@ -60,11 +60,66 @@
 }
 ::ng-deep .input-panel {
   width: 700px;
-
-  /* Другие стили */
 }
+
+::ng-deep .p-dropdown {
+  width: 100%;
+  max-width: 300px;
+}
+
+::ng-deep .p-dropdown-panel {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1000px) {
+  .input {
+    width: 100%;
+    min-width: auto;
+  }
+
+  ::ng-deep .input-panel {
+    width: 90%;
+  }
+
+  ::ng-deep .p-dropdown {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
 @media (max-width: 576px) {
+  .input {
+    width: 100%;
+    min-width: auto;
+  }
+
   .label {
     flex: 0 0 25%;
+  }
+
+  ::ng-deep .input-panel {
+    width: 85%;
+  }
+
+  ::ng-deep .p-dropdown {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .input {
+    width: 90%;
+    min-width: auto;
+  }
+
+  ::ng-deep .input-panel {
+    width: 80%;
+  }
+
+  ::ng-deep .p-dropdown {
+    width: 90%;
+    min-width: auto;
   }
 }
