@@ -22,8 +22,12 @@
 
       <ng-template pTemplate>
         <div class="split info">
-          <h1 class="title">{{ product?.title }}</h1>
-
+          <h1 *ngIf="selectedLang === 'ru'" class="title">
+            {{ product?.title }}
+          </h1>
+          <h1 *ngIf="selectedLang === 'ua'" class="title">
+            {{ product?.productUA?.title }}
+          </h1>
           <!-- <p class="availability" *ngIf="product?.count > 0">Есть в наличии</p>
 
           <p class="unAvailability" *ngIf="product?.count < 1">Нет в наличии</p> -->
@@ -74,9 +78,22 @@
       </ng-template>
     </p-splitter>
 
-    <p-panel [header]="'product.description' | translate" [toggleable]="true">
+    <p-panel
+      *ngIf="selectedLang === 'ru'"
+      [header]="'product.description' | translate"
+      [toggleable]="true"
+    >
       <p class="line-break">
         {{ product?.description }}
+      </p>
+    </p-panel>
+    <p-panel
+      *ngIf="selectedLang === 'ua'"
+      [header]="'product.description' | translate"
+      [toggleable]="true"
+    >
+      <p class="line-break">
+        {{ product?.productUA?.description }}
       </p>
     </p-panel>
 
@@ -87,20 +104,29 @@
       <div class="table">
         <div class="row">
           <div class="cell">Категория</div>
-          <div class="cell">{{ product?.category.title }}</div>
+          <div *ngIf="selectedLang === 'ru'" class="cell">
+            {{ product?.category.title }}
+          </div>
+          <div *ngIf="selectedLang === 'ua'" class="cell">
+            {{ product?.category.categoryUA?.title }}
+          </div>
         </div>
-        <!-- <div class="row">
-          <div class="cell">Количество</div>
-          <div class="cell">{{ product?.count }}</div>
-        </div> -->
-        <!-- <div class="row">
-          <div class="cell">Страна</div>
-          <div class="cell">{{ product?.country.country }}</div>
-        </div> -->
-        <div class="row_c" *ngFor="let item of product?.fields">
-          <div *ngIf="item.key && item.value">
-            <div class="cell" *ngIf="item.key">{{ item.key }}</div>
-            <div class="cell" *ngIf="item.value">{{ item.value }}</div>
+
+        <div *ngIf="selectedLang === 'ru'">
+          <div class="row_c" *ngFor="let item of product?.fields">
+            <div *ngIf="item.key && item.value">
+              <div class="cell" *ngIf="item.key">{{ item.key }}</div>
+              <div class="cell" *ngIf="item.value">{{ item.value }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="selectedLang === 'ua'">
+          <div class="row_c" *ngFor="let item of product?.productUA?.fields">
+            <div *ngIf="item.key && item.value">
+              <div class="cell" *ngIf="item.key">{{ item.key }}</div>
+              <div class="cell" *ngIf="item.value">{{ item.value }}</div>
+            </div>
           </div>
         </div>
       </div>

@@ -193,7 +193,12 @@
     >
       <ng-template pTemplate="header">
         <div class="head">
-          <span class="title">{{ category?.title }}</span>
+          <span *ngIf="selectedLang === 'ru'" class="title">{{
+            category?.title
+          }}</span>
+          <span *ngIf="selectedLang === 'ua'" class="title">{{
+            category?.categoryUA?.title
+          }}</span>
 
           <div class="controls">
             <p-dropdown
@@ -223,14 +228,28 @@
               />
               <div class="product">
                 <div class="info">
-                  <div class="title" [routerLink]="['/products', product._id]">
+                  <div
+                    *ngIf="selectedLang === 'ru'"
+                    class="title"
+                    [routerLink]="['/products', product._id]"
+                  >
                     {{ product.title }}
+                  </div>
+                  <div
+                    *ngIf="selectedLang === 'ua'"
+                    class="title"
+                    [routerLink]="['/products', product._id]"
+                  >
+                    {{ product.productUA?.title }}
                   </div>
                   <div class="flex align-items-center gap-3">
                     <span class="flex align-items-center gap-2">
                       <i class="pi pi-tag"></i>
-                      <span class="category">
+                      <span *ngIf="selectedLang === 'ru'" class="category">
                         {{ product.category.title }}
+                      </span>
+                      <span *ngIf="selectedLang === 'ua'" class="category">
+                        {{ product.categoryUA?.title }}
                       </span>
                     </span>
                   </div>
@@ -262,13 +281,29 @@
                 [routerLink]="['/products', product._id]"
               />
 
-              <div class="title" [routerLink]="['/products', product._id]">
+              <div
+                *ngIf="selectedLang === 'ru'"
+                class="title"
+                [routerLink]="['/products', product._id]"
+              >
                 {{ product.title }}
+              </div>
+              <div
+                *ngIf="selectedLang === 'ua'"
+                class="title"
+                [routerLink]="['/products', product._id]"
+              >
+                {{ product.productUA?.title }}
               </div>
 
               <span class="flex align-items-center gap-2">
                 <i class="pi pi-tag"></i>
-                <span class="category"> {{ product.category.title }}</span>
+                <span *ngIf="selectedLang === 'ru'" class="category">
+                  {{ product.category.title }}</span
+                >
+                <span *ngIf="selectedLang === 'ua'" class="category">
+                  {{ product.category.categoryUA?.title }}</span
+                >
               </span>
 
               <span class="price">
@@ -289,8 +324,11 @@
   </div>
 
   <p-panel header="Описание" [toggleable]="true">
-    <p class="line-break">
+    <p *ngIf="selectedLang === 'ru'" class="line-break">
       {{ category?.description }}
+    </p>
+    <p *ngIf="selectedLang === 'ua'" class="line-break">
+      {{ category?.categoryUA?.description }}
     </p>
   </p-panel>
 </div>

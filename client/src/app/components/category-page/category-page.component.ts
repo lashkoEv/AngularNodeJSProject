@@ -9,6 +9,7 @@ import { ICategory } from '../../interfaces/ICategory';
 import { FormService } from '../../services/form.service';
 import { FiltersService } from '../../services/filters.service';
 import { ActivatedRoute } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-category-page',
@@ -37,6 +38,7 @@ export class CategoryPageComponent implements OnInit {
   public minPrice: number = 0;
   public maxPrice: number = 10000;
   public priceRange: number[] = [this.minPrice, this.maxPrice];
+  public selectedLang: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,10 +47,15 @@ export class CategoryPageComponent implements OnInit {
     private cartService: CartService,
     private messageService: MessageService,
     private formService: FormService,
-    private filtersService: FiltersService
+    private filtersService: FiltersService,
+    private traslationService: TranslationService
   ) {}
 
   ngOnInit(): void {
+    this.traslationService.getLanguage().subscribe((data) => {
+      this.selectedLang = data;
+      console.log(this.products);
+    });
     this.home = { icon: 'pi pi-home', routerLink: '/' };
 
     this.route.params.subscribe((params) => {

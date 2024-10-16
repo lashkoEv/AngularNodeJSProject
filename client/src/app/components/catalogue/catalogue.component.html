@@ -10,8 +10,11 @@
         [routerLink]="['/category', category._id]"
       >
         <img [src]="category.imgSrc" alt="Category Image" class="img" />
-        <div class="text">
+        <div *ngIf="selectedLang === 'ru'" class="text">
           {{ category.title }}
+        </div>
+        <div *ngIf="selectedLang === 'ua'" class="text">
+          {{ category.categoryUA?.title }}
         </div>
       </div>
     </div>

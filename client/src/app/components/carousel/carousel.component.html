@@ -1,11 +1,20 @@
 <section class="top-main">
-  <section class="category">
+  <section *ngIf="selectedLang === 'ru'" class="category">
     <div
       class="category-item"
       *ngFor="let category of categories"
       [routerLink]="['/category', category._id]"
     >
       {{ category.title }}
+    </div>
+  </section>
+  <section *ngIf="selectedLang === 'ua'" class="category">
+    <div
+      class="category-item"
+      *ngFor="let category of categories"
+      [routerLink]="['/category', category._id]"
+    >
+      {{ category.categoryUA?.title }}
     </div>
   </section>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../interfaces/IProduct';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-carousel',
@@ -17,9 +18,17 @@ export class CarouselComponent implements OnInit {
   });
   public responsiveOptions: any[] | undefined;
   public categories: any;
-  constructor(private categoryService: CategoryService) {}
+  public selectedLang: string;
+  constructor(
+    private categoryService: CategoryService,
+    private traslationService: TranslationService
+  ) {}
 
   ngOnInit(): void {
+    this.traslationService.getLanguage().subscribe((data) => {
+      this.selectedLang = data;
+    });
+
     this.products[0] = {
       id: 0,
       src: './../../assets/carouselImg/1.jpg',

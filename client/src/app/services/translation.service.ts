@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, concatMap, delay } from 'rxjs/operators';
 
 @Injectable({
@@ -8,8 +8,18 @@ import { catchError, map, concatMap, delay } from 'rxjs/operators';
 })
 export class TranslationService {
   private apiUrl = 'https://lingva.ml/api/v1';
+  private language: BehaviorSubject<string>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.language = new BehaviorSubject<string>('ru');
+  }
+  getLanguage(): Observable<string> {
+    return this.language.asObservable();
+  }
+
+  setLanguage(language: string): void {
+    this.language.next(language);
+  }
 
   translate(
     text: string,
@@ -35,4 +45,7 @@ export class TranslationService {
       })
     );
   }
+}
+function next(language: Observable<string>): any {
+  throw new Error('Function not implemented.');
 }

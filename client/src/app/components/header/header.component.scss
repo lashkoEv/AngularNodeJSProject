@@ -71,7 +71,13 @@
 .phone-number {
   font-weight: 700;
 }
+.lang-btn {
+  margin: 10px;
+}
 
+.lang-btn.active {
+  background-color: bisque;
+}
 /* Media Queries */
 @media screen and (max-width: 1385px) {
   .right button::ng-deep .p-button-label {

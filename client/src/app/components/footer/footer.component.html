@@ -39,13 +39,22 @@
         </section>
       </section>
       <section class="middle-footer">
-        <section class="category-grid">
+        <section *ngIf="selectedLang === 'ru'" class="category-grid">
           <div
             class="grid-item"
             *ngFor="let category of categories"
             [routerLink]="['/category', category._id]"
           >
             {{ category.title }}
+          </div>
+        </section>
+        <section *ngIf="selectedLang === 'ua'" class="category-grid">
+          <div
+            class="grid-item"
+            *ngFor="let category of categories"
+            [routerLink]="['/category', category._id]"
+          >
+            {{ category.categoryUA?.title }}
           </div>
         </section>
       </section>
