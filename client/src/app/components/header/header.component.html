@@ -1,7 +1,19 @@
 <section class="top-header">
   <div class="center">{{ "header.top-header" | translate }}</div>
-  <button (click)="switchLanguage('ua')">UA</button>
-  <button (click)="switchLanguage('ru')">RU</button>
+  <button
+    [ngClass]="{ active: activeButton === 1 }"
+    class="lang-btn"
+    (click)="switchLanguage('ua', 1)"
+  >
+    UA
+  </button>
+  <button
+    [ngClass]="{ active: activeButton === 2 }"
+    class="lang-btn"
+    (click)="switchLanguage('ru', 2)"
+  >
+    RU
+  </button>
 </section>
 <section class="main-header">
   <div class="left">

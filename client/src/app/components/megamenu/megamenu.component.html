@@ -1,5 +1,14 @@
 <p-dropdown
+  *ngIf="selectedLang === 'ru'"
   [options]="dropdownCategories"
+  [(ngModel)]="selectedCategoryId"
+  placeholder="Каталог"
+  (onChange)="toShow($event)"
+/>
+
+<p-dropdown
+  *ngIf="selectedLang === 'ua'"
+  [options]="dropdownCategoriesUA"
   [(ngModel)]="selectedCategoryId"
   placeholder="Каталог"
   (onChange)="toShow($event)"

@@ -1,6 +1,7 @@
 import { AuthorizationService } from '../../services/authorization.service';
 import { CategoryService } from '../../services/category.service';
 import { Component, OnInit } from '@angular/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-footer',
@@ -48,13 +49,18 @@ export class FooterComponent {
       links: ['#', 'delivery', 'contacts', 'catalogue'],
     },
   ];
+  public selectedLang: string;
 
   constructor(
     private authorizationService: AuthorizationService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private traslationService: TranslationService
   ) {}
 
   ngOnInit(): void {
+    this.traslationService.getLanguage().subscribe((data) => {
+      this.selectedLang = data;
+    });
     this.getCategories();
   }
 

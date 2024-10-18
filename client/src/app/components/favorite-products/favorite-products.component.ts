@@ -5,6 +5,7 @@ import { CartService } from '../../services/cart.service';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { ProductModalWindowService } from '../../services/product-modal-window.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-favorite-products',
@@ -19,6 +20,7 @@ export class FavoriteProductsComponent implements OnInit {
   responsiveOptions: any[] | undefined;
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
+  public selectedLang: string;
 
   public product: IProduct;
 
@@ -28,12 +30,16 @@ export class FavoriteProductsComponent implements OnInit {
     private cartService: CartService,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    private modalWindowService: ProductModalWindowService
+    private modalWindowService: ProductModalWindowService,
+    private traslationService: TranslationService
   ) {}
 
   ngOnInit() {
     this.productService.getAllFavorite().subscribe((data) => {
       this.products = data;
+    });
+    this.traslationService.getLanguage().subscribe((data) => {
+      this.selectedLang = data;
     });
 
     this.responsiveOptions = [

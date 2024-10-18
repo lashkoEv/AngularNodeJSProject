@@ -4,6 +4,7 @@ import { CartService } from '../../services/cart.service';
 import { HeaderService } from '../../services/header.service';
 import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,8 @@ export class HeaderComponent implements OnInit {
   public workingHours: {}[] = [{ days: 'ПН-ПТ', hours: '08:00 - 18:00' }];
   public languageSwitch: {}[] = [{ ru: 'RU', ua: 'UA' }];
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
+  public activeButton: number | null = null;
+
   public navigation: {}[] = [
     {
       titles: ['ТОВАРЫ', 'КОНСУЛЬТАЦИЯ'],
@@ -31,6 +34,7 @@ export class HeaderComponent implements OnInit {
     private authorizationService: AuthorizationService,
     private cartService: CartService,
     private translateService: TranslateService,
+    private translationService: TranslationService,
     private router: Router
   ) {}
 
@@ -77,7 +81,13 @@ export class HeaderComponent implements OnInit {
     this.authorizationService.setRole(false);
   }
 
-  switchLanguage(language: string) {
+  switchLanguage(language: string, buttonIndex: number) {
     this.translateService.use(language);
+    this.translationService.setLanguage(language);
+    this.toggleButton(buttonIndex);
+  }
+
+  toggleButton(buttonIndex: number) {
+    this.activeButton = buttonIndex;
   }
 }

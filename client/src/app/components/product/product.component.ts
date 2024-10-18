@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { MenuItem, MessageService } from 'primeng/api';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-product',
@@ -19,13 +20,20 @@ export class ProductComponent implements OnInit {
   public product: IProduct;
   public products: IProduct[];
   private id: string;
+  public selectedLang: string;
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
     private route: ActivatedRoute,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private traslationService: TranslationService
+  ) {
+    this.traslationService.getLanguage().subscribe((data) => {
+      this.selectedLang = data;
+      console.log(this.product);
+    });
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {

@@ -6,6 +6,7 @@ import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { cloneDeep } from 'lodash';
 import { Table } from 'primeng/table';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-product-table',
@@ -20,15 +21,22 @@ export class ProductTableComponent implements OnInit {
   loading: boolean = true;
   favoriteProducts: { [key: string]: boolean } = {};
   fav: IProduct[];
+  public selectedLang: string;
 
   constructor(
     private productService: ProductService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    public formService: FormService
+    public formService: FormService,
+
+    private traslationService: TranslationService
   ) {
     this.productService.getAllFavorite().subscribe((data) => {
       this.fav = data;
+    });
+    this.traslationService.getLanguage().subscribe((data) => {
+      console.log(data);
+      this.selectedLang = data;
     });
   }
 
