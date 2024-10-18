@@ -49,9 +49,12 @@
 
   "cart": {
     "cart-title": "Ваше замовлення",
-    "cart-empty": "Додайте товари до кошика...",
     "sum": "Сума",
-    "order-btn": "Оформити замовлення"
+    "order-success": "Ваше замовлення успішно оформлено",
+    "order-btn": "Оформлення",
+    "order-number": "Номер вашого замовлення",
+    "cart-empty": "Додайте товари до кошика...",
+    "order-suggestion": "Зробіть замовлення"
   },
 
   "product": {
@@ -68,5 +71,26 @@
   "availability": {
     "available": "Є в наявності",
     "unavailable": "Немає в наявності"
+  },
+
+  "order": {
+    "formTitle": "Оформлення замовлення",
+    "nameLabel": "ПІБ",
+    "namePlaceholder": "Введіть ПІБ",
+    "phoneLabel": "Номер телефону",
+    "emailLabel": "Електронна пошта",
+    "emailPlaceholder": "example@gmail.com",
+    "deliveryTitle": "Доставка",
+    "cityLabel": "Місто",
+    "cityPlaceholder": "Виберіть місто",
+    "deliveryMethodLabel": "Спосіб доставки",
+    "deliveryMethodPlaceholder": "Виберіть спосіб доставки",
+    "postOfficeLabel": "Відділення Пошти",
+    "postOfficePlaceholder": "Виберіть відділення",
+    "deliveryAddressLabel": "Адреса доставки",
+    "deliveryAddressPlaceholder": "Введіть адресу доставки",
+    "addMessage": "Додати коментар до замовлення",
+    "messagePlaceholder": "Повідомлення...",
+    "submitButton": "Прийняти"
   }
 }

@@ -56,7 +56,6 @@
 
 .price {
   font-size: 2rem;
-  line-height: normal;
 }
 
 .price-wholesale {
@@ -173,9 +172,54 @@
 
 @media screen and (max-width: 800px) {
   .price {
-    font-size: 1rem;
+    font-size: 2rem;
+  }
+  .mobile-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .price-wrapper {
+    align-items: flex-start;
+  }
+
+  .availability,
+  .unAvailability {
+    width: 20%;
+    text-align: center;
+  }
+  .retail {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button {
+    margin-right: 1rem;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
+  .availability,
+  .unAvailability {
+    width: 30%;
+    text-align: center;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 }

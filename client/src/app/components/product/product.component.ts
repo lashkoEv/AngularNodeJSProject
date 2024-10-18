@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { IProduct } from '../../interfaces/IProduct';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
@@ -14,6 +14,8 @@ import { TranslationService } from '../../services/translation.service';
 export class ProductComponent implements OnInit {
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
+
+  public isMobile: boolean = false;
 
   public product: IProduct;
   public products: IProduct[];
@@ -33,7 +35,13 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.isMobile = window.innerWidth <= 800;
+  }
+
   ngOnInit() {
+    this.isMobile = window.innerWidth <= 800;
     this.home = { icon: 'pi pi-home', routerLink: '/' };
 
     this.route.params.subscribe((data) => {

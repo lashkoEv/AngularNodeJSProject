@@ -1,6 +1,6 @@
 <div *ngIf="products.length > 0" class="container">
   <div class="cart">
-    <h2 class="sidebar-title">Ваш заказ</h2>
+    <h2 class="sidebar-title">{{ "cart.cart-title" | translate }}</h2>
     <p-dataView #dv [value]="products">
       <ng-template pTemplate="list" let-products>
         <div class="product-list">
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="checkout">
-          <span class="total-price-text">Сумма</span>
+          <span class="total-price-text">{{ "cart.sum" | translate }}</span>
           <span class="total-price">{{ cartTotalPrice }} грн</span>
         </div>
       </ng-template>
@@ -40,13 +40,15 @@
 
 <div *ngIf="products.length <= 0 && getOrderId()" class="order-container">
   <div class="succes-order-wrapper">
-    <span class="order-span">Ваше замовлення успішно оформленно</span>
-    <p class="order-p">Номер вашого замовлення №{{ getOrderId() }}</p>
+    <span class="order-span">{{ "cart.order-success" | translate }}</span>
+    <p class="order-p">
+      {{ "cart.order-number" | translate }} №{{ getOrderId() }}
+    </p>
   </div>
 </div>
 <div *ngIf="!getOrderId() && products.length <= 0" class="order-container">
   <div>
-    <span class="order-span">Ваш кошик порожній.</span>
-    <p class="order-p">Зробіть замовлення</p>
+    <span class="order-span">{{ "cart.cart-empty" | translate }}</span>
+    <p class="order-p">{{ "cart.order-suggestion" | translate }}</p>
   </div>
 </div>
