@@ -1,19 +1,7 @@
 <section class="top-header">
-  <div class="center">{{ "header.top-header" | translate }}</div>
-  <button
-    [ngClass]="{ active: activeButton === 1 }"
-    class="lang-btn"
-    (click)="switchLanguage('ua', 1)"
-  >
-    UA
-  </button>
-  <button
-    [ngClass]="{ active: activeButton === 2 }"
-    class="lang-btn"
-    (click)="switchLanguage('ru', 2)"
-  >
-    RU
-  </button>
+  <div class="top-wrapper">
+    <div class="center">{{ "header.top-header" | translate }}</div>
+  </div>
 </section>
 <section class="main-header">
   <div class="left">
@@ -28,7 +16,16 @@
   <div class="search">
     <app-search></app-search>
   </div>
-  <app-megamenu class="megamenu"></app-megamenu>
+  <div class="lang-btns">
+    <p-toggleButton
+      [onLabel]="'UA'"
+      [offLabel]="'RU'"
+      [style]="{ width: '5rem', padding: '5px' }"
+      [(ngModel)]="isUA"
+      (onChange)="switchLanguage()"
+      styleClass="lang-toggler"
+    ></p-toggleButton>
+  </div>
 
   <div class="contacts-wrapper">
     <a href="tel:{{ phoneNumber }}" class="tel">

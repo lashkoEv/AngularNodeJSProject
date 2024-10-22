@@ -18,7 +18,7 @@ export class ProductService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('/api/products').pipe(
+    return this.http.get('http://localhost:3000/products').pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -26,7 +26,7 @@ export class ProductService {
     );
   }
   getAllFavorite(): Observable<any> {
-    return this.http.get('/api/favorite').pipe(
+    return this.http.get('http://localhost:3000/favorite').pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -35,7 +35,7 @@ export class ProductService {
   }
 
   getById(id: String): Observable<any> {
-    return this.http.post('/api/products', { id: id }).pipe(
+    return this.http.post('http://localhost:3000/products', { id: id }).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -45,7 +45,7 @@ export class ProductService {
 
   getByCategory(category: ICategory): Observable<any> {
     return this.http
-      .post('/api/products/category', { category: category })
+      .post('http://localhost:3000/products/category', { category: category })
       .pipe(
         catchError((err) => {
           console.log(err);
@@ -55,7 +55,7 @@ export class ProductService {
   }
 
   add(data: IProduct): any {
-    return this.http.post('/api/products/add', data).pipe(
+    return this.http.post('http://localhost:3000/products/add', data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -63,34 +63,40 @@ export class ProductService {
     );
   }
   addFavorite(data: IProduct): any {
-    return this.http.post('/api/products/favorite/add', data).pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    );
+    return this.http
+      .post('http://localhost:3000/products/favorite/add', data)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
   }
 
   deleteById(id: String): any {
-    return this.http.post('/api/products/delete', { id: id }).pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    );
+    return this.http
+      .post('http://localhost:3000/products/delete', { id: id })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
   }
 
   deleteFavoriteById(id: String): any {
-    return this.http.post('/api/products/favorite/delete', { id: id }).pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    );
+    return this.http
+      .post('http://localhost:3000/products/favorite/delete', { id: id })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      );
   }
 
   update(data: IProduct): any {
-    return this.http.post('/api/products/update', data).pipe(
+    return this.http.post('http://localhost:3000/products/update', data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;

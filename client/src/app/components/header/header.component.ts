@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   public languageSwitch: {}[] = [{ ru: 'RU', ua: 'UA' }];
   public logo = 'ИНТЕР-ПЛАСТ СЕРВИС';
   public activeButton: number | null = null;
+  public isUA: boolean = true;
 
   public navigation: {}[] = [
     {
@@ -81,10 +82,10 @@ export class HeaderComponent implements OnInit {
     this.authorizationService.setRole(false);
   }
 
-  switchLanguage(language: string, buttonIndex: number) {
+  switchLanguage() {
+    const language = this.isUA ? 'ua' : 'ru';
     this.translateService.use(language);
     this.translationService.setLanguage(language);
-    this.toggleButton(buttonIndex);
   }
 
   toggleButton(buttonIndex: number) {
