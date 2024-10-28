@@ -32,3 +32,11 @@ button {
   margin-bottom: 0.7rem;
   background-color: #002855;
 }
+
+@media screen and (max-width: 500px) {
+  form {
+    padding: 1.5rem;
+    min-width: 100%;
+    min-height: max-content;
+  }
+}
