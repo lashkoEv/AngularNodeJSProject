@@ -1,5 +1,52 @@
 const { Consultation } = require("../model/consultation.model");
 
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: "zarubinmihail99@gmail.com",
+    pass: "amrg mqda fyno udmo",
+  },
+});
+
+async function add(req, res) {
+  const consultationData = req.body;
+  console.log(consultationData);
+  try {
+    const consultation = new Consultation({
+      email: consultationData.email,
+      topic: consultationData.topic,
+      message: consultationData.message,
+    });
+
+    const adminOptions = {
+      from: "zarubinmihail99@gmail.com",
+      to: "ipstorg@gmail.com",
+      subject: "Новий запит на консультацію",
+      text: `Новий запит на консультацію від ${consultationData.email}. Тема: ${consultationData.topic}. Повідомлення: ${consultationData.message}`,
+    };
+
+    await consultation.save();
+    transporter.sendMail(adminOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email to admin:", error);
+        return res.status(500).json({ error: error.toString() });
+      }
+      console.log("Admin notified:", info.response);
+      res.status(200).json({
+        message: "Call request placed and admin notified",
+        response: info.response,
+      });
+    });
+  } catch (error) {
+    console.error(`Error: ${error}`);
+    return res
+      .status(500)
+      .send({ error: `Failed to complete the request! Error: ${error}` });
+  }
+}
+
 async function getAll(req, res) {
   try {
     const consultations = await Consultation.find();
@@ -32,25 +79,25 @@ async function getById(req, res) {
   }
 }
 
-async function add(req, res) {
-  try {
-    const consultation = new Consultation({
-      email: req.body.email,
-      topic: req.body.topic,
-      message: req.body.message,
-    });
+// async function add(req, res) {
+//   try {
+//     const consultation = new Consultation({
+//       email: req.body.email,
+//       topic: req.body.topic,
+//       message: req.body.message,
+//     });
 
-    await consultation.save();
+//     await consultation.save();
 
-    return res.send({ ok: "ok" });
-  } catch (error) {
-    console.error(`Error: ${error}`);
+//     return res.send({ ok: "ok" });
+//   } catch (error) {
+//     console.error(`Error: ${error}`);
 
-    return res
-      .status(500)
-      .send({ error: `Failed to complete the request! Error: ${error}` });
-  }
-}
+//     return res
+//       .status(500)
+//       .send({ error: `Failed to complete the request! Error: ${error}` });
+//   }
+// }
 
 async function deleteById(req, res) {
   try {

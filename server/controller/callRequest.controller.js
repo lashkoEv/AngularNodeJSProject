@@ -21,7 +21,7 @@ async function add(req, res) {
 
     const adminOptions = {
       from: "zarubinmihail99@gmail.com",
-      to: "ipstorg@gmail.com", // изменить на эмейл отца
+      to: "ipstorg@gmail.com",
       subject: "Новий запит на дзвінок",
       text: `Новий запит на звінок від ${callData.name}. Телефон: ${callData.phone}`,
     };
