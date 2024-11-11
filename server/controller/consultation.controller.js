@@ -22,7 +22,7 @@ async function add(req, res) {
 
     const adminOptions = {
       from: "zarubinmihail99@gmail.com",
-      to: "ipstorg@gmail.com",
+      to: "zarubinmihail99@gmail.com",
       subject: "Новий запит на консультацію",
       text: `Новий запит на консультацію від ${consultationData.email}. Тема: ${consultationData.topic}. Повідомлення: ${consultationData.message}`,
     };
