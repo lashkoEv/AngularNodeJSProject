@@ -155,6 +155,21 @@
   color: white;
 }
 
+.product-count {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  .count-button {
+    margin-right: 5px;
+  }
+
+  .count {
+    font-size: 16px;
+    margin: 0 5px;
+  }
+}
+
 @media screen and (max-width: 5000px) {
 }
 

@@ -34,6 +34,23 @@ export class CartService {
     this.productSubject.next(this.products);
   }
 
+  addToCart(addedProduct: IOrderedProduct) {
+    let isNew = true;
+    for (let product of this.products) {
+      if (product.product._id === addedProduct.product._id) {
+        isNew = false;
+        product.count += addedProduct.count;
+      }
+    }
+    if (isNew) {
+      this.products.push({
+        product: addedProduct.product,
+        count: addedProduct.count,
+      });
+    }
+    this.productSubject.next(this.products);
+  }
+
   increase(product: IOrderedProduct) {
     const found = this.find(product);
     if (found) {
