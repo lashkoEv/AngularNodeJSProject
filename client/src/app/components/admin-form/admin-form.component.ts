@@ -30,6 +30,7 @@ export class AdminFormComponent implements OnInit {
   private selectedFile: File | null = null;
   public countries: { country: string }[];
   public availability: { availability: string }[];
+  private baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
 
   constructor(
     private fb: FormBuilder,
@@ -138,12 +139,12 @@ export class AdminFormComponent implements OnInit {
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('imgSrc', this.selectedFile);
-      this.http.post('http://localhost:3000/upload', formData).subscribe(
+      this.http.post(`${this.baseUrl}/upload`, formData).subscribe(
         (response: any) => {
           console.log('Image uploaded successfully:', response);
           this.selectedFile = null;
           if (response && typeof response.imageUrl === 'string') {
-            resolve(`http://localhost:3000/${response.imageUrl}`);
+            resolve(`${this.baseUrl}/${response.imageUrl}`);
           } else {
             reject('Invalid image URL');
           }
@@ -226,6 +227,7 @@ export class AdminFormComponent implements OnInit {
             );
             console.log(productUpdateData);
             productUpdateData.productUA = { ...translatedProduct };
+            productUpdateData.productUA = { ...productUpdateData };
             productUpdateData._id = this.formService.getProductId();
             this.productService.update(productUpdateData).subscribe(
               (response: Response) => {
@@ -353,7 +355,6 @@ export class AdminFormComponent implements OnInit {
             console.log('Перевод названия завершён');
           },
         });
-
       // Перевод описания продукта
       this.translationService
         .translate(product.description.toString(), 'ru', 'uk')
@@ -375,7 +376,6 @@ export class AdminFormComponent implements OnInit {
 
   translateCategory(category: ICategory): Promise<ICategory> {
     return new Promise((resolve, reject) => {
-      // Перевод названия продукта
       this.translationService
         .translate(category.title.toString(), 'ru', 'uk')
         .subscribe({
@@ -395,7 +395,6 @@ export class AdminFormComponent implements OnInit {
             console.log('Перевод названия завершён');
           },
         });
-
       // Перевод описания продукта
       this.translationService
         .translate(category.description.toString(), 'ru', 'uk')
@@ -418,25 +417,20 @@ export class AdminFormComponent implements OnInit {
   delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-
   async translateFields(
     fields: { key: string; value: string }[],
     delayMs: number
   ): Promise<IProduct[]> {
     const translatedFields = [];
-
     // Проходим по каждому полю по очереди
     for (const field of fields) {
       try {
         // Переводим ключ
         const translatedKey = await this.translateText(field.key);
-
         // Переводим значение
         const translatedValue = await this.translateText(field.value);
-
         // Сохраняем переведенные значения в массив
         translatedFields.push({ key: translatedKey, value: translatedValue });
-
         // Задержка перед следующим запросом
         await this.delay(delayMs);
       } catch (error) {
@@ -444,10 +438,8 @@ export class AdminFormComponent implements OnInit {
         throw error; // Прерываем выполнение при ошибке
       }
     }
-
     return translatedFields;
   }
-
   translateText(text: string): Promise<string> {
     return new Promise((resolve, reject) => {
       this.translationService.translate(text, 'ru', 'uk').subscribe({

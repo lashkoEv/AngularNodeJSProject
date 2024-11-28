@@ -7,6 +7,7 @@ import { FormService } from '../../services/form.service';
 import { NotificationService } from '../../services/notification.service';
 import { IColumn } from '../../interfaces/IColumn';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-category-table',
@@ -18,13 +19,20 @@ export class CategoryTableComponent {
   current: ICategory;
   categories!: ICategory[];
   cols!: IColumn[];
+  public selectedLang: string;
 
   constructor(
     private categoryService: CategoryService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    public formService: FormService
-  ) {}
+    public formService: FormService,
+    private traslationService: TranslationService
+  ) {
+    this.traslationService.getLanguage().subscribe((data) => {
+      console.log(data);
+      this.selectedLang = data;
+    });
+  }
 
   private getCategory(category: ICategory) {
     const findCategory = this.categoryService.setCategory(category);
