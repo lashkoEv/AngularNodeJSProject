@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { MenuItem, MessageService } from 'primeng/api';
 import { TranslationService } from '../../services/translation.service';
+import { IOrderedProduct } from '../../interfaces/IOrderedProduct';
 
 @Component({
   selector: 'app-product',
@@ -19,9 +20,10 @@ export class ProductComponent implements OnInit {
 
   public product: IProduct;
   public products: IProduct[];
+  public orderedProducts: IOrderedProduct[];
   private id: string;
   public selectedLang: string;
-
+  public count: number = 1;
   constructor(
     private productService: ProductService,
     private cartService: CartService,
@@ -78,14 +80,36 @@ export class ProductComponent implements OnInit {
       });
     });
   }
+  getProducts() {
+    return this.product;
+  }
 
-  addToCart(product: IProduct) {
-    this.cartService.add(product);
-    console.log(product);
+  increase() {
+    this.count++;
+  }
+
+  decrease() {
+    if (this.count > 1) {
+      this.count--;
+    }
+  }
+
+  addToCart() {
+    const orderedProduct: IOrderedProduct = {
+      product: this.product,
+      count: this.count,
+    };
+
+    this.cartService.addToCart(orderedProduct);
+    console.log(orderedProduct);
+
     this.messageService.add({
       severity: 'success',
       summary: `Продукт добавлен в корзину!`,
-      detail: `Продукт ${product.title} добавлен в корзину!`,
+      detail: `Продукт ${this.product.title} добавлен в корзину в количестве ${this.count}!`,
     });
+
+    // Reset the count after adding to cart
+    this.count = 1;
   }
 }

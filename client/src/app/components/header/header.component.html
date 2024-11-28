@@ -1,6 +1,43 @@
 <section class="top-header">
   <div class="top-wrapper">
     <div class="center">{{ "header.top-header" | translate }}</div>
+    <div class="lang-btns">
+      <p-button
+        [ngClass]="{ active: activeButton === 1 }"
+        [style]="{
+          width: '3rem',
+          padding: '1px',
+          'margin-right': '2.5rem',
+          'margin-top': '0.3rem',
+          'background-color': 'white',
+          color: 'black',
+          'font-size': '12px'
+        }"
+        class="lang-btn"
+        label="UA"
+        (onClick)="switchLanguage('ua', 1)"
+        severity="secondary"
+        [raised]="true"
+        size="small"
+      ></p-button>
+      <p-button
+        [ngClass]="{ active: activeButton === 2 }"
+        [style]="{
+          width: '3rem',
+          padding: '1px',
+          'margin-right': '2.5rem',
+          'margin-top': '0.3rem',
+          'background-color': '#002855',
+          'font-size': '12px'
+        }"
+        class="lang-btn"
+        label="RU"
+        (onClick)="switchLanguage('ru', 2)"
+        severity="secondary"
+        [raised]="true"
+        size="small"
+      ></p-button>
+    </div>
   </div>
 </section>
 <section class="main-header">
@@ -15,16 +52,6 @@
   </div>
   <div class="search">
     <app-search></app-search>
-  </div>
-  <div class="lang-btns">
-    <p-toggleButton
-      [onLabel]="'UA'"
-      [offLabel]="'RU'"
-      [style]="{ width: '5rem', padding: '5px' }"
-      [(ngModel)]="isUA"
-      (onChange)="switchLanguage()"
-      styleClass="lang-toggler"
-    ></p-toggleButton>
   </div>
 
   <div class="contacts-wrapper">

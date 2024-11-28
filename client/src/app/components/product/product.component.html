@@ -22,7 +22,6 @@
 
       <ng-template pTemplate>
         <div class="split info">
-
           <h1 *ngIf="selectedLang === 'ru'" class="title">
             {{ product?.title }}
           </h1>
@@ -66,6 +65,26 @@
             </div>
           </div>
 
+          <div class="product-count">
+            <p-button
+              icon="pi pi-minus"
+              (click)="decrease(item)"
+              class="count-button"
+              size="small"
+              [rounded]="true"
+              [text]="true"
+            ></p-button>
+            <span class="count">{{ count }}</span>
+            <p-button
+              icon="pi pi-plus"
+              (click)="increase(item)"
+              class="count-button"
+              size="small"
+              [rounded]="true"
+              [text]="true"
+            ></p-button>
+          </div>
+
           <p-button
             [label]="'product.to-cart' | translate"
             icon="pi pi-shopping-cart"
@@ -76,9 +95,6 @@
         </div>
       </ng-template>
     </p-splitter>
-
-
-
 
     <div class="mobile-layout" *ngIf="isMobile">
       <div class="image">
@@ -114,6 +130,25 @@
                 {{ product?.retailPrice }}
               </p>
             </div>
+            <div class="product-count">
+              <p-button
+                icon="pi pi-minus"
+                (click)="decrease(item)"
+                class="count-button"
+                size="small"
+                [rounded]="true"
+                [text]="true"
+              ></p-button>
+              <span class="count">{{ count }}</span>
+              <p-button
+                icon="pi pi-plus"
+                (click)="increase(item)"
+                class="count-button"
+                size="small"
+                [rounded]="true"
+                [text]="true"
+              ></p-button>
+            </div>
 
             <p-button
               [label]="'product.to-cart' | translate"
@@ -139,12 +174,11 @@
       </div>
     </div>
 
-        <p-panel
+    <p-panel
       *ngIf="selectedLang === 'ru'"
       [header]="'product.description' | translate"
       [toggleable]="true"
     >
-
       <p class="line-break">
         {{ product?.description }}
       </p>

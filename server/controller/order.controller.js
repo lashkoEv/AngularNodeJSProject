@@ -44,14 +44,14 @@ async function add(req, res) {
     }
 
     const customerMailOption = {
-      from: "zarubinmihail99@gmail.com", // изменить на настоящий вместо тестового
+      from: "ipstorg@gmail.com", // изменить на настоящий вместо тестового
       to: orderData.email,
       subject: "Підтвердження замовлення",
       text: `Дякуємо за замовляння, ${orderData.nameAndLastName}. Ваше замовлення:  №${orderData.id} успішно оформленно.`,
     };
 
     const sellerMailOptions = {
-      from: "zarubinmihail99@gmail.com",
+      from: "ipstorg@gmail.com",
       to: "ipstorg@gmail.com", // изменить на эмейл отца
       subject: "Нове замовлення",
       text: `Нове замовлення від ${orderData.nameAndLastName}. Деталі замовлення: 
