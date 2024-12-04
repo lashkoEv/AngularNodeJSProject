@@ -263,6 +263,9 @@
                   icon="pi pi-shopping-cart"
                   class="md:align-self-end mb-2 p-button-rounded"
                   (click)="addToCart(product)"
+                  [disabled]="
+                    product?.availability?.availability === 'Нет в наличии'
+                  "
                 ></button>
               </div>
             </div>
@@ -315,6 +318,9 @@
                 icon="pi pi-shopping-cart"
                 class="button"
                 (click)="addToCart(product)"
+                [disabled]="
+                  product?.availability?.availability === 'Нет в наличии'
+                "
               ></button>
             </div>
           </div>

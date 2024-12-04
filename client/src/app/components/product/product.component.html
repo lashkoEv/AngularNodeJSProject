@@ -91,6 +91,7 @@
             iconPos="right"
             (click)="addToCart(product)"
             class="button"
+            [disabled]="product?.availability?.availability === 'Нет в наличии'"
           ></p-button>
         </div>
       </ng-template>
@@ -156,6 +157,9 @@
               iconPos="right"
               (click)="addToCart(product)"
               class="button"
+              [disabled]="
+                product?.availability?.availability === 'Нет в наличии'
+              "
             ></p-button>
           </div>
 
