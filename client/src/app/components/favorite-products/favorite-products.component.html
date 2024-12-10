@@ -35,6 +35,7 @@
             (click)="addToCart(product)"
             icon="pi pi-shopping-cart"
             styleClass="ml-2"
+            [disabled]="product?.availability?.availability === 'Нет в наличии'"
           />
           <div class="mt-0 font-semibold text-xl pricetag">
             {{ product.retailPrice }}
