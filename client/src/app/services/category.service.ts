@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
+import { config } from '../config';
 import { ICategory } from '../interfaces/ICategory';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class CategoryService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/categories').pipe(
+    return this.http.get(`${config.host}/categories`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
