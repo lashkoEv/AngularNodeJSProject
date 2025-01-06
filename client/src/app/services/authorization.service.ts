@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { IUser } from '../interfaces/IUser';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ export class AuthorizationService {
   private isAuthorized: boolean;
   private isAdmin: boolean;
   public showForm: boolean;
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.isAuthorized = false;
@@ -42,7 +44,7 @@ export class AuthorizationService {
   }
 
   authorize(data) {
-    return this.http.post('http://localhost:3000/auth', data).pipe(
+    return this.http.post(`${this.baseUrl}/auth`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -51,7 +53,7 @@ export class AuthorizationService {
   }
 
   register(user: IUser) {
-    return this.http.post('http://localhost:3000/register', user).pipe(
+    return this.http.post(`${this.baseUrl}/register`, user).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -61,7 +63,7 @@ export class AuthorizationService {
 
   update(data: IUser): any {
     console.log(data);
-    return this.http.post('http://localhost:3000/user/update', data).pipe(
+    return this.http.post(`${this.baseUrl}/user/update`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;

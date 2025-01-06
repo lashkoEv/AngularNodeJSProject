@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 
 import { IOrdering } from '../interfaces/IOrdering';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ export class OrderFormService {
   private isOrder: boolean = false;
   private formTitle: string = 'Оформление заказа';
   private orderId: String = '';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +20,7 @@ export class OrderFormService {
     return this.formTitle;
   }
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/order').pipe(
+    return this.http.get(`${this.baseUrl}/order`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -26,7 +28,7 @@ export class OrderFormService {
     );
   }
   getNovaPoshtaOffices(): Observable<any> {
-    return this.http.get('http://localhost:3000/delivery/posts').pipe(
+    return this.http.get(`${this.baseUrl}/delivery/posts`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -35,7 +37,7 @@ export class OrderFormService {
   }
 
   getById(id: String): Observable<any> {
-    return this.http.post('http://localhost:3000/order', { id: id }).pipe(
+    return this.http.post(`${this.baseUrl}/order`, { id: id }).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -44,7 +46,7 @@ export class OrderFormService {
   }
 
   add(data: IOrdering): any {
-    return this.http.post('http://localhost:3000/order/add', data).pipe(
+    return this.http.post(`${this.baseUrl}/order/add`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -53,7 +55,7 @@ export class OrderFormService {
   }
 
   updateById(data: IOrdering): any {
-    return this.http.post('http://localhost:3000//order/update', data).pipe(
+    return this.http.post(`${this.baseUrl}/order/update`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -62,14 +64,12 @@ export class OrderFormService {
   }
 
   deleteById(id: String): any {
-    return this.http
-      .post('http://localhost:3000/order/delete', { id: id })
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      );
+    return this.http.post(`${this.baseUrl}/order/delete`, { id: id }).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 
   public hideForm() {

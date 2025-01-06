@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { TranslationService } from '../../services/translation.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-form',
@@ -30,7 +31,7 @@ export class AdminFormComponent implements OnInit {
   private selectedFile: File | null = null;
   public countries: { country: string }[];
   public availability: { availability: string }[];
-  private baseUrl = `${window.location.protocol}//${window.location.hostname}:3000`;
+  private baseUrl = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,

@@ -3,12 +3,14 @@ import { IProduct } from '../interfaces/IProduct';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { ICategory } from '../interfaces/ICategory';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   private product: IProduct;
+  private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   getProduct(): IProduct {
@@ -18,7 +20,7 @@ export class ProductService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/products').pipe(
+    return this.http.get(`${this.baseUrl}/products`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -26,7 +28,7 @@ export class ProductService {
     );
   }
   getAllFavorite(): Observable<any> {
-    return this.http.get('http://localhost:3000/favorite').pipe(
+    return this.http.get(`${this.baseUrl}/favorite`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -35,7 +37,7 @@ export class ProductService {
   }
 
   getById(id: String): Observable<any> {
-    return this.http.post('http://localhost:3000/products', { id: id }).pipe(
+    return this.http.post(`${this.baseUrl}/products`, { id: id }).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -45,7 +47,7 @@ export class ProductService {
 
   getByCategory(category: ICategory): Observable<any> {
     return this.http
-      .post('http://localhost:3000/products/category', { category: category })
+      .post(`${this.baseUrl}/products/category`, { category: category })
       .pipe(
         catchError((err) => {
           console.log(err);
@@ -55,7 +57,7 @@ export class ProductService {
   }
 
   add(data: IProduct): any {
-    return this.http.post('http://localhost:3000/products/add', data).pipe(
+    return this.http.post(`${this.baseUrl}/products/add`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -63,30 +65,26 @@ export class ProductService {
     );
   }
   addFavorite(data: IProduct): any {
-    return this.http
-      .post('http://localhost:3000/products/favorite/add', data)
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      );
+    return this.http.post(`${this.baseUrl}/products/favorite/add`, data).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 
   deleteById(id: String): any {
-    return this.http
-      .post('http://localhost:3000/products/delete', { id: id })
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      );
+    return this.http.post(`${this.baseUrl}/products/delete`, { id: id }).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 
   deleteFavoriteById(id: String): any {
     return this.http
-      .post('http://localhost:3000/products/favorite/delete', { id: id })
+      .post(`${this.baseUrl}/products/favorite/delete`, { id: id })
       .pipe(
         catchError((err) => {
           console.log(err);
@@ -96,7 +94,7 @@ export class ProductService {
   }
 
   update(data: IProduct): any {
-    return this.http.post('http://localhost:3000/products/update', data).pipe(
+    return this.http.post(`${this.baseUrl}/products/update`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;

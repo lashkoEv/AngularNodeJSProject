@@ -60,37 +60,3 @@ export class MegamenuComponent implements OnInit {
     }
   }
 }
-
-// getCategory(categoryID: string) {
-//   this.categoryService.getById(categoryID).subscribe((data) => {
-//     this.category = data;
-
-//     this.items = [
-//       { label: 'Каталог', routerLink: '/catalogue' },
-//       {
-//         label: `${this.category.title}`,
-//         routerLink: ['/category', this.category._id],
-//       },
-//     ];
-
-// this.route.params.subscribe((data) => {
-//   this.categoryService.getAll().subscribe((categoryData) => {
-//     this.category = categoryData;
-
-//     const categoryItems: MenuItem[] = this.category.map((item) => {
-//       return {
-//         label: item.title.toString(),
-//         icon: 'pi pi-box',
-//         routerLink: ['/category', item._id],
-//       };
-//     });
-//     this.items = [
-//       {
-//         label: 'Каталог',
-//         icon: 'pi pi-box',
-//         routerLink: '/catalogue',
-//         items: [categoryItems],
-//       },
-//     ];
-//   });
-// });

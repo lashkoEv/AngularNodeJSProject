@@ -2,15 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { ICallRequest } from '../interfaces/ICallRequest';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CallRequestService {
+  private baseUrl = environment.apiUrl;
+
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:3000/callRequests').pipe(
+    return this.http.get(`${this.baseUrl}/callRequests`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -19,18 +22,16 @@ export class CallRequestService {
   }
 
   getById(id: String): Observable<any> {
-    return this.http
-      .post('http://localhost:3000/callRequests', { id: id })
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      );
+    return this.http.post(`${this.baseUrl}/callRequests`, { id: id }).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 
   add(data: ICallRequest): any {
-    return this.http.post('http://localhost:3000/callRequests/add', data).pipe(
+    return this.http.post(`${this.baseUrl}/callRequests/add`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -40,7 +41,7 @@ export class CallRequestService {
 
   deleteById(id: String): any {
     return this.http
-      .post('http://localhost:3000/callRequests/delete', { id: id })
+      .post(`${this.baseUrl}/callRequests/delete`, { id: id })
       .pipe(
         catchError((err) => {
           console.log(err);
@@ -50,13 +51,11 @@ export class CallRequestService {
   }
 
   update(data: ICallRequest): any {
-    return this.http
-      .post('http://localhost:3000/callRequests/update', data)
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      );
+    return this.http.post(`${this.baseUrl}/callRequests/update`, data).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 }

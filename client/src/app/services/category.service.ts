@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { config } from '../config';
 import { ICategory } from '../interfaces/ICategory';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
   private category: ICategory;
+  private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   getCategory(): ICategory {
@@ -17,7 +18,7 @@ export class CategoryService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(`${config.host}/categories`).pipe(
+    return this.http.get(`${this.baseUrl}/categories`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -26,7 +27,7 @@ export class CategoryService {
   }
 
   getById(id: String): Observable<any> {
-    return this.http.post('http://localhost:3000/categories', { id: id }).pipe(
+    return this.http.post(`${this.baseUrl}/categories`, { id: id }).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -35,7 +36,7 @@ export class CategoryService {
   }
 
   add(data: ICategory): any {
-    return this.http.post('http://localhost:3000/categories/add', data).pipe(
+    return this.http.post(`${this.baseUrl}/categories/add`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -44,18 +45,16 @@ export class CategoryService {
   }
 
   deleteById(id: String): any {
-    return this.http
-      .post('http://localhost:3000/categories/delete', { id: id })
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      );
+    return this.http.post(`${this.baseUrl}/categories/delete`, { id: id }).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
   }
 
   update(data: ICategory): any {
-    return this.http.post('http://localhost:3000/categories/update', data).pipe(
+    return this.http.post(`${this.baseUrl}/categories/update`, data).pipe(
       catchError((err) => {
         console.log(err);
         throw err;

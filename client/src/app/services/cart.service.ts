@@ -3,6 +3,7 @@ import { IProduct } from '../interfaces/IProduct';
 import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { IOrderedProduct } from '../interfaces/IOrderedProduct';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class CartService {
   private products: IOrderedProduct[] = [];
   public productSubject = new BehaviorSubject<IOrderedProduct[]>([]);
+
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -102,7 +105,7 @@ export class CartService {
   }
 
   save(): Observable<any> {
-    return this.http.post('http://localhost:3000/cart', this.products).pipe(
+    return this.http.post(`${this.baseUrl}/cart`, this.products).pipe(
       catchError((err) => {
         console.log(err);
         throw err;

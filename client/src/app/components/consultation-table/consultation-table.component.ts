@@ -10,26 +10,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrl: './consultation-table.component.scss',
 })
 export class ConsultationTableComponent implements OnInit {
-  // @ViewChild('paginator') paginator: MatPaginator;
-  // displayedColumns = ['_id', 'email', 'topic', 'message', 'delete'];
-  // dataSource: MatTableDataSource<IConsultation>;
-  // constructor(private consultationService: ConsultationService) {}
-  // ngOnInit() {
-  //   this.consultationService.getAll().subscribe((data) => {
-  //     this.dataSource = new MatTableDataSource<IConsultation>(data);
-  //     this.dataSource.paginator = this.paginator;
-  //     this.dataSource.paginator._intl.itemsPerPageLabel =
-  //       'Запросов на странице: ';
-  //   });
-  // }
-  // async deleteConsultation(id: String) {
-  //   await this.consultationService.deleteById(id).subscribe((data) => {
-  //     if (data.ok) {
-  //       this.ngOnInit();
-  //     }
-  //   });
-  // }
-
   visible: boolean = false;
   current: IConsultation;
   consultations!: IConsultation[];
