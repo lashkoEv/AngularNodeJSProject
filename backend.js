@@ -21,13 +21,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(
-  "/api",
-  createProxyMiddleware({
-    target: "http://localhost:3000",
-    changeOrigin: true,
-    pathRewrite: {
-      "^/api": "",
-    },
+  cors({
+    origin: "http://inter-plast-service.s3-website.eu-north-1.amazonaws.com/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -53,14 +50,6 @@ app.use("", cartRouter);
 app.use("", orderRouter);
 app.use("", deliveryRouter);
 app.use(upload.single("imgSrc"));
-
-// app.use(
-//   cors({
-//     origin: "*",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
 
 app.post("/upload", (req, res) => {
   if (!req.file) {

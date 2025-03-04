@@ -1,10 +1,10 @@
-const { Category } = require('../model/category.model');
-const fs = require('fs').promises;
+const { Category } = require("../model/category.model");
+const fs = require("fs").promises;
 async function getAll(req, res) {
   try {
     const categories = await Category.find();
 
-    console.log('Found:', categories);
+    console.log("Found:", categories);
 
     return res.send(categories);
   } catch (error) {
@@ -20,7 +20,7 @@ async function getById(req, res) {
   try {
     const category = await Category.findOne({ _id: req.body.id });
 
-    console.log('Found:', category);
+    console.log("Found:", category);
 
     return res.send(category);
   } catch (error) {
@@ -43,7 +43,7 @@ async function add(req, res) {
 
     await category.save();
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -58,15 +58,15 @@ async function deleteById(req, res) {
     const category = await Category.findOne({ _id: req.body.id });
     await Category.deleteOne({ _id: req.body.id });
     if (!category) {
-      return res.status(404).send({ error: 'Category not found' });
+      return res.status(404).send({ error: "Category not found" });
     }
     const imagePath = category.imgSrc;
 
     if (imagePath) {
       try {
-        await fs.unlink(imagePath.replace('http://localhost:3000/', ''));
+        await fs.unlink(imagePath.replace("http://13.51.196.237:3000", ""));
       } catch (error) {
-        if (error.code === 'ENOENT') {
+        if (error.code === "ENOENT") {
           console.log(`File ${imagePath} not found. Continuing...`);
         } else {
           throw error;
@@ -74,7 +74,7 @@ async function deleteById(req, res) {
       }
     }
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 
@@ -99,11 +99,11 @@ async function updateById(req, res) {
     );
 
     if (oldImagePath) {
-      const imageURL = oldImagePath.replace('http://localhost:3000/', '');
+      const imageURL = oldImagePath.replace("http://13.51.196.237:3000", "");
       try {
         await fs.unlink(imageURL);
       } catch (error) {
-        if (error.code === 'ENOENT') {
+        if (error.code === "ENOENT") {
           console.log(`File ${imageURL} not found. Continuing...`);
         } else {
           throw error;
@@ -111,7 +111,7 @@ async function updateById(req, res) {
       }
     }
 
-    return res.send({ ok: 'ok' });
+    return res.send({ ok: "ok" });
   } catch (error) {
     console.error(`Error: ${error}`);
 

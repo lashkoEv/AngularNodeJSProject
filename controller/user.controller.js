@@ -2,6 +2,7 @@ const { User } = require("../model/user.model");
 
 async function authorize(req, res) {
   try {
+    console.log("Request body:", req.body);
     const user = await User.findOne({
       login: req.body.login,
       password: req.body.password,
